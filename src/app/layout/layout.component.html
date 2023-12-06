@@ -43,7 +43,7 @@
         </div>
     </mat-sidenav-content>
     <mat-sidenav #rightnav position="end" mode="side" class="sidenav-container"
-    [opened]="newsOpen()||chatOpen()||noteOpen()||(groupAndMemberOpen() && checkLogin())">
+    [opened]="newsOpen()||chatOpen()">
         <app-news-panel *ngIf="newsOpen()"></app-news-panel>
         <app-chat-panel *ngIf="chatOpen()"></app-chat-panel>
         <!-- <app-note-panel *ngIf="noteOpen()"></app-note-panel> -->

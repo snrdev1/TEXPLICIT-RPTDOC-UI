@@ -64,8 +64,7 @@ export class AnonymousComponent {
     this.commonService.newsOpen=true;
   }
   onTabChanged(event:any){
-    // console.log('onTabChanged',event.index);  ks
-    
+    // console.log('onTabChanged',event.index); 
   }
 }
 

@@ -16,9 +16,9 @@ import { LocalStorageService } from 'src/app/core/local-storage.service';
 export class CommonService {
   private _newsOpen:boolean=false;
   private _chatOpen:boolean=false;
-  private _noteOpen:boolean=false;
-  private _groupAndMemberOpen:boolean=false;
-  private _workspaceOpen:boolean=false;
+  // private _noteOpen:boolean=false;
+  // private _groupAndMemberOpen:boolean=false;
+  // private _workspaceOpen:boolean=false;
   public userMenu:any=[];
   constructor(private snackbar:MatSnackBar,private http : HttpClient,public dialog: MatDialog,
     private router: Router,private authService:AuthService,
@@ -42,33 +42,33 @@ export class CommonService {
     this._newsOpen = value;
   }
 
-  get groupAndMemberOpen(): boolean {
-    return this._groupAndMemberOpen;
-  }
+  // get groupAndMemberOpen(): boolean {
+  //   return this._groupAndMemberOpen;
+  // }
 
-  @Input() set groupAndMemberOpen(value: boolean) {
-    this._groupAndMemberOpen = value;
-  }
+  // @Input() set groupAndMemberOpen(value: boolean) {
+  //   this._groupAndMemberOpen = value;
+  // }
 
-  get noteOpen(): boolean {
-    return this._noteOpen;
-  }
+  // get noteOpen(): boolean {
+  //   return this._noteOpen;
+  // }
 
-  @Input() set noteOpen(value: boolean) {
-    this._noteOpen = value;
-  }
+  // @Input() set noteOpen(value: boolean) {
+  //   this._noteOpen = value;
+  // }
 
-  get workspaceOpen(): boolean {
-    return this._workspaceOpen;
-  }
+  // get workspaceOpen(): boolean {
+  //   return this._workspaceOpen;
+  // }
 
-  @Input() set workspaceOpen(value: boolean) {
-    this._workspaceOpen = value;
-  }
+  // @Input() set workspaceOpen(value: boolean) {
+  //   this._workspaceOpen = value;
+  // }
 
   closeAll(){
-    this.workspaceOpen = false;
-    this.noteOpen = false;
+    // this.workspaceOpen = false;
+    // this.noteOpen = false;
     this.newsOpen = false;
     this.chatOpen = false;
   }

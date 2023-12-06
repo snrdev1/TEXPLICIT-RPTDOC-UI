@@ -112,17 +112,7 @@ export class LayoutComponent {
     return this.commonService.newsOpen;
   }
 
-  groupAndMemberOpen(){
-    return this.commonService.groupAndMemberOpen;
-  }
-
-  noteOpen(){
-    return this.commonService.noteOpen;
-  }
-
-  workspaceOpen(){
-    return this.commonService.workspaceOpen;
-  }
+  
 
   ngAfterViewInit() {
     ElementQueries.listen();

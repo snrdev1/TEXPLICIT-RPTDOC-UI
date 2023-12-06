@@ -9,12 +9,12 @@
         <!-- <mat-icon>keyboard_double_arrow_left</mat-icon> -->
         <mat-icon>article</mat-icon>
     </button>
-    <button mat-mini-fab class="btn-circle-icon-35 m-show" matTooltip="Group(s)" (click)="toggleGroupAndMember()" *ngIf="groupMemberButtonVisible">
+    <!-- <button mat-mini-fab class="btn-circle-icon-35 m-show" matTooltip="Group(s)" (click)="toggleGroupAndMember()" *ngIf="groupMemberButtonVisible">
         <mat-icon>group</mat-icon>
     </button>
     <button mat-mini-fab class="btn-circle-icon-35" matTooltip="Note(s)" (click)="toggleNote()" *ngIf="noteButtonVisible">
         <mat-icon>sticky_note_2</mat-icon>
-    </button>
+    </button> -->
     <button mat-mini-fab class="btn-circle-icon-35" matTooltip="Back to parent" (click)="onBack()" *ngIf="backToParentButtonVisible">
         <mat-icon>drive_file_move_rtl</mat-icon>
     </button>
@@ -33,9 +33,9 @@
     <button mat-mini-fab class="btn-circle-icon-35" matTooltip="Add User" *ngIf="addUserButtonVisible" (click)="onAddUserClick()" [disabled]="!addUserEnable">
         <mat-icon>person_add_alt_1</mat-icon>
     </button>
-    <button mat-mini-fab class="btn-circle-icon-35" matTooltip="Workspaces" *ngIf="workspaceButtonVisible" (click)="toggleWorkspace()">
+    <!-- <button mat-mini-fab class="btn-circle-icon-35" matTooltip="Workspaces" *ngIf="workspaceButtonVisible" (click)="toggleWorkspace()">
         <mat-icon>workspaces</mat-icon>
-    </button>
+    </button> -->
     <button mat-mini-fab class="btn-circle-icon-35" matTooltip="Report(s) in Progress" *ngIf="reportProgressButtonVisible" (click)="toggleReportProgress()">
         <mat-icon>published_with_changes</mat-icon>
     </button>

@@ -13,7 +13,7 @@
     
 </div>
 <div style="position: relative;">
-    <mat-tab-group (selectedTabChange)="onTabChanged($event)"  mat-stretch-tabs="false" mat-align-tabs="start">
+    <!-- <mat-tab-group (selectedTabChange)="onTabChanged($event)"  mat-stretch-tabs="false" mat-align-tabs="start">
         <ng-container *ngFor="let domain of domains; let i = index">
             <mat-tab>
                 <ng-template mat-tab-label class="tab-label">
@@ -22,14 +22,14 @@
                 <ng-container>
                     <app-subtopic [Subtopics]="domain.subtopics"></app-subtopic>
                     <div #kiContainer class="ki-container" (scroll)="onScroll($event)">
-                        <!-- <div class="ki-col-dynamic {{displayStyle.value}}" *ngFor="let ki of domKis">
+                        <div class="ki-col-dynamic {{displayStyle.value}}" *ngFor="let ki of domKis">
                             <app-ki-card [viewMode]="displayStyle.value" [checkboxVisible]="false" [item]="ki" ></app-ki-card>
-                        </div> -->
+                        </div>
                     </div>
                 </ng-container>
             </mat-tab>
         </ng-container>
-    </mat-tab-group>
+    </mat-tab-group> -->
     <!-- <div class="toggle-button-holder">
         <mat-button-toggle-group class="btn-toggle-group" #displayStyle="matButtonToggleGroup" value="grid">
             <mat-button-toggle value="grid" class="btn-toggle">

@@ -47,13 +47,13 @@ export class OuterToolbarButtonsComponent {
     this.commonService.newsOpen=true;
   }
 
-  toggleGroupAndMember(){
-    this.commonService.groupAndMemberOpen=true;
-  }
+  // toggleGroupAndMember(){
+  //   this.commonService.groupAndMemberOpen=true;
+  // }
 
-  toggleNote(){
-    this.commonService.noteOpen=true;
-  }
+  // toggleNote(){
+  //   this.commonService.noteOpen=true;
+  // }
 
   onFilterClick(){
     this.onFilter.emit();
@@ -86,9 +86,9 @@ export class OuterToolbarButtonsComponent {
     this.onAddUser.emit();
   }
 
-  toggleWorkspace(){
-    this.commonService.workspaceOpen=true;
-  }
+  // toggleWorkspace(){
+  //   this.commonService.workspaceOpen=true;
+  // }
 
   toggleReportProgress(){
     this.onReportProgress.emit();
