@@ -147,31 +147,31 @@ export class HomeComponent {
     
   }
 
-  onKnowledgeItemClick(ki:any){
-    console.log("ki onKnowledgeItemClick in Home Component",ki);
-    let id:string = ki._id;
-    // console.log("ki._id:",id);
-    this.router.navigateByUrl(`/home/knowledgeitem/${id}`);
-  }
+  // onKnowledgeItemClick(ki:any){
+  //   console.log("ki onKnowledgeItemClick in Home Component",ki);
+  //   let id:string = ki._id;
+  //   // console.log("ki._id:",id);
+  //   this.router.navigateByUrl(`/home/knowledgeitem/${id}`);
+  // }
 
-  onFilterClick(){
-    console.log('Home Filter Click')
-    const dialogRef = this.dialog.open(HomeFilterDialogComponent,{panelClass:'mat-filter-dialog',
-                                                                    data:this.tags});
+  // onFilterClick(){
+  //   console.log('Home Filter Click')
+  //   const dialogRef = this.dialog.open(HomeFilterDialogComponent,{panelClass:'mat-filter-dialog',
+  //                                                                   data:this.tags});
 
-    dialogRef.afterClosed().subscribe(result => {
-      // console.log('Dialog result: ',result.category);
-      const filteredtags=result?.category;
-      if(filteredtags!=this.tagsIndices ){
-        this.tagsIndices = filteredtags;
-      }
-      if(filteredtags === null){
-        this.tagsIndices=[];
-      }
-      this.reset();
-      // this.getKisByDomain();
-    });
-  }
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     // console.log('Dialog result: ',result.category);
+  //     const filteredtags=result?.category;
+  //     if(filteredtags!=this.tagsIndices ){
+  //       this.tagsIndices = filteredtags;
+  //     }
+  //     if(filteredtags === null){
+  //       this.tagsIndices=[];
+  //     }
+  //     this.reset();
+  //     // this.getKisByDomain();
+  //   });
+  // }
 
   
 

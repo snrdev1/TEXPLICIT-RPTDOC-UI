@@ -2,11 +2,11 @@ export const environment = {
     // hostName:'http://115.187.43.48:6544',
     // socketName: 'http://115.187.43.48:6544',
 
-    hostName:'http://127.0.0.1:8080',
-    socketName: 'http://127.0.0.1:8080',
+    // hostName:'http://127.0.0.1:8080',
+    // socketName: 'http://127.0.0.1:8080',
 
-    // hostName:'http://127.0.0.1:5000',
-    // socketName:'http://127.0.0.1:5000',
+    hostName:'http://127.0.0.1:5000',
+    socketName:'http://127.0.0.1:5000',
     
     // production: true,
     // hostName: '/api',

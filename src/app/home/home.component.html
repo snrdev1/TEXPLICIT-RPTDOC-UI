@@ -5,8 +5,10 @@
                             (onClear)="clearSearch()"></app-search-input>
     </div>
     <!-- <div class="toolbar-spacer"></div> -->
-    <app-outer-toolbar-buttons 
-        (onFilter)="onFilterClick()"
+    <!-- <app-outer-toolbar-buttons 
+        (onFilter)="onFilterClick()" -->
+        <app-outer-toolbar-buttons 
+        [filterButtonVisible]="false"
         [groupMemberButtonVisible]="false"
         [noteButtonVisible]="false"
         [moreButtonVisible]="false"
@@ -32,18 +34,18 @@
                 <ng-container>
                     <app-subtopic [Subtopics]="domain.subtopics"></app-subtopic>
                     <div #kiContainer class="ki-container" (scroll)="onScroll($event)">
-                        <div class="ki-col-dynamic {{displayStyle.value}}" *ngFor="let ki of domKis">
-                            <!-- <app-ki-card 
+                        <!-- <div class="ki-col-dynamic {{displayStyle.value}}" *ngFor="let ki of domKis">
+                            <app-ki-card 
                                 (onKnowledgeItemClick)="onKnowledgeItemClick(ki)"
                                 (onCheckedChange)="onCheckedChange($event)" 
-                                [viewMode]="displayStyle.value"  [item]="ki" ></app-ki-card> -->
-                        </div>
+                                [viewMode]="displayStyle.value"  [item]="ki" ></app-ki-card>
+                        </div> -->
                     </div>
                 </ng-container>
             </mat-tab>
         </ng-container>
     </mat-tab-group>
-    <div class="toggle-button-holder">
+    <!-- <div class="toggle-button-holder">
         <mat-button-toggle-group class="btn-toggle-group" #displayStyle="matButtonToggleGroup" value="grid">
             <mat-button-toggle value="grid" class="btn-toggle">
                 <img class="img-unchecked" src="../../assets/svg/button-icon/ki-grid.svg"/>
@@ -54,7 +56,7 @@
                 <img class="img-checked" src="../../assets/svg/button-icon/ki-list-fill.svg">
             </mat-button-toggle>
         </mat-button-toggle-group>
-    </div>
+    </div> -->
 </div>
 <app-fab-buttons [summaryButtonVisible]="isKiSelectedForSummary()" (onItemizedSummary)="onItemizedSummaryClick($event)" (onConsolidatedSummary)="onConsolidatedSummaryClick($event)" (onHighlights)="onHighlightsClick($event)"></app-fab-buttons>
 

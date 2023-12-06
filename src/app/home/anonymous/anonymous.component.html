@@ -22,15 +22,15 @@
                 <ng-container>
                     <app-subtopic [Subtopics]="domain.subtopics"></app-subtopic>
                     <div #kiContainer class="ki-container" (scroll)="onScroll($event)">
-                        <div class="ki-col-dynamic {{displayStyle.value}}" *ngFor="let ki of domKis">
-                            <!-- <app-ki-card [viewMode]="displayStyle.value" [checkboxVisible]="false" [item]="ki" ></app-ki-card> -->
-                        </div>
+                        <!-- <div class="ki-col-dynamic {{displayStyle.value}}" *ngFor="let ki of domKis">
+                            <app-ki-card [viewMode]="displayStyle.value" [checkboxVisible]="false" [item]="ki" ></app-ki-card>
+                        </div> -->
                     </div>
                 </ng-container>
             </mat-tab>
         </ng-container>
     </mat-tab-group>
-    <div class="toggle-button-holder">
+    <!-- <div class="toggle-button-holder">
         <mat-button-toggle-group class="btn-toggle-group" #displayStyle="matButtonToggleGroup" value="grid">
             <mat-button-toggle value="grid" class="btn-toggle">
                 <img class="img-unchecked" src="../../assets/svg/button-icon/ki-grid.svg"/>
@@ -41,7 +41,7 @@
                 <img class="img-checked" src="../../assets/svg/button-icon/ki-list-fill.svg">
             </mat-button-toggle>
         </mat-button-toggle-group>
-    </div>
+    </div> -->
 </div>
 <!-- <div class="fab-container">
     <button class="btn-news" matTooltip="NEWS" (click)="newsOpen()">

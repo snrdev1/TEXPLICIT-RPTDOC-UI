@@ -31,7 +31,7 @@ export class RegistrationComponent {
         Validators.minLength(10), Validators.maxLength(10)
       ]),
       password:new FormControl("",[Validators.required, Validators.minLength(6)]),
-      domains:new FormControl("",Validators.required),
+
       role:new FormControl(3,Validators.required),
       subscription:new FormControl({value : 1, disabled : true},Validators.required),
       companyName:new FormControl(""),
@@ -40,12 +40,14 @@ export class RegistrationComponent {
   }
 
   onSubmit(){
+    console.log("on Submit");
+
      if (this.form.invalid) return;
-     let domains:any=[];
-     this.selectedDomains.forEach((domain:any)=>{
-      domains.push(domain?._id);
-     })
-     this.form.get('domains')?.setValue(domains);
+    //  let domains:any=[];
+    //  this.selectedDomains.forEach((domain:any)=>{
+    //   domains.push(domain?._id);
+    //  })
+    //  this.form.get('domains')?.setValue(domains);
 
      console.log(this.form.value);
       this.registrationService.addUser(this.form.value).subscribe(
@@ -59,6 +61,8 @@ export class RegistrationComponent {
           },
           error: (err) => {
             console.log("Error adding user:", err);
+            this.commonService.showSnackbar("snackbar-error",err.message);
+
         }
         }
       );
@@ -68,22 +72,22 @@ export class RegistrationComponent {
       // this.getAllDomains();
     }
   
-    dropdownChange(event: any) {
-      this.selectedDomains = event?.value;
-      this.changeChips();
-    }
+    // dropdownChange(event: any) {
+    //   this.selectedDomains = event?.value;
+    //   this.changeChips();
+    // }
   
-    changeChips() {
-      this.topics = [];
-      this.keywords = [];
+    // changeChips() {
+    //   this.topics = [];
+    //   this.keywords = [];
 
-      this.selectedDomains.forEach((domain:any) => {
-        console.log('keywords',domain?.keywords);
-        this.topics =[...this.topics,...domain?.subtopics];
-        this.keywords =[...this.keywords,...domain?.keywords];
-      });
+    //   this.selectedDomains.forEach((domain:any) => {
+    //     console.log('keywords',domain?.keywords);
+    //     this.topics =[...this.topics,...domain?.subtopics];
+    //     this.keywords =[...this.keywords,...domain?.keywords];
+    //   });
       
-    }
+    // }
   
     // getAllDomains() {
     //   this.sharedService.getAllDomains().subscribe({
@@ -103,14 +107,14 @@ export class RegistrationComponent {
       else
         return false;
     }
-    stepCheck2(){
-      if(this.form.get('domains')?.valid){
-        return true;
-      }
-      else{
-        return false
-      }
-    }
+    // stepCheck2(){
+    //   if(this.form.get('domains')?.valid){
+    //     return true;
+    //   }
+    //   else{
+    //     return false
+    //   }
+    // }
 
     selectRole(event:MatSelectChange){
       console.log("selectRole",event.value);
