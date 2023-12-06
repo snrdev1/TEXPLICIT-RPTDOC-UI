@@ -1,0 +1,82 @@
+// :host ::ng-deep app-search-input{
+//     .search-wrapper{
+//         width:97%;
+//     }
+// }
+.users-container{
+    height: 200px;
+    overflow: auto;
+
+    .user{
+        padding: 5px 10px;
+        margin: 0;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        list-style: none;
+        display: flex;
+        border-radius: 6px;
+        align-items: center;
+        &.active{
+            background-color: #e1e5f1;
+        }
+        
+        .user-icon {
+            padding-top: 5px;
+            padding-right: 5px;
+            img{
+                width: 34px;
+                height: 34px;
+                object-fit: cover;
+                border-radius: 50%;
+            }
+        }
+        .user-name{
+            font-family: Roboto,sans-serif;
+            font-size: 16px;
+            line-height: 16px;
+            letter-spacing: 0;
+            text-align: left;
+            width: 100%;
+            padding-right: 3px;
+            overflow: hidden;
+            white-space: nowrap;
+    
+            div{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                h5{
+                    padding: 0;
+                    margin: 0;
+                    font-weight: 500;
+                    color: #040f2f;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+            }
+        }
+    
+        .user-buttons{
+            display: flex;
+            button{
+                width: 30px;
+                height: 30px;
+                //padding: 5px 2px;
+                padding: 5.5px 5px;
+                border: 0.5px solid #7E89A7;
+                border-radius: 50%;
+                background: transparent;
+                margin-left: 3px;
+                cursor: pointer;
+    
+                mat-icon{
+                    color: #7E89A7;
+                    width:18px;
+                    height: 18px;
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+}

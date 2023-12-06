@@ -1,0 +1,88 @@
+<mat-toolbar class="toolbar-container" fxLayout="row">
+    <button mat-icon-button class="menu-btn" (click)="leftnav.toggle()">
+        <img src="../../assets/svg/top-nav-icon/hamburger.svg" />
+        <!-- <mat-icon>menu</mat-icon> -->
+    </button>
+    <div class="logo" routerLink="/home">
+        <img src="../../assets/svg/logo/texplicit02-logo.svg" />
+    </div>
+    <span class="toolbar-spacer"></span>
+    <button mat-icon-button matTooltip="Disclaimer" class="mr-5px" (click)="onDisclaimerClick()">
+        <mat-icon>privacy_tip</mat-icon>
+        <!-- <img src="../../assets/svg/top-nav-icon/disclaimer.svg" /> -->
+    </button>
+    <button mat-icon-button matTooltip="Feedback" class="mr-5px" (click)="onFeedbackClick()">
+        <mat-icon>feedback</mat-icon>
+        <!-- <img src="../../assets/svg/top-nav-icon/feedback.svg" /> -->
+    </button>
+    <button class="user-icon" *ngIf="isUserLoggedIn()" mat-icon-button matTooltip="{{ userName }}"  [matMenuTriggerFor]="userMenu">
+        <img src="../../assets/images/user-icon.png"/>
+    </button>
+</mat-toolbar>
+<mat-sidenav-container autosize>
+    <mat-sidenav #leftnav position="start" mode="side" class="left-sidenav-container"
+    [(opened)]="leftOpened" (opened)="leftOpen()" (closed)="leftClose()">
+        <ul class="menu-container">
+            <li class="menu-item" *ngFor="let menuItem of this.commonService.userMenu" routerLink="{{ menuItem.link }}">
+                <img src="../../assets/svg/side-nav-icon/{{ menuItem.icon }}.svg" />
+                <span class="menu-item-label">{{ menuItem.name }}</span>
+            </li>
+            
+            <mat-divider></mat-divider>
+            <li class="menu-item" routerLink="/about-us">
+                <span class="menu-item-label">About Us</span>
+            </li>
+            <li class="menu-item" routerLink="/contact-us">
+                <span class="menu-item-label">Contact Us</span>
+            </li>
+        </ul>
+    </mat-sidenav>
+    <mat-sidenav-content class="main-container-content">
+        <div class="main-container">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+    <mat-sidenav #rightnav position="end" mode="side" class="sidenav-container"
+    [opened]="newsOpen()||chatOpen()||noteOpen()||(groupAndMemberOpen() && checkLogin())">
+        <app-news-panel *ngIf="newsOpen()"></app-news-panel>
+        <app-chat-panel *ngIf="chatOpen()"></app-chat-panel>
+        <!-- <app-note-panel *ngIf="noteOpen()"></app-note-panel> -->
+        <!-- <app-group-member-panel *ngIf="groupAndMemberOpen() && checkLogin()"></app-group-member-panel> -->
+    </mat-sidenav>
+    <!-- <mat-sidenav #newsnav position="end" mode="side" class="news-sidenav-container"
+    [opened]="newsOpen()" >
+        <app-news-panel></app-news-panel>
+    </mat-sidenav>
+    <mat-sidenav #chatnav position="end" mode="side" class="chat-sidenav-container"
+    [opened]="chatOpen()" *ngIf="checkLogin()">
+        <app-chat-panel ></app-chat-panel>
+    </mat-sidenav>
+    <mat-sidenav #notenav position="end" mode="side" class="note-sidenav-container"
+    [opened]="noteOpen()" *ngIf="checkLogin()">
+        <app-note-panel></app-note-panel>
+    </mat-sidenav>
+    <mat-sidenav #notenav position="end" mode="side" class="group-member-sidenav-container"
+    [opened]="groupAndMemberOpen()" *ngIf="checkLogin()">
+        <app-group-member-panel></app-group-member-panel>
+    </mat-sidenav>
+    <mat-sidenav #notenav position="end" mode="side" class="workspace-sidenav-container"
+    [opened]="workspaceOpen()">
+        <app-workspace-panel></app-workspace-panel>
+    </mat-sidenav> -->
+</mat-sidenav-container>
+
+<mat-menu #userMenu="matMenu" class="comment-action-menu">
+    <button mat-menu-item>
+        <mat-icon>person</mat-icon>
+        <span>Profile</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>manage_accounts</mat-icon>
+        <span>Account</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item (click)="onLogoutClick()"> 
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+</mat-menu>

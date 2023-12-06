@@ -1,0 +1,147 @@
+.comment-card{
+    display: flex;
+    font-family: Roboto, sans-serif;
+    .comment-user-icon{
+        margin-right: 10px;
+        img{
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+        }
+
+        @media screen and (max-width:280px) {
+            display: none;
+        }
+    }
+    .comment-block{
+        display: flex;
+        flex-direction: column;
+        .comment-block-content{
+            border: 1px solid #777983;
+            border-radius: 12px;
+            padding: 10px;
+            .comment-block-header{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+
+                .comment-block-header-text{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    width: 100%;
+                    .comment-block-postedby{
+                        font-weight: 700;
+                        font-size: 14px;
+                        line-height: 22px;
+                        color: #141516;
+                        margin-right: 10px;
+                    }
+                    .comment-block-replyto{
+                        font-weight: 400;
+                        font-size: 12px;
+                        line-height: 22px;
+                        color: #777A80;
+                        margin-left: 10px;
+
+                        @media screen and (max-width:540px) {
+                            margin-left: 0;
+                        }
+                    }
+                    .comment-block-time{
+                        font-weight: 400;
+                        font-size: 13px;
+                        line-height: 23px;
+                        color: #545759;
+                        margin-right: 10px;
+                    }
+
+                    @media screen and (max-width:540px) {
+                        flex-direction: column;
+                        align-items: flex-start;
+
+                        .toolbar-spacer,
+                        .comment-block-vertical-divider{
+                            display: none;
+                        }
+                    }
+                }
+                .comment-block-more{
+                    width: 26px;
+                    height: 26px;
+                    padding: 0;
+                    background-color: transparent;
+                    border: none;
+                    cursor: pointer;
+                    mat-icon{
+                        width: 16px;
+                        height: 16px;
+                        font-size: 16px;
+                        color: #8B8F9C;
+                    }
+                }
+            }
+            .comment-block-text{
+                font-weight: 400;
+                font-size: 13px;
+                line-height: 19px;
+                color:#2F3133;
+                padding-top: 2px;
+                @media screen and (max-width:540px) {
+                    padding-top: 5px;
+                }
+
+            }
+        }
+        .comment-block-actions{
+            display: flex;
+            align-items: center;
+            padding: 1px 5px;
+            padding-bottom: 0;
+            button{
+                font-weight: 600;
+                font-size: 12px;
+                line-height: 26px;
+                min-width: 46px;
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+            }
+            .comment-block-like{
+                margin-right: 1px;
+            }
+            .comment-block-like-count{
+                margin-right: 10px;
+                font-weight: 500;
+                font-size: 12px;
+                line-height: 26px;
+            }
+            .comment-block-reply{
+                margin-left: 10px;
+            }
+        }
+    }
+}
+
+.comment-block-vertical-divider{
+    height: 12px;
+    width:1px;
+    border: none;
+    background-color:rgba(20, 21, 22,.74);
+}
+
+::ng-deep .comment-action-menu button{
+    font-family:Roboto, sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    .mdc-list-item__primary-text{
+        color: #4E525F!important;
+    }
+    mat-icon{
+        color: #4E525F!important;
+    }
+}
+
+

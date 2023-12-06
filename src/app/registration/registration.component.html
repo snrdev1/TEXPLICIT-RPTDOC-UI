@@ -1,0 +1,162 @@
+<form [formGroup]="form" class="mat-reistration-form" (ngSubmit)="onSubmit()">
+    <h2 class="mat-reistration-form-title">Register your account</h2>
+    <mat-horizontal-stepper [selectedIndex]="selectedIndex" class="mat-reistration-stepper" [linear]="true">
+        <mat-step [completed]="stepCheck1()">
+            <h3 class="mat-step-header-title">Personal Information</h3>
+            <div class="mat-step-content">
+                <div class="mat-step-row">
+                    <mat-label class="required">Name</mat-label>
+                    <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+                        <input matInput
+                            placeholder="Enter your name ..."
+                            formControlName="name" required/>
+                    </mat-form-field>     
+                    <ng-container *ngIf="(form.get('name')?.invalid && (form.get('name')?.dirty || form.get('name')?.touched))">
+                        <mat-error *ngIf="form.get('name')?.hasError('required')">
+                            Name is required
+                        </mat-error>
+                        <mat-error *ngIf="form.get('name')?.hasError('pattern')">Name can only contain letters
+                        </mat-error>
+                    </ng-container>
+                </div>
+                <div class="mat-step-row">
+                    <mat-label class="required">Email</mat-label>
+                    <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+                        <input matInput
+                            placeholder="Enter your email ..."
+                            formControlName="email" required/>
+                        </mat-form-field>
+                        <ng-container *ngIf="(form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)) ">
+                  <mat-error *ngIf="form.get('email')?.hasError('required')">
+                    Email is required
+                  </mat-error>
+                  <mat-error *ngIf="form.get('email')?.hasError('email')">
+                    Invalid Email format
+                  </mat-error>
+                </ng-container>
+                    
+                </div>
+                <div class="mat-step-row">
+                    <mat-label>Phone No.</mat-label>
+                    <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+                        <input matInput
+                            placeholder="Enter your contact no ..."
+                            formControlName="mobileNumber"/>
+                            
+                    </mat-form-field>
+                    <ng-container *ngIf="(form.get('mobileNumber')?.invalid &&(form.get('mobileNumber')?.dirty || form.get('mobileNumber')?.touched))">
+                  <mat-error *ngIf="form.get('mobileNumber')?.hasError('pattern') ||form.get('mobileNumber')?.hasError('minlength') ||form.get('mobileNumber')?.hasError('maxlength')">
+                    Phone Number should be of 10 digits
+                  </mat-error>
+                </ng-container>
+                </div>
+                <div class="mat-step-row">
+                    <mat-label class="required">Password</mat-label>
+                    <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+                        <input matInput
+                            placeholder="Enter password ..." type="password"
+                            formControlName="password" required/>
+                    </mat-form-field>
+                    <ng-container *ngIf=" (form.get('password')?.invalid && (form.get('password')?.dirty ||form.get('password')?.touched)) ">
+                  <mat-error *ngIf="form.get('password')?.hasError('required')">
+                    Password is required
+                  </mat-error>
+                  <mat-error *ngIf="form.get('password')?.hasError('minlength')">
+                    Password must be atleast 6 characters
+                  </mat-error>
+                </ng-container>
+                </div>
+            </div>
+            <div class="mat-step-footer">
+                <button mat-raised-button class="primary" matStepperNext>Next</button>
+            </div>
+        </mat-step>
+        <!-- <mat-step [completed]="stepCheck2()">
+            <h3 class="mat-step-header-title">Domain Information</h3>
+            <div class="mat-step-content">
+                <div class="mat-step-row">
+                    <mat-label class="required">Domain</mat-label>
+                    <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+                        <mat-select multiple placeholder="Please Select" placeholder="Select domains ..." (selectionChange)="dropdownChange($event)" formControlName="domains">
+                            <mat-option *ngFor="let domain of domains" [value]="domain">{{domain?.topic | titlecase }}</mat-option>
+                        </mat-select>
+                        <mat-error>Please select your domain(s).</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="mat-step-row">
+                    <mat-label>Topic</mat-label>
+                    <mat-chip-listbox class="mat-chip-list">
+                        <ng-container *ngFor="let topic of topics">
+                        <mat-chip class="mat-chip-element">
+                            {{topic}}
+                        </mat-chip>
+                        </ng-container>
+                    </mat-chip-listbox>
+                </div>
+                <div class="mat-step-row">
+                    <mat-label>Keywords</mat-label>
+                    <mat-chip-listbox class="mat-chip-list">
+                        <ng-container *ngFor="let keyword of keywords">
+                        <mat-chip class="mat-chip-element">
+                            {{ keyword }}
+                        </mat-chip>
+                        </ng-container>
+                    </mat-chip-listbox>
+                </div>
+            </div>
+            <div class="mat-step-footer">
+                <button mat-raised-button class="primary" type="button" matStepperPrevious>Back</button>
+                <button mat-raised-button class="primary" type="button" matStepperNext>Next</button>
+            </div>
+        </mat-step> -->
+        <mat-step>
+            <h3 class="mat-step-header-title">Utility</h3>
+            <div class="mat-step-content">
+                <div class="mat-step-row">
+                    <mat-label class="required">Role</mat-label>
+                    <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+                        <mat-select placeholder="Please Select" placeholder="Select mode of use ..."  formControlName="role" (selectionChange)="selectRole($event)">
+                            <mat-option [value]="3" class="mat-form-input-option">Personal</mat-option>
+                            <mat-option [value]="2" class="mat-form-input-option">Professional</mat-option>
+                        </mat-select>
+                        <mat-error>Please select your role.</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="mat-step-row">
+                    <mat-label class="required">No. of Subscription</mat-label>
+                    <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+                        <input matInput
+                            placeholder="Enter no. of subscription ..."
+                            formControlName="subscription"/>
+                    </mat-form-field>
+                </div>
+                <div class="mat-step-row">
+                    <mat-label>Company</mat-label>
+                <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+                    <input matInput
+                        placeholder="Enter your company name ..."
+                        formControlName="companyName"/>
+                </mat-form-field>
+                </div>
+                <div class="mat-step-row">
+                    <mat-label>Website</mat-label>
+                    <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+                        <input matInput
+                            placeholder="Enter website ..."
+                            formControlName="website"/>
+
+                    </mat-form-field>
+                    <ng-container *ngIf="(form.get('website')?.invalid &&(form.get('website')?.dirty || form.get('website')?.touched))">
+                  <mat-error *ngIf="form.get('website')?.hasError('pattern') ">
+                    Invalid Website URL
+                  </mat-error>
+                </ng-container>
+                </div>
+            </div>
+            <div class="mat-step-footer">
+                <button mat-raised-button class="primary" type="button" matStepperPrevious>Back</button>
+                <button mat-raised-button class="primary" type="submit" >Submit</button>
+            </div>
+        </mat-step>
+    </mat-horizontal-stepper>
+</form>

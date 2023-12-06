@@ -1,0 +1,22 @@
+h3{
+    padding: 0;
+    margin: 0;
+    font: 400 16px/24px Roboto,sans-serif;
+    letter-spacing: .03125em;
+    text-align: center;
+    padding-top: 10px;
+    //margin: 0 0 16px;
+}
+
+:host ::ng-deep .mat-dialog-footer{
+    flex-direction: column;
+    gap:5px;
+
+    .footer-link,.footer-link:hover,.footer-link:active{
+        text-align: center;
+        color: #227aff;
+        text-decoration: none;
+        font: 500 14px/20px Roboto,sans-serif;
+        padding: 10px 0;
+    }
+}

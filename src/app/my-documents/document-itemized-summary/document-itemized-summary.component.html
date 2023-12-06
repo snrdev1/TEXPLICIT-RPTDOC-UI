@@ -1,0 +1,18 @@
+<div class="itemized-container">
+    <mat-toolbar class="itemized-toolbar">
+        <h3 class="title">Itemized Summary</h3>
+        <app-inner-toolbar-buttons (onback)="backClick($event)" (powerpointtDownload)="pptDownload($event)" (exceltDownload)="ExcelDownload($event)"></app-inner-toolbar-buttons>
+    </mat-toolbar>
+
+    <div class="summary-container">
+        <mat-card class="summary" *ngFor="let i of items">
+            <mat-card-content class="summary-content">
+                <mat-card-title class="summary-title">{{i.title}}</mat-card-title>
+                <mat-card-subtitle class="summary-date">{{i.createdOn | date : "MMMM d, yyyy"}}</mat-card-subtitle>
+              <div class="itemized-summary" [innerHTML]="i.itemizedSummary"></div>         
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+
+<app-fab-buttons (onHighlights)="onHighlightsClick($event)" [itemizedSummaryButtonVisible]="false" [consolidatedSummaryButtonVisible]="false"></app-fab-buttons>

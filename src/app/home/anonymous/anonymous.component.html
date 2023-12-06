@@ -1,0 +1,51 @@
+<div class="anonymus-banner">
+    <div class="anonymus-banner-inner">
+        <img src="../../../assets/images/banner-image.png"/>
+        <div class="anonymus-banner-text">
+            <div class="title">Build your Knowledge Management System</div>
+            <div class="text">Texplicit is an AI based analytics tool which can go through, digest and curate information available in multiple internet sites and intranet documents drastically reducing</div>
+            <div class="buttongroup">
+                <button class="btn-register" (click)="onRegistrationClick()">Get Started Now</button>
+                <button class="btn-login" (click)="onLoginClick()">Login</button>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<div style="position: relative;">
+    <mat-tab-group (selectedTabChange)="onTabChanged($event)"  mat-stretch-tabs="false" mat-align-tabs="start">
+        <ng-container *ngFor="let domain of domains; let i = index">
+            <mat-tab>
+                <ng-template mat-tab-label class="tab-label">
+                    {{domain.topic | titlecase}}
+                </ng-template>
+                <ng-container>
+                    <app-subtopic [Subtopics]="domain.subtopics"></app-subtopic>
+                    <div #kiContainer class="ki-container" (scroll)="onScroll($event)">
+                        <div class="ki-col-dynamic {{displayStyle.value}}" *ngFor="let ki of domKis">
+                            <!-- <app-ki-card [viewMode]="displayStyle.value" [checkboxVisible]="false" [item]="ki" ></app-ki-card> -->
+                        </div>
+                    </div>
+                </ng-container>
+            </mat-tab>
+        </ng-container>
+    </mat-tab-group>
+    <div class="toggle-button-holder">
+        <mat-button-toggle-group class="btn-toggle-group" #displayStyle="matButtonToggleGroup" value="grid">
+            <mat-button-toggle value="grid" class="btn-toggle">
+                <img class="img-unchecked" src="../../assets/svg/button-icon/ki-grid.svg"/>
+                <img class="img-checked" src="../../assets/svg/button-icon/ki-grid-fill.svg">
+            </mat-button-toggle>
+            <mat-button-toggle value="list" class="btn-toggle">
+                <img class="img-unchecked" src="../../assets/svg/button-icon/ki-list.svg"/>
+                <img class="img-checked" src="../../assets/svg/button-icon/ki-list-fill.svg">
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+</div>
+<!-- <div class="fab-container">
+    <button class="btn-news" matTooltip="NEWS" (click)="newsOpen()">
+        <mat-icon>article</mat-icon>
+        NEWS
+    </button>
+</div> -->

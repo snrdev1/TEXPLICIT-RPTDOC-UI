@@ -1,0 +1,47 @@
+.file-selector{
+    width: 99%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img{
+        vertical-align: middle;
+
+        @media screen and (max-width:414px){
+            display: none;
+        }
+    }
+    .file-text{
+        color: #4E525F;
+        text-align: center;
+        font-family: Roboto;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        margin: 0 10px;
+        @media screen and (max-width:280px){
+            margin-left: 0;
+        }
+    }
+    .file-button{
+        cursor: pointer;
+        border: 1px solid rgba(146,149,159,.5490196078);
+        border-radius: 32.5px;
+        background: #FFF;
+        padding: 10px 40px;
+        color: #4e525f;
+        text-align: center;
+        font-family: Roboto;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        text-transform: capitalize;
+        @media screen and (max-width:280px){
+            padding: 10px 10px;
+        }
+    }
+}
+.progress-holder{
+    padding: 16px;
+    padding-bottom: 0;
+}

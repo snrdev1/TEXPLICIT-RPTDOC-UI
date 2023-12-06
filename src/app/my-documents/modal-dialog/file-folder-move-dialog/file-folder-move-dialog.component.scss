@@ -1,0 +1,55 @@
+.folder-explorer{
+    margin-top: 16px;
+    height: 200px;
+    overflow: auto;
+    .folder-list{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        li{
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 5px;
+            //border-left: 0.5px dotted #333 ;
+            .folder-row-1{
+                display: flex;
+                flex-direction: row;
+                .expand-button{
+                    height: 20px;
+                    width:20px;
+                    padding: 0;
+                    button{
+                        height: 20px;
+                        width:20px;
+                        padding: 0;
+                        border: none;
+                        background: transparent;
+                        cursor: pointer;
+                        mat-icon{
+                            width:16px;
+                            height: 16px;
+                            font-size: 16px;
+                        }
+                    }
+                }
+                img{
+                    height: 20px;
+                    vertical-align: middle;
+                }
+
+                .folder-name{
+                    font-family: 'Domine';
+                    display: flex;
+                    align-items: center;
+                    font-size: 16px;
+                    font-weight: 500;
+                    line-height: 22px;
+                    cursor: pointer;
+                }
+            }
+            .folder-row-2{
+                padding-left: 16px;
+            }
+        }
+    }
+}

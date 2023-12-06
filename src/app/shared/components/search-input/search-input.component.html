@@ -1,0 +1,8 @@
+<mat-form-field appearance="outline" class="search-wrapper">
+    <mat-icon matPrefix>search</mat-icon>
+    <input matInput #searchinput  (keyup)="onSearchKeyup($event)"  
+            placeholder="{{placeHolder}}"  [value]="searchValue">
+    <button matSuffix mat-icon-button aria-label="Clear" [ngStyle]="{'cursor':'pointer','visibility':clearVisible?'visible':'hidden'}" (click)="onClearClick(this.searchinput)">
+        <mat-icon>close</mat-icon>
+    </button>
+</mat-form-field>

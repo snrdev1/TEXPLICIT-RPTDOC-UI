@@ -1,0 +1,60 @@
+:host ::ng-deep .search-wrapper{
+    width:auto;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    //padding: 5px 10px;
+    // border: 0.5px solid #4E525F;
+    border-radius: 10px;
+    min-height: 0;
+
+    .mat-mdc-form-field-icon-prefix>.mat-icon{
+        padding: 5px 6px 5px 10px;
+    }
+
+    .mat-mdc-icon-button.mat-mdc-button-base {
+        width: 36px;
+        height: 34px;
+        padding: 5px 6px;
+    }
+
+    .mat-mdc-icon-button .mat-mdc-button-touch-target {
+        height: 34px;
+    }
+    .mat-mdc-form-field-infix {
+        padding-top: 9px;
+        padding-bottom: 9px;
+        min-height: 0!important;
+        color: #040F2F;
+        font-family: Roboto;
+        font-size: 14px;
+        font-weight: 500;
+        //letter-spacing: 0.14px;
+    }
+
+    .mat-mdc-form-field-subscript-wrapper{
+        display: none;
+    }
+
+    .mdc-text-field--focused,
+    .mdc-notched-outline{
+
+        .mdc-notched-outline__leading{
+            border-left: 0.5px solid #4E525F;
+            border-top: 0.5px solid #4E525F;
+            border-bottom: 0.5px solid #4E525F;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            background-color: transparent;
+        }
+
+        .mdc-notched-outline__trailing{
+            border-right: 0.5px solid #4E525F;
+            border-top: 0.5px solid #4E525F;
+            border-bottom: 0.5px solid #4E525F;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            background-color: transparent;
+        }
+    }
+}

@@ -1,0 +1,51 @@
+<mat-card class="chat-card default">
+    <div style="display: flex;">
+        <mat-card-header>
+            <button mat-fab class="logo">
+                <img src="../../../../../assets/svg/logo/texplicit02-T.svg"/>
+            </button>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-card-title class="title">Hello!</mat-card-title>
+            <mat-card-subtitle class="subtitle">Thanks for contacting <strong>Texplicit02</strong>.</mat-card-subtitle>
+            <p class="caption">
+                What can we help you with today? Please type your question here.
+            </p>
+        </mat-card-content>
+    </div>
+</mat-card>
+<div *ngFor="let chat of chats">
+<mat-card class="chat-card user" [ngClass]="'user'" *ngIf="chat.role=='user'">
+    <div style="display: flex;flex-direction:row-reverse;">
+        <mat-card-header>
+            <button mat-fab class="logo">
+                <img [src]="userImage"/>
+            </button>
+        </mat-card-header>
+        <mat-card-content>
+            <p class="text">
+                {{ chat.content }}</p>
+        </mat-card-content>
+    </div>
+    <mat-card-footer>
+        <p class="time">{{ chat.timestamp }}</p>
+    </mat-card-footer>
+</mat-card>
+<mat-card class="chat-card"  [ngClass]="'system'" *ngIf="chat.role=='system'">
+    <div style="display: flex;" >
+        <mat-card-header>
+            <button mat-fab class="logo">
+                <img src="../../../../../assets/svg/logo/texplicit02-T.svg"/>
+            </button>
+        </mat-card-header>
+        <mat-card-content >
+            <p class="text">
+                {{ chat.content }}</p>
+        </mat-card-content>
+        
+    </div>
+    <mat-card-footer>
+        <p class="time">{{ chat.timestamp }}</p>
+    </mat-card-footer>
+</mat-card>
+</div>

@@ -1,0 +1,96 @@
+<app-dialog-base [modalTitle]="'Manage User'" (onClose)="onCloseClick()">
+    <form content [formGroup]="form">
+      <mat-dialog-content class="mat-dialog-body">
+        <mat-horizontal-stepper  class="mat-reistration-stepper" [linear]="true">
+          <mat-step [completed]="personalCheck()">
+            <h3 class="mat-step-header-title">Personal Information</h3>
+            <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+              <mat-label>Name</mat-label>
+              <input matInput style="text-transform:capitalize ;" placeholder="Enter your name ..." formControlName="name" />
+            </mat-form-field>
+            <div *ngIf="(form.get('name')?.invalid)&& (form.get('name')?.dirty || form.get('name')?.touched)">
+              <mat-error *ngIf="form.get('name')?.hasError('required')">Name is required</mat-error>
+              <mat-error *ngIf="form.get('name')?.hasError('pattern')">Name can only contain letters</mat-error>
+            </div>
+  
+            <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+              <mat-label>Email</mat-label>
+              <input matInput placeholder="Enter your email ..." formControlName="email"/>
+            </mat-form-field>
+            <div *ngIf="(form.get('email')?.invalid) && (form.get('email')?.dirty || form.get('email')?.touched)">
+              <mat-error *ngIf="form.get('email')?.hasError('required')">Email is required</mat-error>
+              <mat-error *ngIf="form.get('email')?.hasError('email')">Invalid Email format</mat-error>
+            </div>
+            <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+              <mat-label>Mobile Number</mat-label>
+              <input matInput placeholder="Enter your mobile number" formControlName="mobileNumber" />
+            </mat-form-field>
+            <div *ngIf="(form.get('mobileNumber')?.invalid) && (form.get('mobileNumber')?.dirty || form.get('mobileNumber')?.touched)">
+                <mat-error  *ngIf=" form.get('mobileNumber')?.hasError('pattern') ||form.get('mobileNumber')
+                  ?.hasError('minlength') ||form.get('mobileNumber')?.hasError('maxlength')">Mobile No. should have 10 digits</mat-error>
+            </div>
+            <div class="mat-step-footer">
+              <button mat-raised-button class="primary" matStepperNext>Next</button>
+            </div>
+          </mat-step>
+          <mat-step>
+            <h3 class="mat-step-header-title">Professional Information</h3>
+            <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+              <mat-label>Company Name</mat-label>
+              <input matInput style="text-transform:capitalize ;" placeholder="Enter your Company Name ..." formControlName="companyName" />
+            </mat-form-field>
+  
+            <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+              <mat-label>Website Name</mat-label>
+              <input matInput style="text-transform:lowercase;" placeholder="Enter your Website Name ..." formControlName="website" />
+            </mat-form-field>
+            <div *ngIf="(form.get('website')?.invalid &&
+                    (form.get('website')?.dirty ||
+                      form.get('website')?.touched))">
+                <mat-error *ngIf=" form.get('website')?.hasError('pattern')"></mat-error>
+            </div>
+            <div class="mat-step-footer">
+              <button mat-raised-button class="secondary" type="button" matStepperPrevious>Back</button>
+              <button mat-raised-button class="primary" matStepperNext>Next</button>
+            </div>
+          </mat-step>
+          <mat-step>
+            <h3 class="mat-step-header-title">Domain Information</h3>
+            <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+              <mat-label>Domain(s)</mat-label>
+              <mat-select multiple placeholder="Please Select" placeholder="Select domains ..." formControlName="domains">
+                <mat-option *ngFor="let domain of domains" [value]="domain._id" class="mat-form-input-option">{{ domain?.topic | titlecase }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+  
+            <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+              <mat-label>Permission(s)</mat-label>
+              <mat-select multiple placeholder="Please Select" placeholder="Select permission ..." formControlName="menu" [(ngModel)]="selectedOption">
+                <mat-option *ngFor="let menu of menus" [value]="menu._id" [disabled]="disabledArray.includes(menu._id)" class="mat-form-input-option">{{ menu?.name }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+  
+            <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+              <mat-label>Mode of Use</mat-label>
+              <mat-select placeholder="Please Select" formControlName="role" (selectionChange)="onModeSelect($event)">
+                <mat-option *ngFor="let mode of modes" [value]="mode.id" class="mat-form-input-option">{{ mode.name }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+  
+            <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+              <mat-label>Subscriptions</mat-label>
+              <input matInput placeholder="No of subscriptions" formControlName="subscription" />
+            </mat-form-field>
+  
+            <!-- Add validation for domains, permissions, mode, and subscriptions if needed -->
+  
+            <div class="mat-step-footer">
+              <button mat-raised-button class="secondary" type="button" matStepperPrevious>Back</button>
+              <button mat-raised-button class="primary" type="submit" (click)="onSubmit()" [disabled]="!form.valid"[ngClass]="{'disabled-button':!form.valid}">Submit</button>
+            </div>
+          </mat-step>
+        </mat-horizontal-stepper>
+      </mat-dialog-content>
+    </form>
+  </app-dialog-base>
+  

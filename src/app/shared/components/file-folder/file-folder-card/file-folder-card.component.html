@@ -1,0 +1,47 @@
+<ul class="file-row {{displayStyle}}" [ngClass]="{'noCheckbox': checkboxVisible === false}">
+    <li class="check"><input type="checkbox" class="checkbox-round" value="{{item._id}}" (change)="onChange($event)" [checked]="isChecked(item._id)" *ngIf="item.type!='Folder'"/></li>
+    <li class="icon">
+        <img src="../../assets/svg/documents-icon/{{ext}}.svg" *ngIf="!(item.type=='Folder')"/>
+        <img src="../../assets/svg/documents-icon/folder.svg" *ngIf="item.type=='Folder'"/>
+        <!-- <mat-icon *ngIf="!(item.type=='folder')">description</mat-icon> -->
+        <!-- <mat-icon *ngIf="item.type=='folder'">folder</mat-icon> -->
+    </li>
+    <li class="name" (click)="onFolderClickEvent(item.originalFileName,item.type,item)">{{item.originalFileName}}</li>
+    <li class="action">
+        <button class="btn-row" *ngIf="bookmarkButtonVisible">
+          <mat-icon>bookmark_border</mat-icon>
+        </button>
+        <button class="btn-row" *ngIf="SharedwithMeCheck()" [matMenuTriggerFor]="filefolderMenu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+    </li>
+    <li class="date" *ngIf="!shared">{{item.createdOn | date : 'MMMM d, yyyy'}}</li>
+    <li class="owner" *ngIf="shared">{{item.owner}}</li>
+    <li class="type">{{item.type}}</li>
+    <!-- <li class="size">{{item.size}}</li> -->
+    <li class="type" *ngIf="item.type == 'File' && isSummarized(item)">Completed</li>
+    <li class="type" *ngIf="item.type == 'File' && !isSummarized(item)">In Progress</li>
+</ul>
+
+<mat-menu #filefolderMenu="matMenu" class="file-folder-menu">
+    <button mat-menu-item (click)="onDownloadClick(item)" *ngIf="item.type!='Folder'">
+        <mat-icon>download</mat-icon>
+        <span>Download</span>
+      </button>
+      <button mat-menu-item (click)="onRenameClick(item)" *ngIf="!shared">
+        <mat-icon>drive_file_rename_outline</mat-icon>
+        <span>Rename</span>
+      </button>
+      <button mat-menu-item (click)="onMoveClick(item)" *ngIf="item.type!='Folder' && !shared">
+        <mat-icon>drive_file_move</mat-icon>
+        <span>Move</span>
+      </button>
+      <button mat-menu-item (click)="onShareClick(item._id)" *ngIf="!shared">
+        <mat-icon>share_alt</mat-icon>
+        <span>Share</span>
+      </button>
+      <button mat-menu-item (click)="onDeleteClick(item._id,item.type)" *ngIf="!shared">
+        <mat-icon>delete</mat-icon>
+        <span>Delete</span>
+      </button>
+</mat-menu>

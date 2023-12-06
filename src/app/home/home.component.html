@@ -1,0 +1,60 @@
+<div class="home-toolbar">
+    <div class="home-toolbar-search" fxLayout="row">
+        <app-search-input [placeHolder]="'Search ...'"
+                            (onSearch)="executeSearch($event)" 
+                            (onClear)="clearSearch()"></app-search-input>
+    </div>
+    <!-- <div class="toolbar-spacer"></div> -->
+    <app-outer-toolbar-buttons 
+        (onFilter)="onFilterClick()"
+        [groupMemberButtonVisible]="false"
+        [noteButtonVisible]="false"
+        [moreButtonVisible]="false"
+        [backToParentButtonVisible]="false" 
+        [createFolderButtonVisible]="false"
+        [refreshButtonVisible]="false"
+        [uploadFileButtonVisible]="false"
+        [configurationButtonVisible]="false"
+        [historyButtonVisible]="false"
+        [addUserButtonVisible]="false"
+        [workspaceButtonVisible]="false"
+        [reportProgressButtonVisible]="false"
+        ></app-outer-toolbar-buttons>
+</div>
+
+<div style="position: relative;" >
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" (selectedTabChange)="onTabChanged($event)" [selectedIndex]="selectedTab">
+        <ng-container *ngFor="let domain of domains">
+            <mat-tab>
+                <ng-template mat-tab-label class="tab-label">
+                    {{domain.topic | titlecase}}
+                </ng-template>
+                <ng-container>
+                    <app-subtopic [Subtopics]="domain.subtopics"></app-subtopic>
+                    <div #kiContainer class="ki-container" (scroll)="onScroll($event)">
+                        <div class="ki-col-dynamic {{displayStyle.value}}" *ngFor="let ki of domKis">
+                            <!-- <app-ki-card 
+                                (onKnowledgeItemClick)="onKnowledgeItemClick(ki)"
+                                (onCheckedChange)="onCheckedChange($event)" 
+                                [viewMode]="displayStyle.value"  [item]="ki" ></app-ki-card> -->
+                        </div>
+                    </div>
+                </ng-container>
+            </mat-tab>
+        </ng-container>
+    </mat-tab-group>
+    <div class="toggle-button-holder">
+        <mat-button-toggle-group class="btn-toggle-group" #displayStyle="matButtonToggleGroup" value="grid">
+            <mat-button-toggle value="grid" class="btn-toggle">
+                <img class="img-unchecked" src="../../assets/svg/button-icon/ki-grid.svg"/>
+                <img class="img-checked" src="../../assets/svg/button-icon/ki-grid-fill.svg">
+            </mat-button-toggle>
+            <mat-button-toggle value="list" class="btn-toggle">
+                <img class="img-unchecked" src="../../assets/svg/button-icon/ki-list.svg"/>
+                <img class="img-checked" src="../../assets/svg/button-icon/ki-list-fill.svg">
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+</div>
+<app-fab-buttons [summaryButtonVisible]="isKiSelectedForSummary()" (onItemizedSummary)="onItemizedSummaryClick($event)" (onConsolidatedSummary)="onConsolidatedSummaryClick($event)" (onHighlights)="onHighlightsClick($event)"></app-fab-buttons>
+

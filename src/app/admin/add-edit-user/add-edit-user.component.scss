@@ -1,0 +1,44 @@
+:host ::ng-deep .mat-horizontal-stepper-header-container{
+    display: none;
+}
+.mat-step-footer{
+    padding:16px 0;
+    display: flex;
+    justify-content:center;
+    gap:5px;
+    button{
+        border: none;
+        border-radius: 32.5px;
+        background: #227AFF;
+        padding: 10px 40px;
+        color: #FFF;
+        text-align: center;
+        font-family: Roboto;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        text-transform: capitalize;
+
+        &.primary{
+            padding: 10px 30px;
+            border: 1px solid rgba(146,149,159,.5490196078);
+            background: #227AFF;
+            color: #FFF;
+            text-align: end;
+            // align-items: right;
+            justify-content: right !important;
+        }
+        &.secondary{
+            padding: 10px 30px;
+            border: 1px solid rgba(146,149,159,.5490196078);
+            background: #fff;
+            color: #4e525f;
+            // align-items: left;
+            justify-content: left !important;
+        }
+    }
+    .disabled-button{
+        opacity: 0.5; 
+        cursor: not-allowed;
+    }
+}

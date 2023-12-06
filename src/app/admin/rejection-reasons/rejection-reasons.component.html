@@ -1,0 +1,22 @@
+<app-dialog-base [modalTitle]="'Rejection Reasons'" (onClose)="closeClick()">
+    <div content class="card-container">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="rejection-form">          
+            <mat-form-field class="form-input">
+              <mat-label>Rejection Reason</mat-label>
+              <mat-select formControlName="rejectionReason" multiple (selectionChange)="onSelectionChange($event)">
+                <mat-option *ngFor="let option of data" [value]="option">
+                  {{ option }}
+                </mat-option>
+                <mat-option [value]="'Other'">
+                    Other
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field *ngIf="form.get('rejectionReason')?.value.indexOf('Other') > -1"  class="form-input">
+                <mat-label>Write Reason</mat-label>
+                <input matInput formControlName="reasonComment" />
+            </mat-form-field>
+            <button mat-raised-button class="reject-btn" type="submit" [disabled]="!form.valid"[ngClass]="{'disabled-button':!form.valid}">Submit</button>
+          </form>          
+    </div>
+</app-dialog-base>

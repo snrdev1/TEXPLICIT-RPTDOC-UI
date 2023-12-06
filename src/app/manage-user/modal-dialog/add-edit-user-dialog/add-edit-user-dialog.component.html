@@ -1,0 +1,47 @@
+<app-dialog-base [modalTitle]="'Manage User'" (onClose)="onCloseClick()">
+    <form content [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-dialog-content class="mat-dialog-body">
+            <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+                <mat-label>Name</mat-label>
+                <input matInput  style="text-transform:capitalize ;"
+                    placeholder="Enter your name ..."
+                    formControlName="name"/>
+            </mat-form-field>
+            <div *ngIf="(form.get('name')?.invalid)&& (form.get('name')?.dirty || form.get('name')?.touched)">
+                <mat-error *ngIf="form.get('name')?.hasError('required')">Name is required</mat-error>
+                <mat-error *ngIf="form.get('name')?.hasError('pattern')">Name can only contain letters</mat-error>
+              </div>
+            <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+                <mat-label>Email</mat-label>
+                <input matInput
+                    placeholder="Enter your email ..."
+                    formControlName="email"/>
+            </mat-form-field>
+            <div *ngIf="(form.get('email')?.invalid) && (form.get('email')?.dirty || form.get('email')?.touched)">
+                <mat-error *ngIf="form.get('email')?.hasError('required')">Email is required</mat-error>
+              <mat-error *ngIf="form.get('email')?.hasError('email')">Invalid Email format</mat-error>
+              </div>
+            <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+                <mat-label>Domain(s)</mat-label>
+                <mat-select multiple placeholder="Please Select" placeholder="Select domains ..."  formControlName="domains">
+                    <mat-option *ngFor="let domain of allDomains" [value]=" domain.id " class="mat-form-input-option">{{ domain?.topic | titlecase }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div *ngIf="(form.get('domains')?.invalid) && (form.get('domains')?.dirty || form.get('domains')?.touched)">
+                <mat-error *ngIf="form.get('domains')?.hasError('required')">Select Domain</mat-error>
+              </div>
+            <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+                <mat-label>Permission(s)</mat-label>
+                <mat-select multiple placeholder="Please Select" placeholder="Select permission ..."  formControlName="menus">
+                     <mat-option *ngFor="let menu of parentMenus" [value]="menu.id" class="mat-form-input-option">{{ menu?.name }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div *ngIf="(form.get('menus')?.invalid) && (form.get('menus')?.dirty || form.get('menus')?.touched)">
+                <mat-error *ngIf="form.get('menus')?.hasError('required')">Select Permission(s)</mat-error>
+              </div>
+        </mat-dialog-content>
+        <mat-dialog-actions class="mat-dialog-footer">
+            <button mat-raised-button type="submit" [disabled]="!form.valid" [ngClass]="{'disabled-button':!form.valid}">Submit</button>
+        </mat-dialog-actions>
+    </form>
+</app-dialog-base>

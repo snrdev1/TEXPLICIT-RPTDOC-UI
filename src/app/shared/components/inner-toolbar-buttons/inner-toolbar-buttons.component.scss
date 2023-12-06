@@ -1,0 +1,54 @@
+.inner-toolbar-button-group{
+    display: flex;
+    align-items: center;
+
+    button{
+        padding: 0;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 0;
+        border-radius: 50%;
+        margin: 0;
+        margin-left: 3px;
+        cursor: pointer;
+        background: transparent;
+        &.back{
+            img{
+                width:31px;
+            }
+        }
+        &.download{
+            img{
+                width:26px;
+            }
+        }
+    }
+}
+
+::ng-deep .download-menu button{
+    font-size: 14px;
+}
+
+::ng-deep .download-menu button .mdc-list-item__primary-text{
+    display: flex;
+    align-items: center;
+    img{
+        height: 30px;
+        margin-right: 1em;
+    }
+}
+
+:host ::ng-deep .inner-toolbar-dropdown .mat-mdc-form-field-infix {
+    padding-top: 2px!important;
+    padding-bottom: 2px!important;
+    width: 100px;
+    min-height: 30px;
+    font-size: 14px;
+}
+
+:host ::ng-deep .inner-toolbar-dropdown .mat-mdc-form-field-subscript-wrapper{
+    display: none;
+}

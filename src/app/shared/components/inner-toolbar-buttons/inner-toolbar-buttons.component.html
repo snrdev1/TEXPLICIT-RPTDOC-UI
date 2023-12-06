@@ -1,0 +1,34 @@
+<div class="inner-toolbar-button-group">
+    <mat-form-field appearance="outline" class="inner-toolbar-dropdown mr-5px" *ngIf="sizeDropdownVisible">
+        <mat-select  appearance="outline" placeholder="Please Select" value="Small">
+            <mat-option value="Small">Small</mat-option>
+            <mat-option value="Medium">Medium</mat-option>
+            <mat-option value="Large">Large</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div class="toolbar-spacer"></div>
+    <button class="back" (click)="Onback($event)">
+        <img src="../../../assets/svg/button-icon/arrow-left.svg">
+    </button>
+    <button class="download" [matMenuTriggerFor]="downloadMenu">
+        <img src="../../../../assets/svg/button-icon/download.svg">
+    </button>
+</div>
+<mat-menu #downloadMenu="matMenu" class="download-menu">
+    <button mat-menu-item (click)="DocDownload($event)">
+        <img src="../../../assets/svg/download-icon/download-doc.svg"/>
+        Word
+    </button>
+    <button mat-menu-item (click)="PptDownload($event)">
+        <img src="../../../assets/svg/download-icon/download-ppt.svg"/>
+        Power Point
+    </button>
+    <button mat-menu-item (click)="ExcelDownload($event)">
+        <img src="../../../assets/svg/download-icon/download-xls.svg"/>
+        Excel
+    </button>
+    <!-- <button mat-menu-item>
+        <img src="../../../assets/svg/download-icon/download-pdf.svg"/>
+        Pdf
+    </button> -->
+</mat-menu>

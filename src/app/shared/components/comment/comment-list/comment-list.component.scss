@@ -1,0 +1,17 @@
+.parent{
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    li{
+        padding: 10px 0;
+        background-color: white;
+    }
+    .children{
+        margin: 0;
+        list-style-type: none;
+        li{
+            padding: 10px 0;
+            background-color: white;
+        }
+    }
+}

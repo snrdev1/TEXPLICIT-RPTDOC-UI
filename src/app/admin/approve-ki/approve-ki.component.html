@@ -1,0 +1,23 @@
+<app-dialog-base [modalTitle]="'Approve KI'" (onClose)="onCloseClick()">
+    <mat-dialog-content content class="mat-dialog-body">
+        <div class="content-container">
+            <div class="thumbnail-container">
+                <img class="thumbnail" *ngIf="kiDetails?.thumbnail" src="{{ kiDetails?.thumbnail }}" alt="thumbnail" />
+            </div>
+            <div class="info-container">
+                <div class="ki-title">
+                    <span *ngIf="kiDetails?.title">{{ kiDetails?.title }}</span>
+                </div>
+                <div>
+                <a *ngIf="kiDetails?.metadata?.url" class="ki-link" [href]="kiDetails?.metadata?.url" target="_blank">{{ kiDetails?.metadata?.url }}</a>
+                </div>
+                <div class="ki-domain">Domain - {{ allDomains?.title | titlecase }}</div>
+                <div class="description">{{ kiDetails?.description }}</div>
+            </div>
+        </div>
+        <mat-dialog-actions class="mat-dialog-footer">
+            <button mat-raised-button (click)="approveKi()" class="approve">Approve</button>
+            <button mat-raised-button (click)="rejectKi()" class="reject">Reject</button>
+        </mat-dialog-actions>
+    </mat-dialog-content>
+</app-dialog-base>

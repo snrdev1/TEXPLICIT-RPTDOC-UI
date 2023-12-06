@@ -1,0 +1,33 @@
+<app-dialog-base [modalTitle]="'Filter'" (onClose)="onCloseClick()">
+    <form content [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-dialog-content class="mat-dialog-body" >
+            <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+                <mat-label>Source</mat-label>
+                <mat-select  value="Small" placeholder="Select source..."  formControlName="source">
+                    <mat-option value="external" class="mat-form-input-option">External</mat-option>
+                <mat-option value="my_documents" class="mat-form-input-option">My Documents</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+                <mat-label>Format</mat-label>
+                <mat-select  value="Small" placeholder="Select format..."  formControlName="format">
+                    <mat-option value="pdf">PDF</mat-option>
+                    <mat-option value="word">Word</mat-option>    
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+                <mat-label>Report type</mat-label>
+                <mat-select  value="Small" placeholder="Select report type..."  formControlName="report_type">
+                    <mat-option value="research_report">Research Report</mat-option>
+                    <mat-option value="outline_report">Outline Report</mat-option>
+                    <mat-option value="resource_report">Resource Report</mat-option>
+                    <mat-option value="detailed_report">Detailed Report</mat-option>     
+                </mat-select>
+            </mat-form-field>
+        </mat-dialog-content>
+        <mat-dialog-actions class="mat-dialog-footer">
+            <button mat-raised-button type="submit" class="primary">Apply</button>
+            <button mat-raised-button type="reset" class="secondary" (click)="formReset()">Reset</button>
+        </mat-dialog-actions>
+    </form>
+</app-dialog-base>

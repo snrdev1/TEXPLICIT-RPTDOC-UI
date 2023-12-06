@@ -1,0 +1,29 @@
+<app-dialog-base [modalTitle]="'Login'" (onClose)="onCloseClick()">
+    <form content [formGroup]="form" (ngSubmit)="onSubmit()">
+        <h3>Login to access your Texplicit</h3>
+        <mat-dialog-content class="mat-dialog-body">
+            <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+                <mat-label>Email</mat-label>
+                <input matInput
+                    placeholder="Enter your email ..."
+                    formControlName="email"/>
+            </mat-form-field>
+            <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" 
+                    placeholder="Enter your password ..."
+                    formControlName="password"/>
+            </mat-form-field>
+            <!-- <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+                <mat-label>Domain</mat-label>
+                <mat-select multiple placeholder="Please Select" placeholder="Select domain ..."  formControlName="domains">
+                    <mat-option *ngFor="let domain of domains" [value]="domain">{{domain?.topic | titlecase }}</mat-option>
+                </mat-select>
+            </mat-form-field> -->
+        </mat-dialog-content>
+        <mat-dialog-actions class="mat-dialog-footer">
+            <button mat-raised-button type="submit">Login</button>
+            <a href="#" class="footer-link" (click)="onForgotPasswordClick($event)">Forgot Password</a>
+        </mat-dialog-actions>
+    </form>
+</app-dialog-base>

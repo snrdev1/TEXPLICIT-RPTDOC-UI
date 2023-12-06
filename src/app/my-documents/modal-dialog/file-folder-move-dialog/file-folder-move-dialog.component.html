@@ -1,0 +1,36 @@
+<app-dialog-base [modalTitle]="'Move File/Folder'" (onClose)="onCloseClick()">
+    <div content>
+        <mat-dialog-content class="mat-dialog-body">
+            <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+                <mat-label>Destination</mat-label>
+                <input matInput disabled [(ngModel)]="FolderName"/>
+            </mat-form-field>
+
+            <div class="folder-explorer">
+                <ng-container *ngTemplateOutlet="treeViewList;context:{$implicit:folderstructure}"></ng-container>
+                <ng-template #treeViewList let-list>   
+                    <ul class="folder-list">
+                        <li *ngFor="let item of list;">
+                            <div class="folder-row-1">
+                                <div class="expand-button mr-5px">
+                                    <button (click)="item.expand=!item.expand" *ngIf="item.children">
+                                        <mat-icon *ngIf="!item.expand">keyboard_double_arrow_right</mat-icon>
+                                        <mat-icon *ngIf="item.expand">keyboard_double_arrow_down</mat-icon>
+                                    </button>
+                                </div>
+                                <img class="mr-5px" src="../../../../assets/svg/documents-icon/folder.svg"/>
+                                <div class="folder-name" (click)="onFolderClick(item)">{{item?.name}}</div>
+                            </div>
+                            <div class="folder-row-2" *ngIf="item.children && item.expand">
+                                <ng-container *ngTemplateOutlet="treeViewList;context:{$implicit:item.children}"></ng-container>
+                            </div>
+                        </li>
+                    </ul>
+                </ng-template>
+            </div>
+        </mat-dialog-content>
+        <mat-dialog-actions class="mat-dialog-footer">
+            <button mat-raised-button type="submit"(click)="movefile()">Move</button>
+        </mat-dialog-actions>
+    </div>
+</app-dialog-base>

@@ -1,0 +1,13 @@
+<mat-chip-listbox fxflex class="pt-5px">
+    <button class="btn-left" (click)="scrollLeft()">
+        <div></div>
+    </button>
+    <div #chipContent class="chip-container">
+        <mat-chip *ngFor="let subtopic of Subtopics" class="subtopic">
+            {{subtopic}}
+        </mat-chip>
+    </div>
+    <button class="btn-right" (click)="scrollRight()">
+        <div></div>
+    </button>
+</mat-chip-listbox>

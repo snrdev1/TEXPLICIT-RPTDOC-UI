@@ -1,0 +1,27 @@
+<app-dialog-base [modalTitle]="'Share File/Folder'" (onClose)="onCloseClick()">
+    <div content>
+        <mat-dialog-content class="mat-dialog-body">
+            <app-search-input [placeHolder]="'Search User(s)'" [searchValue]="userSearchQuery" (onCharSearch)="searchUsers($event)" (onClear)="clearUserSearch()"></app-search-input>
+        </mat-dialog-content>
+        <div class="users-container">
+            <ul class="user" *ngFor="let user of filteredUsers">
+                <li class="user-icon">
+                    <img src="../../../assets/images/user-icon.png"/>
+                </li>
+                <li class="user-name">
+                    <div>
+                        <h5>{{user.name}}</h5>
+                    </div>
+                </li>
+                <li class="user-buttons">
+                    <button matTooltip="Share" (click)="shareDocument(user._id)" *ngIf="!hasAccess(user._id)">
+                        <mat-icon>share</mat-icon>
+                    </button>
+                    <button matTooltip="Already Shared" (click)="shareDocument(user._id)" *ngIf="hasAccess(user._id)">
+                        <mat-icon>done</mat-icon>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</app-dialog-base>

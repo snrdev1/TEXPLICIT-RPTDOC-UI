@@ -1,0 +1,26 @@
+<div class="highlight-toolbar-container">
+    <mat-toolbar class="highlight-toolbar">
+        <h3 class="title">Highlight</h3>
+        <app-inner-toolbar-buttons (onback)="backClick($event)" (powerpointtDownload)="PowerpointDownload($event)" (exceltDownload)="ExcelDownload($event)"></app-inner-toolbar-buttons>
+    </mat-toolbar>
+
+    <div class="highlight-container">
+        <mat-card class="highlight" *ngFor="let i of items">
+            <mat-card-content class="highlight-content">
+                <mat-card-title class="highlight-title">{{i.title}}</mat-card-title>
+                <ul class="highlight-list">
+                    <li *ngFor="let highlight of i?.highlights">
+                        <p class="ms-2"
+                        [innerHTML]="getFormattedSentence(highlight.Sentence, highlight.KeyPhrases)">
+                      </p>
+                    </li>
+                </ul>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+
+<app-fab-buttons 
+    (onItemizedSummary)="onItemizedSummaryClick($event)"
+    [highlightsButtonVisible]="false"
+    [consolidatedSummaryButtonVisible]="false"></app-fab-buttons>

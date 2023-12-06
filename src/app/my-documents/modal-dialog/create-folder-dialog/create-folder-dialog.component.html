@@ -1,0 +1,19 @@
+<app-dialog-base [modalTitle]="'Create Folder'" (onClose)="onCloseClick()">
+    <form content [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-dialog-content class="mat-dialog-body">
+            <input type="hidden" formControlName="path"/>
+            <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+                <mat-label>New Folder</mat-label>
+                <input matInput
+                    placeholder="Enter folder name ..."
+                    formControlName="folderName">
+            </mat-form-field>
+        </mat-dialog-content>
+
+        <mat-dialog-actions class="mat-dialog-footer">
+            <button mat-raised-button type="submit" [disabled]="!form.valid">Save</button>
+        </mat-dialog-actions>
+    </form>
+</app-dialog-base>
+
+

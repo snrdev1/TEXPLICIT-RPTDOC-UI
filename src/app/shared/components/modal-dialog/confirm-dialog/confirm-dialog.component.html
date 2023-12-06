@@ -1,0 +1,19 @@
+<mat-toolbar mat-dialog-title class="mat-dialog-header">
+    <img src="../../../../assets/svg/logo/texplicit02-T.svg"/>
+    <h2>{{modalTitle}}</h2>
+    <div class="toolbar-spacer"></div>
+    <button mat-icon-button (click)="onCloseClick()">
+        <mat-icon>highlight_off</mat-icon>
+    </button>
+</mat-toolbar>
+
+<mat-dialog-content class="mat-dialog-body">
+    <div class="message">{{modalMessage}}</div>
+</mat-dialog-content>
+
+<mat-dialog-actions class="mat-dialog-footer">
+    <button mat-raised-button (click)="onYesClick()" class="yes">Yes</button>
+    <button mat-raised-button (click)="onNoClick()" class="no">No</button>
+</mat-dialog-actions>
+
+

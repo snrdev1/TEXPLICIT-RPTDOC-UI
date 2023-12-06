@@ -1,0 +1,53 @@
+.article-block{
+    display: flex;
+    flex-direction: column;
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+
+    .article-image-block{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        .article-image{
+            height: 200px;
+            object-fit: cover;
+            @media screen and (max-width:1000px) {
+                height: 150px;
+            }
+        }
+    }
+    .article-link-block{
+        padding: 16px 0;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: center;
+        .article-link,.article-link:active,.article-link:focus{
+            font-weight: 500;
+            text-decoration: underline;
+        }
+    }
+
+    .article-keywords-block{
+        justify-content: space-between;
+        .article-keyword{
+            font-size: 12px;
+            font-weight: 400;
+        }
+    }
+
+    .article-description-block{
+        p{
+            font-weight: 400;
+            line-height: 20px;
+            color: #040f2f;
+            text-align: left;
+            
+        }
+        .text-color-highlight{
+            font-weight: 500;
+            color: #1A237E;
+        }
+    }
+}

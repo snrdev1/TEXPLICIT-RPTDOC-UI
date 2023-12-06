@@ -1,0 +1,87 @@
+.chat-card{
+    z-index: -1;
+    border: 0;
+    border-radius: 15px;
+    box-shadow: none;
+    margin-bottom: 10px;
+}
+
+.chat-card.default{
+    background-color: #EAEDEF;
+}
+
+.chat-card.default .title{
+   font-weight: 500;
+   font-size: 16px; 
+   color: #227AFF;
+}
+.chat-card.default .subtitle{
+    font-weight: 400;
+    font-size: 16px; 
+    color: #4E525F
+}
+
+.chat-card.default .subtitle strong{
+    font-weight: 500;
+    font-size: 16px; 
+    color: #4E525F
+}
+.chat-card.default .caption{
+    font-weight: 400;
+    font-size: 14px; 
+    color: #666974;
+}
+
+.chat-card.system{
+    background-color: #EAEDEF;
+    margin-right: 20px;
+    
+}
+
+.chat-card.user{
+    background-color: #D7E5EF;
+    margin-left: 20px;
+    
+}
+
+.logo{
+    background-color: #fff;
+    width: 2em;
+    height: 2em;
+}
+
+.logo img{
+    width:18px;
+    height: 17px;
+    margin-top: 5px;
+}
+
+.text{
+    padding: 0;
+    margin: 0;
+    font-weight: 400;
+    font-size: 14px;
+    text-align: left;
+}
+
+.chat-card.system .text{
+    color: #666974;
+}
+
+.chat-card.user .text{
+    color: #4D5059;
+}
+
+.time{
+    padding: 16px;
+    margin: 0;
+    text-align: right;
+    font-weight: 400;
+    font-size: 13px;
+    color: #777A80;
+}
+
+.mat-mdc-card-content:last-child {
+    padding-top: 16px;
+    margin-bottom: 0;
+}

@@ -1,0 +1,25 @@
+<app-dialog-base [modalTitle]="'NEWS Detail'" (onClose)="onCloseClick()">
+    <div content>
+        <mat-dialog-content class="mat-dialog-body">
+            <div class="article-block">
+                <div class="article-image-block">
+                    <img class="article-image" src="{{ data.image}}"/>
+                </div>
+                <div class="article-link-block">
+                    <a class="article-link" href="{{ data.url}}" target="_blank">{{ data.url}}</a>
+                </div>
+                <mat-chip-set class="article-keywords-block">
+                    <ng-container *ngFor="let keyword of data.keywords">
+                      <mat-chip class="article-keyword">{{ keyword }}</mat-chip>
+                    </ng-container>
+                </mat-chip-set>
+                <div class="article-description-block" [innerHTML]="safeSummary">
+                        
+                 </div> 
+            </div>
+        </mat-dialog-content>
+        <mat-dialog-actions class="mat-dialog-footer" *ngIf="userLoggedIn()">
+            <button mat-raised-button type="button" class="primary" (click)="shareNews()">Select folder to share</button>
+        </mat-dialog-actions>
+    </div>
+</app-dialog-base>

@@ -1,0 +1,24 @@
+<ul class="parent">
+    <li *ngFor="let comment Of comments">
+        <app-comment-card [comment]="comment" 
+                        (likeComment)="commentLike($event)"
+                        (deleteComment)="commentDelete($event)"
+                        (replyToComment)="onReplyToComment($event)"
+                        (editComment)="commentEdit($event)"></app-comment-card>
+
+
+        <ul class="children" *ngIf="comment?.children" >
+            <li *ngFor="let childComment Of comment?.children">
+                <app-comment-card [comment]="childComment"
+                                [parentAuthorName]="comment.authorName"
+                                (likeComment)="commentLike($event)"
+                                (deleteComment)="commentDelete($event)"
+                                (replyToComment)="onReplyToComment($event)"
+                                (editComment)="commentEdit($event)"></app-comment-card>
+            </li>
+            <!-- <li>
+                <app-comment-card></app-comment-card>
+            </li> -->
+        </ul>
+    </li>
+</ul>

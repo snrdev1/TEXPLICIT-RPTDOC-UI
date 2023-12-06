@@ -1,0 +1,177 @@
+<mat-toolbar class="mydocument-toolbar">
+    <mat-toolbar-row class="button-bar-row">
+        <div class="search-container">
+            <app-search-input [placeHolder]="'Search File(s)'" [searchValue]="filename" (onSearch)="searchFiles($event)" (onClear)="clearSearch()"></app-search-input>
+        </div>
+        <app-outer-toolbar-buttons 
+           [refreshButtonVisible]="false"
+            [groupMemberButtonVisible]="false"
+            [filterButtonVisible]="false"
+            [addKnowledgeItemButtonVisible]="false"
+            [newsButtonVisible]="false"
+            [noteButtonVisible]="false"
+            [configurationButtonVisible]="false"
+            [historyButtonVisible]="false"
+            [addUserButtonVisible]="false"
+            [workspaceButtonVisible]="false"
+            (onCreateFolder)="onCreateFolder()"
+            (onBackClick)="onBack()"
+            (onFileUpload)="onFileUpload()"
+            [reportProgressButtonVisible]="false"></app-outer-toolbar-buttons>
+    </mat-toolbar-row>
+    <mat-toolbar-row class="address-bar-row">
+        <div class="address-bar">
+            <mat-icon matPrefix style="color: orange;">folder</mat-icon>
+            <div class="address-bar-input" *ngIf="selectedTab == 0">
+                home/my-documents{{strPath}}
+            </div>
+            <div class="address-bar-input" *ngIf="selectedTab == 1">
+                home/shared-with-me{{sharedpath}}
+            </div>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<div style="position: relative;">
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" [selectedIndex]="selectedTab" (selectedTabChange)="onTabChange($event)">
+    <mat-tab label="My Documents">
+        <div class="files-container {{displayStyle.value}}">
+            <div class="file-header-content">
+                <ul class="header-row">
+                    <li class="name-header">
+                        <div>Name</div>
+                        <button class="btn-sort">
+                            <mat-icon>unfold_more</mat-icon>
+                        </button>
+                    </li>
+                    <li class="date-header">
+                        <div>Date</div>
+                        <button class="btn-sort">
+                            <mat-icon>keyboard_arrow_down</mat-icon>
+                        </button>
+                    </li>
+                    <li class="type-header">
+                        <div>Type</div>
+                        <button class="btn-sort">
+                            <mat-icon>keyboard_arrow_up</mat-icon>
+                        </button>
+                    </li>
+                    <li class="size-header">
+                        <div>Summarization</div>
+                        <button class="btn-sort">
+                            <mat-icon>keyboard_arrow_down</mat-icon>
+                        </button>
+                    </li>
+                    <!-- <li class="size-header">
+                        <div>Size</div>
+                        <button class="btn-sort">
+                            <mat-icon>keyboard_arrow_up</mat-icon>
+                        </button>
+                    </li> -->
+                </ul>
+            </div>
+            <div class="file-body-content" *ngIf="files.length != 0">
+               
+                    <app-file-folder-card  *ngFor="let file of files; let i = index"
+                        [item]="file" 
+                        [index]="i.toString()" 
+                        [displayStyle]="displayStyle.value"
+                        [shared]="false" 
+                        (onFolderClick)="viewFolder($event)"
+                        (onCheckChange)="onCheckChange($event)"
+                        (onDownload)="onDownloadClick($event)"
+                        (onRename)="onRenameClick($event)"
+                        (onMove)="onMoveClick($event)"
+                        (onShare)="onShareClick($event)"
+                        (onDelete)="onDeleteClick($event)"></app-file-folder-card>
+            </div>
+            <div class="file-body-content" *ngIf="files.length == 0">
+                <div>No Data Available</div>
+            </div>
+            <div class="file-footer-content">
+                <ul class="footer-row">
+                    <li>{{fileIds.length}} File(s) Selected</li>
+                </ul>
+            </div>
+        </div>
+    </mat-tab>
+    <mat-tab label="Shared With Me">
+        <div class="files-container {{displayStyle.value}}">
+            <div class="file-header-content">
+                <ul class="header-row">
+                    <li class="name-header">
+                        <div>Name</div>
+                        <button class="btn-sort">
+                            <mat-icon>unfold_more</mat-icon>
+                        </button>
+                    </li>
+                    <li class="owner-header">
+                        <div>Owner</div>
+                        <button class="btn-sort">
+                            <mat-icon>keyboard_arrow_down</mat-icon>
+                        </button>
+                    </li>
+                    <li class="type-header">
+                        <div>Type</div>
+                        <button class="btn-sort">
+                            <mat-icon>keyboard_arrow_up</mat-icon>
+                        </button>
+                    </li>
+                    <li class="size-header">
+                        <div>Summarization</div>
+                        <button class="btn-sort">
+                            <mat-icon>keyboard_arrow_up</mat-icon>
+                        </button>
+                    </li>
+                    <!-- <li class="size-header">
+                        <div>Size</div>
+                        <button class="btn-sort">
+                            <mat-icon>keyboard_arrow_up</mat-icon>
+                        </button>
+                    </li> -->
+                </ul>
+            </div>
+            <div class="file-body-content" *ngIf="sharedfiles.length != 0">
+                <ng-container *ngFor="let file of sharedfiles; let i = index">
+                    <app-file-folder-card 
+                        [item]="file" 
+                        [index]="i.toString()" 
+                        [shared]="true" 
+                        [displayStyle]="displayStyle.value"
+                        (onFolderClick)="viewSharedFolder($event)"
+                        (onCheckChange)="onCheckChange($event)"
+                        (onDownload)="onDownloadClick($event)"
+                        (onRename)="onRenameClick($event)"
+                        (onMove)="onMoveClick($event)"
+                        (onShare)="onShareClick($event)"
+                        (onDelete)="onDeleteClick($event)"
+                        ></app-file-folder-card>
+                </ng-container>
+            </div>
+            <div class="file-body-content" *ngIf="sharedfiles.length == 0">
+                <div>No Data Available</div>
+            </div>
+            <div class="file-footer-content">
+                <ul class="footer-row">
+                    <li>{{fileIds.length}} file(s) Selected</li>
+                </ul>
+            </div>
+        </div>
+    </mat-tab>
+</mat-tab-group>
+<div class="toggle-button-holder">
+    <mat-button-toggle-group class="btn-toggle-group" #displayStyle="matButtonToggleGroup" value="list">
+        <mat-button-toggle value="grid" class="btn-toggle">
+            <img class="img-unchecked" src="../../assets/svg/button-icon/ki-grid.svg"/>
+            <img class="img-checked" src="../../assets/svg/button-icon/ki-grid-fill.svg">
+        </mat-button-toggle>
+        <mat-button-toggle value="list" class="btn-toggle">
+            <img class="img-unchecked" src="../../assets/svg/button-icon/ki-list.svg"/>
+            <img class="img-checked" src="../../assets/svg/button-icon/ki-list-fill.svg">
+        </mat-button-toggle>
+    </mat-button-toggle-group>
+</div>
+</div>
+
+<app-fab-buttons (onItemizedSummary)="onItemizedSummaryClick($event)" (onHighlights)="onHighlightsClick($event)" [consolidatedSummaryButtonVisible]="false"></app-fab-buttons>
+<app-loader [isLoading]="isLoading"></app-loader>

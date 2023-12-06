@@ -1,0 +1,101 @@
+.main-body{
+    height: calc(100vh - 400px);
+    overflow: hidden;
+    @media screen and (max-width: 1000px) {
+         height: calc(100vh - 400px);
+
+    }  
+}
+
+
+/******************** START UL LIKE TABLE ********************/
+.files-container.list{
+    width: 98%;
+    @media screen and (max-width: 1000px) {
+        padding-top: 5px;
+    }
+    // margin-top: 20px;
+    .file-header-content{
+        padding-top: 10px;
+        .header-row{
+            margin-top: 10px;
+            padding: 0;
+            list-style: none;
+            font-family:'Roboto', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            display: flex;
+
+            border-bottom: 0.5px solid rgba(146, 149, 159, 0.55);
+
+            li{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 5px;
+                border-right: 0.5px solid rgba(146, 149, 159, 0.55);
+                .btn-sort{
+                    width: 24px;
+                    height: 24px;
+                    padding: 0;
+                    border: none;
+                    background: transparent;
+                    cursor: pointer;
+                    mat-icon{
+                        width: min-content;
+                        height: min-content;
+                        font-size: 16px;
+                    }
+                }
+
+                &.name-header{
+                    width:  calc(50% + 100px);
+                    padding: 0 5px;
+
+                    @media screen and (max-width: 414px) {
+                        border-right: none;
+                        width: 100%;
+                    }
+                }
+
+                &.date-header{
+                    width:  calc(100% - 275px);
+
+                    padding: 0 5px;
+                    
+                    @media screen and (max-width: 915px) {
+                        width: 25%;
+                    }
+
+                    @media screen and (max-width: 414px) {
+                        display: none;
+                    }
+                }
+                &.type-header{
+                    width:calc(100vh - 600px);
+                    padding: 0 5px;
+                    @media screen and (max-width: 912px) {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+    .file-body-content{
+        height: calc(100vh - 310px);
+        @media screen and (max-width: 1000px) {
+            height: calc(100vh - 570px);
+        }
+        @media screen and (max-width: 540px) {
+            height: calc(100vh - 600px);
+        }
+        overflow: hidden;
+        overflow-y: auto;
+        margin-right: -5px;
+    }
+    
+}
+/******************** END UL LIKE TABLE ********************/
+
+
+

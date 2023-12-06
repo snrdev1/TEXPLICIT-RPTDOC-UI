@@ -1,0 +1,46 @@
+<app-dialog-base [modalTitle]="'Add Subtopics'" (onClose)="onCloseClick()">
+  <mat-dialog-content content class="mat-dialog-body">
+  <div content >
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div formArrayName="rows" >
+          <div fxLayout="row" >
+            <div class="report-heading " fxLayout="row">Sub-Topic</div>
+            <div class="report-heading-source " fxLayout="row">Source</div>
+            <div class="report-heading-websearch " fxLayout="row">WebSearch</div>
+          </div>
+          <div *ngFor="let row of rows.controls; let i = index" [formGroupName]="i" style="margin-bottom: 15px;">
+              <div fxLayout="row" >
+                <div [style.margin-right.px]="rows.length>1 ? 0 : 47">
+                  <button mat-icon-button  class="btn-delete" matTooltip="Delete" *ngIf="rows.length>1" (click)="removeRow(i)">
+                    <mat-icon class="icon-delete">delete_outline</mat-icon>
+                  </button>
+                </div>
+              <div>
+                  <mat-form-field appearance="outline" class="search-wrapper mr-20px">
+                  <input matInput #searchinput placeholder="Enter subtopic..." formControlName="task"  required>
+                  </mat-form-field>
+              </div>
+              <div>
+                  <mat-form-field appearance="outline" class="my-datasource-dropdown mr-10px ">
+                  <mat-select #ddlDatasource placeholder="Please Select" formControlName="source" (selectionChange)="onSourceChange(i)">
+                    <mat-option value="external">External</mat-option>
+                    <mat-option value="my_documents">My Documents</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            <div class="mr-websearch">
+              <mat-slide-toggle formControlName="websearch" ></mat-slide-toggle>
+            </div>
+          </div>
+          </div>
+        </div>
+        <div>
+              <mat-dialog-actions class="mat-dialog-footer">
+                <button mat-raised-button class="btn-secondary" type="button"  (click)="addRow()">Add Row</button>
+                <button mat-raised-button class="btn-primary" type="submit" >Save</button>
+              </mat-dialog-actions>
+            </div>
+    </form>
+  </div>
+</mat-dialog-content>
+</app-dialog-base>

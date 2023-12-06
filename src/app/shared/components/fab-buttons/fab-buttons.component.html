@@ -1,0 +1,14 @@
+<div class="fab-container">
+    <button mat-fab class="btn-tertiary" matTooltip="Chat" (click)="chatOpen()">
+        <mat-icon>chat</mat-icon>
+    </button>
+    <button mat-fab [matMenuTriggerFor]="summarymenu" class="btn-secondary" *ngIf="summaryButtonVisible">
+        <mat-icon>fact_checked</mat-icon>
+    </button>
+
+    <mat-menu #summarymenu="matMenu" class="summary-menu">
+        <button mat-button class="btn-secondary" *ngIf="itemizedSummaryButtonVisible" (click)="onItemizedSummaryClick($event)">Itemized Summary</button>
+        <button mat-button class="btn-secondary" *ngIf="consolidatedSummaryButtonVisible" (click)="onConsolidatedSummaryClick($event)">Consolidated Summary</button>
+        <button mat-button class="btn-secondary" *ngIf="highlightsButtonVisible" (click)="onHighlightsClick($event)">Highlights</button>
+    </mat-menu>
+</div>

@@ -1,0 +1,24 @@
+.fab-container{
+    position: absolute;
+    bottom: 1%;
+    right:1%;
+    display: flex;
+    z-index: 999;
+    align-items: flex-end;
+
+    button{
+        margin-right: 5px;
+    }
+}
+
+::ng-deep .summary-menu {
+    max-width: 200px!important;
+    background: transparent;
+    box-shadow: none!important;
+    margin-bottom: 8px;
+}
+
+::ng-deep .summary-menu button{
+    float: right;
+    margin-bottom: 8px;
+}

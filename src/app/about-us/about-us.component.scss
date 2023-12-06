@@ -1,0 +1,49 @@
+.about-us-container{
+    display: flex;
+    justify-content: space-between;
+    @media screen and (max-width: 1000px) {
+        flex-direction: column-reverse;
+    }
+    .about-us-text-container{
+        width: 59%;
+        @media screen and (max-width: 1000px) {
+            width: 100%;
+        }
+        mat-card{
+            margin-bottom: 1em;
+            border-radius: 20px;
+            box-shadow: 0px 38px 49px rgba(129, 151, 163, 0.22);
+            mat-card-header{
+                mat-card-title{
+                    font-family:'Domine', sans-serif;
+                    font-size: 24px;
+                    font-weight: 500;
+                    color: #040F2F;
+                }
+            }
+            mat-card-content{
+                p{
+                    padding: 0;
+                    font-family:'Roboto', sans-serif;
+                    font-size: 14px;
+                    font-weight: 400;
+                    color: #4E525F;
+                }
+            }
+        }
+    }
+    .about-us-image-container{
+        width: 39%;
+        max-height: calc(100vh - 80px);
+
+        @media screen and (max-width: 1000px) {
+            width: 100%;
+        }
+
+        img{
+            width:100%;
+            vertical-align: middle;
+            max-height: inherit;
+        }
+    }
+}

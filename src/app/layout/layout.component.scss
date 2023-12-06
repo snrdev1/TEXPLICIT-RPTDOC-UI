@@ -1,0 +1,196 @@
+.toolbar-container {
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @media screen and (max-width: 1000px) {
+        padding-left: 0;
+        padding-left: 1px;
+    }
+    .logo{
+        margin-right: 1em;
+        cursor: pointer;
+        img{
+            vertical-align: middle;
+        }
+    }
+    button{
+        width: 36px;
+        height: 36px;
+        padding: 6px;
+        background-color: #ededed;
+        &.menu-btn{
+            background-color: transparent;
+            img{
+                width: 20px;
+            }
+        }
+
+        &.user-icon{
+            padding: 0;
+            img{
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+            }
+        }
+        mat-icon{
+            width: 20px;
+            height: 20px;
+            font-size: 20px;
+            color:#111541;
+        }
+    }
+  }
+  
+.left-sidenav-container {
+    background-color: #171D5E;
+    width: 200px;
+    
+    @media screen and (max-width: 1000px) {
+        position: absolute;
+        z-index: 3!important;
+    }
+    .menu-container{
+        padding: 0;
+        margin: 0;
+        list-style: none;
+
+        mat-divider{
+            border-bottom: 0.5px solid rgba(91,97,161,.73);
+        }
+    }
+    // .sub-menu-container{
+    //     padding: 0;
+    //     margin-left: 40px;
+    //     list-style: none;
+    //     cursor: pointer;
+    //     mat-divider{
+    //         border-bottom: 0.5px solid rgba(91,97,161,.73);
+    //     }
+    // }
+    .menu-item {
+        display: flex;
+        align-items: center;
+        background-color: transparent;
+        color: #ffffff;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        padding: 18px 20px;
+        cursor: pointer;
+    }
+  
+    .is-active {
+      background-color: #366D72;
+    }
+  
+    .menu-item-label {
+      margin-left: 0.5rem;
+    }
+    // .menu-sub-item-label{
+    //     color: #CBCDE1;
+    //     font-family: Roboto;
+    //     font-size: 13px;
+    //     margin-left: 1rem;
+    //     // list-style-type: none;
+
+    //     font-style: normal;
+    //     font-weight: 400;
+    //     line-height: 36px; /* 276.923% */
+    //     text-transform: capitalize;
+    // }
+}
+
+.main-container-content{
+    //background-color: #eeeeee;
+    background-color: rgba(226,227,233,0.35);
+    @media screen and (max-width: 1000px) {
+        margin-left: 0!important;
+        margin-right: 0!important;
+    }
+  
+    .main-container {
+        height: calc(100vh - 96px);
+        padding: 1rem;
+        @media screen and (max-width: 1000px) {
+            height: calc(100vh - 88px);
+            // overflow: hidden;
+            // overflow-y: auto;
+        }
+    }
+}
+
+.sidenav-container{
+    background-color: #E1E5F1;
+    width: 25%;
+    overflow: hidden;
+    
+    @media screen and (max-width: 1000px) {
+        position: absolute;
+        z-index: 2!important;
+        width: 100%;
+    }
+}
+
+.news-sidenav-container {
+    background-color: #E1E5F1;
+    width: 25%;
+    overflow: hidden;
+    
+    @media screen and (max-width: 1000px) {
+        position: absolute;
+        z-index: 2!important;
+        width: 100%;
+    }
+}
+
+.chat-sidenav-container {
+    background-color: #fff;
+    width: 30%;
+    overflow: hidden;
+    
+    @media screen and (max-width: 1000px) {
+        position: absolute;
+        z-index: 2!important;
+        width: 100%;
+    }
+}
+
+.note-sidenav-container{
+    background-color: #fff;
+    width: 30%;
+    overflow: hidden;
+    
+    @media screen and (max-width: 1000px) {
+        position: absolute;
+        z-index: 2!important;
+        width: 100%;
+    }
+}
+
+.group-member-sidenav-container{
+    background-color: #fff;
+    width: 30%;
+    overflow: hidden;
+    
+    @media screen and (max-width: 1000px) {
+        position: absolute;
+        z-index: 2!important;
+        width: 100%;
+    }
+}
+
+.workspace-sidenav-container{
+    background-color: #fff;
+    width: 30%;
+    overflow: hidden;
+    
+    @media screen and (max-width: 1000px) {
+        position: absolute;
+        z-index: 2!important;
+        width: 100%;
+    }
+}
+
+  
