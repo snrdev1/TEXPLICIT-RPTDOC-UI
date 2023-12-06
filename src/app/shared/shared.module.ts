@@ -5,9 +5,6 @@ import { MaterialModule } from '../material/material.module';
 import { OuterToolbarButtonsComponent } from './components/outer-toolbar-buttons/outer-toolbar-buttons.component';
 import { FabButtonsComponent } from './components/fab-buttons/fab-buttons.component';
 import { InnerToolbarButtonsComponent } from './components/inner-toolbar-buttons/inner-toolbar-buttons.component';
-import { CommentPanelComponent } from './components/comment/comment-panel/comment-panel.component';
-import { CommentListComponent } from './components/comment/comment-list/comment-list.component';
-import { CommentCardComponent } from './components/comment/comment-card/comment-card.component';
 import { DialogBaseComponent } from './components/modal-dialog/dialog-base/dialog-base.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConfirmDialogComponent } from './components/modal-dialog/confirm-dialog/confirm-dialog.component';
@@ -34,9 +31,6 @@ import { DisclaimerDialogComponent } from '../layout/modal-dialog/disclaimer-dia
     OuterToolbarButtonsComponent,
     FabButtonsComponent,   
     InnerToolbarButtonsComponent,
-    CommentPanelComponent,
-    CommentListComponent,
-    CommentCardComponent,
     DialogBaseComponent,
     ConfirmDialogComponent,
     FileFolderCardComponent,
@@ -70,8 +64,6 @@ import { DisclaimerDialogComponent } from '../layout/modal-dialog/disclaimer-dia
     OuterToolbarButtonsComponent,
     FabButtonsComponent,
     InnerToolbarButtonsComponent,
-    CommentPanelComponent,
-    CommentListComponent,
     DialogBaseComponent,
     ConfirmDialogComponent,
     FileFolderCardComponent,
