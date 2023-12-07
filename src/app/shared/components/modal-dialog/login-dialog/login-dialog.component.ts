@@ -30,9 +30,6 @@ export class LoginDialogComponent {
     this.form = this.formBuilder.group({
       email: new FormControl("", Validators.required),
       password: new FormControl("", Validators.required),
-      domains: new FormControl(""),
-      // domains: new FormControl("", Validators.required),
-
     });
   }
  
@@ -43,8 +40,9 @@ export class LoginDialogComponent {
   }
 
   onSubmit(){
+    console.log("On login");
     console.log(this.form.value);
-    this.localStorageService.setitem("UserSelectedDomains",this.form.controls['domains'].value);
+    // this.localStorageService.setitem("UserSelectedDomains",this.form.controls['domains'].value);
     this.loginservice.login(this.form.value).subscribe(
       (response) => {
         if (response.success) {
