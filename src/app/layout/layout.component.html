@@ -1,5 +1,5 @@
 <mat-toolbar class="toolbar-container" fxLayout="row">
-    <button mat-icon-button class="menu-btn" (click)="leftnav.toggle()">
+    <button mat-icon-button class="menu-btn" *ngIf="isUserLoggedIn()" (click)="leftnav.toggle()">
         <img src="../../assets/svg/top-nav-icon/hamburger.svg" />
         <!-- <mat-icon>menu</mat-icon> -->
     </button>
@@ -7,6 +7,12 @@
         <img src="../../assets/svg/logo/texplicit02-logo.svg" />
     </div>
     <span class="toolbar-spacer"></span>
+    <button mat-icon-button matTooltip="About Us" class="mr-5px" (click)="onAboutClick()">
+        <mat-icon>info</mat-icon>
+    </button>
+    <button mat-icon-button matTooltip="Contact Us" class="mr-5px" (click)="onContactClick()">
+        <mat-icon>contact_support</mat-icon>
+    </button>
     <button mat-icon-button matTooltip="Disclaimer" class="mr-5px" (click)="onDisclaimerClick()">
         <mat-icon>privacy_tip</mat-icon>
         <!-- <img src="../../assets/svg/top-nav-icon/disclaimer.svg" /> -->
@@ -28,13 +34,13 @@
                 <span class="menu-item-label">{{ menuItem.name }}</span>
             </li>
             
-            <mat-divider></mat-divider>
+            <!-- <mat-divider></mat-divider>
             <li class="menu-item" routerLink="/about-us">
                 <span class="menu-item-label">About Us</span>
             </li>
             <li class="menu-item" routerLink="/contact-us">
                 <span class="menu-item-label">Contact Us</span>
-            </li>
+            </li> -->
         </ul>
     </mat-sidenav>
     <mat-sidenav-content class="main-container-content">

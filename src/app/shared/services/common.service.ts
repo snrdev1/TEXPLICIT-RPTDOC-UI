@@ -115,8 +115,8 @@ export class CommonService {
   }
 
   getUserMenu(){
-    const userInfo = this.localStorage.getUserInfo();
-    const menuIds = userInfo.permissions.menu;
+    const userInfo = this.localStorage.getUserInfo() || [];
+    const menuIds = userInfo?.permissions?.menu;
     this.getMenu(menuIds).subscribe({
       next: (res)=>{
         this.userMenu = res.data;

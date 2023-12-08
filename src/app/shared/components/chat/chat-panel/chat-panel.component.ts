@@ -39,8 +39,10 @@ export class ChatPanelComponent {
   formattedTime = this.formatter.format(this.date);
   userInfo:any=[];
 
-  @ViewChild('inputElement') inputElement!: ElementRef;
-  @ViewChild('chatContainer') chatContainer!: ElementRef;
+  // @ViewChild('inputElement')  inputElement!: ElementRef;
+  // @ViewChild('chatContainer') chatContainer!: ElementRef;
+  @ViewChild('chatContainer', { static: false }) chatContainer!: ElementRef;
+  @ViewChild('inputElement', { static: false }) inputElement!: ElementRef;
 
   constructor(private commonService:CommonService,
               private chatService: ChatService,
@@ -59,13 +61,14 @@ export class ChatPanelComponent {
     // this.userInfo$.subscribe((res) =>{
     // this.currentUserId = res?._id;
     // });
+    
     if(this.userInfo){
       this.currentUserId = this.userInfo?._id;
     }
     this.getChatHistory();
     if(this.chatResponses){
       this.chatEvent = this.chatEvent + "_" + this.currentUserId;
-      console.log("this.chatEvent",this.chatEvent);
+      // console.log("this.chatEvent",this.chatEvent);
       this.socketService.listen(this.chatEvent).subscribe({
         next: (res)=>{
           console.log("response of chat: ",res);
@@ -85,7 +88,7 @@ export class ChatPanelComponent {
   }
   ngAfterViewChecked(){
       this.chatContainer.nativeElement.scrollTop = this.chatContainer.nativeElement.scrollHeight;
-      this.inputElement.nativeElement.focus();
+      // this.inputElement.nativeElement.focus();
   }
   
   onChatSelection(){
@@ -101,6 +104,8 @@ export class ChatPanelComponent {
     // console.log('prompt: ', this.chatForm.controls['prompt'].value);
     // console.log('chatSelected', this.selectedChat);
     // console.log('timestamp', this.timestamp);
+    this.inputElement.nativeElement.focus();
+
     this.prompt = this.chatForm.controls['prompt'].value;
     if (this.prompt) {
       this.chatResponses = [...this.chatResponses, 
@@ -126,7 +131,7 @@ getChatHistory(){
   this.isLoading = true;
   this.chatService.getChatHistory().subscribe({
     next: (res)=>{
-      console.log("response in chat history",res.data);
+      // console.log("response in chat history",res.data);
       this.chatResponses = res.data[0]?.chat || [];
       this.userImage = res.data[1] || "assets/images/user-icon.png" ; 
 

@@ -8,6 +8,7 @@ import { LocalStorageService } from '../core/local-storage.service';
 import { AuthService } from '../core/auth.service';
 import {  Observable } from 'rxjs';
 import { WebSocketService } from '../shared/services/socketio.service';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -34,6 +35,7 @@ export class LayoutComponent {
     private authService: AuthService,
     public localStorage: LocalStorageService,
     public socketService: WebSocketService,
+    private router: Router,
     private dialog: MatDialog)
     {
       
@@ -44,8 +46,8 @@ export class LayoutComponent {
     this.commonService.getUserMenu();
     this.userInfo = this.localStorage.getUserInfo() || [];
     if(this.userInfo){
-      this.userId = this.userInfo._id;
-      this.userName = this.userInfo.name;
+      this.userId = this.userInfo?._id;
+      this.userName = this.userInfo?.name;
     }
     
     if(this.checkLogin()){
@@ -78,7 +80,14 @@ export class LayoutComponent {
   checkLogin(){
     return this.authService.isLoggedIn;
   }
-  
+  onAboutClick(){
+    this.router.navigate(['/about-us']);
+
+  }
+
+  onContactClick(){
+    this.router.navigate(['/contact-us']);
+  }
 
   onDisclaimerClick(){
     const dialogRef = this.dialog.open(DisclaimerDialogComponent,{panelClass:'mat-dialog-panel'});

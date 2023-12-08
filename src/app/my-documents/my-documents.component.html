@@ -35,7 +35,7 @@
 <div style="position: relative;">
 <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" [selectedIndex]="selectedTab" (selectedTabChange)="onTabChange($event)">
     <mat-tab label="My Documents">
-        <div class="files-container {{displayStyle.value}}">
+        <div class="files-container {{displayStyle.value || 'list'}}">
             <div class="file-header-content">
                 <ul class="header-row">
                     <li class="name-header">
@@ -70,7 +70,7 @@
                     </li> -->
                 </ul>
             </div>
-            <div class="file-body-content" *ngIf="files.length != 0">
+            <div class="file-body-content" *ngIf="files?.length != 0">
                
                     <app-file-folder-card  *ngFor="let file of files; let i = index"
                         [item]="file" 
@@ -85,7 +85,7 @@
                         (onShare)="onShareClick($event)"
                         (onDelete)="onDeleteClick($event)"></app-file-folder-card>
             </div>
-            <div class="file-body-content" *ngIf="files.length == 0">
+            <div class="file-body-content" *ngIf="files?.length == 0">
                 <div class="no-search-results ">No Data Available</div>
             </div>
             <div class="file-footer-content">
@@ -96,7 +96,7 @@
         </div>
     </mat-tab>
     <mat-tab label="Shared With Me">
-        <div class="files-container {{displayStyle.value}}">
+        <div class="files-container {{displayStyle.value || 'list'}}">
             <div class="file-header-content">
                 <ul class="header-row">
                     <li class="name-header">
@@ -131,7 +131,7 @@
                     </li> -->
                 </ul>
             </div>
-            <div class="file-body-content" *ngIf="sharedfiles.length != 0">
+            <div class="file-body-content" *ngIf="sharedfiles?.length != 0">
                 <ng-container *ngFor="let file of sharedfiles; let i = index">
                     <app-file-folder-card 
                         [item]="file" 
@@ -148,8 +148,8 @@
                         ></app-file-folder-card>
                 </ng-container>
             </div>
-            <div class="file-body-content" *ngIf="sharedfiles.length == 0">
-                <div>No Data Available</div>
+            <div class="file-body-content" *ngIf="sharedfiles?.length == 0">
+                <div class="no-search-results">No Data Available</div>
             </div>
             <div class="file-footer-content">
                 <ul class="footer-row">
@@ -173,5 +173,5 @@
 </div>
 </div>
 
-<app-fab-buttons (onItemizedSummary)="onItemizedSummaryClick($event)" (onHighlights)="onHighlightsClick($event)" [consolidatedSummaryButtonVisible]="false"></app-fab-buttons>
+<app-fab-buttons [summaryButtonVisible]="isFileSelected()" (onItemizedSummary)="onItemizedSummaryClick($event)" (onHighlights)="onHighlightsClick($event)" [consolidatedSummaryButtonVisible]="false"></app-fab-buttons>
 <app-loader [isLoading]="isLoading"></app-loader>

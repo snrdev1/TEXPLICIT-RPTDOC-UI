@@ -425,4 +425,7 @@ onDeleteClick(event:any){
     this.localstorage.setitem("selectedtab",this.selectedTab);
     console.log("Selected tab index : ", this.selectedTab);
   }
+  isFileSelected(){
+    return this.fileIds.length > 0 ? true: false;
+  }
 }

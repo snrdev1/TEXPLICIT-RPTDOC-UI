@@ -15,7 +15,7 @@ import { LocalStorageService } from '../core/local-storage.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  @ViewChild('kiContainer') resizableElement: ElementRef;
+  // @ViewChild('kiContainer') resizableElement: ElementRef;
   
   public fabButtonsRandom: MatFabMenu[]=[];
   public elementSize: string='';
@@ -34,7 +34,7 @@ export class HomeComponent {
     public localStorageService: LocalStorageService,
     public dialog: MatDialog,
     ){
-    this.resizableElement=new ElementRef(document.querySelector(".home-ki-container"));
+    // this.resizableElement=new ElementRef(document.querySelector(".home-ki-container"));
     
   }
   
@@ -49,17 +49,17 @@ export class HomeComponent {
     // }
   }
 
-  ngAfterViewInit() {
+  // ngAfterViewInit() {
     // ElementQueries.listen();
     // ElementQueries.init();
 
-    const resizeSensor = new ResizeSensor(this.resizableElement.nativeElement, () => {
-      this.elementSize = 'Width: ' + this.resizableElement.nativeElement.clientWidth +
-      ' Height: ' + this.resizableElement.nativeElement.clientHeight;
+  //   const resizeSensor = new ResizeSensor(this.resizableElement.nativeElement, () => {
+  //     this.elementSize = 'Width: ' + this.resizableElement.nativeElement.clientWidth +
+  //     ' Height: ' + this.resizableElement.nativeElement.clientHeight;
 
-      console.log(this.elementSize);
-    }); 
-  }
+  //     console.log(this.elementSize);
+  //   }); 
+  // }
 
   executeSearch(event:any){
     console.log("event in executeSearch:",event);

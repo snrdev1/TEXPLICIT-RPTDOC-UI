@@ -10,8 +10,8 @@ import { SharedService } from '../shared/services/shared.service';
   providedIn: 'root'
 })
 export class PathAuthGuard implements CanActivate {
-  menu: any[] = [];
-  menuIds: any[] = [];
+  menu: any = [];
+  menuIds: any = [];
   userInfo$: Observable<any> = this.localStorage.userInfo$;
   userInfo:any=[];
   constructor(
@@ -30,15 +30,15 @@ export class PathAuthGuard implements CanActivate {
       // this.userInfo$.subscribe((res:any) => {
       //   if (res) {
       //     this.menuIds = res.permissions.menu || [];
-          this.menuIds = this.userInfo.permissions.menu || [];
+          this.menuIds = this.userInfo?.permissions?.menu || [];
 
           this.commonService.getMenu(this.menuIds).subscribe({
             next: (menuRes) => {
               // console.log("res in getMenu", menuRes);
-              this.menu = menuRes.data;
+              this.menu = menuRes?.data;
               const url = state.url;
 
-              if (this.menu.some((menuItem) => menuItem.link === url)) {
+              if (this.menu.some((menuItem:any) => menuItem.link === url)) {
                 observer.next(true);
               } else {
                 observer.next(false);
