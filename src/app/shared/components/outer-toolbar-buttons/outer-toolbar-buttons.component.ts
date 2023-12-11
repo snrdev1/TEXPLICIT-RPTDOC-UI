@@ -25,7 +25,7 @@ export class OuterToolbarButtonsComponent {
   @Input() public historyButtonVisible:boolean=true;
   
   @Input() public addUserButtonVisible:boolean=true;
-  @Input() public addUserEnable:boolean=false;
+  @Input() public addUserEnable:boolean=true;
   @Input() public workspaceButtonVisible:boolean=true;
   @Input() public reportProgressButtonVisible:boolean=true;
 
@@ -42,7 +42,9 @@ export class OuterToolbarButtonsComponent {
     public commonService:CommonService,
     public dialog:MatDialog)
     {}
-    
+    ngOnInit(){
+      console.log("addUserEnable",this.addUserEnable);
+    }
   toggleNews(){
     this.commonService.newsOpen=true;
   }

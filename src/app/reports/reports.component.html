@@ -44,7 +44,6 @@
         </div>
 
         <div   class="first-row-third-section">
-          <!-- <div fxLayout="column"> -->
           <div fxLayout="row" >
             <div>
             <div class=" mr-websearch" >
@@ -53,9 +52,6 @@
           </div>  
           <div  class="websearch-heading ">WebSearch</div>  
 
-          <!-- </div> -->
-          <!-- <div fxLayout="column"> -->
-        
           <div fxLayout="column" class="report-type-order">
             <div class="report-heading " >Report type</div>
               <div class="my-datasource-toolbar-config mr-10px" >
@@ -72,7 +68,6 @@
             </div>
           </div>
         </div>
-          <!-- </div> -->
         </div>
       </div>
       <!-- Second Row -->
@@ -88,7 +83,6 @@
 
 
     <div class="mr-top">
-        <!-- <div  fxLayout="row" fxLayoutAlign="space-between center"> -->
         <div class="gen-report">
           <div fxLayout="column">
             <div class="report-header" >Generated Reports</div>
@@ -135,23 +129,11 @@
                     </li>
                     <li class="type-header" >
                       <div>Type</div>
-                      <!-- <button class="btn-sort">
-                          <mat-icon>keyboard_arrow_down</mat-icon>
-                      </button> -->
                     </li>
                     <li class="size-header">
                       <div>Task</div>
-                      <!-- <button class="btn-sort" >
-                          <mat-icon>keyboard_arrow_down</mat-icon>
-                      </button> -->
                     </li>
-                    <!-- <li class="type-header">
-                      <div>Status</div>
-                      <button class="btn-sort">
-                          <mat-icon>keyboard_arrow_down</mat-icon>
-                      </button>
-                    </li> -->
-                </ul>
+                    </ul>
             </div>
         <div class="no-search-results" *ngIf="allReports.length == 0">No reports available</div>
         <div class="file-body-content" *ngIf="allReports.length !== 0" (scroll)="onScroll($event)">
@@ -163,10 +145,7 @@
                         (deleteReport)="getAllReports()"
                         ></app-report-cards>
                     </ng-container>  
-                    <!-- <div *ngIf="isLoading">
-                      <mat-spinner diameter="70"></mat-spinner>
-                    </div>            -->
-        </div>
+                   </div>
   </div>
   <div class="toggle-button-holder mr-bottom">
     <mat-button-toggle-group class="btn-toggle-group" #displayStyle="matButtonToggleGroup" value="list">

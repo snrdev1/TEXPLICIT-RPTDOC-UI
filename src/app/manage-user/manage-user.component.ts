@@ -44,6 +44,11 @@ export class ManageUserComponent {
     this.currentUser = this.localStorage.getitem("userInfo");
     // console.log("this.currentUser",this.currentUser);
     this.subscriptions = this.currentUser.subscription;
+    if(this.subscriptions > 1){
+      this.addUserEnable = true;
+    }
+    console.log("addUserEnable in manage user component:",this.addUserEnable);
+
     // console.log("this.subscriptions",this.subscriptions);
 
     this.getAllChildUsers();
@@ -81,7 +86,10 @@ export class ManageUserComponent {
     // console.log("Page Size:",this.pageSize);
     this.manageUserService.getAllChildUsers(this.pageIndex+1,this.pageSize).subscribe({
       next: (res)=>{
-        // console.log("getAllChildUsers: ",res);
+        console.log("getAllChildUsers: ",res);
+        // if(res.data.length == 0 && this.subscriptions > 1){
+        //   this.addUserEnable = true;
+        // }
         if(res.data){
           this.usersData = res.data.users;
           // console.log(" this.usersData", this.usersData);
@@ -91,12 +99,13 @@ export class ManageUserComponent {
             // console.log("this.usersData.length ",this.usersData.length );
           // this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
-            if(res.data.totalRecs< this.subscriptions){
+          
+          if((res.data.totalRecs || 0)< this.subscriptions){
               this.addUserEnable = true;
-            }else{
+          }else{
               this.addUserEnable = false;
               // this.commonService.showSnackbar("snackbar-error","Subscription limit reached","0");
-            }
+          }
           
         }
       },

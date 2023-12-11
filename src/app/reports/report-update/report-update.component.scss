@@ -34,20 +34,7 @@
                 justify-content: space-between;
                 padding: 0 5px;
                 border-right: 0.5px solid rgba(146, 149, 159, 0.55);
-                .btn-sort{
-                    width: 24px;
-                    height: 24px;
-                    padding: 0;
-                    border: none;
-                    background: transparent;
-                    cursor: pointer;
-                    mat-icon{
-                        width: min-content;
-                        height: min-content;
-                        font-size: 16px;
-                    }
-                }
-
+                cursor: auto;
                 &.name-header{
                     width:  calc(50% + 100px);
                     padding: 0 5px;
@@ -60,7 +47,7 @@
 
                 &.date-header{
                     width:  calc(100% - 275px);
-
+                    // cursor: context-menu;
                     padding: 0 5px;
                     
                     @media screen and (max-width: 915px) {

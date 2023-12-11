@@ -72,7 +72,6 @@
             text-overflow: ellipsis;
             font-size: 14px;
             font-weight: 500;
-            cursor: pointer;
         }
         &.action{
             width: 24px;
@@ -85,7 +84,7 @@
                 padding: 0;
                 border: none;
                 background: transparent;
-                cursor: pointer;
+                // cursor: pointer;
 
                 mat-icon{
                     width: min-content;
@@ -156,17 +155,10 @@
         &.name{
             display: block;
             width: calc(50% + 97px);
-            display: block;
-            // padding: 5px;
-            // padding-right: 35px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
             padding: 5px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            cursor: pointer;
+            white-space: normal;
+            // overflow: hidden;
+            // text-overflow: ellipsis;
 
             @media screen and (max-width: 414px) {
                 width: calc(100% - 44px);
@@ -182,7 +174,7 @@
                 padding: 0;
                 border: none;
                 background: transparent;
-                cursor: pointer;
+                // cursor: pointer;
 
                 mat-icon{
                     width: min-content;
