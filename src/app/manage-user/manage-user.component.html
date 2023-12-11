@@ -38,30 +38,7 @@
             <td mat-cell *matCellDef="let element" class="m-hide">{{ element.email }}</td>
         </ng-container>
 
-        <!-- <ng-container matColumnDef="phoneno">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header class="m-hide">Phone No</th>
-          <td mat-cell *matCellDef="let element" class="m-hide">
-            {{ element | date: "mediumDate" }}
-          </td>
-        </ng-container> -->
-
-        <!-- <ng-container matColumnDef="roleText">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Role</th>
-          <td mat-cell *matCellDef="let element">
-            <span>{{ element || "Member" | titlecase }}</span>
-          </td>
-        </ng-container> -->
-
-        <ng-container matColumnDef="domains">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header class="m-hide">Domain(s)</th>
-          <td mat-cell *matCellDef="let element" class="m-hide">
-            <span class="status">
-              <!-- {{ element.domains | titlecase }}</span> -->
-              {{ element.domainNames }}</span>
-
-          </td>
-        </ng-container>
-
+        
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef>Actions</th>
           <td mat-cell *matCellDef="let element" class="actions-container">

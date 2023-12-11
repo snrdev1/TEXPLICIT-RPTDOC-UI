@@ -21,10 +21,7 @@ export class ManageUserComponent {
               private commonService: CommonService,
               private localStorage: LocalStorageService){}
 
-  // displayedColumns: string[] = ['name', 'email', 'phoneno', 'domains', 'action'];
-  displayedColumns: string[] = ['name', 'email', 'domains', 'action'];
-
-
+  displayedColumns: string[] = ['name', 'email', 'action'];
   isLoading = false;
   pageSizeOptions: number[] = [5, 10, 25, 50, 100];
   pageIndex = 0;

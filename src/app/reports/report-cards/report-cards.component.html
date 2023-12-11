@@ -1,6 +1,7 @@
 <ul class="file-row {{displayStyle}}" [ngClass]="{'noCheckbox': checkboxVisible === false}" class="mr-10px">
-    <li class="check">
-      <input type="checkbox" class="checkbox-round" value="{{report._id}}" (change)="onChange($event)" [checked]="isChecked(report._id)" /></li>
+    <!-- <li class="check">
+      <input type="checkbox" class="checkbox-round" value="{{report._id}}" (change)="onChange($event)" [checked]="isChecked(report._id)" />
+    </li> -->
     <li class="icon">
         <img *ngIf="report.format === 'pdf'||report.format === ''" src="../../assets/svg/documents-icon/pdf.svg" />
         <img *ngIf="report.format === 'word'" src="../../assets/svg/documents-icon/doc.svg" />
@@ -16,7 +17,7 @@
         </button>
     </li>
    
-    <li class="date" >{{ report.createdOn | date:'MMMM d, yyyy'}}</li>
+    <li class="date" >{{ report.createdOn | date:'dd/mm/YY h:mm a'}}</li>
     <li class="report-type" >{{ reportType }}</li>
     <li class="type" (mouseenter)="showFullText()" (mouseleave)="hideFullText()">
       <span class="type-preview" [class.hovered]="showFullTextFlag">

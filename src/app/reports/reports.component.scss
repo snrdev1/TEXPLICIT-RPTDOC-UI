@@ -99,6 +99,7 @@
                 &.name-header{
                     width:  calc(50% + 80px);
                     padding: 0 5px;
+                    // margin-left: 20px;
 
                     @media screen and (max-width: 414px) {
                         border-right: none;

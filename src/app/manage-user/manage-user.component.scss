@@ -69,10 +69,22 @@
         position: sticky;
     }
 
+    th.name,
+    td.name{
+            width:40%;
+        }
+    th.email,
+    td.email{
+            width:40%;
+        }
+    th.action,
+    td.action{
+            width:20%;
+        }
     @media screen and (max-width: 1000px) {
         th.name,
         td.name{
-            width:70%;
+            width:40%;
         }
     }
 }

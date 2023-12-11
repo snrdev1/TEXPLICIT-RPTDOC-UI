@@ -29,9 +29,7 @@ export class AddEditUserDialogComponent {
     this.form = this.formBuilder.group({
       name: new FormControl("", [Validators.required,Validators.pattern('^[a-zA-Z ]+$')]),
       email: new FormControl("", [Validators.required,Validators.email]),
-      domains: new FormControl("", Validators.required),
       menus: new FormControl("", Validators.required),
-
     });
   }
 
@@ -47,37 +45,12 @@ export class AddEditUserDialogComponent {
     this.getParentMenu();
   }
 
-  // getValidDomains(){
-  //   let parentDomainIds = this.parentUser.domains;
-  //   // console.log("parentDomainIds",parentDomainIds);
-  //   let allDomainIds: any = [];
-  //   this.sharedService.getAllDomains().subscribe(
-  //     (res:any)=>{
-  //       allDomainIds = res.data;
-  //       // console.log("allDomainIds",allDomainIds);
-  //       let k = 0;
-  //       for(let i=0; i<allDomainIds.length; i++){
-  //         let id = allDomainIds[i]._id;
-  //         // console.log("id",id);
-  //         if(parentDomainIds.indexOf(id)!=-1){
-  //           this.allDomains[k]={
-  //             "id" : allDomainIds[i]._id,
-  //             "topic" : allDomainIds[i].topic
-  //           }
-  //           k++;
-  //         }
-  //       }
-  //       // console.log("this.allDomains",this.allDomains);
-  //     }
-  //   )
-  // }
-
   getParentMenu(){
     let menuIds = this.parentUser.permissions.menu;
     // console.log("menuIds",menuIds);
     this.manageUserService.getUserMenuNames(menuIds).subscribe((res:any)=>{
       this.parentMenus = res.data;
-      // console.log("In getParentMenu: ",this.parentMenus);
+      console.log("In getParentMenu: ",this.parentMenus);
 
     })
   }
