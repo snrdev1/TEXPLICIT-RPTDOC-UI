@@ -164,7 +164,7 @@
         }
         &.name{
             display: block;
-            width: 50%;
+            width: calc(40% - 80px);
             padding: 5px;
             white-space: nowrap;
             overflow: hidden;
@@ -224,7 +224,7 @@
             }
         }
         &.type{ // same as size, just name changed
-            width: calc(10% - 30px);
+            width: calc(30% - 28px);
             justify-content:flex-start;
             padding: 0 5px;
             padding-right: 35px;

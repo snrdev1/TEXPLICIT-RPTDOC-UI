@@ -82,6 +82,8 @@ export class ReportsComponent {
     if(this.authService.isLoggedIn){
     this.getAllReports();
     }
+   this.limit = 10;
+
 
     this.socketService.listen(this.reportEvent).subscribe({
       next: (res)=>{

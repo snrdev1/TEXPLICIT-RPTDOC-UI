@@ -11,22 +11,25 @@
     <!-- <li class="name" (click)="onDownloadClick(report)">{{ report.task }}</li> -->
     <li class="name"><span (click)="onDownloadClick(report)">{{ report.task }}</span>
     </li>
+    
     <li class="action">
         <button class="btn-row"  [matMenuTriggerFor]="filefolderMenu">
             <mat-icon>more_vert</mat-icon>
         </button>
     </li>
-   
-    <li class="date" >{{ report.createdOn | date:'dd/mm/YY h:mm a'}}</li>
-    <li class="report-type" >{{ reportType }}</li>
-    <li class="type" (mouseenter)="showFullText()" (mouseleave)="hideFullText()">
-      <span class="type-preview" [class.hovered]="showFullTextFlag">
+    <li class="type" [matTooltip]="report.task">
+      {{ report.isTruncated ? truncateText(report.task, 50) : report.task }}
+      <!-- (mouseenter)="showFullText()" (mouseleave)="hideFullText()"  -->
+      <!-- <span class="type-preview" [class.hovered]="showFullTextFlag">
         {{ report.isTruncated ? truncateText(report.task, 10) : report.task }}
-      </span>
-      <div *ngIf="showFullTextFlag" class="hover-box">
+      </span> -->
+      <!-- <div *ngIf="showFullTextFlag" class="hover-box">
         {{ report.task }}
-      </div>
+      </div> -->
     </li>
+    <li class="date" >{{ report.createdOn | date:'dd/MM/YY h:mm a'}}</li>
+    <li class="report-type" >{{ reportType }}</li>
+    
     
 </ul>
 

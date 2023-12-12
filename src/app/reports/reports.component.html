@@ -116,10 +116,16 @@
             <div class="file-header-content ">
                 <ul class="header-row ">
                     <li class="name-header" >
-                        <div>Name</div>
+                        <div>Report</div>
                         <button class="btn-sort" (click)="sortReports('task')">
                             <mat-icon>unfold_more</mat-icon>
                         </button>
+                    </li>
+                    <li class="size-header">
+                      <div>Topic</div>
+                       <!-- <button class="btn-sort" >
+                          <mat-icon>keyboard_arrow_down</mat-icon>
+                      </button> -->
                     </li>
                     <li class="date-header" >
                         <div>Date</div>
@@ -129,10 +135,11 @@
                     </li>
                     <li class="type-header" >
                       <div>Type</div>
+                      <button class="btn-sort"  (click)="sortReports('report_type')">
+                        <mat-icon>keyboard_arrow_down</mat-icon>
+                      </button>
                     </li>
-                    <li class="size-header">
-                      <div>Task</div>
-                    </li>
+                    
                     </ul>
             </div>
         <div class="no-search-results" *ngIf="allReports.length == 0">No reports available</div>

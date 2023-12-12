@@ -97,7 +97,7 @@
                 }
 
                 &.name-header{
-                    width:  calc(50% + 80px);
+                    width:  40%;
                     padding: 0 5px;
                     // margin-left: 20px;
 
@@ -127,7 +127,7 @@
                     }
                 }
                 &.size-header{
-                    width: 10%;
+                    width: 30%;
                     padding: 0 5px;
                     @media screen and (max-width: 912px) {
                         display: none;
