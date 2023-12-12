@@ -36,7 +36,7 @@ export class ReportsComponent {
   onProgressStatus:boolean=false;
   reportGenerationData:any[] = [];
   offset:number=0;
-  limit:number=15;
+  limit:number=30;
   userInfo:any=[];
   // isLoading:boolean=false;
   userInfo$: Observable<any> = this.localStorage.userInfo$;
