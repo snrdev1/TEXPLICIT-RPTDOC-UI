@@ -82,7 +82,6 @@ export class ReportsComponent {
     if(this.authService.isLoggedIn){
     this.getAllReports();
     }
-   this.limit = 10;
 
 
     this.socketService.listen(this.reportEvent).subscribe({
@@ -179,6 +178,17 @@ export class ReportsComponent {
     })
   } 
 
+  onScroll(event:any){
+    console.log('offsetHeight: ',event.target.offsetHeight)
+    console.log('scrollHeight: ',event.target.scrollHeight);
+    console.log('scrollTop: ',event.target.scrollTop);
+    console.log("Difference:",(event.target.scrollHeight-event.target.offsetHeight));
+    if (Math.round(event.target.scrollTop)>=(event.target.scrollHeight-event.target.offsetHeight-1)){
+     this.offset = this.offset + this.limit;
+     this.limit = 10;
+     this.getAllReports();
+    }
+  }
   sortReports(criteria: string) {
    if(criteria === this.sortBy){
     this.sortDirection = this.sortDirection === 'asc'?'desc':'asc';
@@ -242,16 +252,7 @@ getSubtopics(){
     }
   });
 }
-onScroll(event:any){
-  console.log('offsetHeight: ',event.target.offsetHeight)
-  console.log('scrollHeight: ',event.target.scrollHeight);
-  console.log('scrollTop: ',event.target.scrollTop);
-  console.log("Difference:",(event.target.scrollHeight-event.target.offsetHeight));
-  if (Math.round(event.target.scrollTop)>=(event.target.scrollHeight-event.target.offsetHeight-1)){
-   this.offset = this.offset + this.limit;
-   this.getAllReports();
-  }
-}
+
 reset(){
   this.offset=0;
   this.allReports=[];
