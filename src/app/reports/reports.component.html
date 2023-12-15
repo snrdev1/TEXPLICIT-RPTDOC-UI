@@ -1,4 +1,6 @@
 <div class="main-body">
+ <div class="report-head">Generated Reports</div>
+  <div class="report-body">
   <div>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <!-- First Row -->
@@ -54,7 +56,7 @@
 
           <div fxLayout="column" class="report-type-order">
             <div class="report-heading " >Report type</div>
-              <div class="my-datasource-toolbar-config mr-10px" >
+              <div class="my-datasource-toolbar-config mr-10px-1" >
                 <mat-form-field appearance="outline" class="my-reports-dropdown mr-10px-1">
                   <mat-select #ddlDatasource placeholder="Please Select" formControlName="report_type">
                     <mat-option value="research_report">Research Report</mat-option>
@@ -88,7 +90,7 @@
             <div class="report-header" >Generated Reports</div>
             <div class="report-sub-header"  >Your reports are portrayed here</div>
           </div>
-          <div class="rep-gen-toolbar-config" fxLayout="column">
+          <div class="rep-gen-toolbar-config mr-10px-1" fxLayout="column">
   
             <app-outer-toolbar-buttons 
                 (onFilter)="onFilterClick()"
@@ -154,7 +156,7 @@
                     </ng-container>  
                    </div>
   </div>
-  <div class="toggle-button-holder mr-bottom">
+  <div class="toggle-button-holder mr-bottom mr-10px-1">
     <mat-button-toggle-group class="btn-toggle-group" #displayStyle="matButtonToggleGroup" value="list">
         <mat-button-toggle value="grid" class="btn-toggle">
             <img class="img-unchecked" src="../../assets/svg/button-icon/ki-grid.svg"/>
@@ -166,5 +168,6 @@
         </mat-button-toggle>
     </mat-button-toggle-group>
   </div>
+</div>
 </div>
 </div>
