@@ -1,159 +1,174 @@
 .toolbar-container {
-    background-color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    @media screen and (max-width: 1000px) {
-        padding-left: 0;
-        padding-left: 1px;
-    }
-    .logo{
-        margin-right: 1em;
-        cursor: pointer;
-        img{
-            vertical-align: middle;
-        }
-    }
-    button{
-        width: 36px;
-        height: 36px;
-        padding: 6px;
-        background-color: #ededed;
-        &.menu-btn{
-            background-color: transparent;
-            img{
-                width: 20px;
-            }
-        }
-
-        &.user-icon{
-            padding: 0;
-            img{
-                width: 36px;
-                height: 36px;
-                border-radius: 50%;
-            }
-        }
-        mat-icon{
-            width: 20px;
-            height: 20px;
-            font-size: 20px;
-            color:#111541;
-        }
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @media screen and (max-width: 1000px) {
+    padding-left: 0;
+    padding-left: 1px;
+  }
+  .logo {
+    margin-right: 1em;
+    cursor: pointer;
+    img {
+      vertical-align: middle;
     }
   }
-  
+  button {
+    width: 36px;
+    height: 36px;
+    padding: 6px;
+    background-color: #ededed;
+    &.menu-btn {
+      background-color: transparent;
+      img {
+        width: 20px;
+      }
+    }
+
+    &.user-icon {
+      padding: 0;
+      img {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+      }
+    }
+    mat-icon {
+      width: 20px;
+      height: 20px;
+      font-size: 20px;
+      color: #111541;
+    }
+  }
+}
+
+mat-sidenav{
+  width: 84px;
+}
+
 .left-sidenav-container {
-    background-color: #171D5E;
-    width: 200px;
-    
-    @media screen and (max-width: 1000px) {
-        position: absolute;
-        z-index: 3!important;
-    }
-    .menu-container{
-        padding: 0;
-        margin: 0;
-        list-style: none;
+  border-radius: 20px;
+  background-color: #6528f7;
+  box-shadow: 0px 20px 40px 0px rgba(86, 80, 255, 0.38);
+  margin-left: 40px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 30px;
 
-        mat-divider{
-            border-bottom: 0.5px solid rgba(91,97,161,.73);
-        }
+  @media screen and (max-width: 1000px) {
+    position: absolute;
+    z-index: 3 !important;
+  }
+  .menu-container {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    mat-divider {
+      border-bottom: 0.5px solid rgba(91, 97, 161, 0.73);
     }
-    // .sub-menu-container{
-    //     padding: 0;
-    //     margin-left: 40px;
-    //     list-style: none;
-    //     cursor: pointer;
-    //     mat-divider{
-    //         border-bottom: 0.5px solid rgba(91,97,161,.73);
-    //     }
-    // }
-    .menu-item {
-        display: flex;
-        align-items: center;
-        background-color: transparent;
-        color: #ffffff;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 16px;
-        padding: 18px 20px;
-        cursor: pointer;
+  }
+
+  .menu-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    color: #ffffff;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 18px 23px;
+    cursor: pointer;
+
+    .menu-icon {
+      width: 30px;
+      height: 30px;
     }
-  
-    .is-active {
-      background-color: #366D72;
-    }
-  
+
     .menu-item-label {
-      margin-left: 0.5rem;
+      margin-top: 1rem;
+      color: #f8f4ff;
+      text-align: center;
+      font-family: Roboto;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 11px; /* 91.667% */
     }
-    // .menu-sub-item-label{
-    //     color: #CBCDE1;
-    //     font-family: Roboto;
-    //     font-size: 13px;
-    //     margin-left: 1rem;
-    //     // list-style-type: none;
+  }
 
-    //     font-style: normal;
-    //     font-weight: 400;
-    //     line-height: 36px; /* 276.923% */
-    //     text-transform: capitalize;
-    // }
+  .is-active {
+    background-color: #366d72;
+  }
+  // .menu-sub-item-label{
+  //     color: #CBCDE1;
+  //     font-family: Roboto;
+  //     font-size: 13px;
+  //     margin-left: 1rem;
+  //     // list-style-type: none;
+
+  //     font-style: normal;
+  //     font-weight: 400;
+  //     line-height: 36px; /* 276.923% */
+  //     text-transform: capitalize;
+  // }
 }
 
-.main-container-content{
-    //background-color: #eeeeee;
-    // background-color: rgba(226,227,233,0.35);
+.main-container-content {
+  //background-color: #eeeeee;
+  margin-left: 180px !important;
+  // background-color: rgba(226, 227, 233, 0.35);
+  @media screen and (max-width: 1000px) {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .main-container {
+    height: calc(100vh - 96px);
+    padding: 1rem;
     @media screen and (max-width: 1000px) {
-        margin-left: 0!important;
-        margin-right: 0!important;
+      height: calc(100vh - 88px);
+      // overflow: hidden;
+      // overflow-y: auto;
     }
-  
-    .main-container {
-        height: calc(100vh - 96px);
-        padding: 1rem;
-        @media screen and (max-width: 1000px) {
-            height: calc(100vh - 88px);
-            // overflow: hidden;
-            // overflow-y: auto;
-        }
-    }
+  }
 }
 
-.sidenav-container{
-    background-color: #E1E5F1;
-    width: 25%;
-    overflow: hidden;
-    
-    @media screen and (max-width: 1000px) {
-        position: absolute;
-        z-index: 2!important;
-        width: 100%;
-    }
+.sidenav-container {
+  background-color: #e1e5f1;
+  width: 25%;
+  overflow: hidden;
+
+  @media screen and (max-width: 1000px) {
+    position: absolute;
+    z-index: 2 !important;
+    width: 100%;
+  }
 }
 
 .news-sidenav-container {
-    background-color: #E1E5F1;
-    width: 25%;
-    overflow: hidden;
-    
-    @media screen and (max-width: 1000px) {
-        position: absolute;
-        z-index: 2!important;
-        width: 100%;
-    }
+  background-color: #e1e5f1;
+  width: 25%;
+  overflow: hidden;
+
+  @media screen and (max-width: 1000px) {
+    position: absolute;
+    z-index: 2 !important;
+    width: 100%;
+  }
 }
 
 .chat-sidenav-container {
-    background-color: #fff;
-    width: 30%;
-    overflow: hidden;
-    
-    @media screen and (max-width: 1000px) {
-        position: absolute;
-        z-index: 2!important;
-        width: 100%;
-    }
-}
+  background-color: #fff;
+  width: 30%;
+  overflow: hidden;
 
+  @media screen and (max-width: 1000px) {
+    position: absolute;
+    z-index: 2 !important;
+    width: 100%;
+  }
+}
