@@ -22,7 +22,7 @@
         <img src="../../assets/images/user-icon.png"/>
     </button>
 </mat-toolbar>
-<mat-sidenav-container autosize>
+<mat-sidenav-container autosize class="custom-sidenav-container">
     <mat-sidenav #leftnav class="left-sidenav-container" mode="side" [opened]="true">
         <ul class="menu-container">
             <li class="menu-item" *ngFor="let menuItem of this.commonService.userMenu" routerLink="{{ menuItem.link }}">

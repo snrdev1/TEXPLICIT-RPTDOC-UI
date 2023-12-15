@@ -1,3 +1,13 @@
 <div class="home-toolbar">
+  <div class="title">
+    <p>The Next Gen</p>
+    <p><span class="bold-title">AI driven</span> Reporting Tool</p>
+    <p class="title-sm">Reports within <span class="bold-title">minutes</span></p>
+  </div>
 
+  <div class="home-cards">
+    <ng-container *ngFor="let card of homeCards; let i=index">
+      <app-home-card [backgroundImage]="card.image" [title]="card.title" [description]="card.description"></app-home-card>
+    </ng-container>
+  </div>
 </div>

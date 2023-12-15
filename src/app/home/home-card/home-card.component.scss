@@ -1,0 +1,45 @@
+.card {
+  width: 324.667px;
+  height: 346px;
+  border-radius: 26px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+
+  .content {
+    padding: 24px;
+
+    .title {
+      color: #fff;
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 26px; /* 130% */
+      font-size: 20px;
+    }
+
+    .description {
+      color: #ebeef8;
+      font-family: Roboto;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 17px; /* 141.667% */
+      margin-top: 4px;
+    }
+
+    .action {
+      border-radius: 100px;
+      border: 1px solid #fff;
+      color: #fff;
+      font-family: Roboto;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 12px;
+      background-color: transparent;
+      padding: 12px 20px;
+      margin-top: 1rem;
+    }
+  }
+}

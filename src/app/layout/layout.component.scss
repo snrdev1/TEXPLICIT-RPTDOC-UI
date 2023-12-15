@@ -3,6 +3,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 0.25px solid #8f9497a1;
+
   @media screen and (max-width: 1000px) {
     padding-left: 0;
     padding-left: 1px;
@@ -43,7 +45,11 @@
   }
 }
 
-mat-sidenav{
+.custom-sidenav-container {
+  background-color: #ffffff;
+}
+
+mat-sidenav {
   width: 84px;
 }
 

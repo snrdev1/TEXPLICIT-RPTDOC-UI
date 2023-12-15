@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment.development';
 import { AnonymousComponent } from './anonymous/anonymous.component';
 import { HomeFilterDialogComponent } from './modal-dialog/home-filter-dialog/home-filter-dialog.component';
 import { AuthGuard } from '../core/auth.guard';
+import { HomeCardComponent } from './home-card/home-card.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,7 @@ const routes: Routes = [
     SubtopicComponent,
     AnonymousComponent,
     HomeFilterDialogComponent,
+    HomeCardComponent,
   ]
 })
 export class HomeModule { }
