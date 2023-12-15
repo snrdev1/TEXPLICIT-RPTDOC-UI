@@ -22,7 +22,6 @@ export class LayoutComponent {
   menu: any=[];
   userName: string="";
   userId: string="";
-  leftOpened: boolean = false;
   rightOpened:boolean = false;
   socketError: string = "";
   socketSuccess: string = "";
@@ -38,8 +37,8 @@ export class LayoutComponent {
     private router: Router,
     private dialog: MatDialog)
     {
-      
-    
+
+
   }
 
   ngOnInit(){
@@ -49,7 +48,7 @@ export class LayoutComponent {
       this.userId = this.userInfo?._id;
       this.userName = this.userInfo?.name;
     }
-    
+
     if(this.checkLogin()){
     this.socketError = this.userId + '_error';
     this.socketService.listen(this.socketError).subscribe({
@@ -58,7 +57,7 @@ export class LayoutComponent {
         this.commonService.showSnackbar("snackbar-error",res);
       }
     })
-    
+
     this.socketSuccess = this.userId + '_success';
     this.socketService.listen(this.socketSuccess).subscribe({
       next:(res)=>{
@@ -66,7 +65,7 @@ export class LayoutComponent {
         this.commonService.showSnackbar("snackbar-success",res);
       }
     })
-    
+
     this.socketInfo = this.userId + '_info';
     this.socketService.listen(this.socketInfo).subscribe({
       next:(res)=>{
@@ -104,15 +103,7 @@ export class LayoutComponent {
       console.log(`Dialog result: ${result}`);
     });
   }
-  
-  leftOpen() {
-    this.leftOpened = true;
-  }
 
-  leftClose() {
-    this.leftOpened = false;
-  }
-  
   chatOpen(){
     return this.commonService.chatOpen;
   }
@@ -121,7 +112,7 @@ export class LayoutComponent {
     return this.commonService.newsOpen;
   }
 
-  
+
 
   ngAfterViewInit() {
     ElementQueries.listen();
@@ -129,12 +120,11 @@ export class LayoutComponent {
   }
 
   onLogoutClick(){
-    this.leftOpened = false;
     this.authService.logout();
     this.commonService.clearUserMenu();
     this.commonService.closeAll();
   }
-  
+
   isUserLoggedIn(){
     return this.authService.isLoggedIn;
   }
