@@ -34,7 +34,7 @@ export class LayoutComponent {
     private authService: AuthService,
     public localStorage: LocalStorageService,
     public socketService: WebSocketService,
-    private router: Router,
+    public router: Router,
     private dialog: MatDialog)
     {
 

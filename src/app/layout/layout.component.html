@@ -25,9 +25,12 @@
 <mat-sidenav-container autosize class="custom-sidenav-container">
     <mat-sidenav #leftnav class="left-sidenav-container" mode="side" [opened]="true">
         <ul class="menu-container">
-            <li class="menu-item" *ngFor="let menuItem of this.commonService.userMenu" routerLink="{{ menuItem.link }}">
-                <img src="../../assets/svg/side-nav-icon/{{ menuItem.icon }}.svg" class="menu-icon" />
-                <span class="menu-item-label">{{ menuItem.name }}</span>
+            <li class="menu-item" *ngFor="let menuItem of this.commonService.userMenu" routerLink="{{ menuItem.link }}" routerLinkActive="menu-item-active">
+                <div routerLinkActive="active-menu-item-container">
+                  <div routerLinkActive="active-menu-indicator"></div>
+                  <img [src]="(menuItem.link === (router.url || '/')) ? '../../assets/svg/side-nav-icon/' + menuItem.icon + '-active.svg' : '../../assets/svg/side-nav-icon/' + menuItem.icon + '.svg'" class="menu-icon" routerLinkActive="menu-icon-active"/>
+                </div>
+                <span class="menu-item-label" routerLinkActive="active-menu-text">{{ menuItem.name }}</span>
             </li>
         </ul>
     </mat-sidenav>
