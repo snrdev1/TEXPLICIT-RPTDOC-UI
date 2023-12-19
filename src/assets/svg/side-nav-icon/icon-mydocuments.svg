@@ -1,10 +1,4 @@
-<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="vuesax/linear/chart">
-<g id="chart">
-<path id="Vector" d="M2.5 27.5H27.5" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector_2" d="M12.1875 5V27.5H17.8125V5C17.8125 3.625 17.25 2.5 15.5625 2.5H14.4375C12.75 2.5 12.1875 3.625 12.1875 5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector_3" d="M3.75 12.5V27.5H8.75V12.5C8.75 11.125 8.25 10 6.75 10H5.75C4.25 10 3.75 11.125 3.75 12.5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="Vector_4" d="M21.25 18.75V27.5H26.25V18.75C26.25 17.375 25.75 16.25 24.25 16.25H23.25C21.75 16.25 21.25 17.375 21.25 18.75Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-</g>
+<svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10.5 25.6666H8.16671C3.50004 25.6666 2.33337 24.5 2.33337 19.8333V8.16665C2.33337 3.49998 3.50004 2.33331 8.16671 2.33331H9.91671C11.6667 2.33331 12.0517 2.84666 12.7167 3.73333L14.4667 6.06666C14.9101 6.64999 15.1667 6.99998 16.3334 6.99998H19.8334C24.5 6.99998 25.6667 8.16665 25.6667 12.8333V15.1666" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M24.1889 20.4945V23.5278C24.1889 25.55 23.6833 26.0556 21.6611 26.0556H16.6055C14.5833 26.0556 14.0778 25.55 14.0778 23.5278V18.4722C14.0778 16.45 14.5833 15.9445 16.6055 15.9445H17.3639C18.1222 15.9445 18.289 16.1669 18.5772 16.5511L19.3355 17.5622C19.5276 17.815 19.6389 17.9667 20.1444 17.9667H21.6611C23.6833 17.9667 24.1889 18.4722 24.1889 20.4945Z" stroke="white" stroke-width="1.8" stroke-miterlimit="10"/>
 </svg>

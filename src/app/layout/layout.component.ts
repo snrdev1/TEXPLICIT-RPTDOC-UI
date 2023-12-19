@@ -6,7 +6,7 @@ import { DisclaimerDialogComponent } from './modal-dialog/disclaimer-dialog/disc
 import { FeedbackDialogComponent } from './modal-dialog/feedback-dialog/feedback-dialog.component';
 import { LocalStorageService } from '../core/local-storage.service';
 import { AuthService } from '../core/auth.service';
-import {  Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { WebSocketService } from '../shared/services/socketio.service';
 import { Route, Router } from '@angular/router';
 
@@ -16,99 +16,95 @@ import { Route, Router } from '@angular/router';
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent {
-  observer:any;
-  user: any=[];
-  menuIds: any=[];
-  menu: any=[];
-  userName: string="";
-  userId: string="";
-  rightOpened:boolean = false;
+  observer: any;
+  user: any = [];
+  menuIds: any = [];
+  menu: any = [];
+  userName: string = "";
+  userId: string = "";
+  rightOpened: boolean = false;
   socketError: string = "";
   socketSuccess: string = "";
   socketInfo: string = "";
-  userInfo:any=[];
-  public userMenu:any=[];
+  userInfo: any = [];
+  public userMenu: any = [];
   userInfo$: Observable<any> = this.localStorage.userInfo$;
   constructor(
-    public commonService:CommonService,
+    public commonService: CommonService,
     private authService: AuthService,
     public localStorage: LocalStorageService,
     public socketService: WebSocketService,
     public router: Router,
-    private dialog: MatDialog)
-    {
+    private dialog: MatDialog) { }
 
-
-  }
-
-  ngOnInit(){
+  ngOnInit() {
     this.commonService.getUserMenu();
     this.userInfo = this.localStorage.getUserInfo() || [];
-    if(this.userInfo){
+    if (this.userInfo) {
       this.userId = this.userInfo?._id;
       this.userName = this.userInfo?.name;
     }
 
-    if(this.checkLogin()){
-    this.socketError = this.userId + '_error';
-    this.socketService.listen(this.socketError).subscribe({
-      next:(res)=>{
-        console.log("RES IN ERROR SOCKET",res);
-        this.commonService.showSnackbar("snackbar-error",res);
-      }
-    })
+    if (this.checkLogin()) {
+      this.socketError = this.userId + '_error';
+      this.socketService.listen(this.socketError).subscribe({
+        next: (res) => {
+          console.log("RES IN ERROR SOCKET", res);
+          this.commonService.showSnackbar("snackbar-error", res);
+        }
+      })
 
-    this.socketSuccess = this.userId + '_success';
-    this.socketService.listen(this.socketSuccess).subscribe({
-      next:(res)=>{
-        console.log("RES IN SUCCESS SOCKET",res);
-        this.commonService.showSnackbar("snackbar-success",res);
-      }
-    })
+      this.socketSuccess = this.userId + '_success';
+      this.socketService.listen(this.socketSuccess).subscribe({
+        next: (res) => {
+          console.log("RES IN SUCCESS SOCKET", res);
+          this.commonService.showSnackbar("snackbar-success", res);
+        }
+      })
 
-    this.socketInfo = this.userId + '_info';
-    this.socketService.listen(this.socketInfo).subscribe({
-      next:(res)=>{
-        console.log("RES IN INFO SOCKET",res);
-        this.commonService.showSnackbar("snackbar-info",res);
-      }
-    })
+      this.socketInfo = this.userId + '_info';
+      this.socketService.listen(this.socketInfo).subscribe({
+        next: (res) => {
+          console.log("RES IN INFO SOCKET", res);
+          this.commonService.showSnackbar("snackbar-info", res);
+        }
+      })
     }
   }
 
-  checkLogin(){
+  checkLogin() {
     return this.authService.isLoggedIn;
   }
-  onAboutClick(){
+  onAboutClick() {
     this.router.navigate(['/about-us']);
 
   }
 
-  onContactClick(){
+  onContactClick() {
     this.router.navigate(['/contact-us']);
   }
 
-  onDisclaimerClick(){
-    const dialogRef = this.dialog.open(DisclaimerDialogComponent,{panelClass:'mat-dialog-panel'});
+  onDisclaimerClick() {
+    const dialogRef = this.dialog.open(DisclaimerDialogComponent, { panelClass: 'mat-dialog-panel' });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
   }
 
-  onFeedbackClick(){
-    const dialogRef = this.dialog.open(FeedbackDialogComponent,{panelClass:'mat-dialog-panel'});
+  onFeedbackClick() {
+    const dialogRef = this.dialog.open(FeedbackDialogComponent, { panelClass: 'mat-dialog-panel' });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
   }
 
-  chatOpen(){
+  chatOpen() {
     return this.commonService.chatOpen;
   }
 
-  newsOpen(){
+  newsOpen() {
     return this.commonService.newsOpen;
   }
 
@@ -119,13 +115,13 @@ export class LayoutComponent {
     ElementQueries.init();
   }
 
-  onLogoutClick(){
+  onLogoutClick() {
     this.authService.logout();
     this.commonService.clearUserMenu();
     this.commonService.closeAll();
   }
 
-  isUserLoggedIn(){
+  isUserLoggedIn() {
     return this.authService.isLoggedIn;
   }
 }
