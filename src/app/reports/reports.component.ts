@@ -95,8 +95,11 @@ export class ReportsComponent {
         }
         if(res.success){
         this.commonService.showSnackbar('snackbar-success',res.message,res.status);
-        this.reset();
-        this.getAllReports();
+        // this.reset();
+        // this.limit = 30;
+        // this.getAllReports();
+        this.allReports = [ res.data, ...this.allReports];
+
         }
         else{
         this.commonService.showSnackbar('snackbar-error',res.message,res.status);

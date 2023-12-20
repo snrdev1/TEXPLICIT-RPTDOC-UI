@@ -77,7 +77,7 @@
       <!-- Second Row -->
       <div fxLayout="row"  class="second-row" style="gap:.5em;padding-right: 10px;">
 
-          <button mat-raised-button type="button" *ngIf="form.get('report_type')?.value === 'detailed_report'" class="btn-secondary " (click)="getSubtopics()" >Add Subtopics</button>
+          <button mat-raised-button type="button" *ngIf="form.get('report_type')?.value === 'detailed_report' || form.get('report_type')?.value === 'complete_report'" class="btn-secondary " (click)="getSubtopics()" >Add Subtopics</button>
           <button mat-raised-button class="btn-primary" type="submit" >Submit</button>
           
         </div>    

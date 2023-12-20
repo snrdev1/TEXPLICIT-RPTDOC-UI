@@ -43,11 +43,6 @@ export class RegistrationComponent {
     console.log("on Submit");
 
      if (this.form.invalid) return;
-    //  let domains:any=[];
-    //  this.selectedDomains.forEach((domain:any)=>{
-    //   domains.push(domain?._id);
-    //  })
-    //  this.form.get('domains')?.setValue(domains);
 
      console.log(this.form.value);
       this.registrationService.addUser(this.form.value).subscribe(
@@ -60,8 +55,8 @@ export class RegistrationComponent {
             }
           },
           error: (err) => {
-            console.log("Error adding user:", err);
-            this.commonService.showSnackbar("snackbar-error",err.message);
+            // console.log("Error adding user:", err);
+            this.commonService.showSnackbar("snackbar-error",err.error.message);
 
         }
         }
@@ -69,37 +64,9 @@ export class RegistrationComponent {
     }
 
     ngOnInit() {
-      // this.getAllDomains();
+      
     }
   
-    // dropdownChange(event: any) {
-    //   this.selectedDomains = event?.value;
-    //   this.changeChips();
-    // }
-  
-    // changeChips() {
-    //   this.topics = [];
-    //   this.keywords = [];
-
-    //   this.selectedDomains.forEach((domain:any) => {
-    //     console.log('keywords',domain?.keywords);
-    //     this.topics =[...this.topics,...domain?.subtopics];
-    //     this.keywords =[...this.keywords,...domain?.keywords];
-    //   });
-      
-    // }
-  
-    // getAllDomains() {
-    //   this.sharedService.getAllDomains().subscribe({
-    //     next: (response: any) => {
-    //       this.domains.push(...response.data);
-    //     },
-    //     error: (e:any) => console.log("Error : ", e),
-    //     complete: () => {
-    //       console.info('Complete!');
-    //     }
-    //   });
-    // }
     stepCheck1(){
       if((this.form.get('name')?.valid && this.form.get('email')?.valid && this.form.get('password')?.valid)){
         return true;
@@ -107,15 +74,7 @@ export class RegistrationComponent {
       else
         return false;
     }
-    // stepCheck2(){
-    //   if(this.form.get('domains')?.valid){
-    //     return true;
-    //   }
-    //   else{
-    //     return false
-    //   }
-    // }
-
+    
     selectRole(event:MatSelectChange){
       console.log("selectRole",event.value);
       if(event.value == 3){
