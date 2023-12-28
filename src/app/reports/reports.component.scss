@@ -1,14 +1,16 @@
-.report-head{
-    // color: #606675;
+.report-head,.report-head-research{
     color: #1C1D21;
     font-family: Poppins;
-    // font-family: 'Roboto', sans-serif;
-    font-size: 20px;
+    font-size: 24px;
     font-style: normal;
-    font-weight: 600;
-    line-height: 30px; /* 150% */
-    // padding-top:5px;
+    line-height: 30px; 
     padding-bottom:10px;
+}
+.report-head{
+    font-weight: 500;
+}
+.report-head-research{
+    font-weight: 700;
 }
 .report-body{
     padding-top:20px;
@@ -611,3 +613,10 @@
     }
 
 }
+.btn-report{
+    background: #FFBE17!important;
+    color: #141516!important;
+  }
+.btn-subtopics{
+    color: #4D5E92!important;
+  }

@@ -38,6 +38,7 @@ export class ReportsComponent {
   offset:number=0;
   limit:number=30;
   userInfo:any=[];
+  displayStyle: string='list';
   // isLoading:boolean=false;
   userInfo$: Observable<any> = this.localStorage.userInfo$;
   @ViewChild('searchinput') searchInput!: ElementRef;

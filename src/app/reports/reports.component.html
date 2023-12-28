@@ -1,5 +1,5 @@
 <div class="main-body">
- <div class="report-head">Generated Reports</div>
+ <div class="report-head">Say Goodbye to Hours of <span class="report-head-research">Research</span></div>
   <div class="report-body">
   <div>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -77,8 +77,8 @@
       <!-- Second Row -->
       <div fxLayout="row"  class="second-row" style="gap:.5em;padding-right: 10px;">
 
-          <button mat-raised-button type="button" *ngIf="form.get('report_type')?.value === 'detailed_report' || form.get('report_type')?.value === 'complete_report'" class="btn-secondary " (click)="getSubtopics()" >Add Subtopics</button>
-          <button mat-raised-button class="btn-primary" type="submit" >Submit</button>
+          <button mat-raised-button type="button" *ngIf="form.get('report_type')?.value === 'detailed_report' || form.get('report_type')?.value === 'complete_report'" class="btn-subtopics " (click)="getSubtopics()" >Add Subtopics</button>
+          <button mat-raised-button class="btn-report" type="submit" >Generate Now</button>
           
         </div>    
     </form>
@@ -86,7 +86,7 @@
  
 
 
-    <div class="mr-top">
+    <!-- <div class="mr-top">
         <div class="gen-report">
           <div fxLayout="column">
             <div class="report-header" >Generated Reports</div>
@@ -114,9 +114,10 @@
           </div>
         </div>
         
-    </div>
+    </div> -->
   <div style="position: relative; " >
-        <div class="files-container  {{displayStyle.value || 'list'}} ">
+        <div class="files-container  {{displayStyle || 'list'}} ">
+          <!-- write displayStyle.value if toggle button is kept -->
             <div class="file-header-content ">
                 <ul class="header-row ">
                     <li class="name-header" >
@@ -149,16 +150,17 @@
         <div class="no-search-results" *ngIf="allReports.length == 0">No reports available</div>
         <div class="file-body-content" *ngIf="allReports.length !== 0" (scroll)="onScroll($event)">
                     <ng-container *ngFor="let report of allReports">
-                        <!-- <app-report-cards  *ngIf="report.status === 3" -->
-                        <app-report-cards  
+                       <!-- write displayStyle.value if toggle button is kept -->
+                      <app-report-cards  
                         [report]="report"
-                        [displayStyle]="displayStyle.value"
+                        [displayStyle]="displayStyle"
                         (deleteReport)="getAllReports()"
                         ></app-report-cards>
+                        
                     </ng-container>  
                    </div>
   </div>
-  <div class="toggle-button-holder mr-bottom mr-10px-1">
+  <!-- <div class="toggle-button-holder mr-bottom mr-10px-1">
     <mat-button-toggle-group class="btn-toggle-group" #displayStyle="matButtonToggleGroup" value="list">
         <mat-button-toggle value="grid" class="btn-toggle">
             <img class="img-unchecked" src="../../assets/svg/button-icon/ki-grid.svg"/>
@@ -169,7 +171,7 @@
             <img class="img-checked" src="../../assets/svg/button-icon/ki-list-fill.svg">
         </mat-button-toggle>
     </mat-button-toggle-group>
-  </div>
+  </div> -->
 </div>
 </div>
 </div>

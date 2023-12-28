@@ -1,3 +1,8 @@
+.content-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .icon-delete{
    position: absolute;
    bottom:16px; 
@@ -5,7 +10,7 @@
 }
 :host ::ng-deep .my-datasource-dropdown .mat-mdc-form-field-infix {
     padding: 5px!important;
-    width: 200px;
+    width: 170px;
     min-height: 35px;
     font-size: 14px;
     font-style: normal;
@@ -59,10 +64,10 @@
 
 }
 .report-heading{
-    margin-left: 48px;
+    margin-left: 47px;
 }
 .report-heading-source{
-    margin-left: 210px;
+    margin-left: 150px;
     @media screen and (max-width: 414px) {
     margin-left: 80px;
     } 
@@ -98,7 +103,7 @@
 
 
 :host ::ng-deep .search-wrapper{
-    width:270px;
+    width:210px;
     background: #fff;
     display: flex;
     align-items: center;
@@ -205,4 +210,11 @@
     --mat-mdc-button-persistent-ripple-color: none; 
     --mat-mdc-button-ripple-color: none; 
 }
-
+.btn-report{
+    background: #FFBE17!important;
+    color: #141516!important;
+  }
+.subtopics-btn{
+    background: #fff!important;
+    color: #4D5E92!important;
+  }
