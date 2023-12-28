@@ -108,8 +108,6 @@ export class LayoutComponent {
     return this.commonService.newsOpen;
   }
 
-
-
   ngAfterViewInit() {
     ElementQueries.listen();
     ElementQueries.init();
