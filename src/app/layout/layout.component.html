@@ -27,8 +27,7 @@
         <ul class="menu-container">
             <li class="menu-item" *ngFor="let menuItem of this.commonService.userMenu" routerLink="{{ menuItem.link }}" routerLinkActive="menu-item-active">
                 <div routerLinkActive="active-menu-item-container">
-                  <div routerLinkActive="active-menu-indicator"></div>
-                  <img [src]="(menuItem.link === (router.url || '/')) ? '../../assets/svg/side-nav-icon/' + menuItem.icon + '-active.svg' : '../../assets/svg/side-nav-icon/' + menuItem.icon + '.svg'" class="menu-icon" routerLinkActive="menu-icon-active"/>
+                  <img [src]="'../../assets/svg/side-nav-icon/' + menuItem.icon + '.svg'" class="menu-icon" routerLinkActive="menu-icon-active"/>
                 </div>
                 <span class="menu-item-label" routerLinkActive="active-menu-text">{{ menuItem.name }}</span>
             </li>
@@ -41,31 +40,8 @@
     </mat-sidenav-content>
     <mat-sidenav #rightnav position="end" mode="side" class="sidenav-container"
     [opened]="newsOpen()||chatOpen()">
-        <!-- <app-news-panel *ngIf="newsOpen()"></app-news-panel> -->
         <app-chat-panel *ngIf="chatOpen()"></app-chat-panel>
-        <!-- <app-note-panel *ngIf="noteOpen()"></app-note-panel> -->
-        <!-- <app-group-member-panel *ngIf="groupAndMemberOpen() && checkLogin()"></app-group-member-panel> -->
     </mat-sidenav>
-    <!-- <mat-sidenav #newsnav position="end" mode="side" class="news-sidenav-container"
-    [opened]="newsOpen()" >
-        <app-news-panel></app-news-panel>
-    </mat-sidenav>
-    <mat-sidenav #chatnav position="end" mode="side" class="chat-sidenav-container"
-    [opened]="chatOpen()" *ngIf="checkLogin()">
-        <app-chat-panel ></app-chat-panel>
-    </mat-sidenav>
-    <mat-sidenav #notenav position="end" mode="side" class="note-sidenav-container"
-    [opened]="noteOpen()" *ngIf="checkLogin()">
-        <app-note-panel></app-note-panel>
-    </mat-sidenav>
-    <mat-sidenav #notenav position="end" mode="side" class="group-member-sidenav-container"
-    [opened]="groupAndMemberOpen()" *ngIf="checkLogin()">
-        <app-group-member-panel></app-group-member-panel>
-    </mat-sidenav>
-    <mat-sidenav #notenav position="end" mode="side" class="workspace-sidenav-container"
-    [opened]="workspaceOpen()">
-        <app-workspace-panel></app-workspace-panel>
-    </mat-sidenav> -->
 </mat-sidenav-container>
 
 <mat-menu #userMenu="matMenu" class="comment-action-menu">

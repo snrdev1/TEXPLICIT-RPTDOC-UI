@@ -25,32 +25,32 @@ export class HomeComponent {
   homeCards: any[] = [
     {
       "title": "Consultancy",
-      "description": "As a BPR consultant, you need to be able to talk and write persuasively on a host...",
+      "description": "No more searching the web for hours to compile knowledge to create your reports. Key in your topic and sub-topics and get your report in minutes",
       "image": "../../assets/images/home-cards/Card_1.png"
     },
     {
       "title": "Marketing",
-      "description": "You are preparing a strategy report for the board on how to market your company's latest...",
+      "description": "Don’t lose hours in creating content for your next presentation. Key in your topic and sub-topics and get your report in minutes",
       "image": "../../assets/images/home-cards/Card_2.png"
     },
     {
       "title": "Corporate Training",
-      "description": "You are preparing the training documents for a new line of business for your company...",
+      "description": "No more hours of research required to create content for your training program. Key in your topic and sub-topics and get your training material in minutes",
       "image": "../../assets/images/home-cards/Card_3.png"
     },
     {
       "title": "Education",
-      "description": "You are a professor at a college and you do not want to repeat the same exposition...",
+      "description": "Looking to prepare course material for your students? Key in your topic and sub-topics and get your course material in minutes",
       "image": "../../assets/images/home-cards/Card_4.png"
     },
     {
       "title": "Research",
-      "description": "Getting funds for research in non-traditional raw materials is challenging Results...",
+      "description": "Speed up your research. Key in your topic and sub-topics and get your research material in minutes",
       "image": "../../assets/images/home-cards/Card_5.png"
     },
     {
       "title": "Blog Writing",
-      "description": "Getting funds for research in non-traditional raw materials is challenging Results...",
+      "description": "You have a lot of material on the subject you want to discuss in your next blog.There is also a lot of information and opinions expressed by other bloggers...",
       "image": "../../assets/images/home-cards/Card_6.png"
     }
   ];
