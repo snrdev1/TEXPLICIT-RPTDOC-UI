@@ -39,7 +39,9 @@ export class AddSubtopicComponent {
       return this.fb.group({
         task: [initialValues?.task || '' , Validators.required],
         source: [initialValues?.source || 'external' , Validators.required],
-        websearch: [{value:initialValues?.websearch || false,disabled:initialValues?.source=='my_documents'}]
+        // websearch: [{value:initialValues?.websearch || false,disabled:initialValues?.source=='my_documents'}]
+        websearch: [true]
+      
       });
     }   
   

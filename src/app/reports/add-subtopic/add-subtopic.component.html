@@ -6,7 +6,7 @@
           <div fxLayout="row" >
             <div class="report-heading " fxLayout="row">Sub-Topic</div>
             <div class="report-heading-source " fxLayout="row">Source</div>
-            <div class="report-heading-websearch " fxLayout="row">WebSearch</div>
+            <!-- <div class="report-heading-websearch " fxLayout="row">WebSearch</div> -->
           </div>
           <div *ngFor="let row of rows.controls; let i = index" [formGroupName]="i" style="margin-bottom: 15px;">
               <div fxLayout="row" >
@@ -28,9 +28,9 @@
                   </mat-select>
                 </mat-form-field>
               </div>
-            <div class="mr-websearch">
+            <!-- <div class="mr-websearch">
               <mat-slide-toggle formControlName="websearch" ></mat-slide-toggle>
-            </div>
+            </div> -->
           </div>
           </div>
         </div>

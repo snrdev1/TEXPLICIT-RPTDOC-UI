@@ -5,7 +5,7 @@
 }
 :host ::ng-deep .my-datasource-dropdown .mat-mdc-form-field-infix {
     padding: 5px!important;
-    // width: 180px;
+    width: 200px;
     min-height: 35px;
     font-size: 14px;
     font-style: normal;
@@ -62,7 +62,7 @@
     margin-left: 48px;
 }
 .report-heading-source{
-    margin-left: 140px;
+    margin-left: 210px;
     @media screen and (max-width: 414px) {
     margin-left: 80px;
     } 
@@ -98,7 +98,7 @@
 
 
 :host ::ng-deep .search-wrapper{
-    width:200px;
+    width:270px;
     background: #fff;
     display: flex;
     align-items: center;
