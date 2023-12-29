@@ -85,6 +85,10 @@ export class LayoutComponent {
     this.router.navigate(['/contact-us']);
   }
 
+  onPricingClick() {
+    this.router.navigate(['/pricing']);
+  }
+
   onDisclaimerClick() {
     const dialogRef = this.dialog.open(DisclaimerDialogComponent, { panelClass: 'mat-dialog-panel' });
 

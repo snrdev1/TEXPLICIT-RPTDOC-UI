@@ -19,12 +19,16 @@
   <button class="btn-link" class="mr-5px" (click)="onFeedbackClick()">
     Feedback
   </button>
+  <button class="btn-link" class="mr-5px" (click)="onPricingClick()">
+    Pricing
+  </button>
+
+  <div class="divider"></div>
+
   <button class="user-icon" *ngIf="isUserLoggedIn()" mat-icon-button matTooltip="{{ userName }}"
     [matMenuTriggerFor]="userMenu">
     <img src="../../assets/images/user-icon.png" />
   </button>
-
-  <div class="divider"></div>
 
   <div class="user-action-group" *ngIf="!isUserLoggedIn()">
     <button class="btn-login" (click)="onLoginClick()">Login</button>

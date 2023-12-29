@@ -80,14 +80,6 @@ const routes: Routes = [{
           ),
           canActivate: [AuthGuard, PathAuthGuard]
       },
-      // {
-      //   path: 'create-reports',
-      //   loadChildren: () =>
-      //     import('./../report-create/report-create.module').then(
-      //       (m) => m.ReportCreateModule
-      //     ),
-      //     canActivate: [AuthGuard]
-      // },
       {
         path: 'about-us',
         loadChildren: () =>
@@ -100,6 +92,13 @@ const routes: Routes = [{
         loadChildren: () =>
           import('./../contact-us/contact-us.module').then(
             (m) => m.ContactUsModule
+          )
+      },
+      {
+        path: 'pricing',
+        loadChildren: () =>
+          import('./../pricing/pricing.module').then(
+            (m) => m.PricingModule
           )
       }
 
