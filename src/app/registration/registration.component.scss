@@ -1,3 +1,7 @@
+p {
+  margin: 0;
+}
+
 .report-steps {
   padding-bottom: 28px;
   margin-bottom: 31px;
@@ -16,9 +20,69 @@
     line-height: 32px; /* 160% */
   }
 
-  .mat-form-row{
+  .mat-form-row {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
   }
+
+  .btn-submit {
+    cursor: pointer;
+    float: right;
+    padding: 14.5px 40px;
+    border-radius: 100px;
+    border: none;
+    background: #ffbe17;
+    color: #141516;
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+}
+
+.social-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 22px;
+  margin-top: 100px;
+  padding-bottom: 26px;
+  border-top: 0.5px solid #8f9497a1;
+
+  .social-title {
+    color: #4e525f;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 14px; /* 100% */
+  }
+
+  .btn-google {
+    margin-top: 1rem;
+    cursor: pointer;
+    display: flex;
+    padding: 14px 30px;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    border-radius: 100px;
+    border: 1px solid #374b88;
+    background-color: transparent;
+    color: #374b88;
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+}
+
+:host ::ng-deep .mat-mdc-form-field {
+  width: 335px;
 }

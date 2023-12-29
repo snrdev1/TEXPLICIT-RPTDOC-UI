@@ -6,7 +6,6 @@
   <h2 class="form-title">Register your account</h2>
 
   <div class="form-fields">
-
     <div class="mat-form-row">
       <div class="form-field">
         <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
@@ -14,9 +13,9 @@
           <input matInput placeholder="Enter your name ..." formControlName="name" required />
         </mat-form-field>
         <ng-container *ngIf="
-                form.get('name')?.invalid &&
-                (form.get('name')?.dirty || form.get('name')?.touched)
-              ">
+            form.get('name')?.invalid &&
+            (form.get('name')?.dirty || form.get('name')?.touched)
+          ">
           <mat-error *ngIf="form.get('name')?.hasError('required')">
             Name is required
           </mat-error>
@@ -43,38 +42,37 @@
         </ng-container>
       </div>
 
-
       <div class="form-field">
         <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
           <mat-label>Phone No.</mat-label>
           <input matInput placeholder="Enter your contact no ..." formControlName="mobileNumber" />
         </mat-form-field>
         <ng-container *ngIf="
-              form.get('mobileNumber')?.invalid &&
-              (form.get('mobileNumber')?.dirty || form.get('mobileNumber')?.touched)
-            ">
+            form.get('mobileNumber')?.invalid &&
+            (form.get('mobileNumber')?.dirty ||
+              form.get('mobileNumber')?.touched)
+          ">
           <mat-error *ngIf="
-                form.get('mobileNumber')?.hasError('pattern') ||
-                form.get('mobileNumber')?.hasError('minlength') ||
-                form.get('mobileNumber')?.hasError('maxlength')
-              ">
+              form.get('mobileNumber')?.hasError('pattern') ||
+              form.get('mobileNumber')?.hasError('minlength') ||
+              form.get('mobileNumber')?.hasError('maxlength')
+            ">
             Phone Number should be of 10 digits
           </mat-error>
         </ng-container>
       </div>
     </div>
 
-
-    <div class=mat-form-row>
+    <div class="mat-form-row">
       <div class="form-field">
         <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
           <mat-label class="required">Password</mat-label>
           <input matInput placeholder="Enter password ..." type="password" formControlName="password" required />
         </mat-form-field>
         <ng-container *ngIf="
-              form.get('password')?.invalid &&
-              (form.get('password')?.dirty || form.get('password')?.touched)
-            ">
+            form.get('password')?.invalid &&
+            (form.get('password')?.dirty || form.get('password')?.touched)
+          ">
           <mat-error *ngIf="form.get('password')?.hasError('required')">
             Password is required
           </mat-error>
@@ -86,13 +84,13 @@
 
       <div class="form-field">
         <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
-          <mat-label class="required">Password</mat-label>
+          <mat-label class="required">Re-enter Password</mat-label>
           <input matInput placeholder="Enter password ..." type="password" formControlName="password" required />
         </mat-form-field>
         <ng-container *ngIf="
-              form.get('password')?.invalid &&
-              (form.get('password')?.dirty || form.get('password')?.touched)
-            ">
+            form.get('password')?.invalid &&
+            (form.get('password')?.dirty || form.get('password')?.touched)
+          ">
           <mat-error *ngIf="form.get('password')?.hasError('required')">
             Password is required
           </mat-error>
@@ -109,8 +107,15 @@
         </mat-form-field>
       </div>
     </div>
-
   </div>
 
-  <button mat-raised-button class="primary" type="submit">Submit</button>
+  <button class="btn-submit" type="submit">Submit</button>
 </form>
+
+<div class="social-login">
+  <p class="social-title">Sign in to Texplicit reports.com with google</p>
+  <button class="btn-google">
+    <p>Login with google</p>
+    <img src="../../assets/svg/logo/icon-google.svg" alt="icon-google" />
+  </button>
+</div>

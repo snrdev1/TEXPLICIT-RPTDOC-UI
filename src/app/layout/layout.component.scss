@@ -20,7 +20,7 @@
     background-color: #ffffff;
     border: none;
     color: #141516;
-    font-family: Roboto;
+    font-family: Roboto, sans-serif;
     font-size: 13px;
     font-style: normal;
     font-weight: 500;
@@ -130,6 +130,7 @@
 
   .main-container {
     height: calc(100vh - 97px);
+    overflow-y: scroll;
     padding-top: 33px;
     padding-left: 29px;
     @media screen and (max-width: 1000px) {
