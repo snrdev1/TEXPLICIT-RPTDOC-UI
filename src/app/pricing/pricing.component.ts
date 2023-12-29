@@ -21,7 +21,7 @@ export class PricingComponent {
     },
     {
       "icon": "icon-pricing-high",
-      "plan": "High Use",
+      "plan": "Professional Use",
       "description": "Approx 24 sets",
       "value": "40,000"
     },
