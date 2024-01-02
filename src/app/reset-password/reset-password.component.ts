@@ -71,6 +71,6 @@ export class ResetPasswordComponent {
   }
 
   navigateToHome() {
-    this.router.navigate(['/home/anonymous']);
+    this.router.navigate(['/home']);
   }
 }

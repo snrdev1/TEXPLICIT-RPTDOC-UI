@@ -51,7 +51,7 @@ export class RegistrationComponent {
             // console.log(response);
           if (response.success){
               this.commonService.showSnackbar("snackbar-success",response.message );
-              this.router.navigate(['/home/anonymous']);
+              this.router.navigate(['/home']);
             }
           },
           error: (err) => {

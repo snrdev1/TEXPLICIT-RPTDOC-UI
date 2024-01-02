@@ -18,7 +18,7 @@ import { AuthService } from '../core/auth.service';
   selector: 'app-reports',
   templateUrl: './reports.component.html',
   styleUrls: ['./reports.component.scss'],
-  
+
 })
 export class ReportsComponent {
   form: FormGroup;
@@ -26,20 +26,20 @@ export class ReportsComponent {
   filteredSource: string = "";
   filteredFormat: string = "";
   filteredReportType: string = "";
-  userId: string="";
-  reportEvent: string="";
-  allReports: any=[];
-  completedReports:any=[];
-  topic: any="";
+  userId: string = "";
+  reportEvent: string = "";
+  allReports: any = [];
+  completedReports: any = [];
+  topic: any = "";
   sortBy: string = "task";
   sortDirection: string = "asc;"
-  onProgressStatus:boolean=false;
-  reportGenerationData:any[] = [];
-  offset:number=0;
-  limit:number=30;
-  userInfo:any=[];
-  displayStyle: string='list';
-  // isLoading:boolean=false;
+  onProgressStatus: boolean = false;
+  reportGenerationData: any[] = [];
+  offset: number = 0;
+  limit: number = 30;
+  userInfo: any = [];
+  displayStyle: string = 'list';
+  isLoading:boolean = false;
   userInfo$: Observable<any> = this.localStorage.userInfo$;
   @ViewChild('searchinput') searchInput!: ElementRef;
 
@@ -52,80 +52,72 @@ export class ReportsComponent {
     private fb: FormBuilder) {
     this.form = this.fb.group({
       task: new FormControl('', Validators.required),
-      source: new FormControl('external'), 
+      source: new FormControl('external'),
       report_type: new FormControl('research_report'),
       format: new FormControl('pdf'),
-      websearch:new FormControl(true),
+      websearch: new FormControl(true),
       subtopics: new FormControl([]),
       report_generation_id: new FormControl(''),
-      start_time:new FormControl('')
+      start_time: new FormControl('')
     });
     this.userInfo = this.localStorage.getUserInfo();
   }
 
-  
-  ngOnInit(){
-    // this.userInfo$.subscribe((res) =>{
-    // this.userId = res?._id;
-    // });
-    if(this.userInfo){
+
+  ngOnInit() {
+    if (this.userInfo) {
       this.userId = this.userInfo?._id;
-      }
-    this.reportEvent =  this.userId + "_report";
-    let filterValues = this.localStorage.getitem('reportFilter')||[];
-    if(filterValues){
+    }
+    this.reportEvent = this.userId + "_report";
+    let filterValues = this.localStorage.getitem('reportFilter') || [];
+    if (filterValues) {
       this.filteredSource = filterValues?.source || "";
       this.filteredFormat = filterValues?.format || "";
       this.filteredReportType = filterValues?.report_type || "";
     }
-    this.reportGenerationData = this.localStorage.getitem('reportDataArrayString')||[];
-    
-    if(this.authService.isLoggedIn){
-    this.getAllReports();
+    this.reportGenerationData = this.localStorage.getitem('reportDataArrayString') || [];
+
+    if (this.authService.isLoggedIn) {
+      this.getAllReports();
     }
 
 
     this.socketService.listen(this.reportEvent).subscribe({
-      next: (res)=>{
-        console.log("res from socket",res.data);
-        this.reportGenerationData = this.localStorage.getitem('reportDataArrayString')||[];
-        const index = this.reportGenerationData.findIndex((report:any)=>report.report_generation_id === res.data.report_generation_id);
-        if(index != -1){
-          this.reportGenerationData.splice(index,1);
+      next: (res) => {
+        console.log("res from socket", res.data);
+        this.reportGenerationData = this.localStorage.getitem('reportDataArrayString') || [];
+        const index = this.reportGenerationData.findIndex((report: any) => report.report_generation_id === res.data.report_generation_id);
+        if (index != -1) {
+          this.reportGenerationData.splice(index, 1);
           this.localStorage.setitem('reportDataArrayString', this.reportGenerationData);
         }
-        if(res.success){
-        this.commonService.showSnackbar('snackbar-success',res.message,res.status);
-        // this.reset();
-        // this.limit = 30;
-        // this.getAllReports();
-        this.allReports = [ res.data, ...this.allReports];
+        if (res.success) {
+          this.commonService.showSnackbar('snackbar-success', res.message, res.status);
+          this.allReports = [res.data, ...this.allReports];
 
         }
-        else{
-        this.commonService.showSnackbar('snackbar-error',res.message,res.status);
+        else {
+          this.commonService.showSnackbar('snackbar-error', res.message, res.status);
         }
 
       },
-      error: (e)=>{
-        console.log("Error",e);
-        this.commonService.showSnackbar('snackbar-error',e.message,e.status);
+      error: (e) => {
+        console.log("Error", e);
+        this.commonService.showSnackbar('snackbar-error', e.message, e.status);
       },
-      complete: ()=> {console.log("Completed listenting. Report generated ");
-        }
+      complete: () => {
+        console.log("Completed listenting. Report generated ");
+      }
     })
 
   }
 
   onSubmit() {
     if (!this.form.invalid) {
-      // console.log(this.form.value);
-      // this.topic = this.form.controls["task"].value;
       const uniqueID: any = uuidv4();
-      // const timestamp:any = new Date().getTime();
 
-      const timestamp:any = new Date().toLocaleTimeString();
-      const combinedID : any= `${uniqueID}-${timestamp}`;
+      const timestamp: any = new Date().toLocaleTimeString();
+      const combinedID: any = `${uniqueID}-${timestamp}`;
       this.form.patchValue({
         report_generation_id: combinedID,
         start_time: timestamp
@@ -134,133 +126,122 @@ export class ReportsComponent {
 
       const submitReport = this.form.value;
       this.reportGenerationData.push(submitReport);
-      // const reportDataArrayString = JSON.stringify(this.reportGenerationData);
       this.localStorage.setitem('reportDataArrayString', this.reportGenerationData);
 
       this.reportsService.generateReport(this.form.value).subscribe({
-        next:(res)=>{
-          console.log("On submitting topic: ",res);
+        next: (res) => {
+          console.log("On submitting topic: ", res);
           this.form.controls['subtopics'].setValue([]);
-          this.localStorage.setitem('subtopics',null);
+          this.localStorage.setitem('subtopics', null);
 
           this.searchInput.nativeElement.value = "";
-          this.commonService.showSnackbar("snackbar-info","Report creation takes a few minutes time. Truly appreciate your patience. Thank You!","0")
+          this.commonService.showSnackbar("snackbar-info", "Report creation takes a few minutes time. Truly appreciate your patience. Thank You!", "0")
           this.onProgressStatus = true;
-          },
-        error:(e)=>{
-          console.log("Error: ",e);
+        },
+        error: (e) => {
+          console.log("Error: ", e);
           this.onProgressStatus = false;
         },
-        complete:()=>{
+        complete: () => {
           console.log("Report generation in progress");
         }
       })
     }
   }
 
-  getAllReports(){
+  getAllReports() {
+    this.isLoading = true;
     console.log("getAllReports called");
-    this.reportsService.getAllreports(this.limit,this.offset,this.filteredSource,this.filteredFormat,this.filteredReportType).subscribe({
-      next:(res)=>{
-        // console.log("this.filteredSource",this.filteredSource);
-        // if(this.filteredSource && this.filteredSource.length>0){
-        //   this.allReports = res?.data.filter((report:any)=>report.source == this.filteredSource);
-        //   console.log("on filter",this.allReports);
-        // }
-        // else{
-          this.allReports =[...this.allReports,...res?.data] ;
-          console.log("Res in getAllReports",this.allReports);
-        // }
-        // this.onProgressStatus = false;
+    this.reportsService.getAllreports(this.limit, this.offset, this.filteredSource, this.filteredFormat, this.filteredReportType).subscribe({
+      next: (res) => {
+        this.isLoading = false;
+        this.allReports = [...this.allReports, ...res?.data];
+        console.log("Res in getAllReports", this.allReports);
       },
-      error:(e)=>{
-        console.log("Error",e);
+      error: (e) => {
+        this.isLoading = false;
+        console.log("Error", e);
       },
-      complete:()=>{
+      complete: () => {
         console.log("Completed fetching reports");
       }
     })
-  } 
+  }
 
-  onScroll(event:any){
-    console.log('offsetHeight: ',event.target.offsetHeight)
-    console.log('scrollHeight: ',event.target.scrollHeight);
-    console.log('scrollTop: ',event.target.scrollTop);
-    console.log("Difference:",(event.target.scrollHeight-event.target.offsetHeight));
-    if (Math.round(event.target.scrollTop)>=(event.target.scrollHeight-event.target.offsetHeight-1)){
-     this.offset = this.offset + this.limit;
-     this.limit = 10;
-     this.getAllReports();
+  onScroll(event: any) {
+    console.log('offsetHeight: ', event.target.offsetHeight)
+    console.log('scrollHeight: ', event.target.scrollHeight);
+    console.log('scrollTop: ', event.target.scrollTop);
+    console.log("Difference:", (event.target.scrollHeight - event.target.offsetHeight));
+    if (Math.round(event.target.scrollTop) >= (event.target.scrollHeight - event.target.offsetHeight - 1)) {
+      this.offset = this.offset + this.limit;
+      this.limit = 10;
+      this.getAllReports();
     }
   }
   sortReports(criteria: string) {
-   if(criteria === this.sortBy){
-    this.sortDirection = this.sortDirection === 'asc'?'desc':'asc';
-   } else{
-    this.sortBy = criteria;
-    this.sortDirection = 'asc';
-   }
-
-   this.allReports.sort((report1:any,report2:any)=>{
-    if(this.sortDirection === 'asc'){
-      return report1[this.sortBy]>report2[this.sortBy] ? 1 : -1;
-    }else{
-      return report2[this.sortBy]>report1[this.sortBy] ? 1 : -1;
-
+    if (criteria === this.sortBy) {
+      this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    } else {
+      this.sortBy = criteria;
+      this.sortDirection = 'asc';
     }
-   });
+
+    this.allReports.sort((report1: any, report2: any) => {
+      if (this.sortDirection === 'asc') {
+        return report1[this.sortBy] > report2[this.sortBy] ? 1 : -1;
+      } else {
+        return report2[this.sortBy] > report1[this.sortBy] ? 1 : -1;
+
+      }
+    });
   }
 
-  onFilterClick(){
+  onFilterClick() {
     console.log('Home Filter Click')
-    const dialogRef = this.dialog.open(ReportFilterComponent,{panelClass:'mat-filter-dialog'});
+    const dialogRef = this.dialog.open(ReportFilterComponent, { panelClass: 'mat-filter-dialog' });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('Dialog result: ',result);
-      if(result!==undefined){
-      this.filteredSource = result?.source || "" ;
-      this.filteredFormat = result?.format || "";
-      this.filteredReportType = result?.report_type || "";
-      this.reset();
-      this.getAllReports();
-      // if(this.filteredSource!=null){
-      //   this.getAllReports();
-      // }
-    }
-  });
-}
+      console.log('Dialog result: ', result);
+      if (result !== undefined) {
+        this.filteredSource = result?.source || "";
+        this.filteredFormat = result?.format || "";
+        this.filteredReportType = result?.report_type || "";
+        this.reset();
+        this.getAllReports();
+      }
+    });
+  }
 
-showLoadingReports(){
-  console.log('report progress dialog clicked')
-    const dialogRef = this.dialog.open(ReportUpdateComponent,{panelClass:'mat-filter-dialog',data: this.reportGenerationData});
+  showLoadingReports() {
+    console.log('report progress dialog clicked')
+    const dialogRef = this.dialog.open(ReportUpdateComponent, { panelClass: 'mat-filter-dialog', data: this.reportGenerationData });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('report progress dialog closed');
     });
-}
-getSubtopics(){
-  console.log('Add subtopic Click');
-  let subtopics: any = this.localStorage.getitem('subtopics') || [];
-  // console.log("Subtopics from local storage",subtopics);
-  const dialogRef = this.dialog.open(AddSubtopicComponent,{panelClass:'mat-question-answer-dialog',data:subtopics});
+  }
+  getSubtopics() {
+    console.log('Add subtopic Click');
+    let subtopics: any = this.localStorage.getitem('subtopics') || [];
+    const dialogRef = this.dialog.open(AddSubtopicComponent, { panelClass: 'mat-question-answer-dialog', data: subtopics });
 
-  dialogRef.afterClosed().subscribe(result => {
-    console.log('Dialog result of getSubtopics: ',result);
-    if (result!==undefined) {
-      this.form.setValue({
-        ...this.form.value, 
-        subtopics: result.rows
-      // });
-      });
-      this.localStorage.setitem('subtopics',result.rows);
-    }
-  });
-}
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Dialog result of getSubtopics: ', result);
+      if (result !== undefined) {
+        this.form.setValue({
+          ...this.form.value,
+          subtopics: result.rows
+        });
+        this.localStorage.setitem('subtopics', result.rows);
+      }
+    });
+  }
 
-reset(){
-  this.offset=0;
-  this.allReports=[];
-}
+  reset() {
+    this.offset = 0;
+    this.allReports = [];
+  }
 }
 
 
