@@ -60,8 +60,8 @@ export class LoginDialogComponent {
           next: (res: any) => {
             console.log("Login Res:",res);
             this.localStorageService.setUserInfo(res);
-            this.commonService.getUserMenu();
-            this.router.navigateByUrl('/');
+            // this.commonService.getUserMenu();
+            this.router.navigateByUrl('/reports');
             this.dialogRef.close(true);
           }
           

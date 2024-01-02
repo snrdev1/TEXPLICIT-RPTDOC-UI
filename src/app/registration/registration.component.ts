@@ -5,6 +5,9 @@ import { SharedService } from '../shared/services/shared.service';
 import { CommonService } from '../shared/services/common.service';
 import { Router } from '@angular/router';
 import { MatSelectChange } from '@angular/material/select';
+import { LocalStorageService } from '../core/local-storage.service';
+import { LoginService } from '../services/login.service';
+import { AuthService } from '../core/auth.service';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -22,6 +25,9 @@ export class RegistrationComponent {
     private registrationService: RegistrationService,
     private router:Router,
     private sharedService: SharedService ,
+    private localStorage: LocalStorageService,
+    private authService: AuthService,
+    private loginService: LoginService,
     private commonService: CommonService ) {
     this.form = this.formBuilder.group({
       name: new FormControl("",[Validators.required, Validators.pattern('^[a-zA-Z ]+$')]),
@@ -42,16 +48,37 @@ export class RegistrationComponent {
   onSubmit(){
     console.log("on Submit");
 
-     if (this.form.invalid) return;
+    if (this.form.invalid) return;
 
-     console.log(this.form.value);
+    console.log(this.form.value);
+    this.localStorage.setitem("SignupUserInfo",this.form.value);
+
       this.registrationService.addUser(this.form.value).subscribe(
         {
           next: (response) => {
             // console.log(response);
           if (response.success){
               this.commonService.showSnackbar("snackbar-success",response.message );
-              this.router.navigate(['/home/anonymous']);
+              let formData = this.localStorage.getitem("SignupUserInfo");
+              this.loginService.login(formData).subscribe({
+                next: (res:any)=>{
+                  if(res.success){
+                    console.log("response of login:",res);
+                    if(res.data && res.data.token){
+                      this.authService.token = res.data.token;
+                    }
+                  }
+                  this.authService.getCurrentUser().subscribe({
+                    next: (res:any)=>{
+                      console.log("Res after login:", res);
+                      this.localStorage.setUserInfo(res);
+                      this.router.navigateByUrl('/reports');
+
+                    }
+                  })
+                }
+              })
+              // this.router.navigate(['/home/anonymous']);
             }
           },
           error: (err) => {
