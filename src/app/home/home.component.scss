@@ -9,24 +9,25 @@
   }
 
   .title {
-    color: #606675;
+    color: #4E525F;
     font-family: Poppins;
-    font-size: 24px;
+    font-size: 18px;
     font-style: normal;
-    font-weight: 500;
-    line-height: 30px; /* 125% */
-    margin-bottom: 39px;
+    font-weight: 400;
+    line-height: 28px;
+    margin-bottom: 25px;
 
     p {
       margin: 0;
     }
-    .bold-title {
+
+    .bold-title-1 {
       font-weight: 600;
-      color: #1C1D21;
+      color: #141516;
     }
 
-    .title-sm {
-      font-size: 13px;
+    .bold-title-2 {
+      font-weight: 600;
     }
   }
 
