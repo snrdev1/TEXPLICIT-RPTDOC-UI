@@ -134,3 +134,11 @@
   align-items: center;
   justify-content: center;
 }
+
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05); /* Change the scale value as per your preference */
+}
