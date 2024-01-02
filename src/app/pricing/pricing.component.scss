@@ -10,103 +10,164 @@
     font-family: Poppins;
     font-size: 24px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 32px; /* 133.333% */
     margin-bottom: 14px;
   }
-
-  .title-sm {
-    color: #4e525f;
-    font-family: Roboto, sans-serif;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px; /* 150% */
-  }
 }
 
-.pricing-options {
-  margin-top: 43px;
-  display: flex;
-  justify-content: space-between;
-  margin-right: 5rem;
-  padding-bottom: 100px;
+.title-sm {
+  color: #4e525f;
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+}
 
-  .pricing-plan-card {
-    width: 313px;
-    height: 488px;
+.title-sm-bold {
+  font-weight: 500;
+}
+
+.reports {
+  display: flex;
+  margin-right: 2rem;
+}
+
+.basic-reports {
+  justify-content: space-between;
+}
+
+.report-types {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.report {
+  display: flex;
+  gap: 20px;
+
+  .report-icon-basic {
+    width: 38px;
+  }
+
+  .report-icon-advanced {
+    width: 56px;
+  }
+
+  .report-details {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    border-radius: 30px;
-    border: 1px solid #c7cce5;
+    justify-content: center;
 
-    .pricing-icon {
-      margin-top: 38px;
-    }
-
-    .pricing-plan {
+    .report-name {
       color: #1c1d21;
-      text-align: center;
-      font-family: Roboto, sans-serif;
-      font-size: 24px;
-      font-style: normal;
-      font-weight: 600;
-      line-height: 30px; /* 125% */
-      margin-top: 10px;
-    }
-
-    .pricing-description {
-      color: #4e525f;
-      text-align: center;
-      font-family: Roboto, sans-serif;
-      font-size: 18px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 26px; /* 144.444% */
-      margin-top: 22px;
-    }
-
-    .deposit {
-      color: #4e525f;
-      text-align: center;
-      font-family: Roboto, sans-serif;
-      font-size: 16px;
+      font-family: Roboto;
       font-style: normal;
       font-weight: 500;
       line-height: 30px; /* 187.5% */
-      margin-top: 66px;
     }
 
-    .pricing-value {
-      color: #1c1d21;
-      text-align: center;
-      font-family: Roboto, sans-serif;
-      font-size: 32px;
+    .report-name-basic {
+      font-size: 14px;
+    }
+
+    .report-name-advanced {
+      font-size: 16px;
+    }
+
+    .report-description {
+      color: #4e525f;
+      font-family: Roboto;
       font-style: normal;
-      font-weight: 600;
-      line-height: 30px; /* 93.75% */
-      margin-top: 6px;
+      font-weight: 400;
+      line-height: 14px; /* 100% */
     }
 
-    .btn-plan-action {
-      display: inline-flex;
-      padding: 14.5px 40px;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
+    .report-description-basic {
+      font-size: 12px;
+    }
+
+    .report-description-advanced {
+      font-size: 14px;
+      max-width: 268px;
+    }
+  }
+}
+
+.pricing {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  padding-bottom: 16px;
+  margin-right: 2rem;
+  gap: 18px;
+  border-bottom: 0.5px solid rgba(143, 148, 151, 0.63);
+
+  .report-plans {
+    display: flex;
+    gap: 90px;
+
+    .report-plan {
+      .report-type {
+        color: #1c1d21;
+        font-family: Roboto;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 30px; /* 150% */
+      }
+
+      .report-pricing {
+        color: #4e525f;
+        font-family: Roboto;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 30px; /* 166.667% */
+      }
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 2rem;
+
+  .info {
+    color: #1c1d21;
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px; /* 155.556% */
+
+    ul {
+      padding-left: 1rem;
+
+      li {
+        max-width: 34rem;
+      }
+    }
+  }
+
+  .action-area {
+    align-self: flex-end;
+
+    .btn-payment {
       border-radius: 100px;
       background: #ffbe17;
-      border: none;
-      margin-top: 39px;
-
       color: #141516;
       text-align: center;
-      font-family: Roboto, sans-serif;
-      font-size: 16px;
+      font-family: Roboto;
+      font-size: 14px;
       font-style: normal;
       font-weight: 500;
       line-height: normal;
+      border: none;
+      padding: 14.5px 40px;
       cursor: pointer;
     }
   }

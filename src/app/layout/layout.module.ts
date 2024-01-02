@@ -100,6 +100,13 @@ const routes: Routes = [{
           import('./../pricing/pricing.module').then(
             (m) => m.PricingModule
           )
+      },
+      {
+        path: 'payment',
+        loadChildren: () =>
+          import('./../payment/payment.module').then(
+            (m) => m.PaymentModule
+          )
       }
 
     ]
