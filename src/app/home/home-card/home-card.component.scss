@@ -1,8 +1,10 @@
 .card {
   background-repeat: no-repeat;
   background-size: cover;
-  width: 330px;
-  height: 204px;
+  // width: 330px;
+  // height: 204px;
+  width: clamp(20.625rem, -2.491rem + 27.0758vw, 30rem);
+  height: clamp(12.75rem, -5.5887rem + 21.4801vw, 20.1875rem);
   border-radius: 20px;
   display: flex;
   justify-content: flex-start;
