@@ -97,7 +97,7 @@
     <div style="position: relative">
       <div class="files-container  {{ displayStyle || 'list' }} " >
         <!-- write displayStyle.value if toggle button is kept -->
-        <div class="file-header-content" >
+        <div class="file-header-content" *ngIf="allReports.length !== 0">
           <ul class="header-row">
             <li class="name-header">
               <div>Report</div>
@@ -122,9 +122,9 @@
             </li>
           </ul>
         </div>
-        <div class="no-search-results" *ngIf="allReports.length == 0">
+        <!-- <div class="no-search-results" *ngIf="allReports.length == 0">
           No reports available
-        </div>
+        </div> -->
         <div class="report-steps" *ngIf="allReports.length == 0 && isLoading==false">
           <app-report-steps></app-report-steps>
         </div>
