@@ -18,7 +18,8 @@
   .title-sm {
     color: #4e525f;
     font-family: Roboto, sans-serif;
-    font-size: 16px;
+    //font-size: 16px;
+         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
     font-style: normal;
     font-weight: 400;
     line-height: 24px; /* 150% */
@@ -49,7 +50,8 @@
       color: #1c1d21;
       text-align: center;
       font-family: Roboto, sans-serif;
-      font-size: 20px;
+      //font-size: 20px;
+         font-size: clamp(1.125rem, 1.037rem + 0.2817vw, 1.375rem);
       font-style: normal;
       font-weight: 500;
       line-height: 30px; /* 125% */
@@ -60,7 +62,8 @@
       color: #4e525f;
       text-align: center;
       font-family: Roboto, sans-serif;
-      font-size: 16px;
+      //font-size: 16px;
+         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
       font-style: normal;
       font-weight: 400;
       line-height: 26px; /* 144.444% */
@@ -70,7 +73,8 @@
       color: #4e525f;
       text-align: center;
       font-family: Roboto, sans-serif;
-      font-size: 16px;
+      //font-size: 16px;
+         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
       font-style: normal;
       font-weight: 500;
       line-height: 30px; /* 187.5% */
@@ -81,7 +85,8 @@
       color: #1c1d21;
       text-align: center;
       font-family: Roboto, sans-serif;
-      font-size: 26px;
+      //font-size: 26px;
+         font-size: clamp(1.5rem, 1.412rem + 0.2817vw, 1.75rem);
       font-style: normal;
       font-weight: 500;
       line-height: 30px; /* 93.75% */
@@ -102,7 +107,8 @@
       color: #141516;
       text-align: center;
       font-family: Roboto, sans-serif;
-      font-size: 16px;
+      //font-size: 16px;
+         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
       font-style: normal;
       font-weight: 500;
       line-height: normal;
@@ -114,7 +120,8 @@
 .plan-set-description {
   color: #4e525f;
   font-family: Roboto;
-  font-size: 14px;
+  //font-size: 14px;
+         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
   font-style: normal;
   font-weight: 400;
   line-height: 24px; /* 150% */

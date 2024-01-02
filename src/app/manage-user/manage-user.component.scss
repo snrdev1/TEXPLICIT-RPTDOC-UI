@@ -35,13 +35,15 @@
 
     th.mat-mdc-header-cell {
         font-family: "Roboto", sans-serif;
-        font-size: 16px;
+        //font-size: 16px;
+         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
         font-weight: 500;
     }
 
     td.mat-mdc-cell{
         font-family: "Roboto", sans-serif;
-        font-size: 14px;
+        //font-size: 14px;
+         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
         font-weight: 400;
     }
 
@@ -53,7 +55,8 @@
         mat-icon.mat-icon{
             width: 16px;
             height: 16px;
-            font-size: 16px;
+            //font-size: 16px;
+         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
             color:#111541;
         }
     }
@@ -101,7 +104,8 @@
                 }
                 .mat-mdc-paginator-page-size-label{
                     font-family: "Roboto", sans-serif;
-                    font-size: 14px;
+                    //font-size: 14px;
+         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
                     font-weight: 400;
                 }
 
@@ -115,7 +119,8 @@
                     mat-label{
                         font-family: Roboto, sans-serif;
                         font-weight: 400;
-                        font-size: 16px;
+                        //font-size: 16px;
+         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
                     }
 
                     mat-icon{
@@ -130,7 +135,8 @@
                         color: #040F2F;
                         font-family: Roboto, sans-serif;
                         font-weight: 400;
-                        font-size: 14px;
+                        //font-size: 14px;
+         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
                         line-height: 22px;
 
                     }
@@ -199,7 +205,8 @@
             .mat-mdc-paginator-range-actions{
                 .mat-mdc-paginator-range-label{
                     font-family: "Roboto", sans-serif;
-                    font-size: 14px;
+                    //font-size: 14px;
+         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
                     font-weight: 400;
 
                     @media screen and (max-width: 1000px) {

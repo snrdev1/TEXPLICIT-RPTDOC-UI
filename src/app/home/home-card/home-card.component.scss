@@ -1,9 +1,11 @@
 .card {
   background-repeat: no-repeat;
   background-size: cover;
-  width: 340px;
-  height: 204px;
-  border-radius: 26px;
+  // width: 330px;
+  // height: 204px;
+  width: clamp(20.625rem, -2.491rem + 27.0758vw, 30rem);
+  height: clamp(12.75rem, -5.5887rem + 21.4801vw, 20.1875rem);
+  border-radius: 20px;
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
@@ -18,7 +20,8 @@
       font-style: normal;
       font-weight: 600;
       line-height: 26px; /* 130% */
-      font-size: 20px;
+      //font-size: 20px;
+         font-size: clamp(1.125rem, 1.037rem + 0.2817vw, 1.375rem);
     }
 
     .description {

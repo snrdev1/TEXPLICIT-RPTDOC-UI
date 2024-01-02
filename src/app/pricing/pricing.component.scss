@@ -19,7 +19,8 @@
 .title-sm {
   color: #4e525f;
   font-family: Roboto, sans-serif;
-  font-size: 16px;
+  //font-size: 16px;
+         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
   font-style: normal;
   font-weight: 400;
   line-height: 24px; /* 150% */
@@ -31,7 +32,6 @@
 
 .reports {
   display: flex;
-  margin-right: 2rem;
 }
 
 .basic-reports {
@@ -70,11 +70,13 @@
     }
 
     .report-name-basic {
-      font-size: 14px;
+      //font-size: 14px;
+         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
     }
 
     .report-name-advanced {
-      font-size: 16px;
+      //font-size: 16px;
+         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
     }
 
     .report-description {
@@ -90,7 +92,8 @@
     }
 
     .report-description-advanced {
-      font-size: 14px;
+      //font-size: 14px;
+         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
       max-width: 268px;
     }
   }
@@ -101,7 +104,7 @@
   flex-direction: column;
   margin-top: 30px;
   padding-bottom: 16px;
-  margin-right: 2rem;
+  
   gap: 18px;
   border-bottom: 0.5px solid rgba(143, 148, 151, 0.63);
 
@@ -113,7 +116,8 @@
       .report-type {
         color: #1c1d21;
         font-family: Roboto;
-        font-size: 18px;
+        //font-size: 18px;
+         font-size: clamp(1rem, 0.912rem + 0.2817vw, 1.25rem);
         font-style: normal;
         font-weight: 500;
         line-height: 30px; /* 150% */
@@ -122,7 +126,8 @@
       .report-pricing {
         color: #4e525f;
         font-family: Roboto;
-        font-size: 16px;
+        //font-size: 16px;
+         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
         font-style: normal;
         font-weight: 500;
         line-height: 30px; /* 166.667% */
@@ -134,12 +139,13 @@
 .actions {
   display: flex;
   justify-content: space-between;
-  margin-right: 2rem;
+  
 
   .info {
     color: #1c1d21;
     font-family: Roboto;
-    font-size: 16px;
+    //font-size: 16px;
+         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
     font-style: normal;
     font-weight: 500;
     line-height: 28px; /* 155.556% */
@@ -162,7 +168,8 @@
       color: #141516;
       text-align: center;
       font-family: Roboto;
-      font-size: 14px;
+      //font-size: 14px;
+         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
       font-style: normal;
       font-weight: 500;
       line-height: normal;

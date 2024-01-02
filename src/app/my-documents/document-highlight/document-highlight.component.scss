@@ -11,7 +11,8 @@
         justify-content: space-between;
         .title{
             color: #474A55;
-            font-size: 18px;
+            //font-size: 18px;
+         font-size: clamp(1rem, 0.912rem + 0.2817vw, 1.25rem);
             font-family: 'Roboto',sans-serif;
             font-style: normal;
             font-weight: 500;
@@ -35,7 +36,8 @@
 
             .highlight-content{
                 color: #4E525F;
-                font-size: 16px;
+                //font-size: 16px;
+         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
                 font-family: Roboto, sans-serif;
                 font-style: normal;
                 font-weight: 400;
@@ -44,7 +46,8 @@
 
                 .highlight-title{
                     color:#040F2F;
-                    font-size: 20px;
+                    //font-size: 20px;
+         font-size: clamp(1.125rem, 1.037rem + 0.2817vw, 1.375rem);
                     font-family:'Domine', sans-serif;
                     font-style: normal;
                     font-weight: 500;

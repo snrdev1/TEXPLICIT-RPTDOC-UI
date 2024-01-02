@@ -149,7 +149,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
 }
 
 .btn-toolbar-icon{
-  font-size: 16px;
+  //font-size: 16px;
+         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
 }
 
 .btn-toolbar-35{
@@ -447,7 +448,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
   color: #040F2F;
   font-family: Roboto, sans-serif;
   font-weight: 400;
-  font-size: 14px;
+  //font-size: 14px;
+         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
   line-height: 22px;
 }
 
@@ -558,7 +560,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
 /************************* START EMPTY PAGE ****************************/
 
 .no-search-results {
-  font-size: 18px;
+  //font-size: 18px;
+         font-size: clamp(1rem, 0.912rem + 0.2817vw, 1.25rem);
   color: #4e525f;
   font-family: "Domine", serif;
   font-weight: 500;

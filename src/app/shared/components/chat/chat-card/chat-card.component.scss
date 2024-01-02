@@ -12,23 +12,27 @@
 
 .chat-card.default .title{
    font-weight: 500;
-   font-size: 16px; 
+   //font-size: 16px;
+         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem); 
    color: #227AFF;
 }
 .chat-card.default .subtitle{
     font-weight: 400;
-    font-size: 16px; 
+    //font-size: 16px;
+         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem); 
     color: #4E525F
 }
 
 .chat-card.default .subtitle strong{
     font-weight: 500;
-    font-size: 16px; 
+    //font-size: 16px;
+         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem); 
     color: #4E525F
 }
 .chat-card.default .caption{
     font-weight: 400;
-    font-size: 14px; 
+    //font-size: 14px;
+         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem); 
     color: #666974;
 }
 
@@ -60,7 +64,8 @@
     padding: 0;
     margin: 0;
     font-weight: 400;
-    font-size: 14px;
+    //font-size: 14px;
+         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
     text-align: left;
 }
 

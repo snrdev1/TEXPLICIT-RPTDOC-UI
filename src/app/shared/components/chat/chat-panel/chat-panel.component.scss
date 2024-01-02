@@ -84,7 +84,8 @@
 
 :host ::ng-deep .chat-dropdown {
     mat-select{
-        font-size: 14px;
+        //font-size: 14px;
+         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
         font-family: Roboto, sans-serif;
         font-weight: 400;
     }
@@ -94,7 +95,8 @@
         padding-bottom: 0!important;
         width: 160px;
         min-height: 30px;
-        font-size: 14px;
+        //font-size: 14px;
+         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
         font-family: Roboto, sans-serif;
         font-weight: 400;
     }
@@ -115,7 +117,8 @@
     .mdc-text-field{
         color: #040F2F;
         font-family: Roboto, sans-serif;
-        font-size: 14px;
+        //font-size: 14px;
+         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
         font-weight: 400;
         letter-spacing: 0.14px;
     }

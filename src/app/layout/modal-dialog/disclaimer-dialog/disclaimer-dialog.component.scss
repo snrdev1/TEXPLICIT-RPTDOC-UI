@@ -4,7 +4,8 @@
         font-family: Roboto,sans-serif;
         font-weight: 400;
         color: #040f2f;
-        font-size: 14px;
+        //font-size: 14px;
+         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
         line-height: 20px;
     }
 }

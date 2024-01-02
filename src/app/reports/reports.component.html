@@ -1,7 +1,14 @@
 <div class="main-body">
-  <div class="report-head">
-    Say Goodbye to Hours of <span class="report-head-research">Research</span>
+  
+  <div class="title">
+    <p><span class="bold-title-1">Create your AI enabled Reports</span> on any topic of your choice from content</p>
+    <p>
+      from the
+      <span class="bold-title-2">INTERNET</span> or from your
+      <span class="bold-title-2">DOCUMENT REPOSITORY</span>
+    </p>
   </div>
+
   <div class="report-body">
     <div>
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -118,6 +125,9 @@
         <!-- <div class="no-search-results" *ngIf="allReports.length == 0">
           No reports available
         </div> -->
+        <div class="reports-loader" *ngIf="isLoading">
+          <mat-spinner [diameter]="30"></mat-spinner>
+        </div>
         <div class="report-steps" *ngIf="allReports.length == 0 && isLoading==false">
           <app-report-steps></app-report-steps>
         </div>
