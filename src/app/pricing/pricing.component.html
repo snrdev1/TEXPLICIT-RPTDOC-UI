@@ -1,18 +1,61 @@
 <div class="title">
-  <p class="bold-title">Payment Options</p>
+  <p class="bold-title">Pricing Estimates</p>
   <p class="title-sm">
-    Debits to your account would be made as per reports you run. You will
-    intimated by mail when your balance is running out.
+    We generate reports at different levels of granularity in either PDF or MS
+    Word
   </p>
 </div>
 
-<div class="pricing-options">
-  <div *ngFor="let pricingPlan of pricingOptions" class="pricing-plan-card">
-    <img [src]="'../../assets/svg/pricing-icon/' + pricingPlan.icon + '.svg'" class="pricing-icon" />
-    <div class="pricing-plan">{{ pricingPlan.plan }}</div>
-    <div class="pricing-description">{{ pricingPlan.description }}</div>
-    <div class="deposit">Desposit</div>
-    <div class="pricing-value">Rs {{ pricingPlan.value }}/-</div>
-    <button class="btn-plan-action">Choose Plan</button>
+<div class="report-types">
+  <div class="reports basic-reports">
+    <ng-container *ngFor="let report of basicReports">
+      <div class="report basic-report">
+        <img [src]="'../../assets/svg/reports-icon/' + report.icon + '.svg'" class="report-icon-basic" />
+        <div class="report-details">
+          <div class="report-name report-name-basic">{{ report.title }}</div>
+          <div class="report-description report-description-basic">{{ report.description }}</div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="reports advanced-reports">
+    <ng-container *ngFor="let report of advancedReports">
+      <div class="report advanced-report">
+        <img [src]="'../../assets/svg/reports-icon/' + report.icon + '.svg'" class="report-icon-advanced" />
+        <div class="report-details">
+          <div class="report-name report-name-advanced">{{ report.title }}</div>
+          <div class="report-description report-description-advanced">{{ report.description }}</div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<div class="pricing">
+  <div class="title-sm">As per our current calculations <span class="title-sm-bold">average prices</span> of these
+    reports are as under</div>
+
+  <div class="report-plans">
+    <div class="report-plan" *ngFor="let plan of reportPlans">
+      <div class="report-type">{{plan?.name}}</div>
+      <div class="report-pricing">Rs {{plan?.price}}/-</div>
+    </div>
+  </div>
+
+  <div class="title-sm disclaimer">
+    Actual charges could vary depending on length of report and number of subtopics
+  </div>
+</div>
+
+<div class="actions">
+  <div class="info">
+    <ul>
+      <li>To start you need to open an account with us - the amount will depend on your desired usage estimates</li>
+      <li>Your first report will be free - that is there will be no charge to your account for your first report.</li>
+    </ul>
+  </div>
+  <div class="action-area">
+    <button class="btn-payment" (click)="redirectToPayment()">Goto Payment Page</button>
   </div>
 </div>

@@ -28,7 +28,7 @@ export class AuthService {
   logout(){
     localStorage.clear();
     sessionStorage.clear();
-    this.router.navigateByUrl('/home/anonymous');
+    this.router.navigateByUrl('/home');
   }
 
   get isLoggedIn():boolean{

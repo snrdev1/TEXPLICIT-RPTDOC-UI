@@ -100,7 +100,7 @@ export class CommonService {
       }
       else{
         if(!this.authService.isLoggedIn){
-          this.router.navigateByUrl('/home/anonymous')
+          this.router.navigateByUrl('/home')
         }
       }
     });

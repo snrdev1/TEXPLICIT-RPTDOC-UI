@@ -1,4 +1,4 @@
-<div class="card" [ngStyle]="{'background-image':  'linear-gradient(186deg, rgba(1, 18, 65, 0) 0%, #12003C 100%), url(' + backgroundImage + ')'}">
+<div (click)="redirectToReports()" class="card" [ngStyle]="{'background-image':  'linear-gradient(186deg, rgba(1, 18, 65, 0) 0%, #12003C 100%), url(' + backgroundImage + ')'}">
   <div class="content">
     <div class=title>{{title}}</div>
     <div class="description">{{description}}</div>

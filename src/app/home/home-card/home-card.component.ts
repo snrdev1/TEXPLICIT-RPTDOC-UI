@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-card',
@@ -10,9 +11,13 @@ export class HomeCardComponent {
   @Input() title: string = "";
   @Input() description: string = "";
 
-  constructor(){}
+  constructor(private router: Router){}
 
   ngOnInit(){
     console.log("Image : ", this.backgroundImage);
+  }
+
+  redirectToReports(){
+    this.router.navigate(['/reports']);
   }
 }

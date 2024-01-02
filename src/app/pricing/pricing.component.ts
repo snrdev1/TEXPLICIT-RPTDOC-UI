@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pricing',
@@ -6,24 +7,63 @@ import { Component } from '@angular/core';
   styleUrls: ['./pricing.component.scss']
 })
 export class PricingComponent {
-  pricingOptions: any[] = [
+  basicReports: any[] = [
     {
-      "icon": "icon-pricing-onetime",
-      "plan": "One Time Use",
-      "description": "One set of all reports",
-      "value": "4,000"
+      "icon": "icon-report-outline",
+      "title": "Outline",
+      "description": "Bullets outlining topic",
     },
     {
-      "icon": "icon-pricing-limited",
-      "plan": "Limited Use",
-      "description": "Approx 11 sets",
-      "value": "20,000"
+      "icon": "icon-report-resource",
+      "title": "Resource",
+      "description": "Provides all the references with the description",
     },
     {
-      "icon": "icon-pricing-high",
-      "plan": "Professional Use",
-      "description": "Approx 24 sets",
-      "value": "40,000"
+      "icon": "icon-report-research",
+      "title": "Research",
+      "description": "Provides an overview of each of the sections contained",
     },
   ];
+
+  advancedReports: any[] = [
+    {
+      "icon": "icon-report-detailed",
+      "title": "Detailed",
+      "description": "Gives a comprehensive report on all the sections outlined in research",
+    },
+    {
+      "icon": "icon-report-combined",
+      "title": "Combined",
+      "description": "A combination of the above reports",
+    }
+  ];
+
+  reportPlans: any[] = [
+    {
+      "name": "Outline",
+      "price": "4000"
+    },
+    {
+      "name": "Resource",
+      "price": "4000"
+    },
+    {
+      "name": "Research",
+      "price": "4000"
+    },
+    {
+      "name": "Detailed",
+      "price": "4000"
+    },
+    {
+      "name": "Complete",
+      "price": "4000"
+    }
+  ];
+
+  constructor(private router: Router){}
+
+  redirectToPayment(){
+    this.router.navigate(['/payment']);
+  }
 }

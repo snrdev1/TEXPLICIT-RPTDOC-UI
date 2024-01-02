@@ -78,7 +78,7 @@ export class RegistrationComponent {
                   })
                 }
               })
-              // this.router.navigate(['/home/anonymous']);
+              // this.router.navigate(['/home']);
             }
           },
           error: (err) => {

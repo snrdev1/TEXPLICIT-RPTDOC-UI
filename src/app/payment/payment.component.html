@@ -1,0 +1,20 @@
+<div class="title">
+  <p class="bold-title">Payment Options</p>
+  <p class="title-sm">
+    Debits to your account would be made as per reports you run. You will
+    intimated by mail when your balance is running out.
+  </p>
+</div>
+
+<div class="pricing-options">
+  <div *ngFor="let pricingPlan of pricingOptions" class="pricing-plan-card">
+    <img [src]="'../../assets/svg/pricing-icon/' + pricingPlan.icon + '.svg'" class="pricing-icon" />
+    <div class="pricing-plan">{{ pricingPlan.plan }}</div>
+    <div class="pricing-description">{{ pricingPlan.description }}</div>
+    <div class="deposit">Desposit</div>
+    <div class="pricing-value">Rs {{ pricingPlan.value }}/-</div>
+    <button class="btn-plan-action">Choose Plan</button>
+  </div>
+</div>
+
+<span class="plan-set-description">*One set of reports contain 4 reports - Research, Outline, Resource and Detailed</span>

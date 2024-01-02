@@ -100,9 +100,6 @@
             </li>
             <li class="size-header">
               <div>Topic</div>
-              <!-- <button class="btn-sort" >
-                          <mat-icon>keyboard_arrow_down</mat-icon>
-                      </button> -->
             </li>
             <li class="date-header">
               <div>Date</div>
@@ -121,12 +118,11 @@
         <div class="no-search-results" *ngIf="allReports.length == 0">
           No reports available
         </div>
-        <div class="report-steps" *ngIf="allReports.length == 0">
+        <div class="report-steps" *ngIf="allReports.length == 0 && isLoading==false">
           <app-report-steps></app-report-steps>
         </div>
         <div class="file-body-content" *ngIf="allReports.length !== 0" (scroll)="onScroll($event)">
           <ng-container *ngFor="let report of allReports">
-            <!-- write displayStyle.value if toggle button is kept -->
             <app-report-cards [report]="report" [displayStyle]="displayStyle"
               (deleteReport)="getAllReports()"></app-report-cards>
           </ng-container>
