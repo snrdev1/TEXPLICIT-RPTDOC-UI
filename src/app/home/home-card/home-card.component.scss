@@ -18,7 +18,8 @@
       font-style: normal;
       font-weight: 600;
       line-height: 26px; /* 130% */
-      font-size: 20px;
+      //font-size: 20px;
+         font-size: clamp(1.125rem, 1.037rem + 0.2817vw, 1.375rem);
     }
 
     .description {

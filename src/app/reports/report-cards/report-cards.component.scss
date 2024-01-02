@@ -37,7 +37,8 @@
     width:128px;
     height: 128px;
     font-family:'Roboto', sans-serif;
-    font-size: 14px;
+    //font-size: 14px;
+         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
     border: 0.5px solid rgba(146, 149, 159, 0.55);
     border-radius: 5px;
     position: relative;
@@ -74,7 +75,8 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            font-size: 14px;
+            //font-size: 14px;
+         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
             font-weight: 500;
             cursor: pointer;
         }
@@ -94,7 +96,8 @@
                 mat-icon{
                     width: min-content;
                     height: min-content;
-                    font-size: 16px;
+                    //font-size: 16px;
+         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
                 }
             }
         }
@@ -192,7 +195,8 @@
                 mat-icon{
                     width: min-content;
                     height: min-content;
-                    font-size: 16px;
+                    //font-size: 16px;
+         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
                 }
             }
         }

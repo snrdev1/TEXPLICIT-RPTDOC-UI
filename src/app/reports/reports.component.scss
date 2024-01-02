@@ -1,7 +1,8 @@
 .title {
   color: #4e525f;
   font-family: Poppins;
-  font-size: 18px;
+  //font-size: 18px;
+         font-size: clamp(1rem, 0.912rem + 0.2817vw, 1.25rem);
   font-style: normal;
   font-weight: 400;
   line-height: 28px;
@@ -49,7 +50,8 @@
       display: end;
       color: #040f2f;
       font-family: "Roboto", sans-serif;
-      font-size: 14px;
+      //font-size: 14px;
+         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
       line-height: normal;
       letter-spacing: 0.16px;
     }
@@ -69,7 +71,8 @@
 .report-header {
   color: var(--NW_H1, #040f2f);
   font-family: "Roboto", sans-serif;
-  font-size: 20px;
+  //font-size: 20px;
+         font-size: clamp(1.125rem, 1.037rem + 0.2817vw, 1.375rem);
   font-style: normal;
   font-weight: 500;
   line-height: 26px; /* 130% */
@@ -78,7 +81,8 @@
 .report-sub-header {
   color: #777a80;
   font-family: "Roboto", sans-serif;
-  font-size: 14px;
+  //font-size: 14px;
+         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -121,7 +125,8 @@
           mat-icon {
             width: min-content;
             height: min-content;
-            font-size: 16px;
+            //font-size: 16px;
+         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
           }
         }
 
@@ -242,7 +247,8 @@
     width: 30px;
     height: 28px;
     font-family: "Nunito Semibold", sans-serif;
-    font-size: 14px;
+    //font-size: 14px;
+         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
     font-style: bold;
     padding: 0;
     display: flex;
@@ -284,7 +290,8 @@
   padding: 5px !important;
   // width: 150px;
   min-height: 35px !important; // prev- 30px
-  font-size: 14px;
+  //font-size: 14px;
+         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
 }
 
 :host ::ng-deep .my-datasource-dropdown .mat-mdc-form-field-subscript-wrapper,
@@ -333,7 +340,8 @@
 .my-datasource-option {
   font-style: normal;
   font-weight: 400;
-  font-size: 14px;
+  //font-size: 14px;
+         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
   line-height: 16px;
   letter-spacing: 0.01em;
   color: #777a80;
@@ -342,13 +350,15 @@
 .report-heading {
   color: var(--NW_H1, #040f2f);
   font-family: "Roboto", sans-serif;
-  font-size: 16px;
+  //font-size: 16px;
+         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
   font-style: normal;
   font-weight: 500;
   line-height: 26px; /* 108.333% */
 }
 .websearch-heading {
-  font-size: 14px;
+  //font-size: 14px;
+         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
   margin-top: 30px;
   padding-right: 20px;
   @media screen and (max-width: 1000px) {
@@ -463,7 +473,8 @@
     min-height: 0 !important;
     color: #040f2f;
     font-family: "Roboto", sans-serif;
-    font-size: 14px;
+    //font-size: 14px;
+         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
     font-weight: 500;
     //letter-spacing: 0.14px;
   }
@@ -599,7 +610,8 @@
     padding: 10px 25px !important;
     text-align: center;
     font-family: "Roboto", sans-serif;
-    font-size: 16px;
+    //font-size: 16px;
+         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
     font-style: normal;
     font-weight: 500;
     text-transform: capitalize;

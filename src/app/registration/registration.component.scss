@@ -14,7 +14,8 @@ p {
   .form-title {
     color: #1c1d21;
     font-family: Poppins;
-    font-size: 16px;
+    //font-size: 16px;
+         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
     font-style: normal;
     font-weight: 500;
     line-height: 32px; /* 160% */
@@ -63,7 +64,8 @@ p {
     mat-label {
       font-family: Roboto, sans-serif;
       font-weight: 400;
-      font-size: 16px;
+      //font-size: 16px;
+         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
     }
 
     mat-icon {
@@ -78,7 +80,8 @@ p {
       color: #040f2f;
       font-family: Roboto, sans-serif;
       font-weight: 400;
-      font-size: 14px;
+      //font-size: 14px;
+         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
       line-height: 22px;
     }
 
@@ -153,7 +156,8 @@ p {
       color: #4e525f;
       text-align: center;
       font-family: Roboto, sans-serif;
-      font-size: 14px;
+      //font-size: 14px;
+         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
       font-style: normal;
       font-weight: 500;
       text-transform: capitalize;
@@ -187,7 +191,8 @@ p {
     color: #374b88;
     text-align: center;
     font-family: Roboto, sans-serif;
-    font-size: 16px;
+    //font-size: 16px;
+         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
     font-style: normal;
     line-height: normal;
     font-weight: 500;
@@ -202,7 +207,8 @@ p {
     color: #141516;
     text-align: center;
     font-family: Roboto, sans-serif;
-    font-size: 16px;
+    //font-size: 16px;
+         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
     font-style: normal;
     font-weight: 500;
     line-height: normal;

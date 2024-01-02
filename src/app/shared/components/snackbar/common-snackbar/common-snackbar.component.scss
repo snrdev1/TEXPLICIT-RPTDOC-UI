@@ -13,7 +13,8 @@
 
         .header-title{
             font-weight: 500;
-            font-size: 16px;
+            //font-size: 16px;
+         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
             line-height: 24px;
         }
 
@@ -30,7 +31,8 @@
             .close-icon{
                 width:16px;
                 height: 16px;
-                font-size: 16px;
+                //font-size: 16px;
+         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
             }
         }
     }
@@ -39,6 +41,7 @@
         border-top-width: 0.5px;
         border-top-style: solid;
         padding-top: 5px;
-        font-size: 14px;
+        //font-size: 14px;
+         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
     }
 }
