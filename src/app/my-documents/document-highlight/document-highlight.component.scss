@@ -16,7 +16,7 @@
             font-style: normal;
             font-weight: 500;
             margin: 0.5em 0;
-        }       
+        }
     }
 
     .highlight-container{
@@ -24,7 +24,7 @@
         height: calc(100vh - 170px);
         overflow: hidden;
         overflow-y: auto;
-        
+
 
         .highlight{
             margin: 36px 0;
@@ -36,12 +36,12 @@
             .highlight-content{
                 color: #4E525F;
                 font-size: 16px;
-                font-family: Roboto;
+                font-family: Roboto, sans-serif;
                 font-style: normal;
                 font-weight: 400;
                 line-height: 24px;
                 padding: 0;
-    
+
                 .highlight-title{
                     color:#040F2F;
                     font-size: 20px;
@@ -51,7 +51,7 @@
                     line-height: 26px;
                     padding: 0 0 7px 0;
                 }
-    
+
                 .highlight-list{
                     padding: 0;
                     margin: 0;
@@ -66,7 +66,7 @@
                     }
                 }
             }
-            
+
         }
 
         .highlight:first-child{

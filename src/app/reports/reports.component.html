@@ -1,177 +1,137 @@
 <div class="main-body">
- <div class="report-head">Say Goodbye to Hours of <span class="report-head-research">Research</span></div>
+  <div class="report-head">
+    Say Goodbye to Hours of <span class="report-head-research">Research</span>
+  </div>
   <div class="report-body">
-  <div>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <!-- First Row -->
-      <div class="first-row" >
-      <div fxLayout="row" fxLayout.xs="column"  fxLayout.lt-md="column">
-        <div class="first-row-first-section" >
-          <div fxLayout="column" class="topic-width" >
-              <div class="report-heading mr-20px" >
-                Topic
+    <div>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <!-- First Row -->
+        <div class="first-row">
+          <div fxLayout="row" fxLayout.xs="column" fxLayout.lt-md="column">
+            <div class="first-row-first-section">
+              <div fxLayout="column" class="topic-width">
+                <div class="report-heading mr-20px">Topic</div>
+                <div class="mr-20px">
+                  <mat-form-field appearance="outline" class="search-wrapper mr-20px">
+                    <input matInput #searchinput placeholder="Enter report topic here..." formControlName="task"
+                      required />
+                  </mat-form-field>
+                </div>
               </div>
-              <div  class="mr-20px">
-                <mat-form-field appearance="outline" class="search-wrapper mr-20px">
-                  <input matInput #searchinput  placeholder="Enter report topic here..." formControlName="task"  required>
-                </mat-form-field>
+            </div>
+            <div class="first-row-second-section">
+              <div fxLayout="column">
+                <div class="report-heading">Format</div>
+                <div class="my-datasource-toolbar-config mr-10px">
+                  <mat-form-field appearance="outline" class="my-datasource-dropdown mr-10px">
+                    <mat-select #ddlDatasource placeholder="Please Select" formControlName="format">
+                      <mat-option value="pdf">PDF</mat-option>
+                      <mat-option value="word">Word</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
               </div>
-          </div>
-        </div>
-        <div  class="first-row-second-section">
-          <div fxLayout="column">
-            <div class="report-heading " >Format</div>
-            <div class="my-datasource-toolbar-config mr-10px" >
-              <mat-form-field appearance="outline" class="my-datasource-dropdown mr-10px">
-                <mat-select #ddlDatasource placeholder="Please Select" formControlName="format" >
-                  <mat-option value="pdf">PDF</mat-option>
-                  <mat-option value="word">Word</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-          </div>
-          
-        
-          <div fxLayout="column" >
-            <div class="report-heading " >Source</div>
-            <div class="my-datasource-toolbar-config mr-10px" >
-              <mat-form-field appearance="outline" class="my-datasource-dropdown mr-10px">
-                <mat-select #ddlDatasource placeholder="Please Select" formControlName="source" >
-                  <mat-option value="external">External</mat-option>
-                  <mat-option value="my_documents">My Documents</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-          </div>
-        </div>
 
-        <div   class="first-row-third-section">
-          <div fxLayout="row" >
-            <!-- <div>
+              <div fxLayout="column">
+                <div class="report-heading">Source</div>
+                <div class="my-datasource-toolbar-config mr-10px">
+                  <mat-form-field appearance="outline" class="my-datasource-dropdown mr-10px">
+                    <mat-select #ddlDatasource placeholder="Please Select" formControlName="source">
+                      <mat-option value="external">External</mat-option>
+                      <mat-option value="my_documents">My Documents</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+
+            <div class="first-row-third-section">
+              <div fxLayout="row">
+                <!-- <div>
             <div class=" mr-websearch" >
               <mat-slide-toggle class="mr-1px"  formControlName="websearch" [disabled]="form.get('source')?.value === 'my_documents'"> </mat-slide-toggle>
-            </div>  
-          </div>  
+            </div>
+          </div>
           <div  class="websearch-heading ">WebSearch</div>   -->
 
-          <div fxLayout="column" class="report-type-order">
-            <div class="report-heading " >Report type</div>
-              <div class="my-datasource-toolbar-config mr-10px-1" >
-                <mat-form-field appearance="outline" class="my-reports-dropdown mr-10px-1">
-                  <mat-select #ddlDatasource placeholder="Please Select" formControlName="report_type">
-                    <mat-option value="research_report">Research Report</mat-option>
-                    <mat-option value="outline_report">Outline Report</mat-option>
-                    <mat-option value="resource_report">Resource Report</mat-option>
-                    <mat-option value="detailed_report">Detailed Report</mat-option>
-                    <mat-option value="complete_report">Complete Report</mat-option>
-
-                  </mat-select>
-                </mat-form-field>
-                
+                <div fxLayout="column" class="report-type-order">
+                  <div class="report-heading">Report type</div>
+                  <div class="my-datasource-toolbar-config mr-10px-1">
+                    <mat-form-field appearance="outline" class="my-reports-dropdown mr-10px-1">
+                      <mat-select #ddlDatasource placeholder="Please Select" formControlName="report_type">
+                        <mat-option value="research_report">Research Report</mat-option>
+                        <mat-option value="outline_report">Outline Report</mat-option>
+                        <mat-option value="resource_report">Resource Report</mat-option>
+                        <mat-option value="detailed_report">Detailed Report</mat-option>
+                        <mat-option value="complete_report">Complete Report</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <!-- Second Row -->
+        <div fxLayout="row" class="second-row" style="gap: 0.5em; padding-right: 10px">
+          <button mat-raised-button type="button" *ngIf="
+              form.get('report_type')?.value === 'detailed_report' ||
+              form.get('report_type')?.value === 'complete_report'
+            " class="btn-subtopics" (click)="getSubtopics()">
+            Add Subtopics
+          </button>
+          <button mat-raised-button class="btn-report" type="submit">
+            Generate Now
+          </button>
         </div>
-      </div>
-      <!-- Second Row -->
-      <div fxLayout="row"  class="second-row" style="gap:.5em;padding-right: 10px;">
+      </form>
+    </div>
 
-          <button mat-raised-button type="button" *ngIf="form.get('report_type')?.value === 'detailed_report' || form.get('report_type')?.value === 'complete_report'" class="btn-subtopics " (click)="getSubtopics()" >Add Subtopics</button>
-          <button mat-raised-button class="btn-report" type="submit" >Generate Now</button>
-          
-        </div>    
-    </form>
-  </div>
- 
-
-
-    <!-- <div class="mr-top">
-        <div class="gen-report">
-          <div fxLayout="column">
-            <div class="report-header" >Generated Reports</div>
-            <div class="report-sub-header"  >Your reports are portrayed here</div>
-          </div>
-          <div class="rep-gen-toolbar-config mr-10px-1" fxLayout="column">
-  
-            <app-outer-toolbar-buttons 
-                (onFilter)="onFilterClick()"
-                [groupMemberButtonVisible]="false"
-                [noteButtonVisible]="false"
-                [moreButtonVisible]="false"
-                [backToParentButtonVisible]="false" 
-                [createFolderButtonVisible]="false"
-                [refreshButtonVisible]="false"
-                [uploadFileButtonVisible]="false"
-                [configurationButtonVisible]="false"
-                [historyButtonVisible]="false"
-                [addUserButtonVisible]="false"
-                [workspaceButtonVisible]="false"
-                [addKnowledgeItemButtonVisible]="false"
-                [newsButtonVisible]="false"
-                (onReportProgress)="showLoadingReports()"
-                ></app-outer-toolbar-buttons>
-          </div>
-        </div>
-        
-    </div> -->
-  <div style="position: relative; " class="mr-top-10" >
-        <div class="files-container  {{displayStyle || 'list'}} ">
-          <!-- write displayStyle.value if toggle button is kept -->
-            <div class="file-header-content ">
-                <ul class="header-row ">
-                    <li class="name-header" >
-                        <div>Report</div>
-                        <button class="btn-sort" (click)="sortReports('task')">
-                            <mat-icon>unfold_more</mat-icon>
-                        </button>
-                    </li>
-                    <li class="size-header">
-                      <div>Topic</div>
-                       <!-- <button class="btn-sort" >
+    <div style="position: relative">
+      <div class="files-container  {{ displayStyle || 'list' }} ">
+        <!-- write displayStyle.value if toggle button is kept -->
+        <div class="file-header-content">
+          <ul class="header-row">
+            <li class="name-header">
+              <div>Report</div>
+              <button class="btn-sort" (click)="sortReports('task')">
+                <mat-icon>unfold_more</mat-icon>
+              </button>
+            </li>
+            <li class="size-header">
+              <div>Topic</div>
+              <!-- <button class="btn-sort" >
                           <mat-icon>keyboard_arrow_down</mat-icon>
                       </button> -->
-                    </li>
-                    <li class="date-header" >
-                        <div>Date</div>
-                        <button class="btn-sort" (click)="sortReports('createdOn')">
-                            <mat-icon>keyboard_arrow_down</mat-icon>
-                        </button>
-                    </li>
-                    <li class="type-header" >
-                      <div>Type</div>
-                      <button class="btn-sort"  (click)="sortReports('report_type')">
-                        <mat-icon>keyboard_arrow_down</mat-icon>
-                      </button>
-                    </li>
-                    
-                    </ul>
-            </div>
-        <div class="no-search-results" *ngIf="allReports.length == 0">No reports available</div>
+            </li>
+            <li class="date-header">
+              <div>Date</div>
+              <button class="btn-sort" (click)="sortReports('createdOn')">
+                <mat-icon>keyboard_arrow_down</mat-icon>
+              </button>
+            </li>
+            <li class="type-header">
+              <div>Type</div>
+              <button class="btn-sort" (click)="sortReports('report_type')">
+                <mat-icon>keyboard_arrow_down</mat-icon>
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div class="no-search-results" *ngIf="allReports.length == 0">
+          No reports available
+        </div>
+        <div class="report-steps" *ngIf="allReports.length == 0">
+          <app-report-steps></app-report-steps>
+        </div>
         <div class="file-body-content" *ngIf="allReports.length !== 0" (scroll)="onScroll($event)">
-                    <ng-container *ngFor="let report of allReports">
-                       <!-- write displayStyle.value if toggle button is kept -->
-                      <app-report-cards  
-                        [report]="report"
-                        [displayStyle]="displayStyle"
-                        (deleteReport)="getAllReports()"
-                        ></app-report-cards>
-                        
-                    </ng-container>  
-                   </div>
+          <ng-container *ngFor="let report of allReports">
+            <!-- write displayStyle.value if toggle button is kept -->
+            <app-report-cards [report]="report" [displayStyle]="displayStyle"
+              (deleteReport)="getAllReports()"></app-report-cards>
+          </ng-container>
+        </div>
+      </div>
+    </div>
   </div>
-  <!-- <div class="toggle-button-holder mr-bottom mr-10px-1">
-    <mat-button-toggle-group class="btn-toggle-group" #displayStyle="matButtonToggleGroup" value="list">
-        <mat-button-toggle value="grid" class="btn-toggle">
-            <img class="img-unchecked" src="../../assets/svg/button-icon/ki-grid.svg"/>
-            <img class="img-checked" src="../../assets/svg/button-icon/ki-grid-fill.svg">
-        </mat-button-toggle>
-        <mat-button-toggle value="list" class="btn-toggle">
-            <img class="img-unchecked" src="../../assets/svg/button-icon/ki-list.svg"/>
-            <img class="img-checked" src="../../assets/svg/button-icon/ki-list-fill.svg">
-        </mat-button-toggle>
-    </mat-button-toggle-group>
-  </div> -->
-</div>
-</div>
 </div>

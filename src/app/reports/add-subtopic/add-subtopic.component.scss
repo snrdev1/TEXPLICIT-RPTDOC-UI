@@ -5,7 +5,7 @@
 }
 .icon-delete{
    position: absolute;
-   bottom:16px; 
+   bottom:16px;
    right:18px;
 }
 :host ::ng-deep .my-datasource-dropdown .mat-mdc-form-field-infix {
@@ -23,7 +23,7 @@
     letter-spacing: 0.16px;
     @media screen and (max-width:414px) {
         width:120px;
-        
+
     }
 }
 :host ::ng-deep .my-datasource-dropdown .mat-mdc-form-field-subscript-wrapper{
@@ -70,14 +70,14 @@
     margin-left: 150px;
     @media screen and (max-width: 414px) {
     margin-left: 80px;
-    } 
+    }
 }
 .report-heading-websearch{
     margin-left: 178px;
     margin-right:auto;
     @media screen and (max-width: 414px) {
         margin-left: 110px;
-        } 
+        }
 }
 
 .mr-10px{
@@ -116,11 +116,11 @@
         width:86%;
         justify-content: space-between;
 
-    } 
+    }
     @media screen and (max-width: 414px) {
         width:140px;
 
-    } 
+    }
     // .mat-mdc-form-field-icon-prefix>.mat-icon{
     //     padding: 5px 6px 5px 10px;
     // }
@@ -139,7 +139,7 @@
         padding-bottom: 9px;
         min-height: 0!important;
         color: #040F2F;
-        // font-family: Roboto;
+        // font-family: Roboto, sans-serif;
         font-family:'Roboto', sans-serif;
         font-size: 14px;
         font-weight: 500;
@@ -179,7 +179,7 @@
         border-radius: 32.5px;
         padding: 10px 25px!important;
         text-align: center;
-        // font-family: Roboto;
+        // font-family: Roboto, sans-serif;
         font-family:'Roboto', sans-serif;
         font-size: 16px;
         font-style: normal;
@@ -207,8 +207,8 @@
     color:#FF3A3A;
 }
 .mat-mdc-icon-button {
-    --mat-mdc-button-persistent-ripple-color: none; 
-    --mat-mdc-button-ripple-color: none; 
+    --mat-mdc-button-persistent-ripple-color: none;
+    --mat-mdc-button-ripple-color: none;
 }
 .btn-report{
     background: #FFBE17!important;

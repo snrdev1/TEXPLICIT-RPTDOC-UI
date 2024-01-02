@@ -5,7 +5,7 @@
     margin-bottom: 10px;
 
     @media screen and (max-width: 1000px) {
-        flex-direction: column-reverse;   
+        flex-direction: column-reverse;
         height: 80px;
     }
 }
@@ -18,7 +18,7 @@
     }
     app-search-input{
         width:100%;
-    }   
+    }
 }
 
 .table-container {
@@ -111,13 +111,13 @@
                     align-items: center;
                     border-radius: 10px;
                     min-height: 0;
-                    
+
                     mat-label{
-                        font-family: Roboto;
+                        font-family: Roboto, sans-serif;
                         font-weight: 400;
                         font-size: 16px;
                     }
-            
+
                     mat-icon{
                         &.link-icon{
                             color: #4e525f;
@@ -125,38 +125,38 @@
                             padding: 7px
                         }
                     }
-            
+
                     .mdc-text-field{
                         color: #040F2F;
-                        font-family: Roboto;
+                        font-family: Roboto, sans-serif;
                         font-weight: 400;
                         font-size: 14px;
                         line-height: 22px;
-            
+
                     }
-            
+
                     .mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
                         color: #040F2F;
                     }
-                  
+
                     .mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-floating-label {
                         color: #f44336;
                     }
-            
+
                     .mat-mdc-form-field-icon-prefix>.mat-icon{
                         padding: 5px 6px 5px 10px;
                     }
-                  
+
                     .mat-mdc-icon-button.mat-mdc-button-base {
                         width: 36px;
                         height: 34px;
                         padding: 5px 6px;
                     }
-                  
+
                     .mat-mdc-icon-button .mat-mdc-button-touch-target {
                         height: 34px;
                     }
-            
+
                     .mat-mdc-form-field-infix {
                         padding-top: 5px;
                         padding-bottom: 5px;
@@ -164,14 +164,14 @@
                         letter-spacing: 0;
                         width: min-content;
                     }
-                  
+
                     .mat-mdc-form-field-subscript-wrapper{
                         display: none;
                     }
-                  
+
                     .mdc-text-field--focused,
                     .mdc-notched-outline{
-                  
+
                         .mdc-notched-outline__notch{
                             border: none;
                             border-bottom: 0.5px solid #4E525F;
@@ -184,7 +184,7 @@
                             border-bottom-left-radius: 10px;
                             background-color: transparent;
                         }
-                  
+
                         .mdc-notched-outline__trailing{
                             border-right: 0.5px solid #4E525F;
                             border-top: 0.5px solid #4E525F;
@@ -209,5 +209,5 @@
             }
         }
     }
-    
+
 }

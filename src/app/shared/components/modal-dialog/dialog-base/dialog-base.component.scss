@@ -31,7 +31,7 @@
         .mat-mdc-button-touch-target {
             right: 1%;
             width: 40px;
-        }    
+        }
     }
 }
 
@@ -40,7 +40,7 @@
     padding: 16px;
     margin-left: -16px;
     margin-right: -16px;
-    
+
     @media screen and (max-width: 280px){
         padding: 10px;
         margin-left: -10px;
@@ -56,9 +56,9 @@
         align-items: center;
         border-radius: 10px;
         min-height: 0;
-        
+
         mat-label{
-            font-family: Roboto;
+            font-family: Roboto, sans-serif;
             font-weight: 400;
             font-size: 16px;
         }
@@ -73,7 +73,7 @@
 
         .mdc-text-field{
             color: #040F2F;
-            font-family: Roboto;
+            font-family: Roboto, sans-serif;
             font-weight: 400;
             font-size: 14px;
             line-height: 22px;
@@ -83,7 +83,7 @@
         .mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
             color: #040F2F;
         }
-      
+
         .mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-floating-label {
             color: #f44336;
         }
@@ -91,13 +91,13 @@
         .mat-mdc-form-field-icon-prefix>.mat-icon{
             padding: 5px 6px 5px 10px;
         }
-      
+
         .mat-mdc-icon-button.mat-mdc-button-base {
             width: 36px;
             height: 34px;
             padding: 5px 6px;
         }
-      
+
         .mat-mdc-icon-button .mat-mdc-button-touch-target {
             height: 34px;
         }
@@ -107,16 +107,16 @@
             padding-bottom: 9px;
             min-height: 0!important;
             letter-spacing: 0;
-            
+
         }
-      
+
         .mat-mdc-form-field-subscript-wrapper{
             display: none;
         }
-      
+
         .mdc-text-field--focused,
         .mdc-notched-outline{
-      
+
             .mdc-notched-outline__notch{
                 border: none;
                 border-bottom: 0.5px solid #4E525F;
@@ -129,7 +129,7 @@
                 border-bottom-left-radius: 10px;
                 background-color: transparent;
             }
-      
+
             .mdc-notched-outline__trailing{
                 border-right: 0.5px solid #4E525F;
                 border-top: 0.5px solid #4E525F;
@@ -151,7 +151,7 @@
             padding: 10px 15px;
             color: #4e525f;
             text-align: center;
-            font-family: Roboto;
+            font-family: Roboto, sans-serif;
             font-size: 14px;
             font-style: normal;
             font-weight: 500;
@@ -170,7 +170,7 @@
     &.pt-0{
         padding-top: 0;
     }
-    
+
 }
 
 :host ::ng-deep .mat-dialog-footer{
@@ -182,7 +182,7 @@
         padding: 10px 40px;
         color: #FFF;
         text-align: center;
-        font-family: Roboto;
+        font-family: Roboto, sans-serif;
         font-size: 16px;
         font-style: normal;
         font-weight: 500;

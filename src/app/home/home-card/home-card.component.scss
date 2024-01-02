@@ -1,8 +1,8 @@
 .card {
   background-repeat: no-repeat;
   background-size: cover;
-  width: 340.351px;
-  height: 303.048px;
+  width: 340px;
+  height: 204px;
   border-radius: 26px;
   display: flex;
   justify-content: flex-start;
@@ -22,7 +22,7 @@
 
     .description {
       color: #ebeef8;
-      font-family: Roboto;
+      font-family: Roboto, sans-serif;
       font-size: 12px;
       font-style: normal;
       font-weight: 400;
@@ -34,7 +34,7 @@
       border-radius: 100px;
       border: 1px solid #fff;
       color: #fff;
-      font-family: Roboto;
+      font-family: Roboto, sans-serif;
       font-size: 12px;
       font-style: normal;
       font-weight: 500;

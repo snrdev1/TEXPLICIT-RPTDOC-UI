@@ -9,6 +9,7 @@ import { AuthService } from '../core/auth.service';
 import { Observable } from 'rxjs';
 import { WebSocketService } from '../shared/services/socketio.service';
 import { Route, Router } from '@angular/router';
+import { LoginDialogComponent } from '../shared/components/modal-dialog/login-dialog/login-dialog.component';
 
 @Component({
   selector: 'app-layout',
@@ -84,6 +85,10 @@ export class LayoutComponent {
     this.router.navigate(['/contact-us']);
   }
 
+  onPricingClick() {
+    this.router.navigate(['/pricing']);
+  }
+
   onDisclaimerClick() {
     const dialogRef = this.dialog.open(DisclaimerDialogComponent, { panelClass: 'mat-dialog-panel' });
 
@@ -121,5 +126,17 @@ export class LayoutComponent {
 
   isUserLoggedIn() {
     return this.authService.isLoggedIn;
+  }
+
+  onRegistrationClick() {
+    this.router.navigateByUrl('/registration');
+  }
+
+  onLoginClick() {
+    const dialogRef = this.dialog.open(LoginDialogComponent, { panelClass: 'mat-dialog-panel' });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }

@@ -12,7 +12,7 @@
         border-radius: 32.5px;
         padding: 10px 25px!important;
         text-align: center!important;
-        font-family: Roboto;
+        font-family: Roboto, sans-serif;
         font-size: 16px;
         font-style: normal;
         font-weight: 500;
@@ -21,7 +21,7 @@
         color: #FFF;
     }
     .disabled-button{
-        opacity: 0.5; 
+        opacity: 0.5;
         cursor: not-allowed;
     }
 }

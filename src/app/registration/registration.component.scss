@@ -1,250 +1,221 @@
-:host ::ng-deep .mat-horizontal-stepper-header-container{
-    display: none;
+p {
+  margin: 0;
 }
 
-:host ::ng-deep .mat-horizontal-content-container{
-    padding: 0 16px;
-    background-color: white;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+.report-steps {
+  padding-bottom: 22px;
+  margin-bottom: 15px;
+  border-bottom: 0.5px solid rgba(143, 148, 151, 0.63);
 }
 
-:host ::ng-deep {
-    .mat-reistration-form{
-        height: 100%;
-        width: 50%;
-        padding-bottom: 0;
-        @media screen and (max-width: 1000px) {
-            width: 100%;
-        }
-        margin: 0 auto;
-        background-color: white;
-        border-radius: 20px;
-        .mat-reistration-form-title{
-            font-family: 'Roboto', serif;
-            font-size: 18px;
-            font-weight: 500;
-            color: #040f2f;
-            letter-spacing: 0;
-            margin: 0;
-            padding: 16px;
-            text-align: center;
-        }
+.registration-form {
+  margin-right: 2.5rem;
 
-        .mat-reistration-stepper{
-            background-color: transparent;
-            .mat-step-header-title{
-                color: #4E525F;
-                text-align: center;
-                font-family: Roboto;
-                font-size: 16px;
-                font-style: normal;
-                font-weight: 400;
-                line-height: 22px;
-                margin: 0;
-            }
+  .form-title {
+    color: #1c1d21;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 32px; /* 160% */
+    margin: 0;
+  }
 
-            .mat-step-content{
-                height: calc(100vh - 240px);
-                overflow: hidden;
-                overflow-y: auto;
-                @media screen and (max-width: 540px) {
-                    height:calc(100vh - 232px);
-                }
+  .mat-form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2.5rem;
+  }
+}
 
-                .mat-step-row{
-                    margin-bottom: 28px;
-                    mat-label{
-                        color: #040F2F;
-                        font-family: Roboto;
-                        font-size: 16px;
-                        font-style: normal;
-                        font-weight: 500;
-                        line-height: 26px;
 
-                        &.required::after{
-                            content: '*';
-                            color: #F6163E;
-                            font-family: Roboto;
-                            font-size: 16px;
-                            font-style: normal;
-                            font-weight: 500;
-                            line-height: 26px;
-                            padding-left: 3px;
-                        }
-                    }
+:host ::ng-deep .mat-mdc-form-field {
+  width: 335px;
+}
 
-                    .mat-form-input{
-                        //flex: 1 1 auto;
-                        width:99%;
-                        background: #fff;
-                        display: flex;
-                        align-items: center;
-                        border-radius: 10px;
-                        min-height: 0;
-                        
-                        mat-label{
-                            font-family: Roboto;
-                            font-weight: 400;
-                            font-size: 16px;
-                        }
+:host ::ng-deep .mat-dialog-body {
+  //padding: 16px .5%;
+  padding: 16px;
+  margin-left: -16px;
+  margin-right: -16px;
 
-                        mat-icon{
-                            &.link-icon{
-                                color: #4e525f;
-                                margin-right: 3px;
-                                padding: 7px
-                            }
-                        }
+  @media screen and (max-width: 280px) {
+    padding: 10px;
+    margin-left: -10px;
+    margin-right: -10px;
+  }
 
-                        .mdc-text-field{
-                            color: #040F2F;
-                            font-family: Roboto;
-                            font-weight: 400;
-                            font-size: 14px;
-                            line-height: 22px;
+  .form-fields {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
 
-                        }
+  .mat-form-input,
+  .mat-form-daterange {
+    background: #fff;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    min-height: 0;
 
-                        .mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
-                            color: #040F2F;
-                        }
-                    
-                        .mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-floating-label {
-                            color: #f44336;
-                        }
-
-                        .mat-mdc-form-field-icon-prefix>.mat-icon{
-                            padding: 5px 6px 5px 10px;
-                        }
-                    
-                        .mat-mdc-icon-button.mat-mdc-button-base {
-                            width: 36px;
-                            height: 34px;
-                            padding: 5px 6px;
-                        }
-                    
-                        .mat-mdc-icon-button .mat-mdc-button-touch-target {
-                            height: 34px;
-                        }
-
-                        .mat-mdc-form-field-infix {
-                            padding-top: 9px;
-                            padding-bottom: 9px;
-                            min-height: 0!important;
-                            
-                        }
-                    
-                        .mat-mdc-form-field-subscript-wrapper{
-                            display: none;
-                        }
-                    
-                        .mdc-text-field--focused,
-                        .mdc-notched-outline{
-                    
-                            .mdc-notched-outline__notch{
-                                border: none;
-                                border-bottom: 0.5px solid #4E525F;
-                            }
-                            .mdc-notched-outline__leading{
-                                border-left: 1px solid #C6C8D2;
-                                border-top: 1px solid #C6C8D2;
-                                border-bottom: 1px solid #C6C8D2;
-                                border-top-left-radius: 10px;
-                                border-bottom-left-radius: 10px;
-                                background-color: transparent;
-                            }
-                    
-                            .mdc-notched-outline__trailing{
-                                border-right: 1px solid #C6C8D2;
-                                border-top: 1px solid #C6C8D2;
-                                border-bottom: 1px solid #C6C8D2;
-                                border-top-right-radius: 10px;
-                                border-bottom-right-radius: 10px;
-                                background-color: transparent;
-                            }
-                        }
-
-                        .mat-input-button{
-                            cursor: pointer;
-                            border: none;
-                            border-left: 0.5px solid #4E525F;
-                            border-radius: 10px;
-                            border-top-left-radius: 0;
-                            border-bottom-left-radius: 0;
-                            background: #FFF;
-                            padding: 10px 15px;
-                            color: #4e525f;
-                            text-align: center;
-                            font-family: Roboto;
-                            font-size: 14px;
-                            font-style: normal;
-                            font-weight: 500;
-                            text-transform: capitalize;
-                        }
-
-                        mat-error{
-                            font-family:'Roboto';
-                            font-size: 12px;
-                        }
-                    }
-
-                    .mat-chip-list{
-                        width:calc(98% - 20px);
-                        border-radius: 10px;
-                        border: 1px solid #C6C8D2;
-                        background: #FFF;
-                        padding: 10px;
-                        margin-bottom: 20px;
-
-                        .mat-chip-element{
-                            color: #4E525F;
-                            font-family: Roboto;
-                            font-size: 12px;
-                            font-style: normal;
-                            font-weight: 400;
-                            line-height: normal;
-                            border-radius: 100px;
-                            border: 1px solid #CACCD7;
-                            background-color: white;
-                        }
-                    }
-                }
-            }
-
-            .mat-step-footer{
-                padding:16px 0;
-                display: flex;
-                justify-content: center;
-                gap:5px;
-                button{
-                    border: none;
-                    border-radius: 32.5px;
-                    background: #227AFF;
-                    padding: 10px 40px;
-                    color: #FFF;
-                    text-align: center;
-                    font-family: Roboto;
-                    font-size: 16px;
-                    font-style: normal;
-                    font-weight: 500;
-                    text-transform: capitalize;
-
-                    &.primary{
-                        padding: 10px 30px;
-                        border: none;
-                        background: #227AFF;
-                        color: #FFF;
-                    }
-                    &.secondary{
-                        padding: 10px 30px;
-                        border: 1px solid rgba(146,149,159,.5490196078);
-                        background: #fff;
-                        color: #4e525f;
-                    }
-                }
-            }
-        }
-        
+    mat-label {
+      font-family: Roboto, sans-serif;
+      font-weight: 400;
+      font-size: 16px;
     }
+
+    mat-icon {
+      &.link-icon {
+        color: #4e525f;
+        margin-right: 3px;
+        padding: 7px;
+      }
+    }
+
+    .mdc-text-field {
+      color: #040f2f;
+      font-family: Roboto, sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 22px;
+    }
+
+    .mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
+      color: #040f2f;
+    }
+
+    .mdc-text-field--invalid:not(.mdc-text-field--disabled)
+      .mdc-floating-label {
+      color: #f44336;
+    }
+
+    .mat-mdc-form-field-icon-prefix > .mat-icon {
+      padding: 5px 6px 5px 10px;
+    }
+
+    .mat-mdc-icon-button.mat-mdc-button-base {
+      width: 36px;
+      height: 34px;
+      padding: 5px 6px;
+    }
+
+    .mat-mdc-icon-button .mat-mdc-button-touch-target {
+      height: 34px;
+    }
+
+    .mat-mdc-form-field-infix {
+      padding-top: 9px;
+      padding-bottom: 9px;
+      min-height: 0 !important;
+      letter-spacing: 0;
+    }
+
+    .mat-mdc-form-field-subscript-wrapper {
+      display: none;
+    }
+
+    .mdc-text-field--focused,
+    .mdc-notched-outline {
+      .mdc-notched-outline__notch {
+        border: none;
+        border-bottom: 0.5px solid #4e525f;
+      }
+      .mdc-notched-outline__leading {
+        border-left: 0.5px solid #4e525f;
+        border-top: 0.5px solid #4e525f;
+        border-bottom: 0.5px solid #4e525f;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        background-color: transparent;
+      }
+
+      .mdc-notched-outline__trailing {
+        border-right: 0.5px solid #4e525f;
+        border-top: 0.5px solid #4e525f;
+        border-bottom: 0.5px solid #4e525f;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        background-color: transparent;
+      }
+    }
+
+    .mat-input-button {
+      cursor: pointer;
+      border: none;
+      border-left: 0.5px solid #4e525f;
+      border-radius: 10px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      background: #fff;
+      padding: 10px 15px;
+      color: #4e525f;
+      text-align: center;
+      font-family: Roboto, sans-serif;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      text-transform: capitalize;
+    }
+  }
+
+  // .mat-form-daterange{
+  //     width:97%;
+  // }
+
+  mat-form-field:not(:first-child) {
+    margin-top: 2em;
+  }
+
+  &.pt-0 {
+    padding-top: 0;
+  }
+}
+
+:host ::ng-deep .mat-dialog-footer {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+
+  .btn-google {
+    cursor: pointer;
+    display: flex;
+    padding: 14px 30px;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    border-radius: 100px;
+    border: 1px solid #374b88;
+    background-color: transparent;
+    color: #374b88;
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    color: #374B88;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  .btn-submit {
+    cursor: pointer;
+    padding: 14.5px 40px;
+    border-radius: 100px;
+    border: none;
+    background: #ffbe17;
+    color: #141516;
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
 }

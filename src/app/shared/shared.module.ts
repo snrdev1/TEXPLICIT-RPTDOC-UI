@@ -24,12 +24,13 @@ import { ChatCardComponent } from './components/chat/chat-card/chat-card.compone
 import { ChatPanelComponent } from './components/chat/chat-panel/chat-panel.component';
 import { FeedbackDialogComponent } from '../layout/modal-dialog/feedback-dialog/feedback-dialog.component';
 import { DisclaimerDialogComponent } from '../layout/modal-dialog/disclaimer-dialog/disclaimer-dialog.component';
+import { ReportStepsComponent } from './components/report-steps/report-steps.component';
 
 @NgModule({
   declarations: [
     SearchInputComponent,
     OuterToolbarButtonsComponent,
-    FabButtonsComponent,   
+    FabButtonsComponent,
     InnerToolbarButtonsComponent,
     DialogBaseComponent,
     ConfirmDialogComponent,
@@ -44,7 +45,8 @@ import { DisclaimerDialogComponent } from '../layout/modal-dialog/disclaimer-dia
     NewsPanelComponent,
     NewsCardComponent,
     ChatCardComponent,
-    ChatPanelComponent, 
+    ChatPanelComponent,
+    ReportStepsComponent,
     // FeedbackDialogComponent,
     // DisclaimerDialogComponent
   ],
@@ -72,7 +74,8 @@ import { DisclaimerDialogComponent } from '../layout/modal-dialog/disclaimer-dia
     NewsPanelComponent,
     NewsCardComponent,
     ChatCardComponent,
-    ChatPanelComponent, 
+    ChatPanelComponent,
+    ReportStepsComponent
     // FeedbackDialogComponent,
     // DisclaimerDialogComponent,
   ]

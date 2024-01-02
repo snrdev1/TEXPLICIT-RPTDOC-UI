@@ -49,30 +49,6 @@ const routes: Routes = [{
             (m) => m.ResetPasswordModule
           )
       },
-      // {
-      //   path: 'my-network',
-      //   loadChildren: () =>
-      //     import('./../my-network/my-network.module').then(
-      //       (m) => m.MyNetworkModule
-      //     ),
-      //   canActivate: [AuthGuard, PathAuthGuard]
-      // },
-      // {
-      //   path: 'my-texplicit',
-      //   loadChildren: () =>
-      //     import('./../my-texplicit/my-texplicit.module').then(
-      //       (m) => m.MyTexplicitModule
-      //     ),
-      //     canActivate: [AuthGuard, PathAuthGuard]
-      // },
-      // {
-      //   path: 'my-workspace',
-      //   loadChildren: () =>
-      //     import('./../my-workspace/my-workspace.module').then(
-      //       (m) => m.MyWorkspaceModule
-      //     ),
-      //     canActivate: [AuthGuard,PathAuthGuard]
-      // },
       {
         path: 'my-documents',
         loadChildren: () =>
@@ -81,14 +57,6 @@ const routes: Routes = [{
           ),
           canActivate: [AuthGuard, PathAuthGuard]
       },
-      // {
-      //   path: 'my-datasources',
-      //   loadChildren: () =>
-      //     import('./../my-datasources/my-datasources.module').then(
-      //       (m) => m.MyDatasourcesModule
-      //     ),
-      //     canActivate: [AuthGuard,PathAuthGuard]
-      // },
       {
         path: 'user-management',
         loadChildren: () =>
@@ -112,14 +80,6 @@ const routes: Routes = [{
           ),
           canActivate: [AuthGuard, PathAuthGuard]
       },
-      // {
-      //   path: 'create-reports',
-      //   loadChildren: () =>
-      //     import('./../report-create/report-create.module').then(
-      //       (m) => m.ReportCreateModule
-      //     ),
-      //     canActivate: [AuthGuard]
-      // },
       {
         path: 'about-us',
         loadChildren: () =>
@@ -132,6 +92,13 @@ const routes: Routes = [{
         loadChildren: () =>
           import('./../contact-us/contact-us.module').then(
             (m) => m.ContactUsModule
+          )
+      },
+      {
+        path: 'pricing',
+        loadChildren: () =>
+          import('./../pricing/pricing.module').then(
+            (m) => m.PricingModule
           )
       }
 

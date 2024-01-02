@@ -1,61 +1,96 @@
 <mat-toolbar class="toolbar-container" fxLayout="row">
-    <!-- <button mat-icon-button class="menu-btn" *ngIf="isUserLoggedIn()" (click)="leftnav.toggle()">
+  <!-- <button mat-icon-button class="menu-btn" *ngIf="isUserLoggedIn()" (click)="leftnav.toggle()">
         <img src="../../assets/svg/top-nav-icon/hamburger.svg" />
     </button> -->
-    <div class="logo" routerLink="/home">
-        <img src="../../assets/svg/logo/texplicit02-logo.svg" />
-    </div>
-    <span class="toolbar-spacer"></span>
-    <button mat-icon-button matTooltip="About Us" class="mr-5px" (click)="onAboutClick()">
-        <mat-icon>info</mat-icon>
+
+  <div class="logo" routerLink="/home">
+    <img src="../../assets/svg/logo/texplicit02-logo.svg" />
+  </div>
+  <span class="toolbar-spacer"></span>
+  <button class="btn-link" class="mr-5px" (click)="onDisclaimerClick()">
+    Disclaimer
+  </button>
+  <button class="btn-link" class="mr-5px" (click)="onAboutClick()">
+    About Us
+  </button>
+  <button class="btn-link" class="mr-5px" (click)="onContactClick()">
+    Contact
+  </button>
+  <button class="btn-link" class="mr-5px" (click)="onFeedbackClick()">
+    Feedback
+  </button>
+  <button class="btn-link" class="mr-5px" (click)="onPricingClick()">
+    Pricing
+  </button>
+
+  <div class="divider"></div>
+
+  <button class="user-icon" *ngIf="isUserLoggedIn()" mat-icon-button matTooltip="{{ userName }}"
+    [matMenuTriggerFor]="userMenu">
+    <img src="../../assets/images/user-icon.png" />
+  </button>
+
+  <div class="user-action-group" *ngIf="!isUserLoggedIn()">
+    <button class="btn-login" (click)="onLoginClick()">Login</button>
+    <button class="btn-register" (click)="onRegistrationClick()">
+      Get Started Now
     </button>
-    <button mat-icon-button matTooltip="Contact Us" class="mr-5px" (click)="onContactClick()">
-        <mat-icon>contact_support</mat-icon>
-    </button>
-    <button mat-icon-button matTooltip="Disclaimer" class="mr-5px" (click)="onDisclaimerClick()">
-        <mat-icon>privacy_tip</mat-icon>
-    </button>
-    <button mat-icon-button matTooltip="Feedback" class="mr-5px" (click)="onFeedbackClick()">
-        <mat-icon>feedback</mat-icon>
-    </button>
-    <button class="user-icon" *ngIf="isUserLoggedIn()" mat-icon-button matTooltip="{{ userName }}"  [matMenuTriggerFor]="userMenu">
-        <img src="../../assets/images/user-icon.png"/>
-    </button>
+  </div>
 </mat-toolbar>
 <mat-sidenav-container autosize class="custom-sidenav-container">
-    <mat-sidenav #leftnav class="left-sidenav-container" mode="side" [opened]="true">
-        <ul class="menu-container">
-            <li class="menu-item" *ngFor="let menuItem of this.commonService.userMenu" routerLink="{{ menuItem.link }}" routerLinkActive="menu-item-active">
+  <mat-sidenav #leftnav class="left-sidenav-container" mode="side" [opened]="true">
+    <ul class="menu-container">
+      <!-- <li class="menu-item" *ngFor="let menuItem of this.commonService.userMenu" routerLink="{{ menuItem.link }}" routerLinkActive="menu-item-active">
                 <div routerLinkActive="active-menu-item-container">
                   <img [src]="'../../assets/svg/side-nav-icon/' + menuItem.icon + '.svg'" class="menu-icon" routerLinkActive="menu-icon-active"/>
                 </div>
                 <span class="menu-item-label" routerLinkActive="active-menu-text">{{ menuItem.name }}</span>
-            </li>
-        </ul>
-    </mat-sidenav>
-    <mat-sidenav-content class="main-container-content">
-        <div class="main-container">
-            <router-outlet></router-outlet>
+            </li> -->
+      <li class="menu-item" routerLink="/home" routerLinkActive="menu-item-active">
+        <div routerLinkActive="active-menu-item-container">
+          <img [src]="'../../assets/svg/side-nav-icon/icon-home.svg'" class="menu-icon"
+            routerLinkActive="menu-icon-active" />
         </div>
-    </mat-sidenav-content>
-    <mat-sidenav #rightnav position="end" mode="side" class="sidenav-container"
-    [opened]="newsOpen()||chatOpen()">
-        <app-chat-panel *ngIf="chatOpen()"></app-chat-panel>
-    </mat-sidenav>
+        <span class="menu-item-label" routerLinkActive="active-menu-text">Home</span>
+      </li>
+      <li class="menu-item" routerLink="/my-documents" routerLinkActive="menu-item-active">
+        <div routerLinkActive="active-menu-item-container">
+          <img [src]="'../../assets/svg/side-nav-icon/icon-mydocuments.svg'" class="menu-icon"
+            routerLinkActive="menu-icon-active" />
+        </div>
+        <span class="menu-item-label" routerLinkActive="active-menu-text">My Documents</span>
+      </li>
+      <li class="menu-item" routerLink="/reports" routerLinkActive="menu-item-active">
+        <div routerLinkActive="active-menu-item-container">
+          <img [src]="'../../assets/svg/side-nav-icon/icon-reports.svg'" class="menu-icon"
+            routerLinkActive="menu-icon-active" />
+        </div>
+        <span class="menu-item-label" routerLinkActive="active-menu-text">Reports</span>
+      </li>
+    </ul>
+  </mat-sidenav>
+  <mat-sidenav-content class="main-container-content">
+    <div class="main-container">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+  <mat-sidenav #rightnav position="end" mode="side" class="sidenav-container" [opened]="newsOpen() || chatOpen()">
+    <app-chat-panel *ngIf="chatOpen()"></app-chat-panel>
+  </mat-sidenav>
 </mat-sidenav-container>
 
 <mat-menu #userMenu="matMenu" class="comment-action-menu">
-    <button mat-menu-item>
-        <mat-icon>person</mat-icon>
-        <span>Profile</span>
-      </button>
-      <button mat-menu-item>
-        <mat-icon>manage_accounts</mat-icon>
-        <span>Account</span>
-      </button>
-      <mat-divider></mat-divider>
-      <button mat-menu-item (click)="onLogoutClick()">
-        <mat-icon>logout</mat-icon>
-        <span>Logout</span>
-      </button>
+  <button mat-menu-item>
+    <mat-icon>person</mat-icon>
+    <span>Profile</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>manage_accounts</mat-icon>
+    <span>Account</span>
+  </button>
+  <mat-divider></mat-divider>
+  <button mat-menu-item (click)="onLogoutClick()">
+    <mat-icon>logout</mat-icon>
+    <span>Logout</span>
+  </button>
 </mat-menu>
