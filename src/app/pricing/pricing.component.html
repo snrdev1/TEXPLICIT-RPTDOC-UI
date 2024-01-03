@@ -7,55 +7,40 @@
 </div>
 
 <div class="report-types">
-  <div class="reports basic-reports">
-    <ng-container *ngFor="let report of basicReports">
-      <div class="report basic-report">
-        <img [src]="'../../assets/svg/reports-icon/' + report.icon + '.svg'" class="report-icon-basic" />
-        <div class="report-details">
-          <div class="report-name report-name-basic">{{ report.title }}</div>
-          <div class="report-description report-description-basic">{{ report.description }}</div>
+  <ng-container *ngFor="let report of basicReports">
+    <div class="report">
+      <img [src]="'../../assets/svg/reports-icon/' + report.icon + '.svg'" class="report-icon-basic" />
+      <div class="report-details">
+        <div>
+          <div class="report-name">{{ report.title }}</div>
+          <div class="report-description">
+            {{ report.description }}
+          </div>
+        </div>
+        <div class="report-description unit-price">
+          Estimated unit price - <span class="description-bold">₹ 4000/-</span>
         </div>
       </div>
-    </ng-container>
-  </div>
-
-  <div class="reports advanced-reports">
-    <ng-container *ngFor="let report of advancedReports">
-      <div class="report advanced-report">
-        <img [src]="'../../assets/svg/reports-icon/' + report.icon + '.svg'" class="report-icon-advanced" />
-        <div class="report-details">
-          <div class="report-name report-name-advanced">{{ report.title }}</div>
-          <div class="report-description report-description-advanced">{{ report.description }}</div>
-        </div>
-      </div>
-    </ng-container>
-  </div>
-</div>
-
-<div class="pricing">
-  <div class="title-sm">As per our current calculations <span class="title-sm-bold">average prices</span> of these
-    reports are as under</div>
-
-  <div class="report-plans">
-    <div class="report-plan" *ngFor="let plan of reportPlans">
-      <div class="report-type">{{plan?.name}}</div>
-      <div class="report-pricing">Rs {{plan?.price}}/-</div>
     </div>
-  </div>
-
-  <div class="title-sm disclaimer">
-    Actual charges could vary depending on length of report and number of subtopics
-  </div>
+  </ng-container>
 </div>
 
 <div class="actions">
   <div class="info">
     <ul>
-      <li>To start you need to open an account with us - the amount will depend on your desired usage estimates</li>
-      <li>Your first report will be free - that is there will be no charge to your account for your first report.</li>
+      <li>
+        To start you need to open an account with us - the amount will depend on
+        your desired usage estimates
+      </li>
+      <li>
+        Your first report will be free - that is there will be no charge to your
+        account for your first report.
+      </li>
     </ul>
   </div>
   <div class="action-area">
-    <button class="btn-payment" (click)="redirectToPayment()">Goto Payment Page</button>
+    <button class="btn-payment" (click)="redirectToPayment()">
+      Goto Payment Page
+    </button>
   </div>
 </div>

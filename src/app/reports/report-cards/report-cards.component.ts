@@ -27,27 +27,27 @@ export class ReportCardsComponent {
   constructor(private reportService: ReportsService,
               public dialog:MatDialog,
               private commonService: CommonService){}
-  
+
   ngOnInit(){
     // console.log("DISPLAY STYLE", this.displayStyle);
     this.report = {... this.report,
-      isTruncated: true 
+      isTruncated: true
     };
-    
-    this.reportType = this.report.report_type == "research_report"? "Research Report": 
+
+    this.reportType = this.report.report_type == "research_report"? "Research Report":
                       this.report.report_type == "outline_report"?"Outline Report":
                       this.report.report_type == "resource_report"?"Resource Report":
                       this.report.report_type == "detailed_report"?"Detailed Report":
-                      this.report.report_type == "complete_report"?"Complete Report": "Unknown type";
-                      
+                      this.report.report_type == "complete_report"?"Combined Report": "Unknown type";
+
     // remove later
     if(this.report.format == undefined){
       this.report.format = "pdf";
     }
-    // console.log("Format of generated report: ", this.report);                 
+    // console.log("Format of generated report: ", this.report);
   }
 
-  onChange(e: any){} 
+  onChange(e: any){}
   isChecked(item:any){}
 
 
@@ -94,7 +94,7 @@ onDownloadClick(report: any) {
       }
 }
 
- 
+
 
 
   // onDeleteClick(report:any){

@@ -23,9 +23,6 @@ export class PricingComponent {
       "title": "Research",
       "description": "Provides an overview of each of the sections contained",
     },
-  ];
-
-  advancedReports: any[] = [
     {
       "icon": "icon-report-detailed",
       "title": "Detailed",
