@@ -51,7 +51,9 @@ export class RegistrationComponent {
     if (this.form.invalid) return;
 
     console.log(this.form.value);
-    this.localStorage.setitem("SignupUserInfo",this.form.value);
+    let userData = this.form.value;
+    // console.log("userdata CHECK", userData);
+    // this.localStorage.setitem("SignupUserInfo",this.form.value);
 
       this.registrationService.addUser(this.form.value).subscribe(
         {
@@ -59,8 +61,8 @@ export class RegistrationComponent {
             // console.log(response);
           if (response.success){
               this.commonService.showSnackbar("snackbar-success",response.message );
-              let formData = this.localStorage.getitem("SignupUserInfo");
-              this.loginService.login(formData).subscribe({
+              // let formData = this.localStorage.getitem("SignupUserInfo");
+              this.loginService.login(userData).subscribe({
                 next: (res:any)=>{
                   if(res.success){
                     console.log("response of login:",res);
