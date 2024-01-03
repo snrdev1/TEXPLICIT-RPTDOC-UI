@@ -36,8 +36,7 @@ p {
 }
 
 :host ::ng-deep .mat-dialog-body {
-  //padding: 16px .5%;
-  padding: 16px;
+  padding: 12px;
   margin-left: -16px;
   margin-right: -16px;
 
@@ -163,7 +162,7 @@ p {
       text-transform: capitalize;
     }
   }
-  
+
   mat-form-field:not(:first-child) {
     margin-top: 2em;
   }
