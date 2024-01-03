@@ -20,7 +20,7 @@
   color: #4e525f;
   font-family: Roboto, sans-serif;
   //font-size: 16px;
-         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
+  font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
   font-style: normal;
   font-weight: 400;
   line-height: 24px; /* 150% */
@@ -30,107 +30,56 @@
   font-weight: 500;
 }
 
-.reports {
-  display: flex;
-}
-
-.basic-reports {
-  justify-content: space-between;
-}
-
 .report-types {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
-}
-
-.report {
-  display: flex;
-  gap: 20px;
-
-  .report-icon-basic {
-    width: 38px;
-  }
-
-  .report-icon-advanced {
-    width: 56px;
-  }
-
-  .report-details {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    .report-name {
-      color: #1c1d21;
-      font-family: Roboto;
-      font-style: normal;
-      font-weight: 500;
-      line-height: 30px; /* 187.5% */
-    }
-
-    .report-name-basic {
-      //font-size: 14px;
-         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
-    }
-
-    .report-name-advanced {
-      //font-size: 16px;
-         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
-    }
-
-    .report-description {
-      color: #4e525f;
-      font-family: Roboto;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 14px; /* 100% */
-    }
-
-    .report-description-basic {
-      font-size: 12px;
-    }
-
-    .report-description-advanced {
-      //font-size: 14px;
-         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
-      max-width: 268px;
-    }
-  }
-}
-
-.pricing {
-  display: flex;
-  flex-direction: column;
-  margin-top: 30px;
-  padding-bottom: 16px;
-  
-  gap: 18px;
   border-bottom: 0.5px solid rgba(143, 148, 151, 0.63);
+  margin-bottom: 40px;
+  padding-bottom: 45px;
 
-  .report-plans {
+  .report {
     display: flex;
-    gap: 90px;
+    gap: 20px;
 
-    .report-plan {
-      .report-type {
+    .report-icon-basic {
+      width: 56px;
+    }
+
+    .report-details {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .report-name {
         color: #1c1d21;
-        font-family: Roboto;
-        //font-size: 18px;
-         font-size: clamp(1rem, 0.912rem + 0.2817vw, 1.25rem);
+        font-family: Roboto, sans-serif;
         font-style: normal;
         font-weight: 500;
-        line-height: 30px; /* 150% */
+
+        //font-size: 14px;
+        font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
       }
 
-      .report-pricing {
+      .report-description {
         color: #4e525f;
-        font-family: Roboto;
-        //font-size: 16px;
-         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
+        font-family: Roboto, sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+      }
+
+      .description-bold {
+        color: #1c1d21;
+        font-family: Roboto, sans-serif;
+        font-size: 13px;
         font-style: normal;
         font-weight: 500;
-        line-height: 30px; /* 166.667% */
+        line-height: 14px;
+      }
+
+      .unit-price {
+        margin-top: 8px;
       }
     }
   }
@@ -139,13 +88,12 @@
 .actions {
   display: flex;
   justify-content: space-between;
-  
 
   .info {
     color: #1c1d21;
-    font-family: Roboto;
+    font-family: Roboto, sans-serif;
     //font-size: 16px;
-         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
+    font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
     font-style: normal;
     font-weight: 500;
     line-height: 28px; /* 155.556% */
@@ -167,9 +115,9 @@
       background: #ffbe17;
       color: #141516;
       text-align: center;
-      font-family: Roboto;
+      font-family: Roboto, sans-serif;
       //font-size: 14px;
-         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
+      font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
       font-style: normal;
       font-weight: 500;
       line-height: normal;

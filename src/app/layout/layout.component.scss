@@ -130,9 +130,9 @@
   }
 
   .main-container {
-    height: calc(100vh - 97px);
-    overflow-y: hidden;
-    padding-top: 33px;
+    height: calc(100vh - 84px);
+    overflow-y: auto;
+    padding-top: 20px;
     padding-left: 29px;
     margin-right: 2rem;
     @media screen and (max-width: 1000px) {
