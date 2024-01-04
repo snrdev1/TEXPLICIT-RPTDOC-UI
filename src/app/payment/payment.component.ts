@@ -32,16 +32,15 @@ export class PaymentComponent {
   ];
 
   razorpay: any;
-  amountToPay: number = 100; // Set the amount to pay
   orderId: string = ""; // Variable to store the order ID obtained from the backend
 
-  constructor(private paymentService: PaymentService){}
+  constructor(private paymentService: PaymentService) { }
 
   initiatePayment(pricingPlan: any) {
     // Create the order when the user initiates payment
     this.paymentService.createOrder(pricingPlan["value"]).subscribe(
       (response: any) => {
-        this.orderId = response.order_id;
+        this.orderId = response.data.order_id;
         this.initiateRazorpayCheckout(pricingPlan); // Call the function to initiate Razorpay checkout
       },
       (error: any) => {
@@ -55,7 +54,7 @@ export class PaymentComponent {
     this.razorpay = new Razorpay({
       key: environment.razorpay_key, // Replace with your actual Razorpay Key ID
       amount: pricingPlan["value"] * 100, // Amount in paise
-      currency: 'INR',
+      currency: "INR",
       name: 'TexplicitRW',
       description: 'Payment for Texplicit plan : ' + pricingPlan["plan"],
       order_id: this.orderId, // Pass the order ID obtained from backend
@@ -66,7 +65,8 @@ export class PaymentComponent {
         const paymentData = {
           razorpay_order_id: response.razorpay_order_id,
           razorpay_payment_id: response.razorpay_payment_id,
-          razorpay_signature: response.razorpay_signature
+          razorpay_signature: response.razorpay_signature,
+          amount: pricingPlan["value"]
         };
 
         console.log("Payment Data : ", paymentData);
