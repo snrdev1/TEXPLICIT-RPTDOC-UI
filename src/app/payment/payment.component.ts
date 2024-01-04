@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { PaymentService } from './payment.service';
 import { environment } from 'src/environments/environment';
+import { PaymentService } from './payment.service';
 
 declare const Razorpay: any;
 
@@ -59,17 +59,12 @@ export class PaymentComponent {
       description: 'Payment for Texplicit plan : ' + pricingPlan["plan"],
       order_id: this.orderId, // Pass the order ID obtained from backend
       handler: (response: any) => {
-        console.log("Response : ", response);
-
         // Handle the success callback from Razorpay
         const paymentData = {
           razorpay_order_id: response.razorpay_order_id,
           razorpay_payment_id: response.razorpay_payment_id,
-          razorpay_signature: response.razorpay_signature,
-          amount: pricingPlan["value"]
+          razorpay_signature: response.razorpay_signature
         };
-
-        console.log("Payment Data : ", paymentData);
 
         // Capture the payment on the backend
         this.paymentService.capturePayment(paymentData).subscribe(
