@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {SharedModule} from '../shared/shared.module';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 import { AuthGuard } from '../core/auth.guard';
 import { MatSortModule } from '@angular/material/sort';
 // import {AngularSvgIconModule} from 'angular-svg-icon';

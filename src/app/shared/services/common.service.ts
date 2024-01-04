@@ -1,7 +1,7 @@
 import { Injectable, Input } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CommonSnackbarComponent } from '../components/snackbar/common-snackbar/common-snackbar.component';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LoginDialogComponent } from '../components/modal-dialog/login-dialog/login-dialog.component';

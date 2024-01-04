@@ -3,7 +3,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule, Routes } from '@angular/router';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 import { AuthGuard } from '../core/auth.guard';
 import { ReportsComponent } from './reports.component';
 import { ReportCardsComponent } from './report-cards/report-cards.component';

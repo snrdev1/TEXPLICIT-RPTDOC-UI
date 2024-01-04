@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +33,7 @@ export class ReportsService {
     const url = `${environment.hostName}/report`;
     const options = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-      body: params, 
+      body: params,
     };
     return this.http.delete<any>(url, options);
   }

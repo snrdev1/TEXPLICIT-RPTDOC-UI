@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable,map} from 'rxjs';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 import { LocalStorageService } from './local-storage.service';
 import { CommonService } from '../shared/services/common.service';
 
