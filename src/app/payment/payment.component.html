@@ -13,7 +13,7 @@
     <div class="pricing-description">{{ pricingPlan.description }}</div>
     <div class="deposit">Desposit</div>
     <div class="pricing-value">{{ pricingPlan.value | currency:'INR':'symbol':'0.0-0' }}/-</div>
-    <button class="btn-plan-action" (click)="initiatePayment(pricingPlan)">Choose Plan</button>
+    <button class="btn-plan-action" *ngIf="authService.isLoggedIn" (click)="initiatePayment(pricingPlan)">Choose Plan</button>
   </div>
 </div>
 

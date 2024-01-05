@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { AuthService } from '../core/auth.service';
 import { PaymentService } from './payment.service';
 
 declare const Razorpay: any;
@@ -34,7 +35,7 @@ export class PaymentComponent {
   razorpay: any;
   orderId: string = ""; // Variable to store the order ID obtained from the backend
 
-  constructor(private paymentService: PaymentService) { }
+  constructor(private paymentService: PaymentService, public authService: AuthService) { }
 
   initiatePayment(pricingPlan: any) {
     // Create the order when the user initiates payment
@@ -63,7 +64,9 @@ export class PaymentComponent {
         const paymentData = {
           razorpay_order_id: response.razorpay_order_id,
           razorpay_payment_id: response.razorpay_payment_id,
-          razorpay_signature: response.razorpay_signature
+          razorpay_signature: response.razorpay_signature,
+          amount: pricingPlan["value"],
+          currency: "INR"
         };
 
         // Capture the payment on the backend

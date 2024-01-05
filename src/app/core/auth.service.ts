@@ -42,6 +42,7 @@ export class AuthService {
   get token():string{
     return localStorage.getItem("token") || '';
   }
+  
   getCurrentUser(){
     const url =  `${environment.hostName}/account/current-user`;
     return this.http.get(url).pipe(map((res: any) => res.data));
