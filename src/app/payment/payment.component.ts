@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../core/auth.service';
 import { PaymentService } from './payment.service';
+import { CommonService } from '../shared/services/common.service';
 
 declare const Razorpay: any;
 
@@ -35,7 +36,11 @@ export class PaymentComponent {
   razorpay: any;
   orderId: string = ""; // Variable to store the order ID obtained from the backend
 
-  constructor(private paymentService: PaymentService, public authService: AuthService) { }
+  constructor(
+    private paymentService: PaymentService,
+    public authService: AuthService,
+    private commonService: CommonService
+  ) { }
 
   initiatePayment(pricingPlan: any) {
     // Create the order when the user initiates payment
@@ -46,7 +51,7 @@ export class PaymentComponent {
       },
       (error: any) => {
         console.error('Failed to create order:', error);
-        // Handle error (e.g., show error message to the user)
+        this.commonService.showSnackbar("snackbar-error", error.message, error.status);
       }
     );
   }
@@ -73,11 +78,11 @@ export class PaymentComponent {
         this.paymentService.capturePayment(paymentData).subscribe(
           (captureResponse: any) => {
             console.log('Payment captured successfully:', captureResponse);
-            // Handle success (e.g., show success message to the user)
+            this.commonService.showSnackbar("snackbar-info", captureResponse.message, captureResponse.status);
           },
           (error: any) => {
             console.error('Failed to capture payment:', error);
-            // Handle error (e.g., show error message to the user)
+            this.commonService.showSnackbar("snackbar-error", error.message, error.status);
           }
         );
       },
