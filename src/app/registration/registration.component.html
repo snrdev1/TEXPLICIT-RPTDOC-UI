@@ -108,6 +108,24 @@
           </mat-form-field>
         </div>
       </div>
+      <div class="mat-form-row">
+        <div class="form-field">
+          <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+            <mat-label>Role</mat-label>
+              <mat-select placeholder="Please Select" placeholder="Select mode of use ..."  formControlName="role" (selectionChange)="selectRole($event)">
+                  <mat-option [value]="3" class="mat-form-input-option">Personal</mat-option>
+                  <mat-option [value]="2" class="mat-form-input-option">Professional</mat-option>
+              </mat-select>
+              <mat-error>Please select your role.</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-field">
+          <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+            <mat-label>Subscriptions</mat-label>
+            <input matInput placeholder="Enter number of Subscriptions." formControlName="subscription" />
+          </mat-form-field>
+        </div>
+      </div>
     </div>
   </mat-dialog-content>
 

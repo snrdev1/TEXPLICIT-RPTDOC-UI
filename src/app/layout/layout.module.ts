@@ -63,7 +63,7 @@ const routes: Routes = [{
           import('../manage-user/manage-user.module').then(
             (m) => m.ManageUserModule
           ),
-          canActivate: [AuthGuard, UserAuthGuard, PathAuthGuard]
+          canActivate: [AuthGuard, UserAuthGuard]
       },
       {
         path:'admin',
