@@ -86,19 +86,26 @@
         <div class="form-field">
           <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
             <mat-label class="required">Re-enter Password</mat-label>
-            <input matInput placeholder="Enter password ..." type="password" formControlName="password" required />
+            <input matInput placeholder="Enter password ..." type="password" formControlName="confirmPassword" required />
           </mat-form-field>
           <ng-container *ngIf="
-              form.get('password')?.invalid &&
-              (form.get('password')?.dirty || form.get('password')?.touched)
+              form.get('confirmPassword')?.invalid &&
+              (form.get('confirmPassword')?.dirty || form.get('confirmPassword')?.touched)||
+              form.hasError('passwordMismatch') && (form.get('confirmPassword')?.dirty || form.get('confirmPassword')?.touched)
             ">
-            <mat-error *ngIf="form.get('password')?.hasError('required')">
+            <mat-error *ngIf="form.get('confirmPassword')?.hasError('required')">
               Password is required
             </mat-error>
-            <mat-error *ngIf="form.get('password')?.hasError('minlength')">
+            <mat-error *ngIf="form.get('confirmPassword')?.hasError('minlength')">
               Password must be atleast 6 characters
             </mat-error>
+            <mat-error  *ngIf="form.hasError('passwordMismatch') && (form.get('confirmPassword')?.dirty || form.get('confirmPassword')?.touched)">
+              Passwords do not match
+            </mat-error>
           </ng-container>
+          <!-- <ng-container *ngIf="form.hasError('passwordMismatch') && (form.get('confirmPassword')?.dirty || form.get('confirmPassword')?.touched)">
+            <mat-error  *ngIf="form.hasError('passwordMismatch') && (form.get('confirmPassword')?.dirty || form.get('confirmPassword')?.touched)">Passwords do not match</mat-error>
+          </ng-container> -->
         </div>
 
         <div class="form-field">

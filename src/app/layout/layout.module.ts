@@ -55,7 +55,7 @@ const routes: Routes = [{
           import('./../my-documents/my-documents.module').then(
             (m) => m.MyDocumentsModule
           ),
-          canActivate: [AuthGuard, PathAuthGuard]
+          canActivate: [AuthGuard]
       },
       {
         path: 'user-management',
@@ -78,7 +78,7 @@ const routes: Routes = [{
           import('./../reports/reports.module').then(
             (m) => m.ReportsModule
           ),
-          canActivate: [AuthGuard, PathAuthGuard]
+          canActivate: [AuthGuard]
       },
       {
         path: 'about-us',

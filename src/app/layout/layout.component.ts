@@ -29,6 +29,7 @@ export class LayoutComponent {
   socketInfo: string = "";
   userInfo: any = [];
   public userMenu: any = [];
+  userRole: number = 3;
   userInfo$: Observable<any> = this.localStorage.userInfo$;
   constructor(
     public commonService: CommonService,
@@ -39,12 +40,13 @@ export class LayoutComponent {
     private dialog: MatDialog) { }
 
   ngOnInit() {
-    this.commonService.getUserMenu();
-    this.userInfo = this.localStorage.getUserInfo() || [];
-    if (this.userInfo) {
-      this.userId = this.userInfo?._id;
-      this.userName = this.userInfo?.name;
-    }
+    this.localStorage.getUserInfo();
+    this.userInfo$.subscribe((userInfo) =>{
+      this.userId = userInfo?._id;
+      this.userName = userInfo?.name;
+      this.userRole = userInfo?.role;
+    });
+    this.checkUserRole();
 
     if (this.checkLogin()) {
       this.socketError = this.userId + '_error';
@@ -130,6 +132,9 @@ export class LayoutComponent {
 
   onRegistrationClick() {
     this.router.navigateByUrl('/registration');
+  }
+  checkUserRole(){
+    return this.userRole === 2;
   }
 
   onLoginClick() {

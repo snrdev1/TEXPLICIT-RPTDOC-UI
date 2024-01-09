@@ -78,7 +78,7 @@ export class PaymentComponent {
         this.paymentService.capturePayment(paymentData).subscribe(
           (captureResponse: any) => {
             console.log('Payment captured successfully:', captureResponse);
-            this.commonService.showSnackbar("snackbar-info", captureResponse.message, captureResponse.status);
+            this.commonService.showSnackbar("snackbar-success", captureResponse.message, captureResponse.status);
           },
           (error: any) => {
             console.error('Failed to capture payment:', error);

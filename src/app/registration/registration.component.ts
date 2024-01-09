@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { RegistrationService } from '../services/registration.service';
 import { SharedService } from '../shared/services/shared.service';
 import { CommonService } from '../shared/services/common.service';
@@ -37,13 +37,31 @@ export class RegistrationComponent {
         Validators.minLength(10), Validators.maxLength(10)
       ]),
       password: new FormControl("", [Validators.required, Validators.minLength(6)]),
+      confirmPassword: new FormControl("", [Validators.required, Validators.minLength(6)]),
 
       role: new FormControl(3, Validators.required),
       subscription: new FormControl({ value: 1, disabled: true }, Validators.required),
       companyName: new FormControl(""),
-      website: new FormControl("", Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?'))
-    });
+      website: ['',   Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]
+      },
+      { validator: this.passwordMatchValidator } 
+    );
   }
+  passwordMatchValidator(form: AbstractControl): ValidationErrors | null {
+    const password = form.get('password');
+    const confirmPassword = form.get('confirmPassword');
+  
+    if (!password || !confirmPassword) {
+      return null; 
+    }
+  
+    if (password.value !== confirmPassword.value) {
+      return { passwordMismatch: true };
+    }
+  
+    return null;
+  }
+  
 
   onSubmit() {
     console.log("on Submit");
