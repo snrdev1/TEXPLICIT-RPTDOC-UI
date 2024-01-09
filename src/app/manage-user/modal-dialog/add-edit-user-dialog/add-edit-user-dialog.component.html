@@ -10,7 +10,7 @@
             <div *ngIf="(form.get('name')?.invalid)&& (form.get('name')?.dirty || form.get('name')?.touched)">
                 <mat-error *ngIf="form.get('name')?.hasError('required')">Name is required</mat-error>
                 <mat-error *ngIf="form.get('name')?.hasError('pattern')">Name can only contain letters</mat-error>
-              </div>
+            </div>
             <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
                 <mat-label>Email</mat-label>
                 <input matInput
@@ -22,15 +22,7 @@
               <mat-error *ngIf="form.get('email')?.hasError('email')">Invalid Email format</mat-error>
             </div>
             
-            <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
-                <mat-label>Permission(s)</mat-label>
-                <mat-select multiple placeholder="Please Select" placeholder="Select permission ..."  formControlName="menus">
-                     <mat-option *ngFor="let menu of parentMenus" [value]="menu.id" class="mat-form-input-option">{{ menu?.name }}</mat-option>
-                </mat-select>
-            </mat-form-field>
-            <div *ngIf="(form.get('menus')?.invalid) && (form.get('menus')?.dirty || form.get('menus')?.touched)">
-                <mat-error *ngIf="form.get('menus')?.hasError('required')">Select Permission(s)</mat-error>
-            </div>
+            
         </mat-dialog-content>
         <mat-dialog-actions class="mat-dialog-footer">
             <button mat-raised-button type="submit" [disabled]="!form.valid" [ngClass]="{'disabled-button':!form.valid}">Submit</button>

@@ -1,3 +1,8 @@
+.manage-user{
+    height: calc(100vh - 84px);
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
 .manage-user-toolbar{
     display: flex;
     height: 35px;

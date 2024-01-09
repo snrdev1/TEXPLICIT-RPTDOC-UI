@@ -29,7 +29,8 @@ export class AddEditUserDialogComponent {
     this.form = this.formBuilder.group({
       name: new FormControl("", [Validators.required,Validators.pattern('^[a-zA-Z ]+$')]),
       email: new FormControl("", [Validators.required,Validators.email]),
-      menus: new FormControl("", Validators.required),
+      menus: new FormControl([]),
+      domains: new FormControl([])
     });
   }
 
@@ -39,21 +40,19 @@ export class AddEditUserDialogComponent {
     if(this.data){
       this.getUserDetails();
     }
-    this.parentUser = this.localStorage.getitem("userInfo");
-    // console.log("parentUser",this.parentUser);
-    // this.getValidDomains();
-    this.getParentMenu();
+    // this.parentUser = this.localStorage.getitem("userInfo")
+    // this.getParentMenu();
   }
 
-  getParentMenu(){
-    let menuIds = this.parentUser.permissions.menu;
-    // console.log("menuIds",menuIds);
-    this.manageUserService.getUserMenuNames(menuIds).subscribe((res:any)=>{
-      this.parentMenus = res.data;
-      console.log("In getParentMenu: ",this.parentMenus);
+  // getParentMenu(){
+  //   let menuIds = this.parentUser.permissions.menu;
+  //   // console.log("menuIds",menuIds);
+  //   this.manageUserService.getUserMenuNames(menuIds).subscribe((res:any)=>{
+  //     this.parentMenus = res.data;
+  //     console.log("In getParentMenu: ",this.parentMenus);
 
-    })
-  }
+  //   })
+  // }
 
   getUserDetails(){
     this.manageUserService.getUserById(this.data).subscribe({
