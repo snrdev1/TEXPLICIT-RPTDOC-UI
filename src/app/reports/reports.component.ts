@@ -40,6 +40,7 @@ export class ReportsComponent {
   userInfo: any = [];
   displayStyle: string = 'list';
   isLoading:boolean = true;
+  isDismissed: boolean = false;
   userInfo$: Observable<any> = this.localStorage.userInfo$;
   @ViewChild('searchinput') searchInput!: ElementRef;
 
@@ -76,7 +77,7 @@ export class ReportsComponent {
       this.filteredReportType = filterValues?.report_type || "";
     }
     this.reportGenerationData = this.localStorage.getitem('reportDataArrayString') || [];
-
+    this.isDismissed = this.localStorage.getitem('report-steps') || false;
     if (this.authService.isLoggedIn) {
       this.getAllReports();
     }
@@ -241,6 +242,10 @@ export class ReportsComponent {
   reset() {
     this.offset = 0;
     this.allReports = [];
+  }
+  dismissSteps(){
+    this.isDismissed = true;
+    this.localStorage.setitem('report-steps', this.isDismissed);
   }
 }
 

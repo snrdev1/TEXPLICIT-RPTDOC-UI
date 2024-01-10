@@ -87,7 +87,7 @@
             " class="btn-subtopics" (click)="getSubtopics()">
             Add Subtopics
           </button>
-          <button mat-raised-button class="btn-report" type="submit">
+          <button mat-raised-button class="btn-report" type="submit" [disabled]="!form.valid">
             Generate Now
           </button>
         </div>
@@ -128,8 +128,8 @@
         <div class="reports-loader" *ngIf="isLoading">
           <mat-spinner [diameter]="30"></mat-spinner>
         </div>
-        <div class="report-steps" *ngIf="allReports.length == 0 && isLoading==false">
-          <app-report-steps></app-report-steps>
+        <div class="report-steps top-40" *ngIf="allReports.length == 0 && isLoading==false && !isDismissed">
+          <app-report-steps (dismissStep)="dismissSteps()"></app-report-steps>
         </div>
         <div class="file-body-content" *ngIf="allReports.length !== 0" (scroll)="onScroll($event)">
           <ng-container *ngFor="let report of allReports">
