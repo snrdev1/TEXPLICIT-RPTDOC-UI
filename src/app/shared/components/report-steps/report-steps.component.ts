@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-report-steps',
@@ -6,4 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./report-steps.component.scss']
 })
 export class ReportStepsComponent {
+  @Output() dismissStep = new EventEmitter<any>();
+
+  dismissSteps(){
+    this.dismissStep.emit();
+  }
 }

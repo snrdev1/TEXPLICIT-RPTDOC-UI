@@ -4,13 +4,20 @@
   //font-size: 16px;
   font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
   font-style: normal;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 16px; /* 100% */
+  // border-top: 0.5px solid #8F9497A1;
+  
   .heading-bold {
-    font-weight: 500;
+    font-style: italic;
   }
 
   margin-bottom: 15px;
+  .dismiss-link{
+    font-size:14px;
+  font-weight: 500;
+
+  }
 }
 
 .report-steps {
@@ -66,7 +73,7 @@
   font-size: clamp(0.875rem, 0.5668rem + 0.361vw, 1rem);
 
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 16px; /* 114.286% */
   border-top: 0.5px solid #8F9497A1;
   padding-top: 12px;
