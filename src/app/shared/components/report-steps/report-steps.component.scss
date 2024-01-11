@@ -1,22 +1,23 @@
+@import "src/mixins.scss";
+
 .heading {
   color: #4e525f;
   font-family: "Roboto", sans-serif;
   //font-size: 16px;
   font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
+  
   font-style: normal;
   font-weight: 600;
   line-height: 16px; /* 100% */
-  // border-top: 0.5px solid #8F9497A1;
-  
+  margin-bottom: 15px;
+
   .heading-bold {
     font-style: italic;
   }
 
-  margin-bottom: 15px;
-  .dismiss-link{
-    font-size:14px;
-  font-weight: 500;
-
+  .dismiss-link {
+    font-size: 14px;
+    font-weight: 500;
   }
 }
 
@@ -33,10 +34,11 @@
     .step-name {
       color: #1c1d21;
       font-family: "Roboto", sans-serif;
-      
+
       //1366: 14px, 1920: 16px
-      font-size: clamp(0.875rem, 0.5668rem + 0.361vw, 1rem);
-      
+      @include responsive-font-size(12, 14, 16);
+      // font-size: clamp(0.875rem, 0.5668rem + 0.361vw, 1rem);
+
       font-style: normal;
       font-weight: 500;
       line-height: 30px; /* 166.667% */
@@ -68,14 +70,14 @@
 .report-types-title {
   color: #1c1d21;
   font-family: "Roboto", sans-serif;
-  
+
   //1366: 14px, 1920: 16px
   font-size: clamp(0.875rem, 0.5668rem + 0.361vw, 1rem);
 
   font-style: normal;
   font-weight: 600;
   line-height: 16px; /* 114.286% */
-  border-top: 0.5px solid #8F9497A1;
+  border-top: 0.5px solid #8f9497a1;
   padding-top: 12px;
   margin-top: 15px;
 }
@@ -94,10 +96,10 @@
     .type {
       color: #1c1d21;
       font-family: "Roboto", sans-serif;
-      
+
       //1366: 14px, 1920: 16px
       font-size: clamp(0.875rem, 0.5668rem + 0.361vw, 1rem);
-      
+
       font-style: normal;
       font-weight: 500;
       line-height: 20px; /* 142.857% */
