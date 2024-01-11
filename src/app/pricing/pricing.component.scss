@@ -7,7 +7,7 @@
 
   .bold-title {
     color: #1c1d21;
-    font-family: Poppins;
+    font-family: "Poppins", sans-serif;
     font-size: 24px;
     font-style: normal;
     font-weight: 500;
@@ -18,7 +18,7 @@
 
 .title-sm {
   color: #4e525f;
-  font-family: Roboto, sans-serif;
+  font-family: "Roboto", sans-serif;
   //font-size: 16px;
   font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
   font-style: normal;
@@ -53,25 +53,26 @@
 
       .report-name {
         color: #1c1d21;
-        font-family: Roboto, sans-serif;
+        font-family: "Roboto", sans-serif;
         font-style: normal;
         font-weight: 500;
 
-        //font-size: 14px;
-        font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
+        //1366: 14px, 1920: 18px;
+        font-size: clamp(0.875rem, 0.2586rem + 0.722vw, 1.125rem);
       }
 
       .report-description {
         color: #4e525f;
-        font-family: Roboto, sans-serif;
+        font-family: "Roboto", sans-serif;
         font-style: normal;
         font-weight: 400;
-        font-size: 12px;
+        // 1366: 12px, 1920: 14px
+        font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
       }
 
       .description-bold {
         color: #1c1d21;
-        font-family: Roboto, sans-serif;
+        font-family: "Roboto", sans-serif;
         font-size: 13px;
         font-style: normal;
         font-weight: 500;
@@ -91,7 +92,7 @@
 
   .info {
     color: #1c1d21;
-    font-family: Roboto, sans-serif;
+    font-family: "Roboto", sans-serif;
     //font-size: 16px;
     font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
     font-style: normal;
@@ -103,6 +104,8 @@
 
       li {
         max-width: 34rem;
+        margin: 15px auto;
+        line-height: 22px;
       }
     }
   }
@@ -115,7 +118,7 @@
       background: #ffbe17;
       color: #141516;
       text-align: center;
-      font-family: Roboto, sans-serif;
+      font-family: "Roboto", sans-serif;
       //font-size: 14px;
       font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
       font-style: normal;

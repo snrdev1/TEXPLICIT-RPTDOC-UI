@@ -10,12 +10,15 @@ p {
 
 .registration-form {
   margin-right: 1.5rem;
+  margin-top: 1vw;
 
   .form-title {
     color: #1c1d21;
-    font-family: Poppins;
-    //font-size: 16px;
-    font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
+    font-family: "Poppins", sans-serif;
+    
+    //1366: 16px, 1920: 18px
+    font-size: clamp(1rem, 0.6918rem + 0.361vw, 1.125rem);
+    
     font-style: normal;
     font-weight: 500;
     line-height: 32px; /* 160% */
@@ -61,7 +64,7 @@ p {
     min-height: 0;
 
     mat-label {
-      font-family: Roboto, sans-serif;
+      font-family: "Roboto", sans-serif;
       font-weight: 400;
       //font-size: 16px;
          font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
@@ -77,7 +80,7 @@ p {
 
     .mdc-text-field {
       color: #040f2f;
-      font-family: Roboto, sans-serif;
+      font-family: "Roboto", sans-serif;
       font-weight: 400;
       //font-size: 14px;
          font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
@@ -154,7 +157,7 @@ p {
       padding: 10px 15px;
       color: #4e525f;
       text-align: center;
-      font-family: Roboto, sans-serif;
+      font-family: "Roboto", sans-serif;
       //font-size: 14px;
          font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
       font-style: normal;
@@ -175,6 +178,9 @@ p {
 :host ::ng-deep .mat-dialog-footer {
   display: flex;
   justify-content: space-between;
+  padding-left: 0;
+  padding-right: 0;
+  margin-top: 2vw;
 
   .btn-google {
     cursor: pointer;
@@ -188,7 +194,7 @@ p {
     background-color: transparent;
     color: #374b88;
     text-align: center;
-    font-family: Roboto, sans-serif;
+    font-family: "Roboto", sans-serif;
     //font-size: 16px;
          font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
     font-style: normal;
@@ -204,7 +210,7 @@ p {
     background: #ffbe17;
     color: #141516;
     text-align: center;
-    font-family: Roboto, sans-serif;
+    font-family: "Roboto", sans-serif;
     //font-size: 16px;
          font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
     font-style: normal;

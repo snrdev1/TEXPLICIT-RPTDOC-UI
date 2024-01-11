@@ -19,7 +19,7 @@
         &.active{
             background-color: #e1e5f1;
         }
-        
+
         .user-icon {
             padding-top: 5px;
             padding-right: 5px;
@@ -31,7 +31,7 @@
             }
         }
         .user-name{
-            font-family: Roboto,sans-serif;
+            font-family: "Roboto",sans-serif;
             //font-size: 16px;
          font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
             line-height: 16px;
@@ -41,7 +41,7 @@
             padding-right: 3px;
             overflow: hidden;
             white-space: nowrap;
-    
+
             div{
                 display: flex;
                 flex-direction: column;
@@ -57,7 +57,7 @@
                 }
             }
         }
-    
+
         .user-buttons{
             display: flex;
             button{
@@ -70,7 +70,7 @@
                 background: transparent;
                 margin-left: 3px;
                 cursor: pointer;
-    
+
                 mat-icon{
                     color: #7E89A7;
                     width:18px;

@@ -7,17 +7,17 @@
 
   .bold-title {
     color: #1c1d21;
-    font-family: Poppins;
+    font-family: "Poppins", sans-serif;
     font-size: 24px;
     font-style: normal;
     font-weight: 500;
     line-height: 32px; /* 133.333% */
-    margin-bottom: 14px;
+    margin-bottom: 6px;
   }
 
   .title-sm {
     color: #4e525f;
-    font-family: Roboto, sans-serif;
+    font-family: "Roboto", sans-serif;
     //font-size: 16px;
     font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
     font-style: normal;
@@ -32,7 +32,8 @@
   grid-gap: 5vw;
   grid-template-columns: repeat(3, 1fr);
   margin-right: 5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
+  margin-top: 2vw;
 
   .pricing-plan-card {
     padding-bottom: 35px;
@@ -45,27 +46,33 @@
 
     .pricing-icon {
       margin-top: 38px;
-      width: 4.5rem;
+      margin-bottom: 1rem;
+      width: 5vw;
     }
 
     .pricing-plan {
       color: #1c1d21;
       text-align: center;
-      font-family: Roboto, sans-serif;
-      //font-size: 20px;
-      font-size: clamp(1.125rem, 1.037rem + 0.2817vw, 1.375rem);
+      font-family: "Roboto", sans-serif;
+
+      //1366: 22px, 1920: 28px
+      font-size: clamp(1.375rem, 0.4504rem + 1.083vw, 1.75rem);
+
       font-style: normal;
       font-weight: 500;
       line-height: 30px; /* 125% */
       margin-top: 10px;
+      margin-bottom: 0.5rem;
     }
 
     .pricing-description {
       color: #4e525f;
       text-align: center;
-      font-family: Roboto, sans-serif;
-      //font-size: 16px;
-      font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
+      font-family: "Roboto", sans-serif;
+
+      //1366: 18px, 1920: 22px
+      font-size: clamp(1.125rem, 0.5086rem + 0.722vw, 1.375rem);
+
       font-style: normal;
       font-weight: 400;
       line-height: 26px; /* 144.444% */
@@ -74,9 +81,11 @@
     .deposit {
       color: #4e525f;
       text-align: center;
-      font-family: Roboto, sans-serif;
-      //font-size: 16px;
-      font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
+      font-family: "Roboto", sans-serif;
+
+      //1366: 16px, 1920: 18px
+      font-size: clamp(1rem, 0.6918rem + 0.361vw, 1.125rem);
+
       font-style: normal;
       font-weight: 500;
       line-height: 30px; /* 187.5% */
@@ -86,9 +95,11 @@
     .pricing-value {
       color: #1c1d21;
       text-align: center;
-      font-family: Roboto, sans-serif;
-      //font-size: 26px;
-      font-size: clamp(1.5rem, 1.412rem + 0.2817vw, 1.75rem);
+      font-family: "Roboto", sans-serif;
+
+      //1366: 18px, 1920: 32
+      font-size: clamp(1.75rem, 1.1336rem + 0.722vw, 2rem);
+
       font-style: normal;
       font-weight: 500;
       line-height: 30px; /* 93.75% */
@@ -108,9 +119,11 @@
 
       color: #141516;
       text-align: center;
-      font-family: Roboto, sans-serif;
-      //font-size: 16px;
-      font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
+      font-family: "Roboto", sans-serif;
+
+      //1366: 16px, 1920: 18px
+      font-size: clamp(1rem, 0.6918rem + 0.361vw, 1.125rem);
+
       font-style: normal;
       font-weight: 500;
       line-height: normal;
@@ -121,7 +134,7 @@
 
 .plan-set-description {
   color: #4e525f;
-  font-family: Roboto, sans-serif;
+  font-family: "Roboto", sans-serif;
   //font-size: 14px;
   font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
   font-style: normal;

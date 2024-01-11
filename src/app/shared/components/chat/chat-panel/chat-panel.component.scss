@@ -62,7 +62,8 @@
     //         border-radius: 8px;
     //         font-style: normal;
     //         font-weight: 400;
-    //         font-size: 12px;
+    //         // 1366: 12px, 1920: 14px
+        font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
     //         line-height: 14px;
     //         letter-spacing: 0.01em;
     //         color: #777A80;
@@ -77,8 +78,9 @@
 }
 
 .chat-dropdown-option{
-    font-size: 12px;
-    font-family: Roboto, sans-serif;
+    // 1366: 12px, 1920: 14px
+        font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
+    font-family: "Roboto", sans-serif;
     font-weight: 400;
 }
 
@@ -86,7 +88,7 @@
     mat-select{
         //font-size: 14px;
          font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
-        font-family: Roboto, sans-serif;
+        font-family: "Roboto", sans-serif;
         font-weight: 400;
     }
 
@@ -97,7 +99,7 @@
         min-height: 30px;
         //font-size: 14px;
          font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
-        font-family: Roboto, sans-serif;
+        font-family: "Roboto", sans-serif;
         font-weight: 400;
     }
 
@@ -116,7 +118,7 @@
 
     .mdc-text-field{
         color: #040F2F;
-        font-family: Roboto, sans-serif;
+        font-family: "Roboto", sans-serif;
         //font-size: 14px;
          font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
         font-weight: 400;

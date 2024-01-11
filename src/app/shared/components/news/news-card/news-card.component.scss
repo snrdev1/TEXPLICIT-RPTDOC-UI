@@ -21,7 +21,7 @@
     .news-card-content{
         width: 60%;
     }
-    
+
     .news-card-content .news-title{
         font-style: normal;
         font-weight: 500;
@@ -50,7 +50,8 @@
     .news-card-content .news-date{
         font-style: normal;
         font-weight: 400;
-        font-size: 12px;
+        // 1366: 12px, 1920: 14px
+        font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
         line-height: 26px;
         color: #777A80;
     }
@@ -58,9 +59,10 @@
     .news-card-content .news-link{
         font-style: normal;
         font-weight: 400;
-        font-size: 12px;
+        // 1366: 12px, 1920: 14px
+        font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
         line-height: 26px;
         text-decoration: none;
     }
-    
+
 }

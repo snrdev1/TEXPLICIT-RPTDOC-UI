@@ -10,15 +10,15 @@
         margin-bottom: 0.5em;
         justify-content: space-between;
         @media screen and (max-width: 1000px) {
-            flex-direction: column-reverse;   
+            flex-direction: column-reverse;
             height: 80px;
-            
+
 
             app-outer-toolbar-buttons{
                 width: 100%;
             }
         }
-        
+
         .search-container{
             width: 65%;
             @media screen and (max-width: 1000px) {
@@ -68,7 +68,8 @@
             padding: 0;
             list-style: none;
             font-family:'Roboto', sans-serif;
-            font-size: 12px;
+            // 1366: 12px, 1920: 14px
+        font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
             font-weight: 500;
             display: flex;
 
@@ -108,7 +109,7 @@
                 &.date-header{
                     width:  10%;
                     padding: 0 5px;
-                    
+
                     @media screen and (max-width: 915px) {
                         width: 25%;
                     }
@@ -163,7 +164,8 @@
             padding: 0;
             list-style: none;
             font-family:'Roboto', sans-serif;
-            font-size: 12px;
+            // 1366: 12px, 1920: 14px
+        font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
             display: flex;
             border-top: 0.5px solid rgba(146, 149, 159, 0.55);
 
@@ -203,7 +205,8 @@
             padding: 0;
             list-style: none;
             font-family:'Roboto', sans-serif;
-            font-size: 12px;
+            // 1366: 12px, 1920: 14px
+        font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
             display: flex;
             border-top: 0.5px solid rgba(146, 149, 159, 0.55);
 

@@ -22,7 +22,8 @@
             padding: 0;
             list-style: none;
             font-family:'Roboto', sans-serif;
-            font-size: 12px;
+            // 1366: 12px, 1920: 14px
+        font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
             font-weight: 500;
             display: flex;
 

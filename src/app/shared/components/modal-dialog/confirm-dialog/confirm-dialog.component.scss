@@ -11,7 +11,7 @@
     }
     h2{
         color: #040F2F;
-        font-family: Domine;
+        font-family: "Poppins", sans-serif;
         //font-size: 18px;
          font-size: clamp(1rem, 0.912rem + 0.2817vw, 1.25rem);
         font-style: normal;
@@ -36,7 +36,7 @@
     padding: 16px 0;
     .message{
         color: #040F2F;
-        font-family: Domine;
+        font-family: "Poppins", sans-serif;
         //font-size: 14px;
          font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
         font-style: normal;
@@ -54,7 +54,7 @@
         border-radius: 32.5px;
         padding: 10px 35px;
         text-align: center;
-        font-family: Roboto, sans-serif;
+        font-family: "Roboto", sans-serif;
         //font-size: 16px;
          font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
         font-style: normal;

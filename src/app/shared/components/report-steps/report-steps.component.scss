@@ -1,8 +1,8 @@
 .heading {
   color: #4e525f;
-  font-family: Roboto, sans-serif;
+  font-family: "Roboto", sans-serif;
   //font-size: 16px;
-         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
+  font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
   font-style: normal;
   font-weight: 400;
   line-height: 16px; /* 100% */
@@ -25,9 +25,11 @@
 
     .step-name {
       color: #1c1d21;
-      font-family: Roboto, sans-serif;
-      //font-size: 14px;
-         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
+      font-family: "Roboto", sans-serif;
+      
+      //1366: 14px, 1920: 16px
+      font-size: clamp(0.875rem, 0.5668rem + 0.361vw, 1rem);
+      
       font-style: normal;
       font-weight: 500;
       line-height: 30px; /* 166.667% */
@@ -37,7 +39,7 @@
 
     .step-description {
       color: #4e525f;
-      font-family: Roboto, sans-serif;
+      font-family: "Roboto", sans-serif;
       font-size: 13px;
       font-style: normal;
       font-weight: 500;
@@ -46,8 +48,7 @@
     }
 
     .step-icon {
-      width: 40px;
-      height: 40px;
+      width: 3vw;
     }
   }
 
@@ -59,9 +60,11 @@
 
 .report-types-title {
   color: #1c1d21;
-  font-family: Roboto, sans-serif;
-  //font-size: 14px;
-         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
+  font-family: "Roboto", sans-serif;
+  
+  //1366: 14px, 1920: 16px
+  font-size: clamp(0.875rem, 0.5668rem + 0.361vw, 1rem);
+
   font-style: normal;
   font-weight: 500;
   line-height: 16px; /* 114.286% */
@@ -83,9 +86,11 @@
 
     .type {
       color: #1c1d21;
-      font-family: Roboto, sans-serif;
-      //font-size: 14px;
-         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
+      font-family: "Roboto", sans-serif;
+      
+      //1366: 14px, 1920: 16px
+      font-size: clamp(0.875rem, 0.5668rem + 0.361vw, 1rem);
+      
       font-style: normal;
       font-weight: 500;
       line-height: 20px; /* 142.857% */
@@ -96,8 +101,9 @@
 
     .type-description {
       color: #4e525f;
-      font-family: Roboto, sans-serif;
-      font-size: 12px;
+      font-family: "Roboto", sans-serif;
+      // 1366: 12px, 1920: 14px
+      font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
       font-style: normal;
       font-weight: 400;
       line-height: 18px; /* 150% */

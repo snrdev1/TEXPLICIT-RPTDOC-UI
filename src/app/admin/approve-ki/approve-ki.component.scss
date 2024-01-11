@@ -19,7 +19,7 @@
     line-height: 1.2em;
     font-size: 1.2em;
     font-weight: 500;
-    font-family:Domine,serif;
+    font-family:Poppins,serif;
     margin-bottom: 0.5em;
 }
 
@@ -29,7 +29,7 @@
     text-decoration: none;
     margin-bottom: 0.5em;
     font-size: smaller;
-    font-family: Roboto,sans-serif;
+    font-family: "Roboto",sans-serif;
 }
 .ki-link:hover{
     text-decoration: underline;
@@ -39,7 +39,7 @@
     margin-top: 1em;
     color: #040F2f;
     font-weight: 500;
-    font-family: Domine,serif;
+    font-family: Poppins,serif;
 }
 
 .description {
@@ -48,7 +48,7 @@
     //font-size: 14px;
          font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
     line-height: 16px;
-    font-family: Roboto,sans-serif;
+    font-family: "Roboto",sans-serif;
     color:#4E525F;
 }
 :host ::ng-deep .mat-dialog-footer{
@@ -59,7 +59,7 @@
         border-radius: 32.5px;
         padding: 10px 25px!important;
         text-align: center!important;
-        font-family: Roboto, sans-serif;
+        font-family: "Roboto", sans-serif;
         //font-size: 16px;
          font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
         font-style: normal;

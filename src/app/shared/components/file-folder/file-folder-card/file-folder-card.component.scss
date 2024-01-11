@@ -12,7 +12,7 @@
     border-radius: 5px;
     position: relative;
     float: left;
-    
+
     @media screen and (max-width:280px) {
         width:108px;
     }
@@ -75,7 +75,8 @@
             padding: 0 5px;
             white-space: nowrap;
             overflow: hidden;
-            font-size: 12px;
+            // 1366: 12px, 1920: 14px
+        font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
             text-overflow: ellipsis;
         }
         &.owner{
@@ -84,7 +85,8 @@
             padding: 0 5px;
             white-space: nowrap;
             overflow: hidden;
-            font-size: 12px;
+            // 1366: 12px, 1920: 14px
+        font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
             text-overflow: ellipsis;
         }
         &.type{
@@ -112,7 +114,8 @@
     padding: 0;
     list-style: none;
     font-family:'Roboto', sans-serif;
-    font-size: 12px;
+    // 1366: 12px, 1920: 14px
+        font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
     display: flex;
     li{
         display: flex;
@@ -224,4 +227,3 @@
         color: #111541 !important;
     }
 }
-        

@@ -3,7 +3,8 @@
     padding: 0;
     list-style: none;
     font-family:'Roboto', sans-serif;
-    font-size: 12px;
+    // 1366: 12px, 1920: 14px
+        font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
     display: flex;
     li{
         display: flex;
@@ -36,7 +37,8 @@
             font-family: "Roboto", serif;
             font-style: normal;
             font-weight: 400;
-            font-size: 12px;
+            // 1366: 12px, 1920: 14px
+        font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
             line-height: 24px;
             color: #4E525F;
             width: calc(100% - 270px);

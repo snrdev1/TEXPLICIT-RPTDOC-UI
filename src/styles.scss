@@ -36,7 +36,7 @@ $Texplicit2-theme: mat.define-light-theme((
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%;}
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
+body { margin: 0; font-family: "Roboto", "Helvetica Neue", sans-serif;}
 /*************** START SCROLLBAR ***************/
 /* width */
 ::-webkit-scrollbar {
@@ -195,7 +195,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
   height: 35px!important;
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
+  // 1366: 12px, 1920: 14px
+        font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
   line-height: 14px;
   color: #141516!important;
 }
@@ -203,7 +204,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
 .mdc-tab--active{
   font-style: normal;
   font-weight: 500;
-  font-size: 12px;
+  // 1366: 12px, 1920: 14px
+        font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
   line-height: 14px;
   color: #227AFF!important;
 }
@@ -446,7 +448,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
 }
 .mat-form-input-option{
   color: #040F2F;
-  font-family: Roboto, sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   //font-size: 14px;
          font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
@@ -563,7 +565,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
   //font-size: 18px;
          font-size: clamp(1rem, 0.912rem + 0.2817vw, 1.25rem);
   color: #4e525f;
-  font-family: "Domine", serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 500;
   display: flex;
   justify-content: center !important;
@@ -582,6 +584,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
 
 mat-error{
   font-family:'Roboto';
-  font-size: 12px;
+  // 1366: 12px, 1920: 14px
+        font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
   // margin-left: 13px;
 }

@@ -17,18 +17,22 @@
 
     .title {
       color: #fff;
-      font-family: Poppins;
+      font-family: "Poppins", sans-serif;
       font-style: normal;
       font-weight: 600;
       line-height: 26px; /* 130% */
-      //font-size: 20px;
-         font-size: clamp(1.125rem, 1.037rem + 0.2817vw, 1.375rem);
+
+      // 1366: 20px, 1920: 24px
+      font-size: clamp(1.25rem, 0.6336rem + 0.722vw, 1.5rem);
     }
 
     .description {
       color: #ebeef8;
-      font-family: Roboto, sans-serif;
-      font-size: 12px;
+      font-family: "Roboto", sans-serif;
+
+      // 1366: 12px, 1920: 14px
+      font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
+
       font-style: normal;
       font-weight: 400;
       line-height: 17px; /* 141.667% */
@@ -39,8 +43,9 @@
       border-radius: 100px;
       border: 1px solid #fff;
       color: #fff;
-      font-family: Roboto, sans-serif;
-      font-size: 12px;
+      font-family: "Roboto", sans-serif;
+      // 1366: 12px, 1920: 14px
+        font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
       font-style: normal;
       font-weight: 500;
       line-height: 12px;
