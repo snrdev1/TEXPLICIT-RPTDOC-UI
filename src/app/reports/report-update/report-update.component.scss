@@ -23,10 +23,10 @@
             list-style: none;
             font-family:'Roboto', sans-serif;
             // 1366: 12px, 1920: 14px
-        font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
+            font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
             font-weight: 500;
             display: flex;
-
+            padding-bottom: 5px;
             border-bottom: 0.5px solid rgba(146, 149, 159, 0.55);
 
             li{
@@ -34,6 +34,7 @@
                 align-items: center;
                 justify-content: space-between;
                 padding: 0 5px;
+
                 border-right: 0.5px solid rgba(146, 149, 159, 0.55);
                 cursor: auto;
                 &.name-header{
@@ -49,7 +50,8 @@
                 &.date-header{
                     width:  calc(100% - 275px);
                     // cursor: context-menu;
-                    padding: 0 5px;
+                    // padding: 0 5px;
+                    padding-left: 35px;
                     
                     @media screen and (max-width: 915px) {
                         width: 25%;
@@ -57,6 +59,16 @@
 
                     @media screen and (max-width: 414px) {
                         display: none;
+                    }
+                }
+                &.status-header{
+                    width:  calc(50% + 100px);
+                    // padding: 0 5px;
+                    padding-left: 35px;
+
+                    @media screen and (max-width: 414px) {
+                        border-right: none;
+                        width: 100%;
                     }
                 }
                 &.type-header{

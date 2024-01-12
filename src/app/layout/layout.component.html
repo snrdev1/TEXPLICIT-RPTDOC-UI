@@ -67,13 +67,13 @@
         </div>
         <span class="menu-item-label" routerLinkActive="active-menu-text">Reports</span>
       </li>
-      <li  *ngIf="isUserLoggedIn() && checkUserRole()" class="menu-item" routerLink="/user-management" routerLinkActive="menu-item-active">
-        <div routerLinkActive="active-menu-item-container">
+      <li *ngIf="isUserLoggedIn() && checkUserRole()"  class="menu-item" routerLink="/user-management" routerLinkActive="menu-item-active">
+        <div  routerLinkActive="active-menu-item-container">
           <img [src]="'../../assets/svg/side-nav-icon/icon-user-management.svg'" class="menu-icon"
             routerLinkActive="menu-icon-active" />
         </div>
-        <span class="menu-item-label" routerLinkActive="active-menu-text">Manage User</span>
-      </li>
+         <span class="menu-item-label" routerLinkActive="active-menu-text">Manage User</span>
+        </li>
     </ul>
   </mat-sidenav>
   <mat-sidenav-content class="main-container-content">

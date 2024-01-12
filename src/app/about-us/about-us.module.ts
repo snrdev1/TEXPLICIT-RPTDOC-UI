@@ -4,7 +4,7 @@ import { AboutUsComponent } from './about-us.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SharedModule } from '../shared/shared.module';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 
 const routes: Routes = [
   {

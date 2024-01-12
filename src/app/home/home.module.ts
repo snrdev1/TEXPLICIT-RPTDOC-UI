@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SubtopicComponent } from '../shared/components/subtopic/subtopic.component';
 import { SharedModule } from '../shared/shared.module';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 import { HomeFilterDialogComponent } from './modal-dialog/home-filter-dialog/home-filter-dialog.component';
 import { HomeCardComponent } from './home-card/home-card.component';
 

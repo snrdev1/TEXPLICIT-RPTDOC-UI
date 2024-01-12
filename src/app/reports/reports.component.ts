@@ -138,6 +138,7 @@ export class ReportsComponent {
           this.searchInput.nativeElement.value = "";
           this.commonService.showSnackbar("snackbar-info", "Report creation takes a few minutes time. Truly appreciate your patience. Thank You!", "0")
           this.onProgressStatus = true;
+          this.showLoadingReports();
         },
         error: (e) => {
           console.log("Error: ", e);
@@ -216,12 +217,13 @@ export class ReportsComponent {
 
   showLoadingReports() {
     console.log('report progress dialog clicked')
-    const dialogRef = this.dialog.open(ReportUpdateComponent, { panelClass: 'mat-filter-dialog', data: this.reportGenerationData });
+    const dialogRef = this.dialog.open(ReportUpdateComponent, { panelClass: 'mat-ki-add-dialog', data: this.reportGenerationData });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('report progress dialog closed');
     });
   }
+
   getSubtopics() {
     console.log('Add subtopic Click');
     let subtopics: any = this.localStorage.getitem('subtopics') || [];
