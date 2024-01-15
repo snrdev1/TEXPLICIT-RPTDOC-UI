@@ -29,7 +29,7 @@ export class FileFolderShareDialogComponent {
     private commonservice : CommonService
   ) {}
   ngOnInit(){
-    this.localStorageService.getUserInfo();
+    this.localStorageService.observeUserInfo();
     this.userInfo$.subscribe((data) =>{
       console.log("data: ",data);
       this.currId = data?._id;

@@ -38,11 +38,11 @@ export class LayoutComponent {
     public socketService: WebSocketService,
     public router: Router,
     private dialog: MatDialog) {
-      this.localStorage.getUserInfo();
+      this.localStorage.observeUserInfo();
       this.userInfo$.subscribe((userInfo) =>{
-      this.userId = userInfo?._id;
-      this.userName = userInfo?.name;
-      this.userRole = userInfo?.role;
+        this.userId = userInfo?._id;
+        this.userName = userInfo?.name;
+        this.userRole = userInfo?.role;
     });
      }
 
