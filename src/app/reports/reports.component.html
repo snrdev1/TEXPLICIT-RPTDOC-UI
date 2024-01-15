@@ -66,9 +66,9 @@
                   <div class="my-datasource-toolbar-config mr-10px-1">
                     <mat-form-field appearance="outline" class="my-reports-dropdown mr-10px-1">
                       <mat-select #ddlDatasource placeholder="Please Select" formControlName="report_type">
-                        <mat-option value="research_report">Research Report</mat-option>
+                        <mat-option value="research_report">Summary Report</mat-option>
                         <mat-option value="outline_report">Outline Report</mat-option>
-                        <mat-option value="resource_report">Resource Report</mat-option>
+                        <!-- <mat-option value="resource_report">Resource Report</mat-option> -->
                         <mat-option value="detailed_report">Detailed Report</mat-option>
                         <mat-option value="complete_report">Combined Report</mat-option>
                       </mat-select>
@@ -93,7 +93,36 @@
         </div>
       </form>
     </div>
+    <div class="mr-top" *ngIf="allReports.length !== 0">
+      <!-- <div  fxLayout="row" fxLayoutAlign="space-between center"> -->
+      <div class="gen-report">
+        <div fxLayout="column">
+          <div class="report-header" >Generated Reports</div>
+          <div class="report-sub-header"  >Your reports are portrayed here</div>
+        </div>
+        <div class="rep-gen-toolbar-config" fxLayout="column">
 
+          <app-outer-toolbar-buttons 
+              (onFilter)="onFilterClick()"
+              [groupMemberButtonVisible]="false"
+              [noteButtonVisible]="false"
+              [moreButtonVisible]="false"
+              [backToParentButtonVisible]="false" 
+              [createFolderButtonVisible]="false"
+              [refreshButtonVisible]="false"
+              [uploadFileButtonVisible]="false"
+              [configurationButtonVisible]="false"
+              [historyButtonVisible]="false"
+              [addUserButtonVisible]="false"
+              [workspaceButtonVisible]="false"
+              [addKnowledgeItemButtonVisible]="false"
+              [newsButtonVisible]="false"
+              (onReportProgress)="showLoadingReports()"
+              ></app-outer-toolbar-buttons>
+        </div>
+      </div>
+      
+  </div>
     <div style="position: relative">
       <div class="files-container  {{ displayStyle || 'list' }} " >
         <!-- write displayStyle.value if toggle button is kept -->

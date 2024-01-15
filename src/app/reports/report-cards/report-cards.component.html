@@ -1,17 +1,10 @@
 <ul class="file-row {{displayStyle}}" [ngClass]="{'noCheckbox': checkboxVisible === false}" class="mr-10px">
-    <!-- <li class="check">
-      <input type="checkbox" class="checkbox-round" value="{{report._id}}" (change)="onChange($event)" [checked]="isChecked(report._id)" />
-    </li> -->
     <li class="icon">
         <img *ngIf="report.format === 'pdf'||report.format === ''" src="../../assets/svg/documents-icon/pdf.svg" />
-        <img *ngIf="report.format === 'word'" src="../../assets/svg/documents-icon/doc.svg" />
-
-        
+        <img *ngIf="report.format === 'word'" src="../../assets/svg/documents-icon/doc.svg" />   
     </li>
-    <!-- <li class="name" (click)="onDownloadClick(report)">{{ report.task }}</li> -->
     <li class="name"><span (click)="onDownloadClick(report)">{{ report.task }}</span>
-    </li>
-    
+    </li> 
     <li class="action">
         <button class="btn-row"  [matMenuTriggerFor]="filefolderMenu">
             <mat-icon>more_vert</mat-icon>
@@ -19,17 +12,12 @@
     </li>
     <li class="type" [matTooltip]="report.task">
       {{ report.isTruncated ? truncateText(report.task, 50) : report.task }}
-      <!-- (mouseenter)="showFullText()" (mouseleave)="hideFullText()"  -->
-      <!-- <span class="type-preview" [class.hovered]="showFullTextFlag">
-        {{ report.isTruncated ? truncateText(report.task, 10) : report.task }}
-      </span> -->
-      <!-- <div *ngIf="showFullTextFlag" class="hover-box">
-        {{ report.task }}
-      </div> -->
     </li>
     <li class="date" >{{ report.createdOn | date:'dd/MM/YY h:mm a'}}</li>
     <li class="report-type" >{{ reportType }}</li>
-    
+    <li class="icon">
+      <img  src="../../assets/svg/report-audio-icon/play-circle.svg" />     
+    </li>
     
 </ul>
 

@@ -37,16 +37,18 @@ export class LayoutComponent {
     public localStorage: LocalStorageService,
     public socketService: WebSocketService,
     public router: Router,
-    private dialog: MatDialog) { }
-
-  ngOnInit() {
-    this.localStorage.getUserInfo();
-    this.userInfo$.subscribe((userInfo) =>{
+    private dialog: MatDialog) {
+      this.localStorage.getUserInfo();
+      this.userInfo$.subscribe((userInfo) =>{
       this.userId = userInfo?._id;
       this.userName = userInfo?.name;
       this.userRole = userInfo?.role;
     });
-    this.checkUserRole();
+     }
+
+  ngOnInit() {
+    
+    // this.checkUserRole();
 
     if (this.checkLogin()) {
       this.socketError = this.userId + '_error';

@@ -9,5 +9,5 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 export class ReportUpdateCardsComponent {
   @Input() report:any=[];
   @Input() displayStyle:any="";
-  @Input() progressValue:any=40;
+  @Input() progressValue:any=54;
 }

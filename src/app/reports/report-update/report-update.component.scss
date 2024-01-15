@@ -16,17 +16,21 @@
     }
     // margin-top: 20px;
     .file-header-content{
-        padding-top: 10px;
+        // padding-top: 10px;
         .header-row{
-            margin-top: 10px;
-            padding: 0;
+            // margin-top: 10px;
+            margin-bottom: 0 ;
+            padding-top: 0;
+            padding-left: 0;
+            padding-right: 0;
             list-style: none;
             font-family:'Roboto', sans-serif;
             // 1366: 12px, 1920: 14px
             font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
             font-weight: 500;
             display: flex;
-            padding-bottom: 5px;
+            padding-bottom: 10px;
+            color:#4E525F;
             border-bottom: 0.5px solid rgba(146, 149, 159, 0.55);
 
             li{
@@ -34,7 +38,6 @@
                 align-items: center;
                 justify-content: space-between;
                 padding: 0 5px;
-
                 border-right: 0.5px solid rgba(146, 149, 159, 0.55);
                 cursor: auto;
                 &.name-header{
