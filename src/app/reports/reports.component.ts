@@ -114,6 +114,9 @@ export class ReportsComponent {
   }
 
   onSubmit() {
+    if(this.form.invalid){
+      this.commonService.showSnackbar("snackbar-error","Please enter topic for report",'0');
+    }
     if (!this.form.invalid) {
       const uniqueID: any = uuidv4();
 
@@ -132,6 +135,7 @@ export class ReportsComponent {
       this.reportsService.generateReport(this.form.value).subscribe({
         next: (res) => {
           console.log("On submitting topic: ", res);
+          this.form.controls['task'].setValue('');
           this.form.controls['subtopics'].setValue([]);
           this.localStorage.setitem('subtopics', null);
 
