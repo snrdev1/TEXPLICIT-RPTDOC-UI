@@ -7,7 +7,10 @@
   font-weight: 400;
   line-height: 28px;
   margin-bottom: 25px;
-
+  @media screen and (max-width:414px){
+    line-height: 24px;
+    
+  }
   p {
     margin: 0;
   }
@@ -328,7 +331,7 @@
 :host ::ng-deep .my-datasource-dropdown .mat-mdc-form-field-infix {
   width: 150px;
   @media screen and (max-width: 414px) {
-    max-width: 140px;
+    max-width: 120px;
   }
 }
 :host ::ng-deep .my-reports-dropdown .mat-mdc-form-field-infix {
@@ -394,7 +397,11 @@
 .top-40 {
   border-top: 0.5px solid #8F9497A1;
   padding-top: 10px;
-  margin-top: 70px;
+  margin-top: 60px;
+  @media screen and (max-width:414px) {
+    margin-top: 30px;
+    
+  }
 }
 .mr-websearch {
   margin-top: 30px;
@@ -556,11 +563,6 @@
 .first-row {
   display: contents;
   justify-content: space-evenly;
-  // display: flex;
-  // justify-content: space-between;
-  // @media screen and (max-width: 1000px) {
-  //     flex-direction: column;
-  //     }
 }
 .first-row-first-section {
   width: 100%;
@@ -572,10 +574,6 @@
   @media screen and (max-width: 1000px) {
     width: 100%;
   }
-  // @media screen and (max-width: 414px) {
-  //     width:100%;
-  // justify-content:space-between;
-  // }
 }
 .first-row-third-section {
   display: flex;
@@ -604,7 +602,7 @@
     justify-content: flex-start;
   }
   @media screen and (max-width: 414px) {
-    justify-content: flex-end;
+    justify-content: space-between;
   }
 
   button {

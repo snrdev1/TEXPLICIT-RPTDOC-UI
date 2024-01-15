@@ -1,4 +1,4 @@
-import { Component, NgZone } from '@angular/core';
+import { Component, NgZone, ElementRef, Renderer2,HostListener } from '@angular/core';
 import { CommonService } from '../shared/services/common.service';
 import { ElementQueries } from 'css-element-queries';
 import { MatDialog } from '@angular/material/dialog';
@@ -37,7 +37,10 @@ export class LayoutComponent {
     public localStorage: LocalStorageService,
     public socketService: WebSocketService,
     public router: Router,
-    private dialog: MatDialog) {
+    private dialog: MatDialog,
+    private el: ElementRef,
+    private render: Renderer2
+    ) {
       this.localStorage.observeUserInfo();
       this.userInfo$.subscribe((userInfo) =>{
         this.userId = userInfo?._id;
@@ -75,6 +78,20 @@ export class LayoutComponent {
         }
       })
     }
+  }
+  private toggleButtonVisibility(): void {
+    const buttonElement = this.el.nativeElement.querySelector('.menu-btn'); 
+
+    if (window.innerWidth <= 414) { 
+      this.render.setStyle(buttonElement, 'display', 'block');
+    } else {
+      this.render.setStyle(buttonElement, 'display', 'none');
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.toggleButtonVisibility();
   }
 
   checkLogin() {

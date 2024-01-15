@@ -93,36 +93,8 @@
         </div>
       </form>
     </div>
-    <div class="mr-top" *ngIf="allReports.length !== 0">
-      <!-- <div  fxLayout="row" fxLayoutAlign="space-between center"> -->
-      <div class="gen-report">
-        <div fxLayout="column">
-          <div class="report-header" >Generated Reports</div>
-          <div class="report-sub-header"  >Your reports are portrayed here</div>
-        </div>
-        <div class="rep-gen-toolbar-config" fxLayout="column">
-
-          <app-outer-toolbar-buttons 
-              (onFilter)="onFilterClick()"
-              [groupMemberButtonVisible]="false"
-              [noteButtonVisible]="false"
-              [moreButtonVisible]="false"
-              [backToParentButtonVisible]="false" 
-              [createFolderButtonVisible]="false"
-              [refreshButtonVisible]="false"
-              [uploadFileButtonVisible]="false"
-              [configurationButtonVisible]="false"
-              [historyButtonVisible]="false"
-              [addUserButtonVisible]="false"
-              [workspaceButtonVisible]="false"
-              [addKnowledgeItemButtonVisible]="false"
-              [newsButtonVisible]="false"
-              (onReportProgress)="showLoadingReports()"
-              ></app-outer-toolbar-buttons>
-        </div>
-      </div>
-      
-  </div>
+    
+    
     <div style="position: relative">
       <div class="files-container  {{ displayStyle || 'list' }} " >
         <!-- write displayStyle.value if toggle button is kept -->
