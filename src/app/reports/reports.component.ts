@@ -54,7 +54,7 @@ export class ReportsComponent {
     this.form = this.fb.group({
       task: new FormControl('', Validators.required),
       source: new FormControl('external'),
-      report_type: new FormControl('research_report'),
+      report_type: new FormControl(),
       format: new FormControl('pdf'),
       websearch: new FormControl(true),
       subtopics: new FormControl([]),
@@ -114,9 +114,9 @@ export class ReportsComponent {
   }
 
   onSubmit() {
-    if(this.form.invalid){
-      this.commonService.showSnackbar("snackbar-error","Please enter topic for report",'0');
-    }
+    // if(this.form.invalid){
+    //   this.commonService.showSnackbar("snackbar-error","Please enter topic for report",'0');
+    // }
     if (!this.form.invalid) {
       const uniqueID: any = uuidv4();
 

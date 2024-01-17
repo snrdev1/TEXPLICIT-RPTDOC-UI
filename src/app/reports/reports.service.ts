@@ -37,4 +37,8 @@ export class ReportsService {
     };
     return this.http.delete<any>(url, options);
   }
+  downloadReportAudio(reportId: string): Observable<Blob> {
+    const url = `${environment.hostName}/report/audio/download/${reportId}`;
+    return this.http.get(url, { responseType: 'blob' });
+  }
 }

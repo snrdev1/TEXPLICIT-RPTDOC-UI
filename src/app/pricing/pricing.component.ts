@@ -14,15 +14,10 @@ export class PricingComponent {
       "description": "Bullets outlining topic",
       "price": 4000
     },
-    {
-      "icon": "icon-report-resource",
-      "title": "Resource",
-      "description": "Provides all the references with the description",
-      "price": 4000
-    },
+    
     {
       "icon": "icon-report-research",
-      "title": "Research",
+      "title": "Summary",
       "description": "Provides an overview of each of the sections contained",
       "price": 4000
     },

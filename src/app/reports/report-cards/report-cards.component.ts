@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { ReportsService } from '../reports.service';
 import { saveAs } from 'file-saver';
 import { CommonService } from 'src/app/shared/services/common.service';
@@ -19,11 +19,13 @@ export class ReportCardsComponent {
   @Input() public moreButtonVisible:boolean=true;
   reportType: string="";
   showFullTextFlag: boolean = false;
+  isPlaying: boolean = false;
   @Input() report:any=[];
   @Input() displayStyle:any="";
-
-
-  @Output() deleteReport = new EventEmitter<any>()
+  fileBlob:Blob|null = null ;
+  audioPlayerVisible: boolean = false;
+  @Output() deleteReport = new EventEmitter<any>();
+  @ViewChild('audioPlayer') audioPlayer!: ElementRef;
   constructor(private reportService: ReportsService,
               public dialog:MatDialog,
               private commonService: CommonService){}
@@ -49,8 +51,40 @@ export class ReportCardsComponent {
 
   onChange(e: any){}
   isChecked(item:any){}
+  
+  playAudio() {
+    if (this.fileBlob) {
+      const blobUrl = URL.createObjectURL(this.fileBlob);
+      this.audioPlayer.nativeElement.src = blobUrl;
+      this.audioPlayer.nativeElement.load();
+      this.audioPlayer.nativeElement.play();
+    } else {
+      console.error('Blob not available.');
+    }
+  }
+  stopAudio(){
+    this.audioPlayerVisible = false;
+    this.audioPlayer.nativeElement.pause();
 
+  }
+onAudioDownload(report:any){
+  this.reportService.downloadReportAudio(report._id).subscribe({
+    next: (res) => {
+      console.log('Response',URL.createObjectURL(res));
+      this.fileBlob = res;
+      this.audioPlayerVisible = true;
+      this.playAudio();
+    },
+    error: (e) => {
+      console.log("Error", e);
+      this.commonService.showSnackbar("snackbar-error",e.message,e.status);
 
+    },
+    complete: () => {
+      console.log("Report audio download complete");
+    }
+  })
+}
 onDownloadClick(report: any) {
   console.log("report",this.report);
   if(this.report.format === 'word'){
@@ -149,4 +183,6 @@ onDownloadClick(report: any) {
   hideFullText() {
     this.showFullTextFlag = false;
   }
+
+  
     }

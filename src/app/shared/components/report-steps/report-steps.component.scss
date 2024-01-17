@@ -86,9 +86,19 @@
   gap: 4rem;
   margin-right: 2.5rem;
 
+  .part-one,.part-two{
+    display: flex;
+    flex-direction: row;
+    gap: 4rem;
+    @media screen and (max-width:414px) {
+      flex-direction: column;
+    }
+  }
   .report-type {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    // flex-direction: column;
+    
 
     .type {
       color: #1c1d21;
@@ -113,7 +123,7 @@
       font-style: normal;
       font-weight: 400;
       line-height: 18px; /* 150% */
-      max-width: 400px;
+      // max-width: 400px;
       margin: 0;
     }
   }

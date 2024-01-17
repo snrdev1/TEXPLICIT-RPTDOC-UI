@@ -1,4 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @Component({
   selector: 'app-report-steps',
