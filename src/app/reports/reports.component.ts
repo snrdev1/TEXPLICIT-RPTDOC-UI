@@ -81,6 +81,8 @@ export class ReportsComponent {
     // this.reportGenerationData = this.localStorage.getitem('reportDataArrayString') || [];
     this.isDismissed = this.localStorage.getitem('report-steps') || false;
     if (this.authService.isLoggedIn) {
+    this.isLoading = true;
+
       this.getAllReports();
     }
     this.getPendingReports();
@@ -166,7 +168,6 @@ export class ReportsComponent {
   }
 
   getAllReports() {
-    this.isLoading = true;
     console.log("getAllReports called");
     this.reportsService.getAllreports(this.limit, this.offset, this.filteredSource, this.filteredFormat, this.filteredReportType).subscribe({
       next: (res) => {

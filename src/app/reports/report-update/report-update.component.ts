@@ -37,9 +37,11 @@ export class ReportUpdateComponent {
     console.log("data from report component : ", this.reports);
 
     this.allReports$.subscribe((reports: any) => {
+      if(reports){
       const pendingReports = this.reports.filter((item1: { report_generation_id: string; }) => !reports.some((item2: { report_generation_id: string; }) => item1.report_generation_id === item2.report_generation_id));
       this.reports = pendingReports;
       console.log("New reports received! : ", reports);
+    }
     });
   }
 
