@@ -2,17 +2,17 @@
 
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { LocalStorageService } from '../core/local-storage.service';
-import { WebSocketService } from '../shared/services/socketio.service';
-import { ReportsService } from './reports.service';
-import { CommonService } from '../shared/services/common.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ReportFilterComponent } from './report-filter/report-filter.component';
+import { Observable } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
-import { ReportUpdateComponent } from './report-update/report-update.component';
-import { AddSubtopicComponent } from './add-subtopic/add-subtopic.component';
 import { AuthService } from '../core/auth.service';
+import { LocalStorageService } from '../core/local-storage.service';
+import { CommonService } from '../shared/services/common.service';
+import { WebSocketService } from '../shared/services/socketio.service';
+import { AddSubtopicComponent } from './add-subtopic/add-subtopic.component';
+import { ReportFilterComponent } from './report-filter/report-filter.component';
+import { ReportUpdateComponent } from './report-update/report-update.component';
+import { ReportsService } from './reports.service';
 
 @Component({
   selector: 'app-reports',
@@ -28,7 +28,6 @@ export class ReportsComponent {
   filteredReportType: string = "";
   userId: string = "";
   reportEvent: string = "";
-  allReports: any = [];
   completedReports: any = [];
   topic: any = "";
   sortBy: string = "task";
@@ -39,13 +38,16 @@ export class ReportsComponent {
   limit: number = 30;
   userInfo: any = [];
   displayStyle: string = 'list';
-  isLoading:boolean = true;
+  isLoading: boolean = true;
   isDismissed: boolean = false;
-  pendingReports: any=[];
+  pendingReports: any = [];
+  allReports: any = [];
+
   userInfo$: Observable<any> = this.localStorage.userInfo$;
   @ViewChild('searchinput') searchInput!: ElementRef;
 
-  constructor(private localStorage: LocalStorageService,
+  constructor(
+    private localStorage: LocalStorageService,
     private reportsService: ReportsService,
     private commonService: CommonService,
     private dialog: MatDialog,
@@ -65,7 +67,6 @@ export class ReportsComponent {
     this.userInfo = this.localStorage.getUserInfo();
   }
 
-
   ngOnInit() {
     if (this.userInfo) {
       this.userId = this.userInfo?._id;
@@ -82,59 +83,52 @@ export class ReportsComponent {
     if (this.authService.isLoggedIn) {
       this.getAllReports();
     }
-    
     this.getPendingReports();
+    this.setupReportsListener();
+  }
 
+  setupReportsListener() {
     this.socketService.listen(this.reportEvent).subscribe({
       next: (res) => {
         console.log("res from socket", res.data);
-        // this.reportGenerationData = this.localStorage.getitem('reportDataArrayString') || [];
-        // const index = this.reportGenerationData.findIndex((report: any) => report.report_generation_id === res.data.report_generation_id);
-        // if (index != -1) {
-        //   this.reportGenerationData.splice(index, 1);
-        //   this.localStorage.setitem('reportDataArrayString', this.reportGenerationData);
-        // }
         if (res.success) {
           this.commonService.showSnackbar('snackbar-success', res.message, res.status);
           this.allReports = [res.data, ...this.allReports];
-
         }
         else {
           this.commonService.showSnackbar('snackbar-error', res.message, res.status);
         }
 
+        this.reportsService._allReportsSubject$.next(this.allReports);
       },
       error: (e) => {
         console.log("Error", e);
         this.commonService.showSnackbar('snackbar-error', e.message, e.status);
       },
       complete: () => {
+        this.getPendingReports();
         console.log("Completed listenting. Report generated ");
       }
     })
-
   }
 
-  getPendingReports(){
-    this.reportsService.pendingReports(this.limit, this.offset, this.filteredSource, this.filteredFormat,this.filteredReportType).subscribe({
-      next: (res:any)=>{
+  getPendingReports() {
+    this.reportsService.pendingReports(this.limit, this.offset, this.filteredSource, this.filteredFormat, this.filteredReportType).subscribe({
+      next: (res: any) => {
         // console.log("Res of PENDING REPORTS:", res);
         this.pendingReports = res;
         console.log("PENDING REPORTS:", this.pendingReports);
 
       },
-      error: (e:any)=>{
-        console.log("Error:",e);
+      error: (e: any) => {
+        console.log("Error:", e);
       },
-      complete:()=>{
+      complete: () => {
         console.log("Complete fetching pending reports");
       }
     })
   }
   onSubmit() {
-    // if(this.form.invalid){
-    //   this.commonService.showSnackbar("snackbar-error","Please enter topic for report",'0');
-    // }
     if (!this.form.invalid) {
       const uniqueID: any = uuidv4();
 
@@ -147,8 +141,6 @@ export class ReportsComponent {
       console.log(this.form.value);
 
       const submitReport = this.form.value;
-      // this.reportGenerationData.push(submitReport);
-      // this.localStorage.setitem('reportDataArrayString', this.reportGenerationData);
 
       this.reportsService.generateReport(this.form.value).subscribe({
         next: (res) => {
@@ -160,14 +152,13 @@ export class ReportsComponent {
           this.searchInput.nativeElement.value = "";
           this.commonService.showSnackbar("snackbar-info", "Report creation takes a few minutes time. Truly appreciate your patience. Thank You!", "0")
           this.onProgressStatus = true;
-          this.getPendingReports();
-          this.showLoadingReports();
         },
         error: (e) => {
           console.log("Error: ", e);
           this.onProgressStatus = false;
         },
         complete: () => {
+          this.getPendingReports();
           console.log("Report generation in progress");
         }
       })
@@ -240,15 +231,7 @@ export class ReportsComponent {
 
   showLoadingReports() {
     console.log('report progress dialog clicked');
-    // this.getPendingReports();
-    // let data = {
-    //   'limit':this.limit,
-    //   'offset':this.offset,
-    //   'source':this.filteredSource,
-    //   'format':this.filteredFormat,
-    //   'reportType': this.filteredReportType
-    // }
-    const dialogRef = this.dialog.open(ReportUpdateComponent, { panelClass: 'mat-ki-add-dialog', data:this.pendingReports });
+    const dialogRef = this.dialog.open(ReportUpdateComponent, { panelClass: 'mat-ki-add-dialog', data: this.pendingReports });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('report progress dialog closed');
@@ -276,7 +259,8 @@ export class ReportsComponent {
     this.offset = 0;
     this.allReports = [];
   }
-  dismissSteps(){
+
+  dismissSteps() {
     this.isDismissed = true;
     this.localStorage.setitem('report-steps', this.isDismissed);
   }
