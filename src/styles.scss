@@ -398,7 +398,9 @@ body { margin: 0; font-family: "Roboto", "Helvetica Neue", sans-serif;}
     width:90%;
   }
 }
-
+.mat-ki-add-dialog{
+  height: max-content;
+}
 .mat-news-detail-dialog,
 .mat-ki-add-dialog,
 .mat-ki-share-dialog,

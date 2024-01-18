@@ -23,15 +23,13 @@ export class ReportUpdateCardsComponent {
     private localStorage:LocalStorageService,
    ){}
   ngOnInit(){
-    console.log("In ngOnINit of update card");
-    this.statusSocket = this.userId + '_report_' + this.report.report_generation_id + '_status' ;
-
-    this.status = this.localStorage.getitem(this.statusSocket) || 'Processing...' ;
-    // console.log("Each Report:", this.report);
-    // console.log("Status:", this.message);
     this.userInfo =  this.localStorage.getUserInfo();
     // console.log("Userinfo:", this.userInfo);
     this.userId = this.userInfo._id;
+    this.statusSocket = this.userId + '_report_' + this.report.report_generation_id + '_status' ;
+
+    this.status = this.localStorage.getitem(this.statusSocket) || 'Processing...' ;
+    
     this.socketService.listen(this.statusSocket).subscribe({
       next:(res)=>{
         console.log("Response of socket", res);
