@@ -173,6 +173,7 @@ export class ReportsComponent {
         this.isLoading = false;
         this.allReports = [...this.allReports, ...res?.data];
         console.log("Res in getAllReports", this.allReports);
+        this.getPendingReports();
       },
       error: (e) => {
         this.isLoading = false;
