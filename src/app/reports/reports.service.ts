@@ -41,4 +41,15 @@ export class ReportsService {
     const url = `${environment.hostName}/report/audio/download/${reportId}`;
     return this.http.get(url, { responseType: 'blob' });
   }
+  pendingReports(limit:number, offset:number,source:string,format:string,report_type:string): Observable<any>{
+    const url = `${environment.hostName}/report/pending`;
+    const params = {
+      "limit":limit,
+      "offset":offset,
+      "source":source,
+      "format":format,
+      "report_type": report_type
+    }
+    return this.http.get<any>(url,{params});
+  }
 }

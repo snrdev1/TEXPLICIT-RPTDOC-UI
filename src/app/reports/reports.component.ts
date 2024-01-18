@@ -41,6 +41,7 @@ export class ReportsComponent {
   displayStyle: string = 'list';
   isLoading:boolean = true;
   isDismissed: boolean = false;
+  pendingReports: any=[];
   userInfo$: Observable<any> = this.localStorage.userInfo$;
   @ViewChild('searchinput') searchInput!: ElementRef;
 
@@ -54,7 +55,7 @@ export class ReportsComponent {
     this.form = this.fb.group({
       task: new FormControl('', Validators.required),
       source: new FormControl('external'),
-      report_type: new FormControl(),
+      report_type: new FormControl('', Validators.required),
       format: new FormControl('pdf'),
       websearch: new FormControl(true),
       subtopics: new FormControl([]),
@@ -76,22 +77,23 @@ export class ReportsComponent {
       this.filteredFormat = filterValues?.format || "";
       this.filteredReportType = filterValues?.report_type || "";
     }
-    this.reportGenerationData = this.localStorage.getitem('reportDataArrayString') || [];
+    // this.reportGenerationData = this.localStorage.getitem('reportDataArrayString') || [];
     this.isDismissed = this.localStorage.getitem('report-steps') || false;
     if (this.authService.isLoggedIn) {
       this.getAllReports();
     }
-
+    
+    this.getPendingReports();
 
     this.socketService.listen(this.reportEvent).subscribe({
       next: (res) => {
         console.log("res from socket", res.data);
-        this.reportGenerationData = this.localStorage.getitem('reportDataArrayString') || [];
-        const index = this.reportGenerationData.findIndex((report: any) => report.report_generation_id === res.data.report_generation_id);
-        if (index != -1) {
-          this.reportGenerationData.splice(index, 1);
-          this.localStorage.setitem('reportDataArrayString', this.reportGenerationData);
-        }
+        // this.reportGenerationData = this.localStorage.getitem('reportDataArrayString') || [];
+        // const index = this.reportGenerationData.findIndex((report: any) => report.report_generation_id === res.data.report_generation_id);
+        // if (index != -1) {
+        //   this.reportGenerationData.splice(index, 1);
+        //   this.localStorage.setitem('reportDataArrayString', this.reportGenerationData);
+        // }
         if (res.success) {
           this.commonService.showSnackbar('snackbar-success', res.message, res.status);
           this.allReports = [res.data, ...this.allReports];
@@ -113,6 +115,22 @@ export class ReportsComponent {
 
   }
 
+  getPendingReports(){
+    this.reportsService.pendingReports(this.limit, this.offset, this.filteredSource, this.filteredFormat,this.filteredReportType).subscribe({
+      next: (res:any)=>{
+        // console.log("Res of PENDING REPORTS:", res);
+        this.pendingReports = res;
+        console.log("PENDING REPORTS:", this.pendingReports);
+
+      },
+      error: (e:any)=>{
+        console.log("Error:",e);
+      },
+      complete:()=>{
+        console.log("Complete fetching pending reports");
+      }
+    })
+  }
   onSubmit() {
     // if(this.form.invalid){
     //   this.commonService.showSnackbar("snackbar-error","Please enter topic for report",'0');
@@ -129,8 +147,8 @@ export class ReportsComponent {
       console.log(this.form.value);
 
       const submitReport = this.form.value;
-      this.reportGenerationData.push(submitReport);
-      this.localStorage.setitem('reportDataArrayString', this.reportGenerationData);
+      // this.reportGenerationData.push(submitReport);
+      // this.localStorage.setitem('reportDataArrayString', this.reportGenerationData);
 
       this.reportsService.generateReport(this.form.value).subscribe({
         next: (res) => {
@@ -142,6 +160,7 @@ export class ReportsComponent {
           this.searchInput.nativeElement.value = "";
           this.commonService.showSnackbar("snackbar-info", "Report creation takes a few minutes time. Truly appreciate your patience. Thank You!", "0")
           this.onProgressStatus = true;
+          this.getPendingReports();
           this.showLoadingReports();
         },
         error: (e) => {
@@ -220,8 +239,16 @@ export class ReportsComponent {
   }
 
   showLoadingReports() {
-    console.log('report progress dialog clicked')
-    const dialogRef = this.dialog.open(ReportUpdateComponent, { panelClass: 'mat-ki-add-dialog', data: this.reportGenerationData });
+    console.log('report progress dialog clicked');
+    // this.getPendingReports();
+    // let data = {
+    //   'limit':this.limit,
+    //   'offset':this.offset,
+    //   'source':this.filteredSource,
+    //   'format':this.filteredFormat,
+    //   'reportType': this.filteredReportType
+    // }
+    const dialogRef = this.dialog.open(ReportUpdateComponent, { panelClass: 'mat-ki-add-dialog', data:this.pendingReports });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('report progress dialog closed');
