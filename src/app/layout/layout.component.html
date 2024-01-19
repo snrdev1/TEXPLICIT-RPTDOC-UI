@@ -1,29 +1,30 @@
 <mat-toolbar class="toolbar-container" fxLayout="row">
-  <!-- <button mat-icon-button class="menu-btn" *ngIf="isUserLoggedIn()" (click)="leftnav.toggle()">
-        <img src="../../assets/svg/top-nav-icon/hamburger.svg" />
-  </button> -->
+  <button mat-icon-button class="menu-btn" (click)="leftnav.toggle()">
+    <img src="../../assets/svg/top-nav-icon/hamburger.svg" />
+  </button>
 
   <div class="logo" routerLink="/home">
     <img src="../../assets/svg/logo/texplicit02-logo.svg" />
   </div>
   <span class="toolbar-spacer"></span>
-  <button class="btn-link" class="mr-5px" (click)="onDisclaimerClick()">
+
+  <button class="mr-5px sm-hidden" (click)="onDisclaimerClick()">
     Disclaimer
   </button>
-  <button class="btn-link" class="mr-5px" (click)="onAboutClick()">
+  <button class="mr-5px sm-hidden" (click)="onAboutClick()">
     About Us
   </button>
-  <button class="btn-link" class="mr-5px" (click)="onContactClick()">
+  <button class="mr-5px sm-hidden" (click)="onContactClick()">
     Contact
   </button>
-  <button class="btn-link" class="mr-5px" (click)="onFeedbackClick()">
+  <button class="mr-5px sm-hidden" (click)="onFeedbackClick()">
     Feedback
   </button>
-  <button class="btn-link" class="mr-5px" (click)="onPricingClick()">
+  <button class="mr-5px sm-hidden" (click)="onPricingClick()">
     Pricing
   </button>
 
-  <div class="divider"></div>
+  <div class="divider sm-hidden"></div>
 
   <button class="user-icon" *ngIf="isUserLoggedIn()" mat-icon-button matTooltip="{{ userName }}"
     [matMenuTriggerFor]="userMenu">
@@ -40,12 +41,6 @@
 <mat-sidenav-container autosize class="custom-sidenav-container">
   <mat-sidenav #leftnav class="left-sidenav-container" mode="side" [opened]="true">
     <ul class="menu-container">
-      <!-- <li class="menu-item" *ngFor="let menuItem of this.commonService.userMenu" routerLink="{{ menuItem.link }}" routerLinkActive="menu-item-active">
-                <div routerLinkActive="active-menu-item-container">
-                  <img [src]="'../../assets/svg/side-nav-icon/' + menuItem.icon + '.svg'" class="menu-icon" routerLinkActive="menu-icon-active"/>
-                </div>
-                <span class="menu-item-label" routerLinkActive="active-menu-text">{{ menuItem.name }}</span>
-            </li> -->
       <li class="menu-item" routerLink="/home" routerLinkActive="menu-item-active">
         <div routerLinkActive="active-menu-item-container">
           <img [src]="'../../assets/svg/side-nav-icon/icon-home.svg'" class="menu-icon"
@@ -67,13 +62,14 @@
         </div>
         <span class="menu-item-label" routerLinkActive="active-menu-text">Reports</span>
       </li>
-      <li *ngIf="isUserLoggedIn() && checkUserRole()"  class="menu-item" routerLink="/user-management" routerLinkActive="menu-item-active">
-        <div  routerLinkActive="active-menu-item-container">
+      <li *ngIf="isUserLoggedIn() && checkUserRole()" class="menu-item" routerLink="/user-management"
+        routerLinkActive="menu-item-active">
+        <div routerLinkActive="active-menu-item-container">
           <img [src]="'../../assets/svg/side-nav-icon/icon-user-management.svg'" class="menu-icon"
             routerLinkActive="menu-icon-active" />
         </div>
-         <span class="menu-item-label" routerLinkActive="active-menu-text">Manage User</span>
-        </li>
+        <span class="menu-item-label" routerLinkActive="active-menu-text">Manage User</span>
+      </li>
     </ul>
   </mat-sidenav>
   <mat-sidenav-content class="main-container-content">

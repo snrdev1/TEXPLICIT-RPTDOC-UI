@@ -17,9 +17,8 @@
     font-weight: 400;
     line-height: 28px;
     margin-bottom: 25px;
-    @media screen and (max-width:414px){
+    @media screen and (max-width: 414px) {
       line-height: 24px;
-      
     }
 
     p {
@@ -38,17 +37,13 @@
 
   .home-cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-template-rows: repeat(2, 1fr);
     padding-bottom: 1.5rem;
     grid-gap: 25px;
     height: calc(100vh - 200px);
-
-    @media screen and (max-width: 414px) {
-      grid-template-columns: repeat(1, 1fr);
-      grid-template-rows: repeat(6, 1fr);
-    }
   }
+
 }
 
 .home-toolbar-search {

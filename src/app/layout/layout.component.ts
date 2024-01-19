@@ -50,7 +50,7 @@ export class LayoutComponent {
      }
 
   ngOnInit() {
-    
+
     // this.checkUserRole();
 
     if (this.checkLogin()) {
@@ -78,20 +78,6 @@ export class LayoutComponent {
         }
       })
     }
-  }
-  private toggleButtonVisibility(): void {
-    const buttonElement = this.el.nativeElement.querySelector('.menu-btn'); 
-
-    if (window.innerWidth <= 414) { 
-      this.render.setStyle(buttonElement, 'display', 'block');
-    } else {
-      this.render.setStyle(buttonElement, 'display', 'none');
-    }
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event: Event): void {
-    this.toggleButtonVisibility();
   }
 
   checkLogin() {
