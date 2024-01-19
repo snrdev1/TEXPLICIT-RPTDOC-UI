@@ -21,9 +21,31 @@
 
 .report-steps {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   margin-right: 2.5rem;
-
+  
+  @media screen and (max-width: 414px) {
+        flex-direction: column;
+      }
+  .step-one, .step-two, .step-three {
+    display: flex;
+    flex-direction: row;
+    gap: 4rem;
+    
+  }
+  .step-two {
+    @media screen and (max-width: 414px) {
+      display: none;
+      padding-top: 10px;
+    }
+  }
+  .step-three {
+    @media screen and (max-width: 414px) {
+      padding-top: 15px;
+    }
+  }
+  
   .step {
     display: flex;
     flex-direction: column;
@@ -41,6 +63,11 @@
       line-height: 30px; /* 166.667% */
       margin: 0;
       margin-top: 8px;
+      @media screen and (max-width:414px) {
+        display: flex;
+        flex-wrap: nowrap;
+        line-height: 17px;
+      }
     }
 
     .step-description {
