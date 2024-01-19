@@ -69,6 +69,7 @@ export class ReportCardsComponent {
   }
 
   stopAudio() {
+    this.audioPlayerVisible = false;
     this.stopAudioEvent.emit();
   }
 
