@@ -1,12 +1,11 @@
-import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
-import { ReportsService } from '../reports.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { saveAs } from 'file-saver';
 import { CommonService } from 'src/app/shared/services/common.service';
-import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDialogComponent } from 'src/app/shared/components/modal-dialog/confirm-dialog/confirm-dialog.component';
+import { ReportsService } from '../reports.service';
 // import * as jsPDF from 'jspdf';
 // import * as html2pdf from 'html2pdf.js';
-
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -15,94 +14,106 @@ import { ConfirmDialogComponent } from 'src/app/shared/components/modal-dialog/c
   styleUrls: ['./report-cards.component.scss']
 })
 export class ReportCardsComponent {
-  @Input() public checkboxVisible:boolean=true;
-  @Input() public moreButtonVisible:boolean=true;
-  reportType: string="";
+  @Input() public checkboxVisible: boolean = true;
+  @Input() public moreButtonVisible: boolean = true;
+  reportType: string = "";
   showFullTextFlag: boolean = false;
   isPlaying: boolean = false;
-  @Input() report:any=[];
-  @Input() displayStyle:any="";
+  @Input() report: any = [];
+  @Input() displayStyle: any = "";
   audioPlayerVisible: boolean = false;
   @Output() deleteReport = new EventEmitter<any>();
   @Output() playAudioEvent = new EventEmitter<any>();
   @Output() stopAudioEvent = new EventEmitter<any>();
-  constructor(private reportService: ReportsService,
-              public dialog:MatDialog,
-              private commonService: CommonService){}
+  reportsAudio$: Observable<any> = this.reportService.reportsAudio$;
 
-  ngOnInit(){
-    // console.log("DISPLAY STYLE", this.displayStyle);
-    this.report = {... this.report,
+  constructor(private reportService: ReportsService,
+    public dialog: MatDialog,
+    private commonService: CommonService) { }
+
+  ngOnInit() {
+    this.report = {
+      ... this.report,
       isTruncated: true
     };
 
-    this.reportType = this.report.report_type == "research_report"? "Summary Report":
-                      this.report.report_type == "outline_report"?"Outline Report":
-                      this.report.report_type == "resource_report"?"Resource Report":
-                      this.report.report_type == "detailed_report"?"Detailed Report":
-                      this.report.report_type == "complete_report"?"Combined Report": "Unknown type";
+    this.reportType = this.report.report_type == "research_report" ? "Summary Report" :
+      this.report.report_type == "outline_report" ? "Outline Report" :
+        this.report.report_type == "resource_report" ? "Resource Report" :
+          this.report.report_type == "detailed_report" ? "Detailed Report" :
+            this.report.report_type == "complete_report" ? "Combined Report" : "Unknown type";
 
     // remove later
-    if(this.report.format == undefined){
+    if (this.report.format == undefined) {
       this.report.format = "pdf";
     }
-    // console.log("Format of generated report: ", this.report);
+
+    this.setupReportsAudioListener();
   }
 
-  onChange(e: any){}
-  isChecked(item:any){}
-  
-  playAudio(report:any){
-    this.audioPlayerVisible = true;
+  setupReportsAudioListener() {
+    this.reportsAudio$.subscribe((reportid: any) => {
+      if (reportid && reportid == this.report._id) {
+        this.audioPlayerVisible = true;
+      } else {
+        this.audioPlayerVisible = false;
+      }
+    });
+  }
+
+  onChange(e: any) { }
+  isChecked(item: any) { }
+
+  playAudio(report: any) {
     this.playAudioEvent.emit(report);
   }
-  stopAudio(){
-    this.audioPlayerVisible = false;
+
+  stopAudio() {
     this.stopAudioEvent.emit();
   }
 
-onDownloadClick(report: any) {
-  console.log("report",this.report);
-  if(this.report.format === 'word'){
-     console.log("report",this.report.format);
+  onDownloadClick(report: any) {
+    console.log("report", this.report);
+    if (this.report.format === 'word') {
+      console.log("report", this.report.format);
 
-    this.reportService.downloadReportsDoc(report._id).subscribe({
-      next: (res) => {
-        // let blob: any = new Blob([res], {type: 'text/json; charset=utf-8'});
-        let blob = new Blob([res], { type: 'application/msword' });
-
-        const url = window.URL.createObjectURL(blob);
-        saveAs(blob, `${report.task}_${new Date().toISOString()}.docx`);
-        console.log("Word download complete");
-      },
-      error: (e) => {
-        console.log("Error", e);
-        this.commonService.showSnackbar("snackbar-error",e.message,e.status);
-
-      },
-      complete: () => {
-        console.log("Report download complete");
-      }
-    });
-    }
-   else{
       this.reportService.downloadReportsDoc(report._id).subscribe({
         next: (res) => {
-          let blob = new Blob([res], {type: 'application/pdf'});
+          // let blob: any = new Blob([res], {type: 'text/json; charset=utf-8'});
+          let blob = new Blob([res], { type: 'application/msword' });
+
+          const url = window.URL.createObjectURL(blob);
+          saveAs(blob, `${report.task}_${new Date().toISOString()}.docx`);
+          console.log("Word download complete");
+        },
+        error: (e) => {
+          console.log("Error", e);
+          this.commonService.showSnackbar("snackbar-error", e.message, e.status);
+
+        },
+        complete: () => {
+          console.log("Report download complete");
+        }
+      });
+    }
+    else {
+      this.reportService.downloadReportsDoc(report._id).subscribe({
+        next: (res) => {
+          let blob = new Blob([res], { type: 'application/pdf' });
           const url = window.URL.createObjectURL(blob);
           saveAs(blob, `${report.task}_${new Date().toISOString()}.pdf`);
           console.log("PDF download complete");
         },
         error: (e) => {
           console.log("Error", e);
-          this.commonService.showSnackbar("snackbar-error",e.message,e.status);
+          this.commonService.showSnackbar("snackbar-error", e.message, e.status);
         },
         complete: () => {
           console.log("Report download complete");
         }
       });
-      }
-}
+    }
+  }
 
 
 
@@ -160,5 +171,5 @@ onDownloadClick(report: any) {
     this.showFullTextFlag = false;
   }
 
-  
-    }
+
+}

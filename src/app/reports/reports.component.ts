@@ -42,11 +42,11 @@ export class ReportsComponent {
   isDismissed: boolean = false;
   pendingReports: any = [];
   allReports: any = [];
-  fileBlob:Blob|null = null ;
+  fileBlob: Blob | null = null;
   audioPlayerVisible: boolean = false;
   @ViewChild('audioPlayer') audioPlayer!: ElementRef;
-  userInfo$: Observable<any> = this.localStorage.userInfo$;
   @ViewChild('searchinput') searchInput!: ElementRef;
+  userInfo$: Observable<any> = this.localStorage.userInfo$;
 
   constructor(
     private localStorage: LocalStorageService,
@@ -73,6 +73,7 @@ export class ReportsComponent {
     if (this.userInfo) {
       this.userId = this.userInfo?._id;
     }
+
     this.reportEvent = this.userId + "_report";
     let filterValues = this.localStorage.getitem('reportFilter') || [];
     if (filterValues) {
@@ -80,15 +81,14 @@ export class ReportsComponent {
       this.filteredFormat = filterValues?.format || "";
       this.filteredReportType = filterValues?.report_type || "";
     }
-    // this.reportGenerationData = this.localStorage.getitem('reportDataArrayString') || [];
     this.isDismissed = this.localStorage.getitem('report-steps') || false;
     if (this.authService.isLoggedIn) {
-    this.isLoading = true;
-
+      this.isLoading = true;
       this.getAllReports();
     }
     this.getPendingReports();
     this.setupReportsListener();
+    // this.setupReportsAudioListener();
   }
 
   setupReportsListener() {
@@ -269,7 +269,10 @@ export class ReportsComponent {
     this.localStorage.setitem('report-steps', this.isDismissed);
   }
 
-  playAudio() {
+  playAudio(report: any) {
+    // Emit _id of report whose audio is playing
+    this.reportsService.emitAudioReportId(report._id);
+
     if (this.fileBlob) {
       const blobUrl = URL.createObjectURL(this.fileBlob);
       this.audioPlayer.nativeElement.src = blobUrl;
@@ -279,29 +282,30 @@ export class ReportsComponent {
       console.error('Blob not available.');
     }
   }
-  stopAudio(){
+
+  stopAudio() {
     this.audioPlayerVisible = false;
     this.audioPlayer.nativeElement.pause();
-
   }
-onAudioDownload(report:any){
-  this.reportsService.downloadReportAudio(report._id).subscribe({
-    next: (res) => {
-      console.log('Response',URL.createObjectURL(res));
-      this.fileBlob = res;
-      this.audioPlayerVisible = true;
-      this.playAudio();
-    },
-    error: (e) => {
-      console.log("Error", e);
-      this.commonService.showSnackbar("snackbar-error",e.message,e.status);
 
-    },
-    complete: () => {
-      console.log("Report audio download complete");
-    }
-  })
-}
+  onAudioDownload(report: any) {
+    this.reportsService.downloadReportAudio(report._id).subscribe({
+      next: (res) => {
+        console.log('Response', URL.createObjectURL(res));
+        this.fileBlob = res;
+        this.audioPlayerVisible = true;
+        this.playAudio(report);
+      },
+      error: (e) => {
+        console.log("Error", e);
+        this.commonService.showSnackbar("snackbar-error", e.message, e.status);
+
+      },
+      complete: () => {
+        console.log("Report audio download complete");
+      }
+    })
+  }
 }
 
 

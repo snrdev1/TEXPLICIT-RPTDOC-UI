@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -10,22 +10,29 @@ export class ReportsService {
   public _allReportsSubject$: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   public allReports$: Observable<any> = this._allReportsSubject$.asObservable();
 
-  constructor(private http:HttpClient) { }
+  public _reportsAudioSubject$: Subject<any[]> = new Subject<any[]>();
+  public reportsAudio$: Observable<any> = this._reportsAudioSubject$.asObservable();
 
-  generateReport(topic: any): Observable<any>{
-    const url = `${environment.hostName}/report/generate`;
-    return this.http.post<any>(url,topic);
+  constructor(private http: HttpClient) { }
+
+  emitAudioReportId(reportid: any) {
+    this._reportsAudioSubject$.next(reportid);
   }
-  getAllreports(limit:number, offset:number,source:string,format:string,report_type:string): Observable<any>{
+
+  generateReport(topic: any): Observable<any> {
+    const url = `${environment.hostName}/report/generate`;
+    return this.http.post<any>(url, topic);
+  }
+  getAllreports(limit: number, offset: number, source: string, format: string, report_type: string): Observable<any> {
     const url = `${environment.hostName}/report/all`;
     const params = {
-      "limit":limit,
-      "offset":offset,
-      "source":source,
-      "format":format,
+      "limit": limit,
+      "offset": offset,
+      "source": source,
+      "format": format,
       "report_type": report_type
     }
-    return this.http.get<any>(url,{params});
+    return this.http.get<any>(url, { params });
   }
   downloadReportsDoc(virtualFileName: string): Observable<Blob> {
     const url = `${environment.hostName}/report/download/${virtualFileName}`;
@@ -43,15 +50,15 @@ export class ReportsService {
     const url = `${environment.hostName}/report/audio/download/${reportId}`;
     return this.http.get(url, { responseType: 'blob' });
   }
-  pendingReports(limit:number, offset:number,source:string,format:string,report_type:string): Observable<any>{
+  pendingReports(limit: number, offset: number, source: string, format: string, report_type: string): Observable<any> {
     const url = `${environment.hostName}/report/pending`;
     const params = {
-      "limit":limit,
-      "offset":offset,
-      "source":source,
-      "format":format,
+      "limit": limit,
+      "offset": offset,
+      "source": source,
+      "format": format,
       "report_type": report_type
     }
-    return this.http.get<any>(url,{params});
+    return this.http.get<any>(url, { params });
   }
 }
