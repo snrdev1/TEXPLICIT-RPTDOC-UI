@@ -42,7 +42,9 @@ export class ReportsComponent {
   isDismissed: boolean = false;
   pendingReports: any = [];
   allReports: any = [];
-
+  fileBlob:Blob|null = null ;
+  audioPlayerVisible: boolean = false;
+  @ViewChild('audioPlayer') audioPlayer!: ElementRef;
   userInfo$: Observable<any> = this.localStorage.userInfo$;
   @ViewChild('searchinput') searchInput!: ElementRef;
 
@@ -266,6 +268,40 @@ export class ReportsComponent {
     this.isDismissed = true;
     this.localStorage.setitem('report-steps', this.isDismissed);
   }
+
+  playAudio() {
+    if (this.fileBlob) {
+      const blobUrl = URL.createObjectURL(this.fileBlob);
+      this.audioPlayer.nativeElement.src = blobUrl;
+      this.audioPlayer.nativeElement.load();
+      this.audioPlayer.nativeElement.play();
+    } else {
+      console.error('Blob not available.');
+    }
+  }
+  stopAudio(){
+    this.audioPlayerVisible = false;
+    this.audioPlayer.nativeElement.pause();
+
+  }
+onAudioDownload(report:any){
+  this.reportsService.downloadReportAudio(report._id).subscribe({
+    next: (res) => {
+      console.log('Response',URL.createObjectURL(res));
+      this.fileBlob = res;
+      this.audioPlayerVisible = true;
+      this.playAudio();
+    },
+    error: (e) => {
+      console.log("Error", e);
+      this.commonService.showSnackbar("snackbar-error",e.message,e.status);
+
+    },
+    complete: () => {
+      console.log("Report audio download complete");
+    }
+  })
+}
 }
 
 

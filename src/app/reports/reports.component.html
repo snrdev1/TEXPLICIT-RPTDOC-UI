@@ -244,10 +244,17 @@
               [report]="report"
               [displayStyle]="displayStyle"
               (deleteReport)="getAllReports()"
+              (playAudioEvent)="onAudioDownload(report)"
+              (stopAudioEvent)="stopAudio()"
             ></app-report-cards>
           </ng-container>
         </div>
       </div>
+    </div>
+    <div  [ngClass]="{'audio-player-hidden':!audioPlayerVisible}" class="audio-player" >
+      <audio controls #audioPlayer>
+          Your browser does not support the audio element.
+      </audio>
     </div>
   </div>
 </div>

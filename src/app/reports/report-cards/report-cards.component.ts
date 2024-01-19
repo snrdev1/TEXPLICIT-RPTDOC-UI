@@ -22,10 +22,10 @@ export class ReportCardsComponent {
   isPlaying: boolean = false;
   @Input() report:any=[];
   @Input() displayStyle:any="";
-  fileBlob:Blob|null = null ;
   audioPlayerVisible: boolean = false;
   @Output() deleteReport = new EventEmitter<any>();
-  @ViewChild('audioPlayer') audioPlayer!: ElementRef;
+  @Output() playAudioEvent = new EventEmitter<any>();
+  @Output() stopAudioEvent = new EventEmitter<any>();
   constructor(private reportService: ReportsService,
               public dialog:MatDialog,
               private commonService: CommonService){}
@@ -36,7 +36,7 @@ export class ReportCardsComponent {
       isTruncated: true
     };
 
-    this.reportType = this.report.report_type == "research_report"? "Research Report":
+    this.reportType = this.report.report_type == "research_report"? "Summary Report":
                       this.report.report_type == "outline_report"?"Outline Report":
                       this.report.report_type == "resource_report"?"Resource Report":
                       this.report.report_type == "detailed_report"?"Detailed Report":
@@ -52,39 +52,15 @@ export class ReportCardsComponent {
   onChange(e: any){}
   isChecked(item:any){}
   
-  playAudio() {
-    if (this.fileBlob) {
-      const blobUrl = URL.createObjectURL(this.fileBlob);
-      this.audioPlayer.nativeElement.src = blobUrl;
-      this.audioPlayer.nativeElement.load();
-      this.audioPlayer.nativeElement.play();
-    } else {
-      console.error('Blob not available.');
-    }
+  playAudio(report:any){
+    this.audioPlayerVisible = true;
+    this.playAudioEvent.emit(report);
   }
   stopAudio(){
     this.audioPlayerVisible = false;
-    this.audioPlayer.nativeElement.pause();
-
+    this.stopAudioEvent.emit();
   }
-onAudioDownload(report:any){
-  this.reportService.downloadReportAudio(report._id).subscribe({
-    next: (res) => {
-      console.log('Response',URL.createObjectURL(res));
-      this.fileBlob = res;
-      this.audioPlayerVisible = true;
-      this.playAudio();
-    },
-    error: (e) => {
-      console.log("Error", e);
-      this.commonService.showSnackbar("snackbar-error",e.message,e.status);
 
-    },
-    complete: () => {
-      console.log("Report audio download complete");
-    }
-  })
-}
 onDownloadClick(report: any) {
   console.log("report",this.report);
   if(this.report.format === 'word'){
