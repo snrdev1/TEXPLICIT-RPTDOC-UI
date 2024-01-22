@@ -44,6 +44,10 @@
 }
 .mr-left-10 {
   margin-left: 10px;
+  @media screen and (max-width:414px){
+    margin-left: 2px;
+    margin-right: 10px;
+  }
 }
 .file-row.grid {
   margin: 5px;

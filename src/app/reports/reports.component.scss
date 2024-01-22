@@ -7,10 +7,10 @@
   font-weight: 400;
   line-height: 28px;
   margin-bottom: 25px;
-  @media screen and (max-width:414px){
+  @media screen and (max-width: 414px) {
     line-height: 24px;
-    
   }
+
   p {
     margin: 0;
   }
@@ -24,6 +24,7 @@
     font-weight: 600;
   }
 }
+
 
 .report-body {
   border-radius: 20px;
@@ -629,6 +630,9 @@
 
     &:last-child {
       margin-right: 11px;
+      @media screen and (max-width:414px) {
+        margin-right: 0px;
+      }
     }
   }
 }
@@ -636,15 +640,15 @@
   background: #ffbe17 !important;
   color: #141516 !important;
   @media screen and (max-width: 414px) {
-    width:330px;
-  height:48px;
+    width:230px;
+    height:48px;
   }
   }
   
 .btn-subtopics {
   color: #4d5e92 !important;
   @media screen and (max-width: 414px) {
-    width:330px;
+    width:230px;
     height:48px;
 }
 }

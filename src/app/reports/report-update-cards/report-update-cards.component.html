@@ -1,14 +1,6 @@
 <ul class="file-row {{displayStyle}} mr-10px">
         <li class="name"><span >{{ report.task }}</span></li>  
         <li class="report-date" >{{ report.createdOn | date:'h:mm:ss a' }}</li>
-        <li class="status">{{ status }}
-                <!-- <span class="status-message">Your Report is generating</span>
-                <div class="progress-container">
-                  <mat-progress-bar mode="determinate" [value]="progressValue" class="progress-bar" style="width: 70%;"></mat-progress-bar>
-                  <span class="progress-value">{{ progressValue }}%</span>
-                </div> -->
-                
-        </li>
-              
+        <li class="status">{{ status }}</li>            
 </ul>
 

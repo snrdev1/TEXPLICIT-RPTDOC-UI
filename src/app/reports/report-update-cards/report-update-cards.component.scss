@@ -60,6 +60,9 @@
             @media screen and (max-width: 912px) {
                 width: calc(25% - 10px);
             }
+            @media screen and (max-width: 414px) {
+              display: none;
+          }
         }
         
         &.status {
