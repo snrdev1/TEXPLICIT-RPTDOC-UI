@@ -14,7 +14,7 @@
     img {
       vertical-align: middle;
 
-      @media (max-width: 767.98px){
+      @media screen and (max-width: 767.98px) {
         width: 116px;
       }
     }
@@ -37,7 +37,7 @@
         width: 20px;
       }
 
-      @media (min-width: 768px) {
+      @media screen and (min-width: 768px) {
         display: none;
       }
     }
@@ -50,13 +50,6 @@
         border-radius: 50%;
       }
     }
-  }
-
-  .divider {
-    height: 24px;
-    border-left: 0.5px solid #989ba3;
-    margin-left: 30px;
-    margin-right: 30px;
   }
 
   .user-action-group {
@@ -72,7 +65,7 @@
       color: #141516;
       width: inherit;
 
-      @media (max-width: 767.98px){
+      @media screen and (max-width: 767.98px) {
         padding: 6px 20px;
       }
     }
@@ -132,6 +125,11 @@
   .menu-item-label {
     margin-left: 0.5rem;
   }
+
+  .toolbar-links {
+    margin-left: 0;
+    font-size: 12px;
+  }
 }
 
 .main-container-content {
@@ -145,10 +143,13 @@
     height: calc(100vh - 84px);
     overflow-y: auto;
     padding-top: 20px;
-    padding-left: 29px;
+    padding-left: 24px;
+    padding-right: 24px;
 
-    @media (min-width: 768px) {
+    @media screen and (min-width: 768px) {
       margin-right: 2rem;
+      padding-left: 29px;
+      padding-right: auto;
     }
     @media screen and (max-width: 1000px) {
       height: calc(100vh - 88px);
@@ -226,4 +227,17 @@
     z-index: 2 !important;
     width: 100%;
   }
+}
+
+.vertical-divider {
+  margin-left: 15px;
+  margin-right: 15px;
+  border-top: 1px solid #fff;
+}
+
+.horizontal-divider {
+  height: 24px;
+  border-left: 0.5px solid #989ba3;
+  margin-left: 30px;
+  margin-right: 30px;
 }

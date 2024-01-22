@@ -101,7 +101,7 @@
                     width:  calc(50% + 80px);
                     padding: 0 5px;
 
-                    @media screen and (max-width: 414px) {
+                    @media screen and (max-width: 767.98) {
                         border-right: none;
                         width: 100%;
                     }
@@ -115,7 +115,7 @@
                         width: 25%;
                     }
 
-                    @media screen and (max-width: 414px) {
+                    @media screen and (max-width: 767.98) {
                         display: none;
                     }
                 }
@@ -126,7 +126,7 @@
                         width: 25%;
                     }
 
-                    @media screen and (max-width: 414px) {
+                    @media screen and (max-width: 767.98) {
                         display: none;
                     }
                 }

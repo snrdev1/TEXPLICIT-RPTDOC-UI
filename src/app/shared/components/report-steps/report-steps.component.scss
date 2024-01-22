@@ -14,8 +14,11 @@
   }
 
   .dismiss-link {
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 12px;
+    font-weight: 400;
+    cursor: pointer;
+    font-style: italic;
+    color: red;
   }
 }
 
@@ -26,8 +29,8 @@
   margin-right: 2.5rem;
   flex-wrap: wrap;
 
-  @media (max-width: 767.98px) {
-    margin-right: 1rem;
+  @media screen and (max-width: 767.98px) {
+    margin-right: 0;
     gap: 1rem;
   }
 
@@ -36,7 +39,7 @@
     flex-direction: column;
     align-items: flex-start;
 
-    @media (max-width: 767.98px) {
+    @media screen and (max-width: 767.98px) {
       width: 160px;
     }
 
@@ -72,7 +75,7 @@
     .step-icon {
       width: 3vw;
 
-      @media (max-width: 767.98px){
+      @media screen and (max-width: 767.98px) {
         width: 42px;
       }
     }
@@ -106,19 +109,25 @@
   gap: 4rem;
   margin-right: 2.5rem;
 
-  .part-one,.part-two{
+  @media screen and (max-width: 767.98px) {
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .part-one,
+  .part-two {
     display: flex;
     flex-direction: row;
     gap: 4rem;
-    @media screen and (max-width:414px) {
+    @media screen and (max-width: 767.98) {
       flex-direction: column;
     }
   }
   .report-type {
-    display: flex;
-    flex-wrap: wrap;
-    // flex-direction: column;
-
+    @media screen and (min-width: 768px) {
+      display: flex;
+      flex-wrap: wrap;
+    }
 
     .type {
       color: #1c1d21;
@@ -133,6 +142,10 @@
       margin: 0;
       width: 60px;
       margin-right: 21px;
+
+      @media screen and (max-width: 767.98px) {
+        margin-bottom: 6px;
+      }
     }
 
     .type-description {

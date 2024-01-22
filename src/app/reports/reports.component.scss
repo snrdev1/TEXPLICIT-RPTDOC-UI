@@ -7,8 +7,9 @@
   font-weight: 400;
   line-height: 28px;
   margin-bottom: 25px;
-  @media screen and (max-width: 414px) {
+  @media screen and (max-width:767.98){
     line-height: 24px;
+
   }
 
   p {
@@ -60,7 +61,7 @@
       line-height: normal;
       letter-spacing: 0.16px;
     }
-    @media screen and (max-width: 414px) {
+    @media screen and (max-width: 767.98) {
       width: 80%;
     }
   }
@@ -141,7 +142,7 @@
           padding: 0 5px;
           // margin-left: 20px;
 
-          @media screen and (max-width: 414px) {
+          @media screen and (max-width: 767.98) {
             border-right: none;
             width: 100%;
           }
@@ -155,7 +156,7 @@
             width: 25%;
           }
 
-          @media screen and (max-width: 414px) {
+          @media screen and (max-width: 767.98) {
             display: none;
           }
         }
@@ -332,13 +333,13 @@
 
 :host ::ng-deep .my-datasource-dropdown .mat-mdc-form-field-infix {
   width: 150px;
-  @media screen and (max-width: 414px) {
-    max-width: 135px;
+  @media screen and (max-width: 767.98) {
+    max-width: 120px;
   }
 }
 :host ::ng-deep .my-reports-dropdown .mat-mdc-form-field-infix {
   width: 180px;
-  @media screen and (max-width: 414px) {
+  @media screen and (max-width: 767.98) {
     max-width: 170px;
   }
 }
@@ -408,9 +409,9 @@
   border-top: 0.5px solid #8F9497A1;
   padding-top: 10px;
   margin-top: 60px;
-  @media screen and (max-width:414px) {
+  @media screen and (max-width:767.98) {
     margin-top: 30px;
-    
+
   }
 }
 .mr-websearch {
@@ -531,7 +532,7 @@
   // justify-content: space-between;
   align-items: center;
 
-  @media screen and (max-width: 414px) {
+  @media screen and (max-width: 767.98) {
     display: flex;
     flex-direction: row;
   }
@@ -596,7 +597,7 @@
       order: -1;
       margin-right: 20px;
     }
-    @media screen and (max-width: 414px) {
+    @media screen and (max-width: 767.98) {
       order: -1;
       margin-right: 20px;
       width: 100%;
@@ -611,8 +612,8 @@
   @media screen and (max-width: 1000px) {
     justify-content: flex-start;
   }
-  @media screen and (max-width: 414px) {
-    justify-content: space-evenly;
+  @media screen and (max-width: 767.98) {
+    justify-content: space-between;
   }
 
   button {

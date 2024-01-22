@@ -12,7 +12,7 @@
     padding-bottom: 3px;
     padding-left: 0;
     display: flex;
-    
+
     li{
         display: flex;
         align-items: center;
@@ -35,11 +35,11 @@
             // overflow: hidden;
             // text-overflow: ellipsis;
 
-            @media screen and (max-width: 414px) {
+            @media screen and (max-width: 767.98) {
                 width: calc(100% - 44px);
             }
         }
-        
+
         &.report-date{
             font-family: "Roboto", serif;
             font-style: normal;
@@ -64,19 +64,19 @@
               display: none;
           }
         }
-        
+
         &.status {
             display: block;
             width: calc(50% + 97px);
             padding: 0;
             white-space: normal;
             padding-left: 30px;
-            
-            @media screen and (max-width: 414px) {
+
+            @media screen and (max-width: 767.98) {
               width: calc(100% - 44px);
             }
           }
-          
+
           .status-message {
             display: block;
             font-family: Roboto;
@@ -89,22 +89,22 @@
 
 
           }
-          
+
           .progress-container {
             display: flex;
             align-items: center;
             margin-top: 5px;
           }
-          
+
           .progress-bar {
             flex-grow: 1;
           }
-          
+
           .progress-value {
-            margin-left: 8px; 
+            margin-left: 8px;
           }
-          
-          
+
+
     }
 }
 .mat-mdc-progress-bar {
