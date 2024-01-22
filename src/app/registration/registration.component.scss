@@ -9,8 +9,11 @@ p {
 }
 
 .registration-form {
-  margin-right: 1.5rem;
   margin-top: 1vw;
+
+  @media screen and (min-width: 768px) {
+    margin-right: 1.5rem;
+  }
 
   .form-title {
     color: #1c1d21;
@@ -31,15 +34,23 @@ p {
     align-items: flex-start;
     gap: 2.5rem;
 
-    @media (max-width: 767.98px) {
+    @media screen and (max-width: 767.98px) {
       gap: 26px;
       flex-wrap: wrap;
+
+      .form-field {
+        width: 100%;
+      }
     }
   }
 }
 
 :host ::ng-deep .mat-mdc-form-field {
-  width: 335px;
+  width: 100%;
+
+  @media screen and (min-width: 768px) {
+    width: 335px;
+  }
 }
 
 :host ::ng-deep .mat-dialog-body {

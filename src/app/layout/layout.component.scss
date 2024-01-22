@@ -14,7 +14,7 @@
     img {
       vertical-align: middle;
 
-      @media (max-width: 767.98px){
+      @media screen and (max-width: 767.98px) {
         width: 116px;
       }
     }
@@ -37,7 +37,7 @@
         width: 20px;
       }
 
-      @media (min-width: 768px) {
+      @media screen and (min-width: 768px) {
         display: none;
       }
     }
@@ -72,7 +72,7 @@
       color: #141516;
       width: inherit;
 
-      @media (max-width: 767.98px){
+      @media screen and (max-width: 767.98px) {
         padding: 6px 20px;
       }
     }
@@ -145,10 +145,13 @@
     height: calc(100vh - 84px);
     overflow-y: auto;
     padding-top: 20px;
-    padding-left: 29px;
+    padding-left: 24px;
+    padding-right: 24px;
 
-    @media (min-width: 768px) {
+    @media screen and (min-width: 768px) {
       margin-right: 2rem;
+      padding-left: 29px;
+      padding-right: auto;
     }
     @media screen and (max-width: 1000px) {
       height: calc(100vh - 88px);

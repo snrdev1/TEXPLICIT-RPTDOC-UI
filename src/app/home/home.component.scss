@@ -1,7 +1,11 @@
 .home-toolbar {
   height: 35px;
   margin-bottom: 10px;
-  margin-right: 2.5rem;
+  margin-right: 0;
+
+  @media screen and (min-width: 768px){
+    margin-right: 2.5rem;
+  }
 
   @media screen and (max-width: 1000px) {
     flex-direction: column-reverse;
