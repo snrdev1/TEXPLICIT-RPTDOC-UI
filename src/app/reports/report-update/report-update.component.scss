@@ -4,7 +4,7 @@
     @media screen and (max-width: 1000px) {
          height: calc(100vh - 400px);
 
-    }  
+    }
 }
 
 
@@ -44,7 +44,7 @@
                     width:  calc(50% + 100px);
                     padding: 0 5px;
 
-                    @media screen and (max-width: 414px) {
+                    @media screen and (max-width: 767.98) {
                         border-right: none;
                         width: 100%;
                     }
@@ -55,12 +55,12 @@
                     // cursor: context-menu;
                     // padding: 0 5px;
                     padding-left: 35px;
-                    
+
                     @media screen and (max-width: 915px) {
                         width: 25%;
                     }
 
-                    @media screen and (max-width: 414px) {
+                    @media screen and (max-width: 767.98) {
                         display: none;
                     }
                 }
@@ -69,7 +69,7 @@
                     // padding: 0 5px;
                     padding-left: 35px;
 
-                    @media screen and (max-width: 414px) {
+                    @media screen and (max-width: 767.98) {
                         border-right: none;
                         width: 100%;
                     }
@@ -96,7 +96,7 @@
         overflow-y: auto;
         // margin-right: -5px;
     }
-    
+
 }
 /******************** END UL LIKE TABLE ********************/
 

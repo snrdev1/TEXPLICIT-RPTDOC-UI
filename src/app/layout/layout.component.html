@@ -8,23 +8,15 @@
   </div>
   <span class="toolbar-spacer"></span>
 
-  <button class="mr-5px sm-hidden" (click)="onDisclaimerClick()">
-    Disclaimer
-  </button>
-  <button class="mr-5px sm-hidden" (click)="onAboutClick()">
-    About Us
-  </button>
-  <button class="mr-5px sm-hidden" (click)="onContactClick()">
-    Contact
-  </button>
-  <button class="mr-5px sm-hidden" (click)="onFeedbackClick()">
-    Feedback
-  </button>
-  <button class="mr-5px sm-hidden" (click)="onPricingClick()">
-    Pricing
-  </button>
+  <ng-container *ngIf="this.windowWidth >= 768">
+    <button class="mr-5px" (click)="onDisclaimerClick()">Disclaimer</button>
+    <button class="mr-5px" (click)="onAboutClick()">About Us</button>
+    <button class="mr-5px" (click)="onContactClick()">Contact</button>
+    <button class="mr-5px" (click)="onFeedbackClick()">Feedback</button>
+    <button class="mr-5px" (click)="onPricingClick()">Pricing</button>
 
-  <div class="divider sm-hidden"></div>
+    <div class="horizontal-divider"></div>
+  </ng-container>
 
   <button class="user-icon" *ngIf="isUserLoggedIn()" mat-icon-button matTooltip="{{ userName }}"
     [matMenuTriggerFor]="userMenu">
@@ -39,7 +31,7 @@
   </div>
 </mat-toolbar>
 <mat-sidenav-container autosize class="custom-sidenav-container">
-  <mat-sidenav #leftnav class="left-sidenav-container" mode="side" [opened]="true">
+  <mat-sidenav #leftnav class="left-sidenav-container" mode="side" [opened]="sidenavState">
     <ul class="menu-container">
       <li class="menu-item" routerLink="/home" routerLinkActive="menu-item-active">
         <div routerLinkActive="active-menu-item-container">
@@ -70,6 +62,25 @@
         </div>
         <span class="menu-item-label" routerLinkActive="active-menu-text">Manage User</span>
       </li>
+
+      <ng-container *ngIf="this.windowWidth < 768">
+        <div class="vertical-divider"></div>
+        <li class="menu-item" (click)="onPricingClick()">
+          <span class="menu-item-label toolbar-links" routerLinkActive="active-menu-text">Pricing</span>
+        </li>
+        <li class="menu-item" (click)="onAboutClick()">
+          <span class="menu-item-label toolbar-links" routerLinkActive="active-menu-text">About Us</span>
+        </li>
+        <li class="menu-item" (click)="onContactClick()">
+          <span class="menu-item-label toolbar-links" routerLinkActive="active-menu-text">Contact</span>
+        </li>
+        <li class="menu-item" (click)="onFeedbackClick()">
+          <span class="menu-item-label toolbar-links" routerLinkActive="active-menu-text">Feedback</span>
+        </li>
+        <li class="menu-item" (click)="onDisclaimerClick()">
+          <span class="menu-item-label toolbar-links" routerLinkActive="active-menu-text">Disclaimer</span>
+        </li>
+      </ng-container>
     </ul>
   </mat-sidenav>
   <mat-sidenav-content class="main-container-content">

@@ -1,15 +1,15 @@
-import { Component, NgZone, ElementRef, Renderer2,HostListener } from '@angular/core';
-import { CommonService } from '../shared/services/common.service';
-import { ElementQueries } from 'css-element-queries';
+import { Component, ElementRef, HostListener, Renderer2 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { ElementQueries } from 'css-element-queries';
+import { Observable } from 'rxjs';
+import { AuthService } from '../core/auth.service';
+import { LocalStorageService } from '../core/local-storage.service';
+import { LoginDialogComponent } from '../shared/components/modal-dialog/login-dialog/login-dialog.component';
+import { CommonService } from '../shared/services/common.service';
+import { WebSocketService } from '../shared/services/socketio.service';
 import { DisclaimerDialogComponent } from './modal-dialog/disclaimer-dialog/disclaimer-dialog.component';
 import { FeedbackDialogComponent } from './modal-dialog/feedback-dialog/feedback-dialog.component';
-import { LocalStorageService } from '../core/local-storage.service';
-import { AuthService } from '../core/auth.service';
-import { Observable } from 'rxjs';
-import { WebSocketService } from '../shared/services/socketio.service';
-import { Route, Router } from '@angular/router';
-import { LoginDialogComponent } from '../shared/components/modal-dialog/login-dialog/login-dialog.component';
 
 @Component({
   selector: 'app-layout',
@@ -31,6 +31,9 @@ export class LayoutComponent {
   public userMenu: any = [];
   userRole: number = 3;
   userInfo$: Observable<any> = this.localStorage.userInfo$;
+  sidenavState: boolean = false;
+  windowWidth: number = window.innerWidth;
+
   constructor(
     public commonService: CommonService,
     private authService: AuthService,
@@ -40,16 +43,19 @@ export class LayoutComponent {
     private dialog: MatDialog,
     private el: ElementRef,
     private render: Renderer2
-    ) {
-      this.localStorage.observeUserInfo();
-      this.userInfo$.subscribe((userInfo) =>{
-        this.userId = userInfo?._id;
-        this.userName = userInfo?.name;
-        this.userRole = userInfo?.role;
+  ) {
+    this.localStorage.observeUserInfo();
+    this.userInfo$.subscribe((userInfo) => {
+      this.userId = userInfo?._id;
+      this.userName = userInfo?.name;
+      this.userRole = userInfo?.role;
     });
-     }
+  }
 
   ngOnInit() {
+
+    // Set default state of sidenav
+    this.setSidenavState();
 
     // this.checkUserRole();
 
@@ -80,12 +86,28 @@ export class LayoutComponent {
     }
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    // Update window width on resize event
+    this.windowWidth = (event.target as Window).innerWidth;
+    this.setSidenavState();
+  }
+
+  setSidenavState() {
+    if (this.windowWidth > 768) {
+      this.sidenavState = true;
+    }
+    else {
+      this.sidenavState = false;
+    }
+  }
+
   checkLogin() {
     return this.authService.isLoggedIn;
   }
+
   onAboutClick() {
     this.router.navigate(['/about-us']);
-
   }
 
   onContactClick() {
@@ -138,7 +160,8 @@ export class LayoutComponent {
   onRegistrationClick() {
     this.router.navigateByUrl('/registration');
   }
-  checkUserRole(){
+
+  checkUserRole() {
     return this.userRole === 2;
   }
 
