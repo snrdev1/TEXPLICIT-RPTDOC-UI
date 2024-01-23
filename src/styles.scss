@@ -39,6 +39,7 @@ $Texplicit2-theme: mat.define-light-theme(
 html,
 body {
   height: 100%;
+  font-size: 16px;
 }
 body {
   margin: 0;
@@ -91,7 +92,7 @@ body {
 .m-show {
   display: none !important;
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 767.98px) {
     display: block !important;
   }
 }
@@ -99,7 +100,7 @@ body {
 .m-hide {
   display: "" !important;
 
-  @media screen and (max-width: 540px) {
+  @media screen and (max-width: 767.98px) {
     display: none !important;
   }
 }
@@ -182,7 +183,7 @@ body {
   width: 100px;
   cursor: pointer;
 
-  @media (max-width: 991.92px) {
+  @media (max-width: 767.98px) {
     padding: 1rem 0.8rem !important;
   }
 }
@@ -217,7 +218,7 @@ body {
   color: #227aff !important;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 767.98px) {
   .sm-hide {
     display: none !important;
   }
@@ -235,12 +236,12 @@ body {
     flex: 0 0 100%;
     max-width: calc(100% - 35px);
   }
-  @media screen and (min-width: 768px) and (max-width: 912px) {
+  @media screen and (min-width: 768px) and (max-width: 767.98px) {
     flex: 0 0 45.5%;
     max-width: 45.5%;
   }
 
-  @media screen and (min-width: 913px) and (max-width: 1024px) {
+  @media screen and (min-width: 913px) and (max-width: 767.98px) {
     flex: 0 0 30%;
     max-width: 30%;
   }
@@ -305,12 +306,12 @@ body {
     flex: 0 0 100%;
     max-width: calc(100% - 35px);
   }
-  @media screen and (min-width: 768px) and (max-width: 912px) {
+  @media screen and (min-width: 768px) and (max-width: 767.98px) {
     flex: 0 0 45.5%;
     max-width: 45.5%;
   }
 
-  @media screen and (min-width: 913px) and (max-width: 1024px) {
+  @media screen and (min-width: 913px) and (max-width: 767.98px) {
     flex: 0 0 30%;
     max-width: 30%;
   }
@@ -369,11 +370,11 @@ body {
 .mat-filter-dialog {
   width: 30%;
 
-  @media screen and (max-width: 912px) {
+  @media screen and (max-width: 767.98px) {
     width: 60%;
   }
 
-  @media screen and (max-width: 540px) {
+  @media screen and (max-width: 767.98px) {
     width: 90%;
   }
 }
@@ -382,11 +383,11 @@ body {
 .mat-ki-share-dialog {
   width: 40%;
 
-  @media screen and (max-width: 912px) {
+  @media screen and (max-width: 767.98px) {
     width: 65%;
   }
 
-  @media screen and (max-width: 540px) {
+  @media screen and (max-width: 767.98px) {
     width: 90%;
   }
 }
@@ -395,11 +396,11 @@ body {
 .mat-ki-add-dialog {
   width: 50%;
 
-  @media screen and (max-width: 912px) {
+  @media screen and (max-width: 767.98px) {
     width: 70%;
   }
 
-  @media screen and (max-width: 540px) {
+  @media screen and (max-width: 767.98px) {
     width: 90%;
   }
 }
@@ -595,8 +596,12 @@ mat-error {
   // margin-left: 13px;
 }
 
+/************************** START RESPONSIVE CLASSES *************************/
+
 .sm-hidden {
   @media screen and (max-width: 767.98px) {
-    display: none;
+    display: none !important;
   }
 }
+
+/************************** END RESPONSIVE CLASSES *************************/

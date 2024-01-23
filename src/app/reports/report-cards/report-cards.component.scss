@@ -44,7 +44,7 @@
 }
 .mr-left-10 {
   margin-left: 10px;
-  @media screen and (max-width:414px){
+  @media screen and (max-width: 414px) {
     margin-left: 2px;
     margin-right: 10px;
   }
@@ -196,10 +196,6 @@
       text-overflow: ellipsis;
       cursor: pointer;
       margin-right: 20px; // added
-
-      @media screen and (max-width: 767.98) {
-        width: calc(100% - 44px);
-      }
     }
     &.action {
       width: 24px;
@@ -222,21 +218,11 @@
       }
     }
     &.date {
-      width: calc(10% - 30px);
-      display: block;
-      padding: 5px;
-      padding-right: 35px;
+      padding-right: 20px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-
-      @media screen and (max-width: 912px) {
-        width: calc(25% - 30px);
-      }
-
-      @media screen and (max-width: 767.98) {
-        display: none;
-      }
+      margin-left: 0.35rem;
     }
     &.report-type {
       // same as type, just name changed
@@ -245,19 +231,19 @@
       padding: 0 5px;
       // text-transform: uppercase;
 
-      @media screen and (max-width: 912px) {
+      @media screen and (max-width: 767.98px) {
         display: none;
       }
     }
     &.type {
       // same as size, just name changed
-      width: calc(30% - 28px);
+      width: calc(30% - 133px);
       justify-content: flex-start;
       padding: 0 5px;
       padding-right: 35px;
       position: relative;
 
-      @media screen and (max-width: 912px) {
+      @media screen and (max-width: 767.98px) {
         display: none;
       }
     }

@@ -7,7 +7,7 @@
     margin-right: 2.5rem;
   }
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 767.98px) {
     flex-direction: column-reverse;
     height: 80px;
   }
@@ -53,7 +53,7 @@
 .home-toolbar-search {
   width: 65%;
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 767.98px) {
     width: 100%;
   }
   app-search-input {
@@ -68,7 +68,7 @@
   overflow-y: auto;
   padding-bottom: 75px;
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 767.98px) {
     height: calc(100vh - 329px);
   }
 }
@@ -81,7 +81,7 @@
 
 :host ::ng-deep .mat-mdc-tab-header {
   width: calc(100% - 75px) !important;
-  @media screen and (max-width: 540px) {
+  @media screen and (max-width: 767.98px) {
     width: 100% !important;
   }
 }
@@ -90,7 +90,7 @@
   position: absolute;
   right: 0;
   top: 3px;
-  @media screen and (max-width: 540px) {
+  @media screen and (max-width: 767.98px) {
     display: none;
   }
 }

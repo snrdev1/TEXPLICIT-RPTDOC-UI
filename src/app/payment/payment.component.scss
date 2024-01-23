@@ -30,19 +30,22 @@
 }
 
 .pricing-options {
-  height: 29vw;
+  height: 28vw;
   display: grid;
   grid-gap: 5vw;
   grid-template-columns: repeat(3, 1fr);
-  margin-right: 5rem;
-  margin-bottom: 2.5rem;
-  margin-top: 2vw;
+  margin-right: 3rem;
+  margin-bottom: 3.5vw;
+  margin-top: 1vw;
 
   @media screen and (max-width: 767.98px) {
     display: flex;
     flex-direction: column;
     gap: 32px;
     margin-top: 36px;
+    margin-right: 0;
+    height: inherit;
+    margin-bottom: 5rem;
   }
 
   .pricing-plan-card {
@@ -161,7 +164,7 @@
   font-weight: 400;
   line-height: 24px; /* 150% */
 
-  @media screen and (max-widthL: 767.98px) {
+  @media screen and (max-widthl: 767.98px) {
     display: inline-block;
     margin-top: 86px;
   }

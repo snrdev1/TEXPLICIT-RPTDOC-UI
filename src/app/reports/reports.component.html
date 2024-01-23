@@ -82,6 +82,14 @@
           <button mat-raised-button class="btn-report" type="submit" [disabled]="!form.valid">
             Generate Now
           </button>
+          <div class="rep-gen-toolbar-config mr-left-top">
+            <app-outer-toolbar-buttons [filterButtonVisible]="false" [groupMemberButtonVisible]="false"
+              [noteButtonVisible]="false" [moreButtonVisible]="false" [backToParentButtonVisible]="false"
+              [createFolderButtonVisible]="false" [refreshButtonVisible]="false" [uploadFileButtonVisible]="false"
+              [configurationButtonVisible]="false" [historyButtonVisible]="false" [addUserButtonVisible]="false"
+              [workspaceButtonVisible]="false" [addKnowledgeItemButtonVisible]="false" [newsButtonVisible]="false"
+              (onReportProgress)="showLoadingReports()"></app-outer-toolbar-buttons>
+          </div>
         </div>
       </form>
     </div>
@@ -112,15 +120,6 @@
               ></app-outer-toolbar-buttons>
         </div> -->
       </div>
-
-      <div class="rep-gen-toolbar-config mr-left-top">
-        <app-outer-toolbar-buttons [filterButtonVisible]="false" [groupMemberButtonVisible]="false"
-          [noteButtonVisible]="false" [moreButtonVisible]="false" [backToParentButtonVisible]="false"
-          [createFolderButtonVisible]="false" [refreshButtonVisible]="false" [uploadFileButtonVisible]="false"
-          [configurationButtonVisible]="false" [historyButtonVisible]="false" [addUserButtonVisible]="false"
-          [workspaceButtonVisible]="false" [addKnowledgeItemButtonVisible]="false" [newsButtonVisible]="false"
-          (onReportProgress)="showLoadingReports()"></app-outer-toolbar-buttons>
-      </div>
     </div>
 
     <div style="position: relative">
@@ -149,11 +148,11 @@
                 <mat-icon>keyboard_arrow_down</mat-icon>
               </button>
             </li>
+            <li class="audio-header">
+              <div>Report Audio</div>
+            </li>
           </ul>
         </div>
-        <!-- <div class="no-search-results" *ngIf="allReports.length == 0">
-          No reports available
-        </div> -->
         <div class="reports-loader" *ngIf="isLoading">
           <mat-spinner [diameter]="30"></mat-spinner>
         </div>

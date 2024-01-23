@@ -9,7 +9,7 @@
     justify-content: space-between;
     margin-bottom: 10px;
 
-    @media screen and (max-width: 1000px) {
+    @media screen and (max-width: 767.98px) {
         flex-direction: column-reverse;
         height: 80px;
     }
@@ -18,7 +18,7 @@
 .manage-user-toolbar-search{
     width:65%;
 
-    @media screen and (max-width: 1000px) {
+    @media screen and (max-width: 767.98px) {
         width:100%;
     }
     app-search-input{
@@ -34,7 +34,7 @@
     overflow-x: auto;
     background-color: white;
     border-radius: 20px;
-    @media screen and (max-width: 1000px) {
+    @media screen and (max-width: 767.98px) {
         height: calc(100vh - 171px);
     }
 
@@ -89,7 +89,7 @@
     td.action{
             width:20%;
         }
-    @media screen and (max-width: 1000px) {
+    @media screen and (max-width: 767.98px) {
         th.name,
         td.name{
             width:40%;
@@ -100,11 +100,11 @@
 :host ::ng-deep {
     .mat-mdc-paginator-outer-container{
         .mat-mdc-paginator-container{
-            @media screen and (max-width: 1000px) {
+            @media screen and (max-width: 767.98px) {
                 justify-content: center;
             }
             .mat-mdc-paginator-page-size{
-                @media screen and (max-width: 1000px) {
+                @media screen and (max-width: 767.98px) {
                     margin-right: 0;
                 }
                 .mat-mdc-paginator-page-size-label{
@@ -214,7 +214,7 @@
          font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
                     font-weight: 400;
 
-                    @media screen and (max-width: 1000px) {
+                    @media screen and (max-width: 767.98px) {
                         display: none;
                     }
                 }

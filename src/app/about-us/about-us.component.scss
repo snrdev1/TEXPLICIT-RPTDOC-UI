@@ -1,12 +1,12 @@
 .about-us-container{
     display: flex;
     justify-content: space-between;
-    @media screen and (max-width: 1000px) {
+    @media screen and (max-width: 767.98px) {
         flex-direction: column-reverse;
     }
     .about-us-text-container{
         width: 59%;
-        @media screen and (max-width: 1000px) {
+        @media screen and (max-width: 767.98px) {
             width: 100%;
         }
         mat-card{
@@ -37,7 +37,7 @@
         width: 39%;
         max-height: calc(100vh - 80px);
 
-        @media screen and (max-width: 1000px) {
+        @media screen and (max-width: 767.98px) {
             width: 100%;
         }
 
