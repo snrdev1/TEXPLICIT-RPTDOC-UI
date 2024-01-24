@@ -14,7 +14,7 @@
             font-size: 30px;
             text-align: center;
 
-            @media screen and (max-width: 393px) {
+            @media (max-width: 393px) {
                 font-size: 24px;
             }
         }
@@ -30,12 +30,12 @@
             justify-content: space-between;
             gap: 2em;
 
-            @media screen and (max-width: 767.98px) {
+            @media (max-width: 1199.98px) {
                 flex-direction: column;
                 margin-left: 2em;
             }
 
-            @media screen and (max-width: 393px) {
+            @media (max-width: 393px) {
                 flex-direction: column;
                 margin-top: 1em;
                 margin-left: 1em;
@@ -54,13 +54,13 @@
                 min-width: 30%;
                 position: relative;
 
-                @media screen and (max-width: 767.98px) {
+                @media (max-width: 1199.98px) {
                     flex-direction: row;
                     border: 0;
                     border-left: 1px solid #227aff;
                 }
 
-                @media screen and (max-width: 393px) {
+                @media (max-width: 393px) {
                     box-shadow: none;
                 }
 
@@ -79,12 +79,12 @@
                     top: -36px;
                     left: auto;
 
-                    @media screen and (max-width: 767.98px) {
+                    @media (max-width: 1199.98px) {
                         top:auto;
                         left:-36px;
                     }
 
-                    @media screen and (max-width: 393px) {
+                    @media (max-width: 393px) {
                         width:32px;
                         height: 32px;
                         top:auto;
@@ -96,7 +96,7 @@
                         height: 48px;
                         color: #fff;
 
-                        @media screen and (max-width: 393px) {
+                        @media (max-width: 393px) {
                             font-size: 24px;
                             width:24px;
                             height: 24px;
@@ -113,14 +113,14 @@
                     //font-size: 16px;
          font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
                     color: #4E525F;
-                    @media screen and (max-width: 767.98px) {
+                    @media (max-width: 1199.98px) {
                         margin-top: 0;
                         margin-left: 2em;
                         display: flex;
                         align-items: center;
                     }
 
-                    @media screen and (max-width: 393px) {
+                    @media (max-width: 393px) {
                         padding: .5em;
                         margin-top: 0;
                         margin-left: 1em;

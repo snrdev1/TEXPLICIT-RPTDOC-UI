@@ -3,11 +3,11 @@
   margin-bottom: 10px;
   margin-right: 0;
 
-  @media screen and (min-width: 768px){
+  @media (min-width: 1200px) {
     margin-right: 2.5rem;
   }
 
-  @media screen and (max-width: 767.98px) {
+  @media (max-width: 1199.98px) {
     flex-direction: column-reverse;
     height: 80px;
   }
@@ -21,7 +21,7 @@
     font-weight: 400;
     line-height: 28px;
     margin-bottom: 25px;
-    @media screen and (max-width: 767.98) {
+    @media (max-width: 1199.98px) {
       line-height: 24px;
     }
 
@@ -42,18 +42,21 @@
   .home-cards {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    grid-template-rows: repeat(2, 1fr);
     padding-bottom: 1.5rem;
     grid-gap: 25px;
     height: calc(100vh - 200px);
-  }
+    grid-template-rows: repeat(2, 1fr);
 
+    // @media (min-width: 1200px) {
+    //   grid-template-rows: repeat(2, 1fr);
+    // }
+  }
 }
 
 .home-toolbar-search {
   width: 65%;
 
-  @media screen and (max-width: 767.98px) {
+  @media (max-width: 1199.98px) {
     width: 100%;
   }
   app-search-input {
@@ -68,7 +71,7 @@
   overflow-y: auto;
   padding-bottom: 75px;
 
-  @media screen and (max-width: 767.98px) {
+  @media (max-width: 1199.98px) {
     height: calc(100vh - 329px);
   }
 }
@@ -81,7 +84,7 @@
 
 :host ::ng-deep .mat-mdc-tab-header {
   width: calc(100% - 75px) !important;
-  @media screen and (max-width: 767.98px) {
+  @media (max-width: 1199.98px) {
     width: 100% !important;
   }
 }
@@ -90,7 +93,7 @@
   position: absolute;
   right: 0;
   top: 3px;
-  @media screen and (max-width: 767.98px) {
+  @media (max-width: 1199.98px) {
     display: none;
   }
 }

@@ -4,7 +4,7 @@
     justify-content: space-between;
     margin:auto;
 
-    @media screen and (max-width: 767.98px) {
+    @media (max-width: 1199.98px) {
         flex-direction: column-reverse;
         height: 80px;
     }
@@ -12,7 +12,7 @@
 .manage-user-toolbar-search{
     width:65%;
 
-    @media screen and (max-width: 767.98px) {
+    @media (max-width: 1199.98px) {
         width:100%;
     }
     app-search-input{
@@ -28,7 +28,7 @@
     overflow-x: auto;
     background-color:#f2f2f4;
     border-radius: 5px;
-    @media screen and (max-width: 767.98px) {
+    @media (max-width: 1199.98px) {
         height: calc(100vh - 171px);
         width: 100%;
     }
@@ -72,7 +72,7 @@
     //     letter-spacing: 0;
     //     text-align: center;
 
-    //      @media (max-width: 767.98px){
+    //      @media (max-width: 1199.98px){
     //     padding: 1rem 0.8rem !important;
     //  }
     // }
@@ -100,7 +100,7 @@
         position: sticky;
     }
 
-    @media screen and (max-width: 767.98px) {
+    @media (max-width: 1199.98px) {
         th.name,
         td.name{
             width:70%;
@@ -111,11 +111,11 @@
 :host ::ng-deep {
     .mat-mdc-paginator-outer-container{
         .mat-mdc-paginator-container{
-            @media screen and (max-width: 767.98px) {
+            @media (max-width: 1199.98px) {
                 justify-content: center;
             }
             .mat-mdc-paginator-page-size{
-                @media screen and (max-width: 767.98px) {
+                @media (max-width: 1199.98px) {
                     margin-right: 0;
                 }
                 .mat-mdc-paginator-page-size-label{
@@ -224,7 +224,7 @@
          font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
                     font-weight: 400;
 
-                    @media screen and (max-width: 767.98px) {
+                    @media (max-width: 1199.98px) {
                         display: none;
                     }
                 }

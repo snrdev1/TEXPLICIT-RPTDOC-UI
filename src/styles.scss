@@ -92,7 +92,7 @@ body {
 .m-show {
   display: none !important;
 
-  @media screen and (max-width: 767.98px) {
+  @media (max-width: 1199.98px) {
     display: block !important;
   }
 }
@@ -100,7 +100,7 @@ body {
 .m-hide {
   display: "" !important;
 
-  @media screen and (max-width: 767.98px) {
+  @media (max-width: 1199.98px) {
     display: none !important;
   }
 }
@@ -185,7 +185,7 @@ body {
   width: 100px;
   cursor: pointer;
 
-  @media (max-width: 767.98px) {
+  @media (max-width: 1199.98px) {
     padding: 1rem 0.8rem !important;
   }
 }
@@ -220,7 +220,7 @@ body {
   color: #227aff !important;
 }
 
-@media screen and (max-width: 767.98px) {
+@media (max-width: 1199.98px) {
   .sm-hide {
     display: none !important;
   }
@@ -234,24 +234,24 @@ body {
   // border: 1px solid red;
   width: calc(100% - 35px);
 
-  @media screen and (min-width: 280px) and (max-width: 767px) {
+  @media (min-width: 280px) and (max-width: 767px) {
     flex: 0 0 100%;
     max-width: calc(100% - 35px);
   }
-  @media screen and (min-width: 768px) and (max-width: 767.98px) {
+  @media (min-width: 1200px) and (max-width: 1199.98px) {
     flex: 0 0 45.5%;
     max-width: 45.5%;
   }
 
-  @media screen and (min-width: 913px) and (max-width: 767.98px) {
+  @media (min-width: 913px) and (max-width: 1199.98px) {
     flex: 0 0 30%;
     max-width: 30%;
   }
-  @media screen and (min-width: 1025px) and (max-width: 1366px) {
+  @media (min-width: 1025px) and (max-width: 1366px) {
     flex: 0 0 22.5%;
     max-width: 22.5%;
   }
-  @media screen and (min-width: 1367px) and (max-width: 1920px) {
+  @media (min-width: 1367px) and (max-width: 1920px) {
     flex: 0 0 18%;
     max-width: 18%;
   }
@@ -304,24 +304,24 @@ body {
   // border: 1px solid red;
   width: calc(100% - 35px);
 
-  @media screen and (min-width: 280px) and (max-width: 767px) {
+  @media (min-width: 280px) and (max-width: 767px) {
     flex: 0 0 100%;
     max-width: calc(100% - 35px);
   }
-  @media screen and (min-width: 768px) and (max-width: 767.98px) {
+  @media (min-width: 1200px) and (max-width: 1199.98px) {
     flex: 0 0 45.5%;
     max-width: 45.5%;
   }
 
-  @media screen and (min-width: 913px) and (max-width: 767.98px) {
+  @media (min-width: 913px) and (max-width: 1199.98px) {
     flex: 0 0 30%;
     max-width: 30%;
   }
-  @media screen and (min-width: 1025px) and (max-width: 1366px) {
+  @media (min-width: 1025px) and (max-width: 1366px) {
     flex: 0 0 22.5%;
     max-width: 22.5%;
   }
-  @media screen and (min-width: 1367px) and (max-width: 1920px) {
+  @media (min-width: 1367px) and (max-width: 1920px) {
     flex: 0 0 18%;
     max-width: 18%;
   }
@@ -372,11 +372,11 @@ body {
 .mat-filter-dialog {
   width: 30%;
 
-  @media screen and (max-width: 767.98px) {
+  @media (max-width: 1199.98px) {
     width: 60%;
   }
 
-  @media screen and (max-width: 767.98px) {
+  @media (max-width: 1199.98px) {
     width: 90%;
   }
 }
@@ -385,11 +385,11 @@ body {
 .mat-ki-share-dialog {
   width: 40%;
 
-  @media screen and (max-width: 767.98px) {
+  @media (max-width: 1199.98px) {
     width: 65%;
   }
 
-  @media screen and (max-width: 767.98px) {
+  @media (max-width: 1199.98px) {
     width: 90%;
   }
 }
@@ -398,11 +398,11 @@ body {
 .mat-ki-add-dialog {
   width: 50%;
 
-  @media screen and (max-width: 767.98px) {
+  @media (max-width: 1199.98px) {
     width: 70%;
   }
 
-  @media screen and (max-width: 767.98px) {
+  @media (max-width: 1199.98px) {
     width: 90%;
   }
 }
@@ -415,7 +415,7 @@ body {
 .mat-configutaion-dialog,
 .mat-question-answer-dialog,
 .mat-filter-dialog {
-  @media screen and (max-width: 280px) {
+  @media (max-width: 280px) {
     width: 96%;
   }
 }
@@ -434,7 +434,7 @@ body {
       .mat-mdc-dialog-surface {
         padding: 16px;
         border-radius: 20px;
-        @media screen and (max-width: 280px) {
+        @media (max-width: 280px) {
           padding: 10px;
         }
       }
@@ -449,7 +449,7 @@ body {
       .mat-mdc-dialog-surface {
         padding: 16px;
         border-radius: 20px;
-        @media screen and (max-width: 280px) {
+        @media (max-width: 280px) {
           padding: 10px;
         }
       }
@@ -466,7 +466,7 @@ body {
 }
 
 .mat-datepicker-content .mat-calendar {
-  @media screen and (max-width: 280px) {
+  @media (max-width: 280px) {
     width: 250px !important;
   }
 }
@@ -601,7 +601,7 @@ mat-error {
 /************************** START RESPONSIVE CLASSES *************************/
 
 .sm-hidden {
-  @media screen and (max-width: 767.98px) {
+  @media (max-width: 1199.98px) {
     display: none !important;
   }
 }

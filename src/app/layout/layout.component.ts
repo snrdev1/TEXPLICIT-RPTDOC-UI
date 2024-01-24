@@ -94,7 +94,7 @@ export class LayoutComponent {
   }
 
   setSidenavState() {
-    if (this.windowWidth > 768) {
+    if (this.windowWidth > 1200) {
       this.sidenavState = true;
     }
     else {

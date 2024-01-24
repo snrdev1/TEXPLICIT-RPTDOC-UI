@@ -35,7 +35,7 @@
             // overflow: hidden;
             // text-overflow: ellipsis;
 
-            @media screen and (max-width: 767.98) {
+            @media (max-width: 1199.98px) {
                 width: calc(100% - 44px);
             }
         }
@@ -57,10 +57,10 @@
             overflow: hidden;
             text-overflow: ellipsis;
 
-            @media screen and (max-width: 767.98px) {
+            @media (max-width: 1199.98px) {
                 width: calc(25% - 10px);
             }
-            @media screen and (max-width: 414px) {
+            @media (max-width: 414px) {
               display: none;
           }
         }
@@ -72,7 +72,7 @@
             white-space: normal;
             padding-left: 30px;
 
-            @media screen and (max-width: 767.98) {
+            @media (max-width: 1199.98px) {
               width: calc(100% - 44px);
             }
           }

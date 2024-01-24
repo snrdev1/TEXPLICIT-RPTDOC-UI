@@ -1,10 +1,10 @@
 <ul class="file-row {{displayStyle}}" [ngClass]="{'noCheckbox': checkboxVisible === false}" class="mr-10px">
     <li class="icon">
         <img *ngIf="report.format === 'pdf'||report.format === ''" src="../../assets/svg/documents-icon/pdf.svg" />
-        <img *ngIf="report.format === 'word'" src="../../assets/svg/documents-icon/doc.svg" />   
+        <img *ngIf="report.format === 'word'" src="../../assets/svg/documents-icon/doc.svg" />
     </li>
     <li class="name"><span (click)="onDownloadClick(report)">{{ report.task }}</span>
-    </li> 
+    </li>
     <li class="action">
         <button class="btn-row"  [matMenuTriggerFor]="filefolderMenu">
             <mat-icon>more_vert</mat-icon>
@@ -15,16 +15,12 @@
     </li>
     <li class="date" >{{ report.createdOn | date:'dd/MM/YY h:mm a'}}</li>
     <li class="report-type" >{{ reportType }}</li>
-    <li class="icon mr-left-10" *ngIf="report?.report_audio && report?.report_audio?.exists">
-      <img *ngIf="!audioPlayerVisible" (click)="playAudio(report)" src="../../assets/svg/report-audio-icon/play-circle.svg" />     
-      <img *ngIf="audioPlayerVisible" (click)="stopAudio()" src="../../assets/svg/report-audio-icon/stop-circle.svg" />        
+    <li class="audio-player icon" *ngIf="report?.report_audio && report?.report_audio?.exists">
+      <img *ngIf="!audioPlayerVisible" (click)="playAudio(report)" src="../../assets/svg/report-audio-icon/play-circle.svg" />
+      <img *ngIf="audioPlayerVisible" (click)="stopAudio()" src="../../assets/svg/report-audio-icon/stop-circle.svg" />
     </li>
 </ul>
-<!-- <div  [ngClass]="{'audio-player-hidden':!audioPlayerVisible}" class="audio-player" >
-  <audio controls #audioPlayer>
-      Your browser does not support the audio element.
-  </audio>
-</div> -->
+
 <mat-menu #filefolderMenu="matMenu" class="file-folder-menu">
     <button mat-menu-item (click)="onDownloadClick(report)">
         <mat-icon>download</mat-icon>
@@ -46,5 +42,5 @@
         <mat-icon>share_alt</mat-icon>
         <span>Share</span>
       </button>  -->
-      
+
 </mat-menu>
