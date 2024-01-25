@@ -1,3 +1,9 @@
+.main-body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .title {
   color: #4e525f;
   font-family: "Poppins", sans-serif;
@@ -27,22 +33,13 @@
 }
 
 .report-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   border-radius: 20px;
-  height: calc(100vh - 160px);
 
   @media (min-width: 1200px) {
     margin-right: 20px;
-  }
-}
-
-.main-body {
-  height: calc(100vh - 100px);
-  overflow-y: hidden;
-  overflow-x: hidden;
-
-  // border-radius: 30px;
-  @media (max-width: 1199.98px) {
-    height: calc(100vh - 80px);
   }
 }
 
@@ -105,6 +102,9 @@
 /******************** START REPORTS TABLE **************************/
 .table {
   width: 100%; // Adjust as needed
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 
   thead {
     .header-row {
@@ -177,9 +177,9 @@
   }
 
   tbody {
-    display: block;
-    height: calc(100vh - 400px);
     overflow: auto;
+    flex-grow: 1;
+    flex-basis: 0px;
   }
 }
 /******************** END REPORTS TABLE **************************/
@@ -481,12 +481,16 @@
 .generated-reports-header {
   display: flex;
   justify-content: space-between;
-  margin: 1rem 1rem 1rem auto;
+  // margin: 1rem 1rem 1rem auto;
   align-items: center;
 
   .gen-report {
     margin-top: 1rem;
   }
+}
+
+.files-container {
+  flex-grow: 1;
 }
 
 ::ng-deep .mat-slide-toggle {

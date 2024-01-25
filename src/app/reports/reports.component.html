@@ -1,6 +1,9 @@
 <div class="main-body">
   <div class="title">
-    <p><span class="bold-title-1">Create your AI enabled Reports</span> on any topic of your choice from content</p>
+    <p>
+      <span class="bold-title-1">Create your AI enabled Reports</span> on any
+      topic of your choice from content
+    </p>
     <p>
       from the
       <span class="bold-title-2">INTERNET</span> or from your
@@ -100,65 +103,57 @@
       </div>
     </div>
 
-    <div style="position: relative">
-      <div class="files-container  {{ displayStyle || 'list' }} ">
-
-        <div class="reports-loader" *ngIf="isLoading">
-          <mat-spinner [diameter]="30"></mat-spinner>
-        </div>
-
-
-        <div class="report-steps top-40" *ngIf="allReports.length == 0 && isLoading == false && !isDismissed">
-          <app-report-steps (dismissStep)="dismissSteps()"></app-report-steps>
-        </div>
-
-        <div class="table-responsive" *ngIf="allReports.length !== 0">
-          <table class="table">
-            <!-- Table Headers -->
-            <thead>
-              <tr class="header-row">
-                <th class="name-header">
-                  <div>Report</div>
-                  <button class="btn-sort" (click)="sortReports('task')">
-                    <mat-icon>unfold_more</mat-icon>
-                  </button>
-                </th>
-                <th class="size-header">
-                  <div>Topic</div>
-                </th>
-                <th class="date-header">
-                  <div>Date</div>
-                  <button class="btn-sort" (click)="sortReports('createdOn')">
-                    <mat-icon>keyboard_arrow_down</mat-icon>
-                  </button>
-                </th>
-                <th class="type-header">
-                  <div>Type</div>
-                  <button class="btn-sort" (click)="sortReports('report_type')">
-                    <mat-icon>keyboard_arrow_down</mat-icon>
-                  </button>
-                </th>
-                <th class="audio-header">
-                  <div>Report Audio</div>
-                </th>
-              </tr>
-            </thead>
-
-            <!-- Table Body -->
-            <tbody *ngIf="allReports.length !== 0" (scroll)="onScroll($event)">
-              <ng-container *ngFor="let report of allReports">
-                <app-report-cards [report]="report" [displayStyle]="displayStyle" (deleteReport)="getAllReports()"
-                  (playAudioEvent)="onAudioDownload(report)" (stopAudioEvent)="stopAudio()"></app-report-cards>
-              </ng-container>
-            </tbody>
-
-          </table>
-        </div>
-
+    <div class="files-container  {{ displayStyle || 'list' }} ">
+      <div class="reports-loader" *ngIf="isLoading">
+        <mat-spinner [diameter]="30"></mat-spinner>
       </div>
+
+      <div class="report-steps top-40" *ngIf="allReports.length == 0 && isLoading == false && !isDismissed">
+        <app-report-steps (dismissStep)="dismissSteps()"></app-report-steps>
+      </div>
+
+      <table class="table" *ngIf="allReports.length !== 0">
+        <!-- Table Headers -->
+        <thead>
+          <tr class="header-row">
+            <th class="name-header">
+              <div>Report</div>
+              <button class="btn-sort" (click)="sortReports('task')">
+                <mat-icon>unfold_more</mat-icon>
+              </button>
+            </th>
+            <th class="size-header">
+              <div>Topic</div>
+            </th>
+            <th class="date-header">
+              <div>Date</div>
+              <button class="btn-sort" (click)="sortReports('createdOn')">
+                <mat-icon>keyboard_arrow_down</mat-icon>
+              </button>
+            </th>
+            <th class="type-header">
+              <div>Type</div>
+              <button class="btn-sort" (click)="sortReports('report_type')">
+                <mat-icon>keyboard_arrow_down</mat-icon>
+              </button>
+            </th>
+            <th class="audio-header">
+              <div>Report Audio</div>
+            </th>
+          </tr>
+        </thead>
+
+        <!-- Table Body -->
+        <tbody *ngIf="allReports.length !== 0" (scroll)="onScroll($event)">
+          <ng-container *ngFor="let report of allReports">
+            <app-report-cards [report]="report" [displayStyle]="displayStyle" (deleteReport)="getAllReports()"
+              (playAudioEvent)="onAudioDownload(report)" (stopAudioEvent)="stopAudio()"></app-report-cards>
+          </ng-container>
+        </tbody>
+      </table>
     </div>
 
-    <div [ngClass]="{'audio-player-hidden':!audioPlayerVisible}" class="audio-player">
+    <div [ngClass]="{ 'audio-player-hidden': !audioPlayerVisible }" class="audio-player">
       <audio controls #audioPlayer>
         Your browser does not support the audio element.
       </audio>

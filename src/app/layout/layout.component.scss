@@ -1,3 +1,9 @@
+:host{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
 .toolbar-container {
   background-color: #ffffff;
   display: flex;
@@ -133,7 +139,6 @@
 }
 
 .main-container-content {
-  height: 100%;
   background-color: #ffffff;
 
   @media (max-width: 1199.98px) {
@@ -142,7 +147,7 @@
   }
 
   .main-container {
-    height: 78%;
+    height: 97%;
     padding-top: 1rem;
     padding-left: 24px;
     padding-right: 24px;
@@ -241,5 +246,5 @@
 }
 
 :host ::ng-deep .mat-drawer-container {
-  height: calc(100% - 64px);
+  flex-grow: 1;
 }
