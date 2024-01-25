@@ -102,41 +102,34 @@
   white-space: nowrap;
 }
 
-/******************** START UL LIKE TABLE ********************/
-.files-container.list {
-  width: 98%;
+/******************** START REPORTS TABLE **************************/
+.table {
+  width: 100%; // Adjust as needed
 
-  @media (max-width: 1199.98px) {
-    padding-top: 5px;
-  }
-
-  // margin-top: 20px;
-  .file-header-content {
-    padding-top: 5px;
-
+  thead {
     .header-row {
-      margin-top: 5px;
-      padding: 0;
-      list-style: none;
+      display: flex;
+      border-bottom: 0.5px solid rgba(146, 149, 159, 0.55);
       font-family: "Roboto", sans-serif;
       // 1366: 12px, 1920: 14px
       font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
       font-weight: 500;
-      display: flex;
 
-      border-bottom: 0.5px solid rgba(146, 149, 159, 0.55);
-
-      li {
+      th {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0 5px;
         border-right: 0.5px solid rgba(146, 149, 159, 0.55);
+        padding: 0 1%;
+        white-space: nowrap;
+
+        &:last-of-type {
+          border-right: none;
+        }
 
         .btn-sort {
           width: 24px;
           height: 24px;
-          padding: 0;
           border: none;
           background: transparent;
           cursor: pointer;
@@ -144,37 +137,32 @@
           mat-icon {
             width: min-content;
             height: min-content;
-            //font-size: 16px;
             font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
           }
         }
 
         &.name-header {
           width: 40%;
-          padding: 0 5px;
         }
 
-        &.date-header {
-          width: 10%;
-          padding: 0 5px;
-
-          @media (max-width: 1199.98px) {
-            width: 26%;
-          }
-        }
-
-        &.type-header {
-          width: 10%;
-          padding: 0 5px;
+        &.size-header {
+          width: 20%;
 
           @media (max-width: 1199.98px) {
             display: none;
           }
         }
 
-        &.size-header {
-          width: 20%;
-          padding: 0 5px;
+        &.date-header {
+          width: 10%;
+
+          @media (max-width: 1199.98px) {
+            width: 30%;
+          }
+        }
+
+        &.type-header {
+          width: 10%;
 
           @media (max-width: 1199.98px) {
             display: none;
@@ -183,62 +171,18 @@
 
         &.audio-header {
           width: 10%;
-          padding: 0 5px;
-          border: none;
-
-          @media (max-width: 1199.98px) {
-            width: 26%;
-          }
         }
       }
     }
   }
 
-  .file-body-content {
-    height: calc(100vh - 415px);
-    padding-top: 4px;
-    padding-bottom: 4px;
-    overflow: hidden;
-    overflow-y: auto;
-    margin-right: -5px;
+  tbody {
+    display: block;
+    height: calc(100vh - 400px);
+    overflow: auto;
   }
 }
-
-/******************** END UL LIKE TABLE ********************/
-
-/******************** START UL LIKE GRID ********************/
-.files-container.grid {
-  width: 98%;
-  padding-top: 30px;
-
-  @media (max-width: 1199.98px) {
-    padding-top: 35px;
-  }
-
-  // margin-top: 20px;
-  .file-header-content {
-    display: none;
-  }
-
-  .file-body-content {
-    height: calc(100vh - 390px);
-
-    @media (max-width: 1199.98px) {
-      height: calc(100vh - 460px);
-      // margin-right: 50px;
-    }
-
-    @media (max-width: 740px) {
-      height: calc(100vh - 550px);
-    }
-
-    overflow: hidden;
-    overflow-y: auto;
-    margin-right: -5px;
-  }
-}
-
-/******************** END UL LIKE GRID ********************/
+/******************** END REPORTS TABLE **************************/
 
 :host ::ng-deep .mat-mdc-tab-header {
   width: calc(100% - 75px) !important;
@@ -580,8 +524,7 @@
 }
 
 .input-row {
-
-  @media (max-widht: 767.98px){
+  @media (max-widht: 767.98px) {
     gap: 1rem;
   }
 }

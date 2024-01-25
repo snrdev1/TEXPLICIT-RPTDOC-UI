@@ -1,196 +1,50 @@
-.hover-box {
-  display: none;
-  padding: 8px;
-  position: absolute;
-  z-index: 1;
-  background: #ffffff;
-  border: 0.5px solid #4e525f;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 500;
-  // 1366: 12px, 1920: 14px
-  font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
-  line-height: 14px;
-  // line-height: normal;
-  letter-spacing: 0.01em;
-  font-family: "Roboto", sans-serif;
-  text-shadow: none;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 250px;
-}
-
-.type:hover .hover-box {
-  display: block;
-}
-
-.mr-10px {
-  margin-top: 10px;
-}
-.mr-left-10 {
-  margin-left: 10px;
-  @media (max-width: 414px) {
-    margin-left: 2px;
-    margin-right: 10px;
-  }
-}
-.file-row.grid {
-  margin: 5px;
-  padding: 0;
-  list-style: none;
-  width: 128px;
-  height: 128px;
-  font-family: "Roboto", sans-serif;
-  //font-size: 14px;
-  font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
-  border: 0.5px solid rgba(146, 149, 159, 0.55);
-  border-radius: 5px;
-  position: relative;
-  float: left;
-
-  @media (max-width: 280px) {
-    width: 108px;
-  }
-
-  li {
-    display: block;
-    float: left;
-    &.check {
-      width: 20px;
-      float: left;
-    }
-    &.icon {
-      float: left;
-      margin-left: 20px;
-      img {
-        width: 84px;
-        height: 84px;
-      }
-      mat-icon {
-        width: 84px;
-        height: 84px;
-        font-size: 84px;
-      }
-    }
-    &.name {
-      display: block;
-      width: calc(100% - 10px);
-      padding: 0 5px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      //font-size: 14px;
-      font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
-      font-weight: 500;
-      cursor: pointer;
-    }
-    &.action {
-      width: 24px;
-      padding: 0 5px;
-      position: absolute;
-      right: 0;
-      .btn-row {
-        width: 24px;
-        height: 24px;
-        padding: 0;
-        border: none;
-        background: transparent;
-        cursor: pointer;
-
-        mat-icon {
-          width: min-content;
-          height: min-content;
-          //font-size: 16px;
-          font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
-        }
-      }
-    }
-    &.date {
-      display: block;
-      width: calc(100% - 10px);
-      padding: 0 5px;
-      white-space: nowrap;
-      overflow: hidden;
-      // 1366: 12px, 1920: 14px
-      font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
-      text-overflow: ellipsis;
-    }
-    &.owner {
-      display: block;
-      width: calc(100% - 10px);
-      padding: 0 5px;
-      white-space: nowrap;
-      overflow: hidden;
-      // 1366: 12px, 1920: 14px
-      font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
-      text-overflow: ellipsis;
-    }
-    &.type {
-      display: none;
-    }
-    &.report-type {
-      display: none;
-    }
-  }
-
-  &.noCheckbox {
-    li {
-      &.check {
-        display: none;
-      }
-      &.icon {
-        margin-left: 2.5px;
-      }
-    }
-  }
-}
-
-.file-row.list {
+.file-row {
   margin: 0;
   padding: 0;
   list-style: none;
   font-family: "Roboto", sans-serif;
-  // 1366: 12px, 1920: 14px
   font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
   display: flex;
-  position: relative; // added
   margin-bottom: 0.5rem;
 
-  li {
+  td {
     display: flex;
     align-items: center;
-    &.check {
-      width: 20px;
-    }
-    &.icon {
-      width: 24px;
-      // margin-left: 20px; // added
+    padding: 0 1%;
+  }
 
-      img {
-        width: 24px;
-        height: 24px;
+  .combined-cell {
+    width: 40%;
+    justify-content: space-between;
+
+    .report-document {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      overflow: hidden;
+
+      .icon {
+        img {
+          width: 24px;
+          height: 24px;
+          cursor: pointer;
+        }
+      }
+
+      .name {
+        padding-left: 10px;
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         cursor: pointer;
       }
     }
-    &.name {
-      display: block;
-      width: calc(40% - 80px);
-      padding: 5px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      cursor: pointer;
-      margin-right: 20px; // added
-    }
-    &.action {
-      width: 24px;
-      padding: 0 5px;
 
+    .action {
       .btn-row {
         width: 24px;
         height: 24px;
-        padding: 0;
         border: none;
         background: transparent;
         cursor: pointer;
@@ -198,49 +52,45 @@
         mat-icon {
           width: min-content;
           height: min-content;
-          //font-size: 16px;
           font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
         }
       }
     }
-    &.date {
-      padding-right: 20px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      margin-left: 0.35rem;
+  }
+
+  .task {
+    width: 20%;
+
+    @media (max-width: 1199.98px) {
+      display: none;
     }
-    &.report-type {
-      // same as type, just name changed
-      width: 10%;
-      justify-content: flex-start;
-      padding: 0 5px;
-      // text-transform: uppercase;
+  }
 
-      @media (max-width: 1199.98px) {
-        display: none;
-      }
+  .date {
+    width: 10%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @media (max-width: 1199.98px) {
+      width: 30%;
     }
-    &.type {
-      // same as size, just name changed
-      width: calc(30% - 133px);
-      justify-content: flex-start;
-      padding: 0 5px;
-      padding-right: 35px;
-      position: relative;
+  }
 
-      @media (max-width: 1199.98px) {
-        display: none;
-      }
+  .report-type {
+    width: 10%;
+
+    @media (max-width: 1199.98px) {
+      display: none;
     }
+  }
 
-    &.audio-player{
-      padding-right: 20px;
-      margin-left: calc(20% - 12vw);
+  .audio-player {
+    width: 10%;
+    justify-content: center;
 
-      @media (min-width: 768px) and (max-width: 1199.98px){
-        margin-left: calc(33% - 15vw);
-      }
+    img {
+      cursor: pointer;
     }
   }
 }
@@ -249,18 +99,4 @@
   mat-icon {
     color: #111541 !important;
   }
-}
-
-.full-type {
-  display: none;
-  cursor: pointer;
-  color: #111541;
-}
-
-.type:hover .full-type {
-  display: block;
-}
-
-.type:hover .type-preview {
-  display: none;
 }

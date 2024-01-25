@@ -96,77 +96,68 @@
 
     <div class="generated-reports-header" *ngIf="allReports.length !== 0">
       <div class="gen-report">
-        <!-- <div fxLayout="column"> -->
         <div class="report-header">Generated Reports</div>
-        <!-- </div> -->
-        <!-- <div class="rep-gen-toolbar-config mr-left-15" >
-
-          <app-outer-toolbar-buttons
-              (onFilter)="onFilterClick()"
-              [groupMemberButtonVisible]="false"
-              [noteButtonVisible]="false"
-              [moreButtonVisible]="false"
-              [backToParentButtonVisible]="false"
-              [createFolderButtonVisible]="false"
-              [refreshButtonVisible]="false"
-              [uploadFileButtonVisible]="false"
-              [configurationButtonVisible]="false"
-              [historyButtonVisible]="false"
-              [addUserButtonVisible]="false"
-              [workspaceButtonVisible]="false"
-              [addKnowledgeItemButtonVisible]="false"
-              [newsButtonVisible]="false"
-              [reportProgressButtonVisible]="false"
-              ></app-outer-toolbar-buttons>
-        </div> -->
       </div>
     </div>
 
     <div style="position: relative">
       <div class="files-container  {{ displayStyle || 'list' }} ">
-        <!-- write displayStyle.value if toggle button is kept -->
-        <div class="file-header-content" *ngIf="allReports.length !== 0">
-          <ul class="header-row">
-            <li class="name-header">
-              <div>Report</div>
-              <button class="btn-sort" (click)="sortReports('task')">
-                <mat-icon>unfold_more</mat-icon>
-              </button>
-            </li>
-            <li class="size-header">
-              <div>Topic</div>
-            </li>
-            <li class="date-header">
-              <div>Date</div>
-              <button class="btn-sort" (click)="sortReports('createdOn')">
-                <mat-icon>keyboard_arrow_down</mat-icon>
-              </button>
-            </li>
-            <li class="type-header">
-              <div>Type</div>
-              <button class="btn-sort" (click)="sortReports('report_type')">
-                <mat-icon>keyboard_arrow_down</mat-icon>
-              </button>
-            </li>
-            <li class="audio-header">
-              <div>Report Audio</div>
-            </li>
-          </ul>
-        </div>
+
         <div class="reports-loader" *ngIf="isLoading">
           <mat-spinner [diameter]="30"></mat-spinner>
         </div>
+
+
         <div class="report-steps top-40" *ngIf="allReports.length == 0 && isLoading == false && !isDismissed">
           <app-report-steps (dismissStep)="dismissSteps()"></app-report-steps>
         </div>
-        <div class="file-body-content" *ngIf="allReports.length !== 0" (scroll)="onScroll($event)">
-          <ng-container *ngFor="let report of allReports">
-            <app-report-cards [report]="report" [displayStyle]="displayStyle" (deleteReport)="getAllReports()"
-              (playAudioEvent)="onAudioDownload(report)" (stopAudioEvent)="stopAudio()"></app-report-cards>
-          </ng-container>
+
+        <div class="table-responsive" *ngIf="allReports.length !== 0">
+          <table class="table">
+            <!-- Table Headers -->
+            <thead>
+              <tr class="header-row">
+                <th class="name-header">
+                  <div>Report</div>
+                  <button class="btn-sort" (click)="sortReports('task')">
+                    <mat-icon>unfold_more</mat-icon>
+                  </button>
+                </th>
+                <th class="size-header">
+                  <div>Topic</div>
+                </th>
+                <th class="date-header">
+                  <div>Date</div>
+                  <button class="btn-sort" (click)="sortReports('createdOn')">
+                    <mat-icon>keyboard_arrow_down</mat-icon>
+                  </button>
+                </th>
+                <th class="type-header">
+                  <div>Type</div>
+                  <button class="btn-sort" (click)="sortReports('report_type')">
+                    <mat-icon>keyboard_arrow_down</mat-icon>
+                  </button>
+                </th>
+                <th class="audio-header">
+                  <div>Report Audio</div>
+                </th>
+              </tr>
+            </thead>
+
+            <!-- Table Body -->
+            <tbody *ngIf="allReports.length !== 0" (scroll)="onScroll($event)">
+              <ng-container *ngFor="let report of allReports">
+                <app-report-cards [report]="report" [displayStyle]="displayStyle" (deleteReport)="getAllReports()"
+                  (playAudioEvent)="onAudioDownload(report)" (stopAudioEvent)="stopAudio()"></app-report-cards>
+              </ng-container>
+            </tbody>
+
+          </table>
         </div>
+
       </div>
     </div>
+
     <div [ngClass]="{'audio-player-hidden':!audioPlayerVisible}" class="audio-player">
       <audio controls #audioPlayer>
         Your browser does not support the audio element.
