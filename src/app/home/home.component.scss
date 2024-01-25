@@ -1,5 +1,5 @@
 .home-toolbar {
-  height: 35px;
+  height: 100%;
   margin-bottom: 10px;
   margin-right: 0;
 
@@ -41,15 +41,14 @@
 
   .home-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     padding-bottom: 1.5rem;
     grid-gap: 25px;
-    height: calc(100vh - 200px);
+    height: 100%;
     grid-template-rows: repeat(2, 1fr);
 
-    // @media (min-width: 1200px) {
-    //   grid-template-rows: repeat(2, 1fr);
-    // }
+    @media (min-width: 1200px) {
+      grid-template-columns: repeat(auto-fill, minmax(23vw, 1fr));
+    }
   }
 }
 
@@ -66,14 +65,10 @@
 
 .ki-container {
   //border-top: 1px solid #333;
-  height: calc(100vh - 283px);
+  height: 100%;
   overflow: hidden;
   overflow-y: auto;
   padding-bottom: 75px;
-
-  @media (max-width: 1199.98px) {
-    height: calc(100vh - 329px);
-  }
 }
 
 .ki-container::after {
