@@ -1,0 +1,11 @@
+<div class="user-profile-container">
+  <div class="user-profile-title">My Profile</div>
+
+  <div class="user-profile-info">
+    <div class="info" *ngFor="let info of profileInfo">
+      <div class="fieldName">{{info.fieldName}} : </div>
+      <div class="fieldValue" *ngIf="info.fieldValue">{{info.fieldValue}}</div>
+      <div class="fieldValue-blank" *ngIf="!info.fieldValue">N/A</div>
+    </div>
+  </div>
+<div>

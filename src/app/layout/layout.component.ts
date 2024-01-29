@@ -118,6 +118,10 @@ export class LayoutComponent {
     this.router.navigate(['/pricing']);
   }
 
+  onUserProfileClick(){
+    this.router.navigate(['/profile']);
+  }
+
   onDisclaimerClick() {
     const dialogRef = this.dialog.open(DisclaimerDialogComponent, { panelClass: 'mat-dialog-panel' });
 
