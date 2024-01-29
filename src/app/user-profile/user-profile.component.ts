@@ -1,5 +1,6 @@
-import { LocalStorageService } from 'src/app/core/local-storage.service';
+import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
+import { LocalStorageService } from 'src/app/core/local-storage.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -10,9 +11,12 @@ export class UserProfileComponent {
   userInfo: any;
   profileInfo: any = [];
 
-  constructor(private localStorageService: LocalStorageService){}
+  constructor(
+    private localStorageService: LocalStorageService,
+    private datePipe: DatePipe
+  ) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.userInfo = this.localStorageService.getUserInfo();
 
     console.log("userInfo : ", this.userInfo);
@@ -20,7 +24,21 @@ export class UserProfileComponent {
     this.constructProfileInfo();
   }
 
-  constructProfileInfo(){
+  getFormattedDate(date: any): any {
+    try {
+      // Parse the string date to a JavaScript Date object
+      const parsedDate = new Date(date);
+
+      // Use the DatePipe to format the date
+      return this.datePipe.transform(parsedDate, 'dd/MM/yyyy');
+    }
+    catch (e: any) {
+      console.log("Exception : ", e);
+      return date;
+    }
+  }
+
+  constructProfileInfo() {
     this.profileInfo = [
       {
         "fieldName": "Full Name",
@@ -32,7 +50,7 @@ export class UserProfileComponent {
       },
       {
         "fieldName": "Profile Created",
-        "fieldValue": this.userInfo?.createdOn || ""
+        "fieldValue": this.getFormattedDate(this.userInfo?.createdOn) || ""
       },
       {
         "fieldName": "Mobile Number",

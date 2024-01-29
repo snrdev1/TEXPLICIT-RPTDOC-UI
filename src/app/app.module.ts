@@ -1,22 +1,17 @@
+import { DatePipe } from '@angular/common';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MaterialModule } from './material/material.module';
 import { AppHttpInterceptor } from './core/app-http-interceptor';
-import { AdminComponent } from './admin/admin.component';
-import { AddEditUserComponent } from './admin/add-edit-user/add-edit-user.component';
-import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-// import { ReportCreateComponent } from './report-create/report-create.component';
-// import { ReportsComponent } from './reports/reports.component';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    // ReportCreateComponent,
-    // ReportsComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +20,6 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     MaterialModule,
     HttpClientModule,
     NgxSkeletonLoaderModule,
-    // NgxSkeletonLoaderModule.forRoot({ animation: 'pulse', loadingText: 'This item is actually loading...' }),
 
   ],
   providers: [
@@ -38,7 +32,8 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
       provide: Storage,
       useClass: AppComponent,
       multi: true,
-    }
+    },
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })
