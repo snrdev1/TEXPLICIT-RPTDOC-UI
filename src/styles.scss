@@ -406,9 +406,11 @@ body {
     width: 90%;
   }
 }
+
 .mat-ki-add-dialog {
-  height: max-content;
+  min-height: 400px;
 }
+
 .mat-news-detail-dialog,
 .mat-ki-add-dialog,
 .mat-ki-share-dialog,
