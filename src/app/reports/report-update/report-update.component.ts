@@ -1,8 +1,7 @@
+import { DatePipe } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { LocalStorageService } from 'src/app/core/local-storage.service';
-import { WebSocketService } from 'src/app/shared/services/socketio.service';
 import { ReportsService } from '../reports.service';
 
 @Component({
@@ -26,41 +25,38 @@ export class ReportUpdateComponent {
 
   allReports$: Observable<any> = this.reportsService.allReports$;
 
-  constructor(public dialogRef: MatDialogRef<ReportUpdateComponent>,
-    private socketService: WebSocketService,
-    private localStorage: LocalStorageService,
+  constructor(
+    public dialogRef: MatDialogRef<ReportUpdateComponent>,
     private reportsService: ReportsService,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    private datePipe: DatePipe,
+    @Inject(MAT_DIALOG_DATA) public data: any
+    ) { }
 
   ngOnInit() {
     this.reports = this.data.data;
-    console.log("data from report component : ", this.reports);
+    this.convertDatetimeForReports(this.reports);
 
     this.allReports$.subscribe((reports: any) => {
-      if(reports){
-      const pendingReports = this.reports.filter((item1: { report_generation_id: string; }) => !reports.some((item2: { report_generation_id: string; }) => item1.report_generation_id === item2.report_generation_id));
-      this.reports = pendingReports;
-      console.log("New reports received! : ", reports);
-    }
+      if (reports) {
+        const pendingReports = this.reports.filter((item1: { report_generation_id: string; }) => !reports.some((item2: { report_generation_id: string; }) => item1.report_generation_id === item2.report_generation_id));
+        this.reports = pendingReports;
+        console.log("New reports received! : ", reports);
+      }
     });
   }
 
-  getPendingReports() {
-    this.reportsService.pendingReports(this.limit, this.offset, this.source, this.format, this.reportType).subscribe({
-      next: (res: any) => {
-        console.log("RES in UPDATE CARD COMPONENT", res);
-        this.reports = res.data;
-        console.log("PENDING REPORTS in UPDATE CARD COMPONENT:", this.reports);
+  convertDatetimeForReports(reports: any[]) {
+    // Convert datetime for reports to user's local timezone
+    const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    reports.forEach(report => {
+      const utcDatetime = new Date(report.createdOn);
+      report.createdOn = this.datePipe.transform(utcDatetime, 'h:mm:ss a', userTimezone);
 
-      },
-      error: (e: any) => {
-        console.log("Error:", e);
-      },
-      complete: () => {
-        console.log("Complete fetching pending reports");
-      }
-    })
+      console.log("Original Date : ", utcDatetime);
+      console.log("New Date : ", report.createdOn);
+    });
   }
+
   onCloseClick() {
     this.dialogRef.close(true);
   }

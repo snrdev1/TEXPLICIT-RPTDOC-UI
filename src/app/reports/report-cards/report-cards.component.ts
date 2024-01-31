@@ -154,7 +154,7 @@ export class ReportCardsComponent {
   // onMoveClick(item:any){}
 
   truncateText(text: string, maxLength: number): string {
-    if (text.length > maxLength) {
+    if (text && text.length > maxLength) {
       return text.substring(0, maxLength) + "...";
     }
     return text;

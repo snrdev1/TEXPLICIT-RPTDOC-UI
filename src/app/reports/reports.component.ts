@@ -1,5 +1,6 @@
 // reports.component.ts
 
+import { DatePipe } from '@angular/common';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,7 +14,6 @@ import { AddSubtopicComponent } from './add-subtopic/add-subtopic.component';
 import { ReportFilterComponent } from './report-filter/report-filter.component';
 import { ReportUpdateComponent } from './report-update/report-update.component';
 import { ReportsService } from './reports.service';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-reports',
@@ -29,6 +29,7 @@ export class ReportsComponent {
   filteredReportType: string = "";
   userId: string = "";
   reportEvent: string = "";
+  reportPendingEvent: string = "";
   completedReports: any = [];
   topic: any = "";
   sortBy: string = "task";
@@ -77,6 +78,8 @@ export class ReportsComponent {
     }
 
     this.reportEvent = this.userId + "_report";
+    this.reportPendingEvent = this.userId + "_report_pending";
+
     let filterValues = this.localStorage.getitem('reportFilter') || [];
     if (filterValues) {
       this.filteredSource = filterValues?.source || "";
@@ -90,6 +93,7 @@ export class ReportsComponent {
     }
     this.getPendingReports();
     this.setupReportsListener();
+    this.setupPendingReportsListener();
   }
 
   setupReportsListener() {
@@ -97,7 +101,7 @@ export class ReportsComponent {
       next: (res) => {
         console.log("res from socket", res.data);
         if (res.success) {
-          this.handleReport(res.data);
+          this.appendNewReport(res.data);
         }
         else {
           this.commonService.showSnackbar('snackbar-error', res.message, res.status);
@@ -118,6 +122,26 @@ export class ReportsComponent {
     })
   }
 
+  setupPendingReportsListener() {
+    this.socketService.listen(this.reportPendingEvent).subscribe({
+      next: (res) => {
+        console.log("res from socket", res.data);
+        if (res.success) {
+          console.log("Received new pending report!");
+          // Append received report as latest report to be pending
+          this.pendingReports.data = [res.data, ...this.pendingReports.data];
+        }
+      },
+      error: (e) => {
+        console.log("Error", e);
+        this.commonService.showSnackbar('snackbar-error', e.message, e.status);
+      },
+      complete: () => {
+        console.log("Completed listenting. Pending report received");
+      }
+    })
+  }
+
   getPendingReports() {
     this.reportsService.pendingReports(this.limit, this.offset, this.filteredSource, this.filteredFormat, this.filteredReportType).subscribe({
       next: (res: any) => {
@@ -133,7 +157,7 @@ export class ReportsComponent {
     })
   }
 
-  handleReport(report: any) {
+  appendNewReport(report: any) {
     // Convert datetime for report to user's local timezone
     this.convertDatetimeForReports([report]);
 
@@ -176,8 +200,6 @@ export class ReportsComponent {
           this.searchInput.nativeElement.value = "";
           this.commonService.showSnackbar("snackbar-info", "Report creation takes a few minutes time. Truly appreciate your patience. Thank You!", "0")
           this.onProgressStatus = true;
-
-          this.getPendingReports();
         },
         error: (e) => {
           console.log("Error: ", e);

@@ -19,14 +19,13 @@ export class ReportUpdateCardsComponent {
   userId: string = '';
   constructor(
     private socketService: WebSocketService,
-    private localStorage: LocalStorageService,
+    private localStorage: LocalStorageService
   ) { }
   ngOnInit() {
     this.userInfo = this.localStorage.getUserInfo();
     this.userId = this.userInfo._id;
     this.statusSocket = this.userId + '_report_' + this.report.report_generation_id + '_status';
     this.status = this.localStorage.getitem(this.statusSocket) || 'Processing...';
-    // console.log("Listening for event : ", this.statusSocket);
 
     this.setupReportStepListener();
   }
