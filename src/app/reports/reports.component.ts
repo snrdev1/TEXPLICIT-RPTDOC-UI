@@ -13,6 +13,7 @@ import { AddSubtopicComponent } from './add-subtopic/add-subtopic.component';
 import { ReportFilterComponent } from './report-filter/report-filter.component';
 import { ReportUpdateComponent } from './report-update/report-update.component';
 import { ReportsService } from './reports.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-reports',
@@ -55,7 +56,8 @@ export class ReportsComponent {
     private dialog: MatDialog,
     private authService: AuthService,
     private socketService: WebSocketService,
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+    private datePipe: DatePipe) {
     this.form = this.fb.group({
       task: new FormControl('', Validators.required),
       source: new FormControl('external'),
@@ -88,7 +90,6 @@ export class ReportsComponent {
     }
     this.getPendingReports();
     this.setupReportsListener();
-    // this.setupReportsAudioListener();
   }
 
   setupReportsListener() {
@@ -96,21 +97,22 @@ export class ReportsComponent {
       next: (res) => {
         console.log("res from socket", res.data);
         if (res.success) {
-          this.commonService.showSnackbar('snackbar-success', res.message, res.status);
-          this.allReports = [res.data, ...this.allReports];
+          this.handleReport(res.data);
         }
         else {
           this.commonService.showSnackbar('snackbar-error', res.message, res.status);
         }
 
         this.reportsService._allReportsSubject$.next(this.allReports);
+
+        // Call pending reports to remove generated report from pending queue
+        this.getPendingReports();
       },
       error: (e) => {
         console.log("Error", e);
         this.commonService.showSnackbar('snackbar-error', e.message, e.status);
       },
       complete: () => {
-        this.getPendingReports();
         console.log("Completed listenting. Report generated ");
       }
     })
@@ -119,10 +121,8 @@ export class ReportsComponent {
   getPendingReports() {
     this.reportsService.pendingReports(this.limit, this.offset, this.filteredSource, this.filteredFormat, this.filteredReportType).subscribe({
       next: (res: any) => {
-        // console.log("Res of PENDING REPORTS:", res);
         this.pendingReports = res;
         console.log("PENDING REPORTS:", this.pendingReports);
-
       },
       error: (e: any) => {
         console.log("Error:", e);
@@ -132,6 +132,28 @@ export class ReportsComponent {
       }
     })
   }
+
+  handleReport(report: any) {
+    // Convert datetime for report to user's local timezone
+    this.convertDatetimeForReports([report]);
+
+    // Update allReports array
+    this.allReports = [report, ...this.allReports];
+
+    // Show success message
+    this.commonService.showSnackbar('snackbar-success', 'Report received successfully', 'success');
+  }
+
+  convertDatetimeForReports(reports: any[]) {
+    // Convert datetime for reports to user's local timezone
+    const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    reports.forEach(report => {
+      const utcDatetime = new Date(report.createdOn);
+      report.createdOn = this.datePipe.transform(utcDatetime, 'dd/MM/yy', userTimezone);
+    });
+  }
+
+
   onSubmit() {
     if (!this.form.invalid) {
       const uniqueID: any = uuidv4();
@@ -144,8 +166,6 @@ export class ReportsComponent {
       });
       console.log(this.form.value);
 
-      const submitReport = this.form.value;
-
       this.reportsService.generateReport(this.form.value).subscribe({
         next: (res) => {
           console.log("On submitting topic: ", res);
@@ -156,13 +176,14 @@ export class ReportsComponent {
           this.searchInput.nativeElement.value = "";
           this.commonService.showSnackbar("snackbar-info", "Report creation takes a few minutes time. Truly appreciate your patience. Thank You!", "0")
           this.onProgressStatus = true;
+
+          this.getPendingReports();
         },
         error: (e) => {
           console.log("Error: ", e);
           this.onProgressStatus = false;
         },
         complete: () => {
-          this.getPendingReports();
           console.log("Report generation in progress");
         }
       })
@@ -174,6 +195,10 @@ export class ReportsComponent {
     this.reportsService.getAllreports(this.limit, this.offset, this.filteredSource, this.filteredFormat, this.filteredReportType).subscribe({
       next: (res) => {
         this.isLoading = false;
+
+        // Convert createdOn to user's local timezone
+        this.convertDatetimeForReports(res?.data);
+
         this.allReports = [...this.allReports, ...res?.data];
         console.log("Res in getAllReports", this.allReports);
         this.getPendingReports();
@@ -185,8 +210,9 @@ export class ReportsComponent {
       complete: () => {
         console.log("Completed fetching reports");
       }
-    })
+    });
   }
+
 
   onScroll(event: any) {
     console.log('offsetHeight: ', event.target.offsetHeight)
@@ -199,6 +225,8 @@ export class ReportsComponent {
       this.getAllReports();
     }
   }
+
+
   sortReports(criteria: string) {
     if (criteria === this.sortBy) {
       this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
