@@ -1,4 +1,3 @@
-import { DatePipe } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
@@ -28,13 +27,11 @@ export class ReportUpdateComponent {
   constructor(
     public dialogRef: MatDialogRef<ReportUpdateComponent>,
     private reportsService: ReportsService,
-    private datePipe: DatePipe,
     @Inject(MAT_DIALOG_DATA) public data: any
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.reports = this.data.data;
-    this.convertDatetimeForReports(this.reports);
 
     this.allReports$.subscribe((reports: any) => {
       if (reports) {
@@ -42,18 +39,6 @@ export class ReportUpdateComponent {
         this.reports = pendingReports;
         console.log("New reports received! : ", reports);
       }
-    });
-  }
-
-  convertDatetimeForReports(reports: any[]) {
-    // Convert datetime for reports to user's local timezone
-    const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    reports.forEach(report => {
-      const utcDatetime = new Date(report.createdOn);
-      report.createdOn = this.datePipe.transform(utcDatetime, 'h:mm:ss a', userTimezone);
-
-      console.log("Original Date : ", utcDatetime);
-      console.log("New Date : ", report.createdOn);
     });
   }
 

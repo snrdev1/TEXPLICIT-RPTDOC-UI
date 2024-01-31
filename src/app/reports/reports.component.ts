@@ -125,11 +125,13 @@ export class ReportsComponent {
   setupPendingReportsListener() {
     this.socketService.listen(this.reportPendingEvent).subscribe({
       next: (res) => {
-        console.log("res from socket", res.data);
         if (res.success) {
           console.log("Received new pending report!");
           // Append received report as latest report to be pending
+
           this.pendingReports.data = [res.data, ...this.pendingReports.data];
+          // For pending reports with 'h:mm:ss a' format
+          this.convertDatetimeForReports(this.pendingReports.data, 'h:mm:ss a');
         }
       },
       error: (e) => {
@@ -146,6 +148,8 @@ export class ReportsComponent {
     this.reportsService.pendingReports(this.limit, this.offset, this.filteredSource, this.filteredFormat, this.filteredReportType).subscribe({
       next: (res: any) => {
         this.pendingReports = res;
+        // For pending reports with 'h:mm:ss a' format
+        this.convertDatetimeForReports(this.pendingReports, 'h:mm:ss a');
         console.log("PENDING REPORTS:", this.pendingReports);
       },
       error: (e: any) => {
@@ -159,21 +163,29 @@ export class ReportsComponent {
 
   appendNewReport(report: any) {
     // Convert datetime for report to user's local timezone
-    this.convertDatetimeForReports([report]);
 
     // Update allReports array
     this.allReports = [report, ...this.allReports];
+    this.convertDatetimeForReports(this.allReports, 'dd/MM/yy h:mm:ss a');
 
     // Show success message
     this.commonService.showSnackbar('snackbar-success', 'Report received successfully', 'success');
   }
 
-  convertDatetimeForReports(reports: any[]) {
-    // Convert datetime for reports to user's local timezone
+  convertDatetimeForReports(reports: any[] | any, dateFormat: string) {
+    if (!Array.isArray(reports)) {
+      // Handle the case when reports is not an array (e.g., single report)
+      reports = [reports];
+    }
+
     const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    reports.forEach(report => {
+    reports.forEach((report: any) => {
       const utcDatetime = new Date(report.createdOn);
-      report.createdOn = this.datePipe.transform(utcDatetime, 'dd/MM/yy', userTimezone);
+      report.createdOn = this.datePipe.transform(utcDatetime, dateFormat, userTimezone);
+
+      console.log("Original datetime : ", utcDatetime);
+      console.log("New datetime : ", report.createdOn);
+
     });
   }
 
@@ -219,7 +231,8 @@ export class ReportsComponent {
         this.isLoading = false;
 
         // Convert createdOn to user's local timezone
-        this.convertDatetimeForReports(res?.data);
+        // For reports with 'dd/MM/yy' format
+        this.convertDatetimeForReports(res?.data, 'dd/MM/yy h:mm:ss a');
 
         this.allReports = [...this.allReports, ...res?.data];
         console.log("Res in getAllReports", this.allReports);
