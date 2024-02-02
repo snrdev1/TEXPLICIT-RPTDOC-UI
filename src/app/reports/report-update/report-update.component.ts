@@ -40,6 +40,8 @@ export class ReportUpdateComponent {
         console.log("New reports received! : ", reports);
       }
     });
+
+    console.log("Got pending reports : ", this.reports);
   }
 
   onCloseClick() {

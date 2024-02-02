@@ -1,30 +1,31 @@
 <app-dialog-base [modalTitle]="'Report(s) in Progress'" (onClose)="onCloseClick()">
   <div content class="main-body">
-    <div class="no-search-results" *ngIf="reports.length === 0">No pending reports</div>
-
-    <div style="position: relative; " *ngIf="reports.length !== 0">
-      <div class="files-container  {{displayStyle}} ">
-        <div class="file-header-content ">
-          <ul class="header-row ">
-            <li class="name-header">
-              <div>Topic</div>
-            </li>
-            <li class="date-header sm-hidden">
-              <div>Start Time</div>
-            </li>
-            <li class="status-header">
-              <div>Status</div>
-            </li>
-          </ul>
-        </div>
-        <div class="file-body-content">
-          <ng-container *ngFor="let report of reports">
-            <app-report-update-cards [report]="report" [displayStyle]="displayStyle"></app-report-update-cards>
-          </ng-container>
-        </div>
-      </div>
-
+    <div class="no-search-results" *ngIf="reports?.length === 0">
+      No pending reports
     </div>
 
+    <table class="table" *ngIf="reports?.length !== 0">
+      <!-- Table Headers -->
+      <thead>
+        <tr class="header-row">
+          <th class="topic-header">
+            <div>Topic</div>
+          </th>
+          <th class="time-header">
+            <div>Start Time</div>
+          </th>
+          <th class="status-header">
+            <div>Status</div>
+          </th>
+        </tr>
+      </thead>
+
+      <!-- Table Body -->
+      <tbody>
+        <ng-container *ngFor="let report of reports">
+          <app-report-update-cards [report]="report" [displayStyle]="displayStyle"></app-report-update-cards>
+        </ng-container>
+      </tbody>
+    </table>
   </div>
 </app-dialog-base>

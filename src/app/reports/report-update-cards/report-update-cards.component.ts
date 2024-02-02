@@ -33,7 +33,6 @@ export class ReportUpdateCardsComponent {
   setupReportStepListener() {
     this.socketService.listen(this.statusSocket).subscribe({
       next: (res) => {
-        // console.log("Response of socket", res);
         this.status = res.message;
         this.localStorage.setitem(this.statusSocket, this.status);
       },

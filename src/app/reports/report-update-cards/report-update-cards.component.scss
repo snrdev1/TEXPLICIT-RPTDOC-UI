@@ -1,112 +1,38 @@
-.file-row.list{
-    margin: 0;
-    // padding: 0;
-    list-style: none;
-    font-family:'Roboto', sans-serif;
-    color: #1C1D21;
-    font-weight: 500;
-    // 1366: 12px, 1920: 14px
-    font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
-    border-bottom: 0.5px solid #8f9497a1;
-    padding-top: 10px;
-    padding-bottom: 3px;
-    padding-left: 0;
+.file-row {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: "Roboto", sans-serif;
+  font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
+  display: flex;
+  margin-bottom: 0.5rem;
+  border-bottom: 0.5px solid rgba(146, 149, 159, 0.55);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+
+  td {
     display: flex;
+    align-items: center;
+    padding: 0 1%;
+  }
 
-    li{
-        display: flex;
-        align-items: center;
-        &.check{
-            width: 20px;
-        }
-        &.icon{
-            width: 24px;
-            img{
-                width: 24px;
-                height: 24px;
-            }
+  .report-topic {
+    width: 40%;
+  }
 
-        }
-        &.name{
-            display: block;
-            width: calc(50% + 97px);
-            padding: 5px;
-            white-space: normal;
-            // overflow: hidden;
-            // text-overflow: ellipsis;
+  .report-time {
+    width: 20%;
 
-            @media (max-width: 1199.98px) {
-                width: calc(100% - 44px);
-            }
-        }
-
-        &.report-date{
-            font-family: "Roboto", serif;
-            font-style: normal;
-            font-weight: 400;
-            // 1366: 12px, 1920: 14px
-            font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
-            line-height: 24px;
-            // color: #4E525F;
-            width: calc(100% - 270px);
-            display: block;
-            padding-left: 30px;
-            // padding: 5px;
-            // padding-right: 35px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-
-            @media (max-width: 1199.98px) {
-                width: calc(25% - 10px);
-            }
-            @media (max-width: 414px) {
-              display: none;
-          }
-        }
-
-        &.status {
-            display: block;
-            width: calc(50% + 97px);
-            padding: 0;
-            white-space: normal;
-            padding-left: 30px;
-
-            @media (max-width: 1199.98px) {
-              width: calc(100% - 44px);
-            }
-          }
-
-          .status-message {
-            display: block;
-            font-family: Roboto;
-            font-size: 12px;
-            font-weight: 400;
-            line-height: 10px;
-            letter-spacing: 0px;
-            text-align: left;
-            color: #6C7185;
-
-
-          }
-
-          .progress-container {
-            display: flex;
-            align-items: center;
-            margin-top: 5px;
-          }
-
-          .progress-bar {
-            flex-grow: 1;
-          }
-
-          .progress-value {
-            margin-left: 8px;
-          }
-
-
+    @media (max-width: 1199.98px) {
+      display: none !important;
     }
-}
-.mat-mdc-progress-bar {
-    --mdc-linear-progress-active-indicator-color: #42A5F5;
+  }
+
+  .report-status {
+    width: 40%;
+
+    @media (max-width: 1199.98px) {
+      width: 60%;
+    }
+  }
 }
