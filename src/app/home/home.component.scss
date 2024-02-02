@@ -22,8 +22,8 @@
       line-height: 24px;
     }
 
-    p {
-      margin: 0;
+    @media (min-width: 992px){
+      max-width: 700px;
     }
 
     .bold-title-1 {
