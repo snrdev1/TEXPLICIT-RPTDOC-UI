@@ -18,7 +18,7 @@
     line-height: 24px;
   }
 
-  @media (min-width: 992px){
+  @media (min-width: 992px) {
     max-width: 700px;
   }
 
@@ -583,6 +583,7 @@
 .second-row {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   gap: 0.5rem;
 
   button {
@@ -596,6 +597,12 @@
     font-style: normal;
     font-weight: 600;
     text-transform: capitalize;
+  }
+
+  .btn-subtopic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 

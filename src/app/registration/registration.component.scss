@@ -37,6 +37,7 @@ p {
     @media (max-width: 1199.98px) {
       gap: 26px;
       flex-wrap: wrap;
+      width: 100%;
 
       .form-field {
         width: 100%;
@@ -196,6 +197,12 @@ p {
   padding-left: 0;
   padding-right: 0;
   margin-top: 0.4vw;
+
+  @media (max-width: 991.98px) {
+    flex-wrap: wrap-reverse;
+    gap: 1rem;
+    justify-content: center;
+  }
 
   .btn-google {
     cursor: pointer;
