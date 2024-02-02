@@ -73,13 +73,6 @@ const routes: Routes = [{
       canActivate: [AuthGuard]
     },
     {
-      path: 'about-us',
-      loadChildren: () =>
-        import('./../about-us/about-us.module').then(
-          (m) => m.AboutUsModule
-        )
-    },
-    {
       path: 'contact-us',
       loadChildren: () =>
         import('./../contact-us/contact-us.module').then(

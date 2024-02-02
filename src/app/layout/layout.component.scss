@@ -1,4 +1,4 @@
-:host{
+:host {
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -42,6 +42,10 @@
     line-height: 16px; /* 123.077% */
     cursor: pointer;
 
+    a {
+      color: #141516;
+    }
+
     &.menu-btn {
       background-color: transparent;
       img {
@@ -69,7 +73,7 @@
     padding-right: 10px;
     gap: 8px;
 
-    @media (min-width: 768px){
+    @media (min-width: 768px) {
       gap: 18px;
     }
 
@@ -144,6 +148,10 @@
   .toolbar-links {
     margin-left: 0;
     font-size: 12px;
+
+    a {
+      color: #ffffff;
+    }
   }
 }
 
@@ -256,4 +264,29 @@
 
 :host ::ng-deep .mat-drawer-container {
   flex-grow: 1;
+}
+
+:host ::ng-deep .mat-drawer-inner-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.copyright-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  color: #afb2cc;
+  border-top: 0.5px solid #464ea4;
+  padding: 1rem;
+
+  .copyright-text {
+    font-size: 10px;
+  }
+}
+
+a {
+  text-decoration: none;
 }

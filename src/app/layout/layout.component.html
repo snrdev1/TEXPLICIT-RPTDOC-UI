@@ -9,8 +9,8 @@
   <span class="toolbar-spacer"></span>
 
   <ng-container *ngIf="this.windowWidth >= 768">
+    <button class="mr-5px"><a href="https://www.springandriver.com/about-us.html" target="_blank">About Us</a></button>
     <button class="mr-5px" (click)="onDisclaimerClick()">Disclaimer</button>
-    <button class="mr-5px" (click)="onAboutClick()">About Us</button>
     <button class="mr-5px" (click)="onContactClick()">Contact</button>
     <button class="mr-5px" (click)="onFeedbackClick()">Feedback</button>
     <button class="mr-5px" (click)="onPricingClick()">Pricing</button>
@@ -32,57 +32,63 @@
 </mat-toolbar>
 <mat-sidenav-container autosize class="custom-sidenav-container">
   <mat-sidenav #leftnav class="left-sidenav-container" mode="side" [opened]="sidenavState">
-    <ul class="menu-container">
-      <li class="menu-item" routerLink="/home" routerLinkActive="menu-item-active">
-        <div routerLinkActive="active-menu-item-container">
-          <img [src]="'../../assets/svg/side-nav-icon/icon-home.svg'" class="menu-icon"
-            routerLinkActive="menu-icon-active" />
-        </div>
-        <span class="menu-item-label" routerLinkActive="active-menu-text">Home</span>
-      </li>
-      <li class="menu-item" routerLink="/my-documents" routerLinkActive="menu-item-active">
-        <div routerLinkActive="active-menu-item-container">
-          <img [src]="'../../assets/svg/side-nav-icon/icon-mydocuments.svg'" class="menu-icon"
-            routerLinkActive="menu-icon-active" />
-        </div>
-        <span class="menu-item-label" routerLinkActive="active-menu-text">My Documents</span>
-      </li>
-      <li class="menu-item" routerLink="/reports" routerLinkActive="menu-item-active">
-        <div routerLinkActive="active-menu-item-container">
-          <img [src]="'../../assets/svg/side-nav-icon/icon-reports.svg'" class="menu-icon"
-            routerLinkActive="menu-icon-active" />
-        </div>
-        <span class="menu-item-label" routerLinkActive="active-menu-text">Reports</span>
-      </li>
-      <li *ngIf="isUserLoggedIn() && checkUserRole()" class="menu-item" routerLink="/user-management"
-        routerLinkActive="menu-item-active">
-        <div routerLinkActive="active-menu-item-container">
-          <img [src]="'../../assets/svg/side-nav-icon/icon-user-management.svg'" class="menu-icon"
-            routerLinkActive="menu-icon-active" />
-        </div>
-        <span class="menu-item-label" routerLinkActive="active-menu-text">Manage User</span>
-      </li>
+      <ul class="menu-container">
+        <li class="menu-item" routerLink="/home" routerLinkActive="menu-item-active">
+          <div routerLinkActive="active-menu-item-container">
+            <img [src]="'../../assets/svg/side-nav-icon/icon-home.svg'" class="menu-icon"
+              routerLinkActive="menu-icon-active" />
+          </div>
+          <span class="menu-item-label" routerLinkActive="active-menu-text">Home</span>
+        </li>
+        <li class="menu-item" routerLink="/my-documents" routerLinkActive="menu-item-active">
+          <div routerLinkActive="active-menu-item-container">
+            <img [src]="'../../assets/svg/side-nav-icon/icon-mydocuments.svg'" class="menu-icon"
+              routerLinkActive="menu-icon-active" />
+          </div>
+          <span class="menu-item-label" routerLinkActive="active-menu-text">My Documents</span>
+        </li>
+        <li class="menu-item" routerLink="/reports" routerLinkActive="menu-item-active">
+          <div routerLinkActive="active-menu-item-container">
+            <img [src]="'../../assets/svg/side-nav-icon/icon-reports.svg'" class="menu-icon"
+              routerLinkActive="menu-icon-active" />
+          </div>
+          <span class="menu-item-label" routerLinkActive="active-menu-text">Reports</span>
+        </li>
+        <li *ngIf="isUserLoggedIn() && checkUserRole()" class="menu-item" routerLink="/user-management"
+          routerLinkActive="menu-item-active">
+          <div routerLinkActive="active-menu-item-container">
+            <img [src]="'../../assets/svg/side-nav-icon/icon-user-management.svg'" class="menu-icon"
+              routerLinkActive="menu-icon-active" />
+          </div>
+          <span class="menu-item-label" routerLinkActive="active-menu-text">Manage User</span>
+        </li>
 
-      <ng-container *ngIf="this.windowWidth < 768">
-        <div class="vertical-divider"></div>
-        <li class="menu-item" (click)="onPricingClick()">
-          <span class="menu-item-label toolbar-links" routerLinkActive="active-menu-text">Pricing</span>
-        </li>
-        <li class="menu-item" (click)="onAboutClick()">
-          <span class="menu-item-label toolbar-links" routerLinkActive="active-menu-text">About Us</span>
-        </li>
-        <li class="menu-item" (click)="onContactClick()">
-          <span class="menu-item-label toolbar-links" routerLinkActive="active-menu-text">Contact</span>
-        </li>
-        <li class="menu-item" (click)="onFeedbackClick()">
-          <span class="menu-item-label toolbar-links" routerLinkActive="active-menu-text">Feedback</span>
-        </li>
-        <li class="menu-item" (click)="onDisclaimerClick()">
-          <span class="menu-item-label toolbar-links" routerLinkActive="active-menu-text">Disclaimer</span>
-        </li>
-      </ng-container>
-    </ul>
+        <ng-container *ngIf="this.windowWidth < 768">
+          <div class="vertical-divider"></div>
+          <li class="menu-item" (click)="onPricingClick()">
+            <span class="menu-item-label toolbar-links" routerLinkActive="active-menu-text">Pricing</span>
+          </li>
+          <li class="menu-item">
+            <span class="menu-item-label toolbar-links"><a href="https://www.springandriver.com/about-us.html" target="_blank">About Us</a></span>
+          </li>
+          <li class="menu-item" (click)="onContactClick()">
+            <span class="menu-item-label toolbar-links" routerLinkActive="active-menu-text">Contact</span>
+          </li>
+          <li class="menu-item" (click)="onFeedbackClick()">
+            <span class="menu-item-label toolbar-links" routerLinkActive="active-menu-text">Feedback</span>
+          </li>
+          <li class="menu-item" (click)="onDisclaimerClick()">
+            <span class="menu-item-label toolbar-links" routerLinkActive="active-menu-text">Disclaimer</span>
+          </li>
+        </ng-container>
+      </ul>
+
+      <div class="copyright-container">
+        <div class="product-description-text">A product from SPRINRIVER Technology Private Limited</div>
+        <div class="copyright-text">© Sprinriver Technology Private Limited. All rights reserved.</div>
+      </div>
   </mat-sidenav>
+
   <mat-sidenav-content class="main-container-content">
     <div class="main-container">
       <router-outlet></router-outlet>

@@ -85,16 +85,6 @@ export const environment = {
         { property: 'og:url', content: '*' }
       ]
     },
-    aboutus: {
-      title: 'Texplici2 - About',
-      metaTags: [
-        { name: 'description', content: 'About Texplicit 02, a Latin scholar from Hampden-Sydney College, is credited with discovering.' },
-        { property: 'og:title', content: 'Texplici2 - About' },
-        { property: 'og:description', content: 'About Texplicit 02' },
-        { property: 'og:image', content: 'http://localhost:4200/assets/images/seo/about-us.png' },
-        { property: 'og:url', content: 'http://localhost:4200/about-us' }
-      ]
-    },
     contactus: {
       title: 'Texplici2 - Contact',
       metaTags: [

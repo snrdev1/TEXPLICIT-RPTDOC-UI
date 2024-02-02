@@ -106,10 +106,6 @@ export class LayoutComponent {
     return this.authService.isLoggedIn;
   }
 
-  onAboutClick() {
-    this.router.navigate(['/about-us']);
-  }
-
   onContactClick() {
     this.router.navigate(['/contact-us']);
   }
