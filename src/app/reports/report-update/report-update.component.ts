@@ -31,7 +31,7 @@ export class ReportUpdateComponent {
   ) { }
 
   ngOnInit() {
-    this.reports = this.data.data;
+    this.reports = this.data;
 
     this.allReports$.subscribe((reports: any) => {
       if (reports) {

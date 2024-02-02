@@ -99,7 +99,7 @@ export class ReportsComponent {
   setupReportsListener() {
     this.socketService.listen(this.reportEvent).subscribe({
       next: (res) => {
-        console.log("res from socket", res.data);
+        console.log("Received new completed report : ", res?.data);
         if (res.success) {
           this.appendNewReport(res.data);
         }
@@ -126,12 +126,10 @@ export class ReportsComponent {
     this.socketService.listen(this.reportPendingEvent).subscribe({
       next: (res) => {
         if (res.success) {
-          console.log("Received new pending report!");
+          console.log("Received new pending report : ", res?.data);
           // Append received report as latest report to be pending
 
-          this.pendingReports.data = [res.data, ...this.pendingReports.data];
-          // For pending reports with 'h:mm:ss a' format
-          this.convertDatetimeForReports(this.pendingReports.data, 'h:mm:ss a');
+          this.pendingReports = [res.data, ...this.pendingReports];
         }
       },
       error: (e) => {
@@ -144,13 +142,32 @@ export class ReportsComponent {
     })
   }
 
+  getAllReports() {
+    console.log("getAllReports called");
+    this.reportsService.getAllreports(this.limit, this.offset, this.filteredSource, this.filteredFormat, this.filteredReportType).subscribe({
+      next: (res) => {
+        this.isLoading = false;
+
+        console.log("All reports : ", res?.data);
+        this.allReports = [...this.allReports, ...res?.data];
+        console.log("Res in getAllReports", this.allReports);
+        this.getPendingReports();
+      },
+      error: (e) => {
+        this.isLoading = false;
+        console.log("Error", e);
+      },
+      complete: () => {
+        console.log("Completed fetching reports");
+      }
+    });
+  }
+
   getPendingReports() {
     this.reportsService.pendingReports(this.limit, this.offset, this.filteredSource, this.filteredFormat, this.filteredReportType).subscribe({
       next: (res: any) => {
-        this.pendingReports = res;
-        // For pending reports with 'h:mm:ss a' format
-        this.convertDatetimeForReports(this.pendingReports, 'h:mm:ss a');
-        console.log("PENDING REPORTS:", this.pendingReports);
+        this.pendingReports = res?.data;
+        console.log("PENDING REPORTS:", res?.data);
       },
       error: (e: any) => {
         console.log("Error:", e);
@@ -166,27 +183,9 @@ export class ReportsComponent {
 
     // Update allReports array
     this.allReports = [report, ...this.allReports];
-    this.convertDatetimeForReports(this.allReports, 'dd/MM/yy h:mm:ss a');
 
     // Show success message
     this.commonService.showSnackbar('snackbar-success', 'Report received successfully', 'success');
-  }
-
-  convertDatetimeForReports(reports: any[] | any, dateFormat: string) {
-    if (!Array.isArray(reports)) {
-      // Handle the case when reports is not an array (e.g., single report)
-      reports = [reports];
-    }
-
-    const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    reports.forEach((report: any) => {
-      const utcDatetime = new Date(report.createdOn);
-      report.createdOn = this.datePipe.transform(utcDatetime, dateFormat, userTimezone);
-
-      console.log("Original datetime : ", utcDatetime);
-      console.log("New datetime : ", report.createdOn);
-
-    });
   }
 
 
@@ -223,31 +222,6 @@ export class ReportsComponent {
       })
     }
   }
-
-  getAllReports() {
-    console.log("getAllReports called");
-    this.reportsService.getAllreports(this.limit, this.offset, this.filteredSource, this.filteredFormat, this.filteredReportType).subscribe({
-      next: (res) => {
-        this.isLoading = false;
-
-        // Convert createdOn to user's local timezone
-        // For reports with 'dd/MM/yy' format
-        this.convertDatetimeForReports(res?.data, 'dd/MM/yy h:mm:ss a');
-
-        this.allReports = [...this.allReports, ...res?.data];
-        console.log("Res in getAllReports", this.allReports);
-        this.getPendingReports();
-      },
-      error: (e) => {
-        this.isLoading = false;
-        console.log("Error", e);
-      },
-      complete: () => {
-        console.log("Completed fetching reports");
-      }
-    });
-  }
-
 
   onScroll(event: any) {
     console.log('offsetHeight: ', event.target.offsetHeight)

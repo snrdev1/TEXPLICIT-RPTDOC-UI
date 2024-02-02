@@ -22,8 +22,7 @@
   <td class="task" [matTooltip]="report.task">
     {{ report.isTruncated ? truncateText(report.task, 50) : report.task }}
   </td>
-  <!-- <td class="date">{{ report.createdOn | date:'dd/MM/YY h:mm a' }}</td> -->
-  <td class="date">{{ report.createdOn }}</td>
+  <td class="date">{{ report.createdOn | date:'dd/MM/YY h:mm a' }}</td>
   <td class="report-type">{{ reportType }}</td>
   <td class="audio-player icon" *ngIf="report?.report_audio && report?.report_audio?.exists">
     <img *ngIf="!audioPlayerVisible" (click)="playAudio(report)" src="../../assets/svg/report-audio-icon/play-circle.svg" />

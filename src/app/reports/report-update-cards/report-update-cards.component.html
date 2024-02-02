@@ -1,5 +1,9 @@
-<ul class="file-row {{displayStyle}} mr-10px">
-  <li class="name"><span>{{ report.task }}</span></li>
-  <li class="report-date sm-hidden">{{ report.createdOn }}</li>
+<ul class="file-row {{ displayStyle }} mr-10px">
+  <li class="name">
+    <span>{{ report.task }}</span>
+  </li>
+  <li class="report-date sm-hidden">
+    {{ report.createdOn | date : "h:mm a" }}
+  </li>
   <li class="status">{{ status }}</li>
 </ul>
