@@ -20,7 +20,11 @@
     img {
       vertical-align: middle;
 
-      @media (max-width: 1199.98px) {
+      @media (max-width: 767.98px) {
+        width: 96px;
+      }
+
+      @media (min-width: 768px) and (max-width: 1199.98px) {
         width: 116px;
       }
     }
@@ -31,7 +35,8 @@
     border: none;
     color: #141516;
     font-family: "Roboto", sans-serif;
-    font-size: 13px;
+    // 768px: 12px, 1366px: 13px
+    font-size: clamp(0.75rem, 0.6697rem + 0.1672vw, 0.8125rem);
     font-style: normal;
     font-weight: 500;
     line-height: 16px; /* 123.077% */
@@ -62,7 +67,11 @@
     display: flex;
     padding-left: 10px;
     padding-right: 10px;
-    gap: 18px;
+    gap: 8px;
+
+    @media (min-width: 768px){
+      gap: 18px;
+    }
 
     button {
       cursor: pointer;
