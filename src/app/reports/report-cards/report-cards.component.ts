@@ -73,50 +73,47 @@ export class ReportCardsComponent {
     this.stopAudioEvent.emit();
   }
 
-  onDownloadClick(report: any) {
-    console.log("report", this.report);
-    if (this.report.format === 'word') {
-      console.log("report", this.report.format);
+  /**
+   * Handles the download button click for a given report.
+   * Downloads the report in either Word (.docx) or PDF (.pdf) format based on the report's format.
+   * @param report - The report object containing details like report_type, task, and _id.
+   */
+  onDownloadClick(report: any): void {
+    // Log the original report (assuming this.report is the intended object)
+    console.log("Original report", this.report);
 
-      this.reportService.downloadReportsDoc(report._id).subscribe({
-        next: (res) => {
-          // let blob: any = new Blob([res], {type: 'text/json; charset=utf-8'});
-          let blob = new Blob([res], { type: 'application/msword' });
+    // File naming convention: <Report Type> - <Report Name_timestamp>.docx or .pdf
+    const reportDownloadName = `${report.report_type.toUpperCase()}-${report.task}_${new Date().toISOString()}`;
 
-          const url = window.URL.createObjectURL(blob);
-          saveAs(blob, `${report.task}_${new Date().toISOString()}.docx`);
-          console.log("Word download complete");
-        },
-        error: (e) => {
-          console.log("Error", e);
-          this.commonService.showSnackbar("snackbar-error", e.message, e.status);
+    // Determine the file type based on the report format
+    const fileType = (this.report.format === 'word') ? 'application/msword' : 'application/pdf';
 
-        },
-        complete: () => {
-          console.log("Report download complete");
-        }
-      });
-    }
-    else {
-      this.reportService.downloadReportsDoc(report._id).subscribe({
-        next: (res) => {
-          let blob = new Blob([res], { type: 'application/pdf' });
-          const url = window.URL.createObjectURL(blob);
-          saveAs(blob, `${report.task}_${new Date().toISOString()}.pdf`);
-          console.log("PDF download complete");
-        },
-        error: (e) => {
-          console.log("Error", e);
-          this.commonService.showSnackbar("snackbar-error", e.message, e.status);
-        },
-        complete: () => {
-          console.log("Report download complete");
-        }
-      });
-    }
+    // Subscribe to the report download service
+    this.reportService.downloadReportsDoc(report._id).subscribe({
+      next: (res) => {
+        // Create a Blob from the response
+        const blob = new Blob([res], { type: fileType });
+
+        // Determine the file extension based on the report format
+        const fileExtension = (this.report.format === 'word') ? 'docx' : 'pdf';
+
+        // Save the Blob as a file using the file-saver library
+        saveAs(blob, `${reportDownloadName}.${fileExtension}`);
+
+        // Log download completion message
+        console.log(`${fileExtension.toUpperCase()} download complete`);
+      },
+      error: (e) => {
+        // Log and display an error message
+        console.error("Error", e);
+        this.commonService.showSnackbar("snackbar-error", e.message, e.status);
+      },
+      complete: () => {
+        // Log completion message
+        console.log("Report download complete");
+      }
+    });
   }
-
-
 
 
   // onDeleteClick(report:any){
