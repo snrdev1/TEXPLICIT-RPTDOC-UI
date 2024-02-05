@@ -1,0 +1,33 @@
+<app-dialog-base [modalTitle]="'Request A Demo'" (onClose)="onCloseClick()">
+  <form content [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-dialog-content class="mat-dialog-body">
+          <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+              <mat-label>Name</mat-label>
+              <input matInput
+                  placeholder="Enter your name ..."
+                  formControlName="name"/>
+          </mat-form-field>
+          <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+              <mat-label>Email</mat-label>
+              <input matInput
+                  placeholder="Enter your email ..."
+                  formControlName="email"/>
+          </mat-form-field>
+          <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+              <mat-label>Phone No</mat-label>
+              <input matInput
+                  placeholder="Enter your phone number ..."
+                  formControlName="phoneNumber"/>
+          </mat-form-field>
+          <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+              <mat-label>Comment</mat-label>
+              <textarea matInput
+                  placeholder="Type your comment ..."
+                  formControlName="comments"></textarea>
+          </mat-form-field>
+      </mat-dialog-content>
+      <mat-dialog-actions class="mat-dialog-footer">
+          <button mat-raised-button type="submit">Submit</button>
+      </mat-dialog-actions>
+  </form>
+</app-dialog-base>
