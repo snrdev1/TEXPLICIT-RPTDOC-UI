@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { RegistrationService } from '../services/registration.service';
-import { SharedService } from '../shared/services/shared.service';
-import { CommonService } from '../shared/services/common.service';
-import { Router } from '@angular/router';
 import { MatSelectChange } from '@angular/material/select';
+import { Router } from '@angular/router';
+import { AuthService } from '../core/auth.service';
 import { LocalStorageService } from '../core/local-storage.service';
 import { LoginService } from '../services/login.service';
-import { AuthService } from '../core/auth.service';
+import { RegistrationService } from '../services/registration.service';
+import { CommonService } from '../shared/services/common.service';
+import { SharedService } from '../shared/services/shared.service';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -42,26 +42,26 @@ export class RegistrationComponent {
       role: new FormControl(3, Validators.required),
       subscription: new FormControl({ value: 1, disabled: true }, Validators.required),
       companyName: new FormControl(""),
-      website: ['',   Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]
-      },
-      { validator: this.passwordMatchValidator } 
+      website: ['', Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]
+    },
+      { validator: this.passwordMatchValidator }
     );
   }
   passwordMatchValidator(form: AbstractControl): ValidationErrors | null {
     const password = form.get('password');
     const confirmPassword = form.get('confirmPassword');
-  
+
     if (!password || !confirmPassword) {
-      return null; 
+      return null;
     }
-  
+
     if (password.value !== confirmPassword.value) {
       return { passwordMismatch: true };
     }
-  
+
     return null;
   }
-  
+
 
   onSubmit() {
     console.log("on Submit");
@@ -92,8 +92,11 @@ export class RegistrationComponent {
                   next: (res: any) => {
                     console.log("Res after login:", res);
                     this.localStorage.setUserInfo(res);
-                    this.router.navigateByUrl('/pricing');
 
+                    // Blocking pricing temporarily
+                    // this.router.navigateByUrl('/pricing');
+
+                    this.router.navigateByUrl('/reports');
                   }
                 })
               }
