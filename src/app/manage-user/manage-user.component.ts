@@ -1,14 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
-import { AddEditUserDialogComponent } from './modal-dialog/add-edit-user-dialog/add-edit-user-dialog.component';
-import { LocalStorageService } from '../core/local-storage.service';
-import { ManageUserService } from './manage-user.service';
-import { CommonService } from '../shared/services/common.service';
-import { ConfirmDialogComponent } from '../shared/components/modal-dialog/confirm-dialog/confirm-dialog.component';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { filter } from 'rxjs';
+import { MatTableDataSource } from '@angular/material/table';
+import { LocalStorageService } from '../core/local-storage.service';
+import { ConfirmDialogComponent } from '../shared/components/modal-dialog/confirm-dialog/confirm-dialog.component';
+import { CommonService } from '../shared/services/common.service';
+import { ManageUserService } from './manage-user.service';
+import { AddEditUserDialogComponent } from './modal-dialog/add-edit-user-dialog/add-edit-user-dialog.component';
 
 @Component({
   selector: 'app-manage-user',

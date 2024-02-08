@@ -72,4 +72,14 @@ export class ReportsService {
     }
     return this.http.get<any>(url, { params });
   }
+
+  getAllFailedReports(): Observable<any> {
+    const url = `${environment.hostName}/report/failed`;
+    return this.http.get<any>(url);
+  }
+
+  deleteAllFailedReports(): Observable<any> {
+    const url = `${environment.hostName}/report/failed/delete`;
+    return this.http.delete<any>(url);
+  }
 }

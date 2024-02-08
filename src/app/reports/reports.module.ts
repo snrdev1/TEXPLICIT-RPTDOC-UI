@@ -1,16 +1,17 @@
-import { NgModule } from '@angular/core';
-import { SharedModule } from '../shared/shared.module';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule, Routes } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
 import { AuthGuard } from '../core/auth.guard';
-import { ReportsComponent } from './reports.component';
+import { SharedModule } from '../shared/shared.module';
+import { AddSubtopicComponent } from './add-subtopic/add-subtopic.component';
 import { ReportCardsComponent } from './report-cards/report-cards.component';
 import { ReportFilterComponent } from './report-filter/report-filter.component';
-import { ReportUpdateComponent } from './report-update/report-update.component';
 import { ReportUpdateCardsComponent } from './report-update-cards/report-update-cards.component';
-import { AddSubtopicComponent } from './add-subtopic/add-subtopic.component';
+import { ReportUpdateComponent } from './report-update/report-update.component';
+import { ReportFailedComponent } from './report-failed/report-failed.component';
+import { ReportsComponent } from './reports.component';
 
 const routes: Routes = [
   {
@@ -23,7 +24,15 @@ const routes: Routes = [
   },
 ];
 @NgModule({
-  declarations: [ReportsComponent, ReportCardsComponent, ReportFilterComponent, ReportUpdateComponent, ReportUpdateCardsComponent, AddSubtopicComponent],
+  declarations: [
+    ReportsComponent,
+    ReportCardsComponent,
+    ReportFilterComponent,
+    ReportUpdateComponent,
+    ReportUpdateCardsComponent,
+    AddSubtopicComponent,
+    ReportFailedComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

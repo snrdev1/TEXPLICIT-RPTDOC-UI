@@ -76,7 +76,8 @@
               form.get('report_type')?.value === 'complete_report'
             " class="btn-subtopics" (click)="getSubtopics()">
             <div class="btn-subtopic">Subtopics
-              <img src="../../assets/svg/button-icon/add.svg"></div>
+              <img src="../../assets/svg/button-icon/add.svg">
+            </div>
           </button>
 
           <button mat-raised-button class="btn-report" type="submit" [disabled]="!form.valid">
@@ -84,12 +85,8 @@
           </button>
 
           <div class="rep-gen-toolbar-config mr-left-top">
-            <app-outer-toolbar-buttons [filterButtonVisible]="false" [groupMemberButtonVisible]="false"
-              [noteButtonVisible]="false" [moreButtonVisible]="false" [backToParentButtonVisible]="false"
-              [createFolderButtonVisible]="false" [refreshButtonVisible]="false" [uploadFileButtonVisible]="false"
-              [configurationButtonVisible]="false" [historyButtonVisible]="false" [addUserButtonVisible]="false"
-              [workspaceButtonVisible]="false" [addKnowledgeItemButtonVisible]="false" [newsButtonVisible]="false"
-              (onReportProgress)="showLoadingReports()"></app-outer-toolbar-buttons>
+            <app-outer-toolbar-buttons [reportProgressButtonVisible]="true" [failedReportsButtonVisible]="true"
+              (onReportProgress)="showLoadingReports()" (onReportFailed)="showFailedReports()"></app-outer-toolbar-buttons>
           </div>
 
         </div>

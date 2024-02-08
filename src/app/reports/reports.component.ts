@@ -13,6 +13,7 @@ import { WebSocketService } from '../shared/services/socketio.service';
 import { AddSubtopicComponent } from './add-subtopic/add-subtopic.component';
 import { ReportFilterComponent } from './report-filter/report-filter.component';
 import { ReportUpdateComponent } from './report-update/report-update.component';
+import { ReportFailedComponent } from './report-failed/report-failed.component';
 import { ReportsService } from './reports.service';
 
 @Component({
@@ -271,16 +272,14 @@ export class ReportsComponent {
   }
 
   showLoadingReports() {
-    console.log('report progress dialog clicked');
-    const dialogRef = this.dialog.open(ReportUpdateComponent, { panelClass: 'mat-ki-add-dialog', data: this.pendingReports });
+    this.dialog.open(ReportUpdateComponent, { panelClass: 'mat-ki-add-dialog', data: this.pendingReports });
+  }
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('report progress dialog closed');
-    });
+  showFailedReports() {
+    this.dialog.open(ReportFailedComponent, { panelClass: 'mat-report-dialog' });
   }
 
   getSubtopics() {
-    console.log('Add subtopic Click');
     let subtopics: any = this.localStorage.getitem('subtopics') || [];
     const dialogRef = this.dialog.open(AddSubtopicComponent, { panelClass: 'mat-question-answer-dialog', data: subtopics });
 

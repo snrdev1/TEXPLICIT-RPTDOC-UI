@@ -395,7 +395,8 @@ body {
 }
 
 .mat-news-detail-dialog,
-.mat-ki-add-dialog {
+.mat-ki-add-dialog,
+.mat-report-dialog {
   width: 50%;
 
   @media (max-width: 1199.98px) {
@@ -407,7 +408,8 @@ body {
   }
 }
 
-.mat-ki-add-dialog {
+.mat-ki-add-dialog,
+.mat-report-dialog {
   min-height: 400px;
 }
 
@@ -428,9 +430,11 @@ body {
 .mat-configutaion-dialog,
 // .mat-question-answer-dialog,
 .mat-filter-dialog,
+.mat-report-dialog,
 .mat-dialog-panel {
   min-width: 30%;
   max-width: 96vw !important;
+  max-height: 90vh;
   .mat-mdc-dialog-container {
     .mdc-dialog__container {
       .mat-mdc-dialog-surface {

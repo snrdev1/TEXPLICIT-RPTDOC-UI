@@ -12,8 +12,8 @@ export class ReportUpdateCardsComponent {
   @Input() displayStyle: string = "";
   @Input() message: any = [];
   @Input() progressValue: any = 54;
+  @Input() status: string = 'Processing...';
   reportStatus: string = "";
-  status: string = 'Processing...';
   statusSocket: string = '';
   userInfo: any = [];
   userId: string = '';

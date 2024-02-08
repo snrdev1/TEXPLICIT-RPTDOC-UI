@@ -1,0 +1,31 @@
+<app-dialog-base [modalTitle]="'Failed Report(s)'" (onClose)="onCloseClick()">
+  <div content class="main-body">
+    <div class="no-search-results" *ngIf="reports?.length === 0">
+      No failed reports
+    </div>
+
+    <table class="table" *ngIf="reports?.length !== 0">
+      <!-- Table Headers -->
+      <thead>
+        <tr class="header-row">
+          <th class="topic-header">
+            <div>Topic</div>
+          </th>
+          <th class="time-header">
+            <div>Start Time</div>
+          </th>
+          <th class="status-header">
+            <div>Status</div>
+          </th>
+        </tr>
+      </thead>
+
+      <!-- Table Body -->
+      <tbody>
+        <ng-container *ngFor="let report of reports">
+          <app-report-update-cards [report]="report" [displayStyle]="displayStyle" [status]="'Failed'"></app-report-update-cards>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</app-dialog-base>

@@ -2,19 +2,9 @@
     <button mat-mini-fab class="btn-circle-icon-35" matTooltip="Filter" *ngIf="filterButtonVisible" (click)="onFilterClick()">
         <mat-icon>filter_alt</mat-icon>
     </button>
-    <!-- <button mat-mini-fab class="btn-circle-icon-35" matTooltip="Add Knowledge Item" *ngIf="addKnowledgeItemButtonVisible" (click)="onAddKnowledgeItemClick()">
-        <mat-icon>add</mat-icon>
-    </button> -->
     <button mat-mini-fab class="btn-circle-icon-35" matTooltip="NEWS" (click)="toggleNews()" *ngIf="newsButtonVisible">
-        <!-- <mat-icon>keyboard_double_arrow_left</mat-icon> -->
         <mat-icon>article</mat-icon>
     </button>
-    <!-- <button mat-mini-fab class="btn-circle-icon-35 m-show" matTooltip="Group(s)" (click)="toggleGroupAndMember()" *ngIf="groupMemberButtonVisible">
-        <mat-icon>group</mat-icon>
-    </button>
-    <button mat-mini-fab class="btn-circle-icon-35" matTooltip="Note(s)" (click)="toggleNote()" *ngIf="noteButtonVisible">
-        <mat-icon>sticky_note_2</mat-icon>
-    </button> -->
     <button mat-mini-fab class="btn-circle-icon-35" matTooltip="Back to parent" (click)="onBack()" *ngIf="backToParentButtonVisible">
         <mat-icon>drive_file_move_rtl</mat-icon>
     </button>
@@ -33,12 +23,11 @@
     <button mat-mini-fab class="btn-circle-icon-35" matTooltip="Add User" *ngIf="addUserButtonVisible" (click)="onAddUserClick()" [disabled]="!addUserEnable">
         <mat-icon>person_add_alt_1</mat-icon>
     </button>
-    <!-- <button mat-mini-fab class="btn-circle-icon-35" matTooltip="Workspaces" *ngIf="workspaceButtonVisible" (click)="toggleWorkspace()">
-        <mat-icon>workspaces</mat-icon>
-    </button> -->
     <button mat-mini-fab class="btn-circle-icon-35" matTooltip="Report(s) in Progress" *ngIf="reportProgressButtonVisible" (click)="toggleReportProgress()">
         <mat-icon>published_with_changes</mat-icon>
     </button>
-    
+    <button mat-mini-fab class="btn-circle-icon-35" matTooltip="Failed Report(s)" *ngIf="failedReportsButtonVisible" (click)="toggleReportFailed()">
+      <mat-icon>sync_problem</mat-icon>
+    </button>
 </div>
 

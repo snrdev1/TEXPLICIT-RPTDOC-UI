@@ -1,78 +1,53 @@
 <div class="manage-user">
-<div class="manage-user-toolbar">
+  <div class="manage-user-toolbar">
     <div class="manage-user-toolbar-search" fxLayout="row">
-        <app-search-input [placeHolder]="'Search ...'" (onCharSearch)="searchUser($event)" (onClear)="clearSearchUser()"></app-search-input>
+      <app-search-input [placeHolder]="'Search ...'" (onCharSearch)="searchUser($event)"
+        (onClear)="clearSearchUser()"></app-search-input>
     </div>
-    <app-outer-toolbar-buttons
-        (onFilter)="onFilterClick()" 
-        (onAddUser)="onAddUserClick()"
-        [addUserEnable]="addUserEnable"
-        [addKnowledgeItemButtonVisible]="false"
-        [groupMemberButtonVisible]="false"
-        [newsButtonVisible]="false"
-        [moreButtonVisible]="false"
-        [noteButtonVisible]="false"
-        [backToParentButtonVisible]="false" 
-        [createFolderButtonVisible]="false"
-        [refreshButtonVisible]="false"
-        [uploadFileButtonVisible]="false"
-        [configurationButtonVisible]="false"
-        [historyButtonVisible]="false"
-        [workspaceButtonVisible]="false"
-        [filterButtonVisible]="false"
-        [reportProgressButtonVisible]="false">
+    <app-outer-toolbar-buttons (onFilter)="onFilterClick()" (onAddUser)="onAddUserClick()"
+      [addUserEnable]="addUserEnable">
     </app-outer-toolbar-buttons>
-</div>
+  </div>
 
-<div class="table-container">
-    <table mat-table matSort [dataSource]="dataSource" >
-        <ng-container matColumnDef="name">
-          <th mat-header-cell  *matHeaderCellDef mat-sort-header class="name">Name</th>
-          <td mat-cell *matCellDef="let element" class="name">
-            <span class="linc" (click)="viewUser(element)">
-              {{ element.name | titlecase }}</span>
-          </td>
-        </ng-container>
+  <div class="table-container">
+    <table mat-table matSort [dataSource]="dataSource">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="name">Name</th>
+        <td mat-cell *matCellDef="let element" class="name">
+          <span class="linc" (click)="viewUser(element)">
+            {{ element.name | titlecase }}</span>
+        </td>
+      </ng-container>
 
-        <ng-container matColumnDef="email">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header class="m-hide">Email</th>
-            <td mat-cell *matCellDef="let element" class="m-hide">{{ element.email }}</td>
-        </ng-container>
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="m-hide">Email</th>
+        <td mat-cell *matCellDef="let element" class="m-hide">{{ element.email }}</td>
+      </ng-container>
 
-        
-        <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef>Actions</th>
-          <td mat-cell *matCellDef="let element" class="actions-container">
-            <button mat-icon-button (click)="editUser(element)">
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-icon-button (click)="deleteUser(element)">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </td>
-        </ng-container>
 
-        <tr
-          mat-header-row
-          *matHeaderRowDef="displayedColumns; sticky: true"
-        ></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-        <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell" [attr.colspan]="displayedColumns.length">
-            <div class="no-table-data">No data available</div>
-          </td>
-        </tr>
-      </table>
-      <mat-paginator 
-        class="mat-paginator-sticky"
-        [disabled]="isLoading"
-        [pageSizeOptions]="pageSizeOptions"
-        [pageIndex]="pageIndex"
-        [pageSize]="pageSize"
-        [length]="totalPageSize"
-        (page)="getNextData($event)"
-        showFirstLastButtons
-      >
-      </mat-paginator>
-</div>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let element" class="actions-container">
+          <button mat-icon-button (click)="editUser(element)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="deleteUser(element)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+          <div class="no-table-data">No data available</div>
+        </td>
+      </tr>
+    </table>
+    <mat-paginator class="mat-paginator-sticky" [disabled]="isLoading" [pageSizeOptions]="pageSizeOptions"
+      [pageIndex]="pageIndex" [pageSize]="pageSize" [length]="totalPageSize" (page)="getNextData($event)"
+      showFirstLastButtons>
+    </mat-paginator>
+  </div>
 </div>
