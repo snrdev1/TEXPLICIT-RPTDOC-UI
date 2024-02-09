@@ -21,7 +21,7 @@ export class DemoRequestDialogComponent {
     this.form = this.formBuilder.group({
       name: new FormControl("", Validators.required),
       email: new FormControl("", [Validators.required, Validators.email]),
-      phoneNumber: new FormControl(""),
+      phone: new FormControl(""),
       comments: new FormControl(""),
     });
   }
