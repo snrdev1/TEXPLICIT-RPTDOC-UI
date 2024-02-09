@@ -24,7 +24,9 @@ export class OuterToolbarButtonsComponent {
   @Input() public addUserEnable: boolean = false;
   @Input() public workspaceButtonVisible: boolean = false;
   @Input() public reportProgressButtonVisible: boolean = false;
+  @Input() public reportsInProgressCount: number = 0;
   @Input() public failedReportsButtonVisible: boolean = false;
+  @Input() public failedReportsCount: number = 0;
 
   @Output() onFilter = new EventEmitter();
   @Output() onConfigure = new EventEmitter();
@@ -38,9 +40,15 @@ export class OuterToolbarButtonsComponent {
 
   constructor(
     public commonService: CommonService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog
+  ) { }
+
   ngOnInit() {
-    console.log("addUserEnable", this.addUserEnable);
+  }
+
+  ngOnChanges() {
+    console.log("reportsInProgressCount : ", this.reportsInProgressCount);
+    console.log("failedReportsCount : ", this.failedReportsCount);
   }
 
   toggleNews() {

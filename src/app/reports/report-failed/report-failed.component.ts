@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ReportsService } from '../reports.service';
 
 @Component({
@@ -13,30 +13,16 @@ export class ReportFailedComponent {
 
   constructor(
     public dialogRef: MatDialogRef<ReportFailedComponent>,
-    private reportsService: ReportsService
+    private reportsService: ReportsService,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   ngOnInit() {
-    this.getAllFailedReports();
+    this.reports = this.data;
   }
 
   onCloseClick() {
     this.dialogRef.close(true);
-  }
-
-  getAllFailedReports() {
-    this.reportsService.getAllFailedReports().subscribe({
-      next: (res) => {
-        console.log("All failed reports : ", res?.data);
-        this.reports = res?.data;
-      },
-      error: (e) => {
-        console.log("Error", e);
-      },
-      complete: () => {
-        console.log("Completed fetching failed reports");
-      }
-    });
   }
 
   deleteAllFailedReports() {

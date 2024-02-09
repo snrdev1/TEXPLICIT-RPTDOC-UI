@@ -1,6 +1,3 @@
-// reports.component.ts
-
-import { DatePipe } from '@angular/common';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -45,6 +42,7 @@ export class ReportsComponent {
   isDismissed: boolean = false;
   pendingReports: any = [];
   allReports: any = [];
+  failedReports: any = [];
   fileBlob: Blob | null = null;
   audioPlayerVisible: boolean = false;
   @ViewChild('audioPlayer') audioPlayer!: ElementRef;
@@ -58,8 +56,7 @@ export class ReportsComponent {
     private dialog: MatDialog,
     private authService: AuthService,
     private socketService: WebSocketService,
-    private fb: FormBuilder,
-    private datePipe: DatePipe) {
+    private fb: FormBuilder) {
     this.form = this.fb.group({
       task: new FormControl('', Validators.required),
       source: new FormControl('external'),
@@ -92,7 +89,9 @@ export class ReportsComponent {
       this.isLoading = true;
       this.getAllReports();
     }
+
     this.getPendingReports();
+    this.getAllFailedReports();
     this.setupReportsListener();
     this.setupPendingReportsListener();
   }
@@ -276,7 +275,7 @@ export class ReportsComponent {
   }
 
   showFailedReports() {
-    this.dialog.open(ReportFailedComponent, { panelClass: 'mat-report-dialog' });
+    this.dialog.open(ReportFailedComponent, { panelClass: 'mat-report-dialog', data: this.failedReports });
   }
 
   getSubtopics() {
@@ -341,6 +340,21 @@ export class ReportsComponent {
         console.log("Report audio download complete");
       }
     })
+  }
+
+  getAllFailedReports() {
+    this.reportsService.getAllFailedReports().subscribe({
+      next: (res) => {
+        console.log("All failed reports : ", res?.data);
+        this.failedReports = res?.data;
+      },
+      error: (e) => {
+        console.log("Error", e);
+      },
+      complete: () => {
+        console.log("Completed fetching failed reports");
+      }
+    });
   }
 }
 

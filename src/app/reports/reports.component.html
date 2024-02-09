@@ -85,8 +85,11 @@
           </button>
 
           <div class="rep-gen-toolbar-config mr-left-top">
-            <app-outer-toolbar-buttons [reportProgressButtonVisible]="true" [failedReportsButtonVisible]="true"
-              (onReportProgress)="showLoadingReports()" (onReportFailed)="showFailedReports()"></app-outer-toolbar-buttons>
+            <app-outer-toolbar-buttons [reportsInProgressCount]="pendingReports.length"
+              [reportProgressButtonVisible]="true" [failedReportsCount]="failedReports.length" [failedReportsButtonVisible]="false"
+              (onReportProgress)="showLoadingReports()"
+              (onReportFailed)="showFailedReports()">
+            </app-outer-toolbar-buttons>
           </div>
 
         </div>
