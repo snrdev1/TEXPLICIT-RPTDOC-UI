@@ -12,6 +12,7 @@ import { ReportUpdateCardsComponent } from './report-update-cards/report-update-
 import { ReportUpdateComponent } from './report-update/report-update.component';
 import { ReportFailedComponent } from './report-failed/report-failed.component';
 import { ReportsComponent } from './reports.component';
+import { ReportSubtopicsComponent } from './report-subtopics/report-subtopics.component';
 
 const routes: Routes = [
   {
@@ -31,7 +32,8 @@ const routes: Routes = [
     ReportUpdateComponent,
     ReportUpdateCardsComponent,
     AddSubtopicComponent,
-    ReportFailedComponent
+    ReportFailedComponent,
+    ReportSubtopicsComponent
   ],
   imports: [
     CommonModule,

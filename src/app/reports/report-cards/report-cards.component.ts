@@ -6,6 +6,7 @@ import { ReportsService } from '../reports.service';
 // import * as jsPDF from 'jspdf';
 // import * as html2pdf from 'html2pdf.js';
 import { Observable } from 'rxjs';
+import { ReportSubtopicsComponent } from '../report-subtopics/report-subtopics.component';
 
 
 @Component({
@@ -169,5 +170,11 @@ export class ReportCardsComponent {
     this.showFullTextFlag = false;
   }
 
+  onReportDetailsClick() {
+    console.log("Report : ", this.report);
 
+    // if (this.report?.subtopics.length > 0) {
+    this.dialog.open(ReportSubtopicsComponent, { panelClass: 'mat-dialog-panel', data: this.report });
+    // }
+  }
 }

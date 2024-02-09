@@ -1,0 +1,11 @@
+.main-body {
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 1rem;
+
+  .subtopics {
+    p {
+      margin-bottom: 0;
+    }
+  }
+}

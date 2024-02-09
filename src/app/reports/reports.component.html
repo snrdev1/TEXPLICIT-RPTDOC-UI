@@ -11,14 +11,27 @@
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <!-- First Row -->
         <div class="first-row">
-          <div fxLayout="row" fxLayout.xs="column" fxLayout.lt-md="column" class="input-row">
+          <div
+            fxLayout="row"
+            fxLayout.xs="column"
+            fxLayout.lt-md="column"
+            class="input-row"
+          >
             <div class="first-row-first-section">
               <div fxLayout="column" class="topic-width">
                 <div class="report-heading mr-20px">Topic</div>
                 <div class="mr-20px">
-                  <mat-form-field appearance="outline" class="search-wrapper mr-20px">
-                    <input matInput #searchinput placeholder="Enter report topic here..." formControlName="task"
-                      required />
+                  <mat-form-field
+                    appearance="outline"
+                    class="search-wrapper mr-20px"
+                  >
+                    <input
+                      matInput
+                      #searchinput
+                      placeholder="Enter report topic here..."
+                      formControlName="task"
+                      required
+                    />
                   </mat-form-field>
                 </div>
               </div>
@@ -27,8 +40,15 @@
               <div fxLayout="column">
                 <div class="report-heading">Format</div>
                 <div class="my-datasource-toolbar-config">
-                  <mat-form-field appearance="outline" class="my-datasource-dropdown">
-                    <mat-select #ddlDatasource placeholder="Please Select" formControlName="format">
+                  <mat-form-field
+                    appearance="outline"
+                    class="my-datasource-dropdown"
+                  >
+                    <mat-select
+                      #ddlDatasource
+                      placeholder="Please Select"
+                      formControlName="format"
+                    >
                       <mat-option value="pdf">PDF</mat-option>
                       <mat-option value="word">Word</mat-option>
                     </mat-select>
@@ -39,8 +59,15 @@
               <div fxLayout="column">
                 <div class="report-heading">Source</div>
                 <div class="my-datasource-toolbar-config">
-                  <mat-form-field appearance="outline" class="my-datasource-dropdown">
-                    <mat-select #ddlDatasource placeholder="Please Select" formControlName="source">
+                  <mat-form-field
+                    appearance="outline"
+                    class="my-datasource-dropdown"
+                  >
+                    <mat-select
+                      #ddlDatasource
+                      placeholder="Please Select"
+                      formControlName="source"
+                    >
                       <mat-option value="external">External</mat-option>
                       <mat-option value="my_documents">My Documents</mat-option>
                     </mat-select>
@@ -54,12 +81,27 @@
                 <div fxLayout="column" class="report-type-order">
                   <div class="report-heading">Report type</div>
                   <div class="my-datasource-toolbar-config">
-                    <mat-form-field appearance="outline" class="my-reports-dropdown">
-                      <mat-select #ddlDatasource placeholder="Select report type" formControlName="report_type">
-                        <mat-option value="outline_report">Outline Report</mat-option>
-                        <mat-option value="research_report">Summary Report</mat-option>
-                        <mat-option value="detailed_report">Detailed Report</mat-option>
-                        <mat-option value="complete_report">Combined Report</mat-option>
+                    <mat-form-field
+                      appearance="outline"
+                      class="my-reports-dropdown"
+                    >
+                      <mat-select
+                        #ddlDatasource
+                        placeholder="Select report type"
+                        formControlName="report_type"
+                      >
+                        <mat-option value="outline_report"
+                          >Outline Report</mat-option
+                        >
+                        <mat-option value="research_report"
+                          >Summary Report</mat-option
+                        >
+                        <mat-option value="detailed_report"
+                          >Detailed Report</mat-option
+                        >
+                        <mat-option value="complete_report"
+                          >Combined Report</mat-option
+                        >
                       </mat-select>
                     </mat-form-field>
                   </div>
@@ -70,28 +112,42 @@
         </div>
         <!-- Second Row -->
         <div fxLayout="row" class="second-row">
-
-          <button mat-raised-button type="button" *ngIf="
+          <button
+            mat-raised-button
+            type="button"
+            *ngIf="
               form.get('report_type')?.value === 'detailed_report' ||
               form.get('report_type')?.value === 'complete_report'
-            " class="btn-subtopics" (click)="getSubtopics()">
-            <div class="btn-subtopic">Subtopics
-              <img src="../../assets/svg/button-icon/add.svg">
+            "
+            class="btn-subtopics"
+            (click)="getSubtopics()"
+          >
+            <div class="btn-subtopic">
+              Subtopics
+              <img src="../../assets/svg/button-icon/add.svg" />
             </div>
           </button>
 
-          <button mat-raised-button class="btn-report" type="submit" [disabled]="!form.valid">
+          <button
+            mat-raised-button
+            class="btn-report"
+            type="submit"
+            [disabled]="!form.valid"
+          >
             Generate
           </button>
 
           <div class="rep-gen-toolbar-config mr-left-top">
-            <app-outer-toolbar-buttons [reportsInProgressCount]="pendingReports.length"
-              [reportProgressButtonVisible]="true" [failedReportsCount]="failedReports.length" [failedReportsButtonVisible]="false"
+            <app-outer-toolbar-buttons
+              [reportsInProgressCount]="pendingReports.length"
+              [reportProgressButtonVisible]="true"
+              [failedReportsCount]="failedReports.length"
+              [failedReportsButtonVisible]="false"
               (onReportProgress)="showLoadingReports()"
-              (onReportFailed)="showFailedReports()">
+              (onReportFailed)="showFailedReports()"
+            >
             </app-outer-toolbar-buttons>
           </div>
-
         </div>
       </form>
     </div>
@@ -107,7 +163,10 @@
         <mat-spinner [diameter]="30"></mat-spinner>
       </div>
 
-      <div class="report-steps top-40" *ngIf="allReports.length == 0 && isLoading == false && !isDismissed">
+      <div
+        class="report-steps top-40"
+        *ngIf="allReports.length == 0 && isLoading == false && !isDismissed"
+      >
         <app-report-steps (dismissStep)="dismissSteps()"></app-report-steps>
       </div>
 
@@ -145,14 +204,22 @@
         <!-- Table Body -->
         <tbody *ngIf="allReports.length !== 0" (scroll)="onScroll($event)">
           <ng-container *ngFor="let report of allReports">
-            <app-report-cards [report]="report" [displayStyle]="displayStyle" (deleteReport)="getAllReports()"
-              (playAudioEvent)="onAudioDownload(report)" (stopAudioEvent)="stopAudio()"></app-report-cards>
+            <app-report-cards
+              [report]="report"
+              [displayStyle]="displayStyle"
+              (deleteReport)="getAllReports()"
+              (playAudioEvent)="onAudioDownload(report)"
+              (stopAudioEvent)="stopAudio()"
+            ></app-report-cards>
           </ng-container>
         </tbody>
       </table>
     </div>
 
-    <div [ngClass]="{ 'audio-player-hidden': !audioPlayerVisible }" class="audio-player">
+    <div
+      [ngClass]="{ 'audio-player-hidden': !audioPlayerVisible }"
+      class="audio-player"
+    >
       <audio controls #audioPlayer>
         Your browser does not support the audio element.
       </audio>

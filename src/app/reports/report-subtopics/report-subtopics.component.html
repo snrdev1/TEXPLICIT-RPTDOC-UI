@@ -1,0 +1,25 @@
+<app-dialog-base [modalTitle]="'Report Details'" (onClose)="onCloseClick()">
+  <div content class="main-body">
+    <h2>{{ report?.task }}</h2>
+    <p><strong>Created On:</strong> {{ report?.createdOn | date }}</p>
+    <p><strong>Format:</strong> {{ report?.format | titlecase }}</p>
+
+    <hr />
+
+    <p>
+      <strong>Report Generation Time:</strong>
+      {{ reportTime }}
+    </p>
+    <p><strong>Report Type:</strong> {{ this.reportType }}</p>
+    <p><strong>Source:</strong> {{ report?.source | titlecase }}</p>
+    <div *ngIf="report?.subtopics.length > 0" class="subtopics">
+      <strong>Subtopics:</strong>
+      <ul>
+        <li *ngFor="let subtopic of report?.subtopics">
+          <p><strong>Task:</strong> {{ subtopic.task | titlecase }}</p>
+          <p><strong>Source:</strong> {{ subtopic?.source | titlecase }}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</app-dialog-base>
