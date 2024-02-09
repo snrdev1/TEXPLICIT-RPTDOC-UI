@@ -577,8 +577,8 @@ body {
 /************************* START EMPTY PAGE ****************************/
 
 .no-search-results {
-  //font-size: 18px;
-  font-size: clamp(1rem, 0.912rem + 0.2817vw, 1.25rem);
+  //font-size: 360px: 14px, 1366px: 18px;
+  font-size: clamp(0.875rem, 0.7855rem + 0.3976vw, 1.125rem);
   color: #4e525f;
   font-family: "Poppins", sans-serif;
   font-weight: 500;

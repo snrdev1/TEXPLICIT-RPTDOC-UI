@@ -1,85 +1,83 @@
-.itemized-container{
+.itemized-container {
+  background-color: #fff;
+  border: 1px solid #4285f4;
+  border-radius: 20px;
+  padding: 0.25em 1em 1em;
+  .itemized-toolbar {
+    padding: 20px 0 5px 0;
+    height: min-content;
+
     background-color: #fff;
-    border: 1px solid #4285F4;
-    border-radius: 20px;
-    padding: .25em 1em 1em;
-    .itemized-toolbar{
-        padding: 20px 0 5px 0;
-        height: min-content;
+    justify-content: space-between;
+    .title {
+      color: #474a55;
+      //font-size: 360px: 14px, 1366px: 18px;
+      font-size: clamp(0.875rem, 0.7855rem + 0.3976vw, 1.125rem);
+      font-family: "Roboto", sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      margin: 0.5em 0;
+    }
+  }
 
-        background-color: #fff;
-        justify-content: space-between;
-        .title{
-            color: #474A55;
-            //font-size: 18px;
-         font-size: clamp(1rem, 0.912rem + 0.2817vw, 1.25rem);
-            font-family: 'Roboto',sans-serif;
-            font-style: normal;
-            font-weight: 500;
-            margin: 0.5em 0;
+  .summary-container {
+    //border-top: 0.5px solid #4285F4;
+    height: calc(100vh - 170px);
+    overflow: hidden;
+    overflow-y: scroll;
+
+    .summary {
+      margin: 36px 0;
+      border: 0;
+      box-shadow: none;
+      .summary-content {
+        padding: 0;
+        color: #4e525f;
+        //font-size: 16px;
+        font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
+        font-family: "Roboto", sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+
+        .summary-title {
+          color: #040f2f;
+          //font-size: 20px;
+          font-size: clamp(1.125rem, 1.037rem + 0.2817vw, 1.375rem);
+          font-family: "Poppins", sans-serif;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 26px;
+          padding: 7px 0;
+          padding-top: 0;
         }
+
+        .summary-date {
+          color: #4e525f;
+          // 1366: 12px, 1920: 14px
+          font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
+          font-family: "Roboto", sans-serif;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 26px;
+          padding-bottom: 7px;
+        }
+        .itemized-summary {
+          color: #040f2f;
+          h2 {
+            //font-size: 360px: 14px, 1366px: 18px;
+  font-size: clamp(0.875rem, 0.7855rem + 0.3976vw, 1.125rem);
+          }
+          p {
+            //font-size: 14px;
+            font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
+          }
+        }
+      }
     }
 
-    .summary-container{
-        //border-top: 0.5px solid #4285F4;
-        height: calc(100vh - 170px);
-        overflow: hidden;
-        overflow-y: scroll;
-
-
-        .summary{
-            margin: 36px 0;
-            border: 0;
-            box-shadow: none;
-            .summary-content{
-                padding: 0;
-                color: #4E525F;
-                //font-size: 16px;
-         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
-                font-family: "Roboto", sans-serif;
-                font-style: normal;
-                font-weight: 400;
-                line-height: 24px;
-
-                .summary-title{
-                    color:#040F2F;
-                    //font-size: 20px;
-         font-size: clamp(1.125rem, 1.037rem + 0.2817vw, 1.375rem);
-                    font-family:'Poppins', sans-serif;
-                    font-style: normal;
-                    font-weight: 500;
-                    line-height: 26px;
-                    padding: 7px 0;
-                    padding-top: 0;
-                }
-
-                .summary-date{
-                    color: #4E525F;
-                    // 1366: 12px, 1920: 14px
-        font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
-                    font-family: "Roboto", sans-serif;
-                    font-style: normal;
-                    font-weight: 400;
-                    line-height: 26px;
-                    padding-bottom: 7px;
-                }
-                .itemized-summary{
-                    color:#040F2F;
-                    h2{
-                        //font-size: 18px;
-         font-size: clamp(1rem, 0.912rem + 0.2817vw, 1.25rem);
-                    }
-                    p{
-                        //font-size: 14px;
-         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
-                    }
-                }
-            }
-
-        }
-
-        .summary:first-child{
-            margin-top:0;
-        }
+    .summary:first-child {
+      margin-top: 0;
     }
+  }
 }

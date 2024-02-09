@@ -5,12 +5,12 @@ import { ElementQueries } from 'css-element-queries';
 import { Observable } from 'rxjs';
 import { AuthService } from '../core/auth.service';
 import { LocalStorageService } from '../core/local-storage.service';
+import { DemoRequestDialogComponent } from '../shared/components/modal-dialog/demo-request-dialog/demo-request-dialog.component';
 import { LoginDialogComponent } from '../shared/components/modal-dialog/login-dialog/login-dialog.component';
 import { CommonService } from '../shared/services/common.service';
 import { WebSocketService } from '../shared/services/socketio.service';
 import { DisclaimerDialogComponent } from './modal-dialog/disclaimer-dialog/disclaimer-dialog.component';
 import { FeedbackDialogComponent } from './modal-dialog/feedback-dialog/feedback-dialog.component';
-import { DemoRequestDialogComponent } from '../shared/components/modal-dialog/demo-request-dialog/demo-request-dialog.component';
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
@@ -161,7 +161,10 @@ export class LayoutComponent {
   }
 
   onRegistrationClick() {
-    this.router.navigateByUrl('/registration');
+    // Blocking it temporarily
+    // this.router.navigateByUrl('/registration');
+
+    this.dialog.open(DemoRequestDialogComponent, { panelClass: 'mat-dialog-panel' });
   }
 
   checkUserRole() {
@@ -169,18 +172,10 @@ export class LayoutComponent {
   }
 
   onLoginClick() {
-    const dialogRef = this.dialog.open(LoginDialogComponent, { panelClass: 'mat-dialog-panel' });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+    this.dialog.open(LoginDialogComponent, { panelClass: 'mat-dialog-panel' });
   }
 
   onRequestDemoClick() {
-    const dialogRef = this.dialog.open(DemoRequestDialogComponent, { panelClass: 'mat-dialog-panel' });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+    this.dialog.open(DemoRequestDialogComponent, { panelClass: 'mat-dialog-panel' });
   }
 }
