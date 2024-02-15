@@ -1,6 +1,7 @@
 export const environment = {
-  hostName: 'http://115.187.43.48:5000',
-  socketName: 'http://115.187.43.48:5000',
+  production: true,
+  hostName: '/api',
+  socketName : '/',
   razorpay_key: 'rzp_test_6nso0FMZS1eI1K',
 
   seoData: {
