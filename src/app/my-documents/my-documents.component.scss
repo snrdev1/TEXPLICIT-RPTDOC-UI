@@ -133,12 +133,12 @@
         }
       }
 
-      :last-child{
+      :last-child {
         border-right: none;
       }
 
-      @media (max-width: 1199.98px){
-        :nth-child(2){
+      @media (max-width: 1199.98px) {
+        :nth-child(2) {
           border-right: none;
         }
       }
@@ -179,7 +179,7 @@
   }
 
   .file-body-content {
-    height: calc(100vh - 225px);
+    height: calc(100vh - 230px);
     @media screen and (max-width: 1199.98px) {
       height: calc(100vh - 270px);
     }

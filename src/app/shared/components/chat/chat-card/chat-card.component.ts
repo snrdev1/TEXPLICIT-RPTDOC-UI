@@ -6,6 +6,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./chat-card.component.scss']
 })
 export class ChatCardComponent {
-@Input() chats: any=[];
-@Input() userImage: string="";
+  @Input() chats: any = [];
+  @Input() userImage: string = "";
 }
