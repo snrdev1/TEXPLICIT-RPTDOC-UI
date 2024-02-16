@@ -2,21 +2,12 @@
   <mat-toolbar class="mydocument-toolbar">
     <mat-toolbar-row class="button-bar-row">
       <div class="search-container">
-        <app-search-input
-          [placeHolder]="'Search File(s)'"
-          [searchValue]="filename"
-          (onSearch)="searchFiles($event)"
-          (onClear)="clearSearch()"
-        ></app-search-input>
+        <app-search-input [placeHolder]="'Search File(s)'" [searchValue]="filename" (onSearch)="searchFiles($event)"
+          (onClear)="clearSearch()"></app-search-input>
       </div>
-      <app-outer-toolbar-buttons
-        [backToParentButtonVisible]="true"
-        [createFolderButtonVisible]="true"
-        [uploadFileButtonVisible]="true"
-        (onCreateFolder)="onCreateFolder()"
-        (onBackClick)="onBack()"
-        (onFileUpload)="onFileUpload()"
-      ></app-outer-toolbar-buttons>
+      <app-outer-toolbar-buttons [backToParentButtonVisible]="true" [createFolderButtonVisible]="true"
+        [uploadFileButtonVisible]="true" (onCreateFolder)="onCreateFolder()" (onBackClick)="onBack()"
+        (onFileUpload)="onFileUpload()"></app-outer-toolbar-buttons>
     </mat-toolbar-row>
     <mat-toolbar-row class="address-bar-row">
       <div class="address-bar">
@@ -32,12 +23,8 @@
   </mat-toolbar>
 
   <div style="position: relative">
-    <mat-tab-group
-      mat-stretch-tabs="false"
-      mat-align-tabs="start"
-      [selectedIndex]="selectedTab"
-      (selectedTabChange)="onTabChange($event)"
-    >
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" [selectedIndex]="selectedTab"
+      (selectedTabChange)="onTabChange($event)">
       <mat-tab label="My Documents">
         <div class="files-container {{ displayStyle.value || 'list' }}">
           <div class="file-header-content">
@@ -69,24 +56,21 @@
             </ul>
           </div>
           <div class="file-body-content" *ngIf="files?.length != 0">
-            <app-file-folder-card
-              *ngFor="let file of files; let i = index"
-              [item]="file"
-              [index]="i.toString()"
-              [displayStyle]="displayStyle.value"
-              [shared]="false"
-              (onFolderClick)="viewFolder($event)"
-              (onCheckChange)="onCheckChange($event)"
-              (onDownload)="onDownloadClick($event)"
-              (onRename)="onRenameClick($event)"
-              (onMove)="onMoveClick($event)"
-              (onShare)="onShareClick($event)"
-              (onDelete)="onDeleteClick($event)"
-            ></app-file-folder-card>
+            <app-file-folder-card *ngFor="let file of files; let i = index" [item]="file" [index]="i.toString()"
+              [displayStyle]="displayStyle.value" [shared]="false" (onFolderClick)="viewFolder($event)"
+              (onCheckChange)="onCheckChange($event)" (onDownload)="onDownloadClick($event)"
+              (onRename)="onRenameClick($event)" (onMove)="onMoveClick($event)" (onShare)="onShareClick($event)"
+              (onDelete)="onDeleteClick($event)"></app-file-folder-card>
           </div>
-          <div class="file-body-content" *ngIf="files?.length == 0">
+
+          <div class="file-body-content" *ngIf="files?.length == 0 && !isLoading">
             <div class="no-search-results">No Data Available</div>
           </div>
+
+          <div class="file-body-content documents-loader">
+            <mat-spinner [diameter]="30"></mat-spinner>
+          </div>
+
           <div class="file-footer-content">
             <ul class="footer-row">
               <li>{{ fileIds.length }} File(s) Selected</li>
@@ -126,19 +110,11 @@
           </div>
           <div class="file-body-content" *ngIf="sharedfiles?.length != 0">
             <ng-container *ngFor="let file of sharedfiles; let i = index">
-              <app-file-folder-card
-                [item]="file"
-                [index]="i.toString()"
-                [shared]="true"
-                [displayStyle]="displayStyle.value"
-                (onFolderClick)="viewSharedFolder($event)"
-                (onCheckChange)="onCheckChange($event)"
-                (onDownload)="onDownloadClick($event)"
-                (onRename)="onRenameClick($event)"
-                (onMove)="onMoveClick($event)"
-                (onShare)="onShareClick($event)"
-                (onDelete)="onDeleteClick($event)"
-              ></app-file-folder-card>
+              <app-file-folder-card [item]="file" [index]="i.toString()" [shared]="true"
+                [displayStyle]="displayStyle.value" (onFolderClick)="viewSharedFolder($event)"
+                (onCheckChange)="onCheckChange($event)" (onDownload)="onDownloadClick($event)"
+                (onRename)="onRenameClick($event)" (onMove)="onMoveClick($event)" (onShare)="onShareClick($event)"
+                (onDelete)="onDeleteClick($event)"></app-file-folder-card>
             </ng-container>
           </div>
           <div class="file-body-content" *ngIf="sharedfiles?.length == 0">
@@ -153,40 +129,19 @@
       </mat-tab>
     </mat-tab-group>
     <div class="toggle-button-holder">
-      <mat-button-toggle-group
-        class="btn-toggle-group"
-        #displayStyle="matButtonToggleGroup"
-        value="list"
-      >
+      <mat-button-toggle-group class="btn-toggle-group" #displayStyle="matButtonToggleGroup" value="list">
         <mat-button-toggle value="grid" class="btn-toggle">
-          <img
-            class="img-unchecked"
-            src="../../assets/svg/button-icon/ki-grid.svg"
-          />
-          <img
-            class="img-checked"
-            src="../../assets/svg/button-icon/ki-grid-fill.svg"
-          />
+          <img class="img-unchecked" src="../../assets/svg/button-icon/ki-grid.svg" />
+          <img class="img-checked" src="../../assets/svg/button-icon/ki-grid-fill.svg" />
         </mat-button-toggle>
         <mat-button-toggle value="list" class="btn-toggle">
-          <img
-            class="img-unchecked"
-            src="../../assets/svg/button-icon/ki-list.svg"
-          />
-          <img
-            class="img-checked"
-            src="../../assets/svg/button-icon/ki-list-fill.svg"
-          />
+          <img class="img-unchecked" src="../../assets/svg/button-icon/ki-list.svg" />
+          <img class="img-checked" src="../../assets/svg/button-icon/ki-list-fill.svg" />
         </mat-button-toggle>
       </mat-button-toggle-group>
     </div>
   </div>
 
-  <app-fab-buttons
-    [summaryButtonVisible]="isFileSelected()"
-    (onItemizedSummary)="onItemizedSummaryClick($event)"
-    (onHighlights)="onHighlightsClick($event)"
-    [consolidatedSummaryButtonVisible]="false"
-  ></app-fab-buttons>
-  <app-loader [isLoading]="isLoading"></app-loader>
+  <app-fab-buttons [summaryButtonVisible]="isFileSelected()" (onItemizedSummary)="onItemizedSummaryClick($event)"
+    (onHighlights)="onHighlightsClick($event)" [consolidatedSummaryButtonVisible]="false"></app-fab-buttons>
 </div>
