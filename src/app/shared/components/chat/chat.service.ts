@@ -8,15 +8,15 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ChatService {
 
-  constructor( private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getChatResponses(prompt: string, chatType: number): Observable<any>{
+  getChatResponses(prompt: string, chatType: number, chatId: string): Observable<any> {
     const url = `${environment.hostName}/chat`;
-    const params = {"prompt": prompt, "chatType": chatType};
-    return this.http.post<any>(url,{params});
+    const params = { "prompt": prompt, "chatType": chatType, "chatId": chatId };
+    return this.http.post<any>(url, { params });
   }
 
-  getChatHistory(): Observable<any>{
+  getChatHistory(): Observable<any> {
     const url = `${environment.hostName}/chat`;
     return this.http.get<any>(url);
   }
