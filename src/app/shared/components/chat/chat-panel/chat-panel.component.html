@@ -18,10 +18,10 @@
           </mat-form-field>
         <span class="toolbar-spacer"></span>
         <button mat-icon-button class="btn-toolbar-35" (click)="copyChat()">
-            <mat-icon class="btn-toolbar-icon-24">content_copy</mat-icon>    
+            <mat-icon class="btn-toolbar-icon-24">content_copy</mat-icon>
         </button>
         <button mat-icon-button class="btn-toolbar-35">
-            <mat-icon class="btn-toolbar-icon-24">delete_outline</mat-icon>    
+            <mat-icon class="btn-toolbar-icon-24">delete_outline</mat-icon>
         </button>
     </mat-toolbar-row>
 </mat-toolbar>
@@ -37,7 +37,7 @@
         <mat-form-field appearance="outline" class="chat-composer-editor">
             <!-- <input matInput (keypress)="onKeyPress()"/> -->
             <input matInput formControlName="prompt" #inputElement/>
-            <button matSuffix mat-icon-button aria-label="Send" (click)="onPromptSubmit()">
+            <button matSuffix mat-icon-button aria-label="Send" [disabled]="isLoading" (click)="onPromptSubmit()">
                 <mat-icon>send</mat-icon>
             </button>
         </mat-form-field>

@@ -1,92 +1,94 @@
-.chat-card{
-    z-index: -1;
-    border: 0;
-    border-radius: 15px;
-    box-shadow: none;
-    margin-bottom: 10px;
+.chat-card {
+  z-index: -1;
+  border: 0;
+  border-radius: 15px;
+  box-shadow: none;
+  margin-bottom: 10px;
 }
 
-.chat-card.default{
-    background-color: #EAEDEF;
+.chat-card.default {
+  background-color: #eaedef;
 }
 
-.chat-card.default .title{
-   font-weight: 500;
-   //font-size: 16px;
-         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem); 
-   color: #227AFF;
+.chat-card.default .title {
+  font-weight: 500;
+  //font-size: 16px;
+  font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
+  color: #227aff;
 }
-.chat-card.default .subtitle{
-    font-weight: 400;
-    //font-size: 16px;
-         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem); 
-    color: #4E525F
-}
-
-.chat-card.default .subtitle strong{
-    font-weight: 500;
-    //font-size: 16px;
-         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem); 
-    color: #4E525F
-}
-.chat-card.default .caption{
-    font-weight: 400;
-    //font-size: 14px;
-         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem); 
-    color: #666974;
+.chat-card.default .subtitle {
+  font-weight: 400;
+  //font-size: 16px;
+  font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
+  color: #4e525f;
 }
 
-.chat-card.system{
-    background-color: #EAEDEF;
-    margin-right: 20px;
-    
+.chat-card.default .subtitle strong {
+  font-weight: 500;
+  //font-size: 16px;
+  font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
+  color: #4e525f;
+}
+.chat-card.default .caption {
+  font-weight: 400;
+  //font-size: 14px;
+  font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
+  color: #666974;
 }
 
-.chat-card.user{
-    background-color: #D7E5EF;
-    margin-left: 20px;
-    
+.chat-card.system {
+  background-color: #eaedef;
+  margin-right: 20px;
 }
 
-.logo{
-    background-color: #fff;
-    width: 2em;
-    height: 2em;
+.chat-card.user {
+  background-color: #d7e5ef;
+  margin-left: 20px;
 }
 
-.logo img{
-    width:18px;
-    height: 17px;
-    margin-top: 5px;
+.logo {
+  background-color: #fff;
+  width: 2em;
+  height: 2em;
 }
 
-.text{
-    padding: 0;
-    margin: 0;
-    font-weight: 400;
-    //font-size: 14px;
-         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
-    text-align: left;
+.logo img {
+  width: 18px;
+  height: 17px;
+  margin-top: 5px;
 }
 
-.chat-card.system .text{
-    color: #666974;
+.text {
+  padding: 0;
+  margin: 0;
+  font-weight: 400;
+  //font-size: 14px;
+  font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
+  text-align: left;
 }
 
-.chat-card.user .text{
-    color: #4D5059;
+.chat-card.system .text {
+  color: #666974;
 }
 
-.time{
-    padding: 16px;
+.chat-card.user .text {
+  color: #4d5059;
+}
+
+.mat-mdc-card-footer {
+  padding: 1rem;
+  font-style: italic;
+  font-size: 12px;
+  font-weight: 400;
+  color: #777a80;
+
+  p {
     margin: 0;
     text-align: right;
-    font-weight: 400;
-    font-size: 13px;
-    color: #777A80;
+  }
 }
 
 .mat-mdc-card-content:last-child {
-    padding-top: 16px;
-    margin-bottom: 0;
+  padding-top: 16px;
+  margin-bottom: 0;
 }
