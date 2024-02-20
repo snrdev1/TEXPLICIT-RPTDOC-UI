@@ -33,6 +33,7 @@ export class LayoutComponent {
   userInfo$: Observable<any> = this.localStorage.userInfo$;
   sidenavState: boolean = false;
   windowWidth: number = window.innerWidth;
+  backdrop: boolean = false;
 
   constructor(
     public commonService: CommonService,
@@ -96,9 +97,11 @@ export class LayoutComponent {
   setSidenavState() {
     if (this.windowWidth > 1200) {
       this.sidenavState = true;
+      this.backdrop = false;
     }
     else {
       this.sidenavState = false;
+      this.backdrop = true;
     }
   }
 
