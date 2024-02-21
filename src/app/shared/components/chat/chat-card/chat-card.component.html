@@ -7,7 +7,9 @@
     </mat-card-header>
     <mat-card-content>
       <mat-card-title class="title">Hello!</mat-card-title>
-      <mat-card-subtitle class="subtitle">Thanks for contacting <strong>Texplicit02</strong>.</mat-card-subtitle>
+      <mat-card-subtitle class="subtitle"
+        >Thanks for contacting <strong>Texplicit02</strong>.</mat-card-subtitle
+      >
       <p class="caption">
         What can we help you with today? Please type your question here.
       </p>
@@ -15,7 +17,11 @@
   </div>
 </mat-card>
 <div *ngFor="let chat of chats">
-  <mat-card class="chat-card user" [ngClass]="'user'" *ngIf="chat.role == 'user'">
+  <mat-card
+    class="chat-card user"
+    [ngClass]="'user'"
+    *ngIf="chat.role == 'user'"
+  >
     <div style="display: flex; flex-direction: row-reverse">
       <mat-card-header>
         <button mat-fab class="logo">
@@ -23,8 +29,7 @@
         </button>
       </mat-card-header>
       <mat-card-content>
-        <p class="text">
-          {{ chat.content }}
+        <p class="text" [innerHTML]="chat.content | markdown : { disableSanitizer: true }">
         </p>
       </mat-card-content>
     </div>
@@ -34,7 +39,11 @@
     </mat-card-footer>
   </mat-card>
 
-  <mat-card class="chat-card" [ngClass]="'system'" *ngIf="chat.role == 'system'">
+  <mat-card
+    class="chat-card"
+    [ngClass]="'system'"
+    *ngIf="chat.role == 'system'"
+  >
     <div style="display: flex">
       <mat-card-header>
         <button mat-fab class="logo">
@@ -42,8 +51,7 @@
         </button>
       </mat-card-header>
       <mat-card-content>
-        <p class="text">
-          {{ chat.content }}
+        <p class="text" [innerHTML]="chat.content | markdown : { disableSanitizer: true }">
         </p>
       </mat-card-content>
     </div>
