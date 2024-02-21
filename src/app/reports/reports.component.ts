@@ -35,7 +35,7 @@ export class ReportsComponent {
   onProgressStatus: boolean = false;
   reportGenerationData: any[] = [];
   offset: number = 0;
-  limit: number = 30;
+  limit: number = 20;
   userInfo: any = [];
   displayStyle: string = 'list';
   isLoading: boolean = true;
