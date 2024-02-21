@@ -19,7 +19,7 @@ export class MydocumentsService {
   getAllFiles(root : string, limit: number = 20, offset: number = 0): Observable<any> {
     const url = `${environment.hostName}/my-documents/display-documents`;
     const params = {"root" : root, "limit": limit, "offset": offset};
-    console.log("params : ",params);
+    console.log("params : ", params);
     return this.http.get<any>(url, {params});
   }
   uploadFiles(formData : FormData): Observable<any> {

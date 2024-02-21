@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { LocalStorageService } from '../core/local-storage.service';
 import { MydocumentsService } from '../services/mydocuments.service';
+import { ConfirmDialogComponent } from '../shared/components/modal-dialog/confirm-dialog/confirm-dialog.component';
+import { CommonService } from '../shared/services/common.service';
 import { CreateFolderDialogComponent } from './modal-dialog/create-folder-dialog/create-folder-dialog.component';
-import { FileUploadDialogComponent } from './modal-dialog/file-upload-dialog/file-upload-dialog.component';
-import { RenameFolderDialogComponent } from './modal-dialog/rename-folder-dialog/rename-folder-dialog.component';
 import { FileFolderMoveDialogComponent } from './modal-dialog/file-folder-move-dialog/file-folder-move-dialog.component';
 import { FileFolderShareDialogComponent } from './modal-dialog/file-folder-share-dialog/file-folder-share-dialog.component';
-import { ConfirmDialogComponent } from '../shared/components/modal-dialog/confirm-dialog/confirm-dialog.component';
-import { Router } from '@angular/router';
-import { LocalStorageService } from '../core/local-storage.service';
-import { CommonService } from '../shared/services/common.service';
-import { Observable } from 'rxjs';
+import { FileUploadDialogComponent } from './modal-dialog/file-upload-dialog/file-upload-dialog.component';
+import { RenameFolderDialogComponent } from './modal-dialog/rename-folder-dialog/rename-folder-dialog.component';
 
 @Component({
   selector: 'app-my-documents',
@@ -21,7 +21,7 @@ export class MyDocumentsComponent {
   fileid: any;
   data: any = [];
   curr_id: string = "";
-  files: any;
+  files: any = [];
   fileIds: any = [];
   checkedIds: any = [];
   strPath: string = "";
@@ -37,6 +37,8 @@ export class MyDocumentsComponent {
   enterHit: boolean = false;
   user$: Observable<any> = this.localstorage.userInfo$;
   userInfo: any;
+  limit: number = 20;
+  offset: number = 0;
 
   constructor(
     public router: Router,
@@ -64,9 +66,6 @@ export class MyDocumentsComponent {
     console.log("Checked:", this.checkedIds);
     this.selectedTab = this.localstorage.getitem("selectedtab") || 0;
 
-    // this.user$.subscribe((data) => {
-    //   this.curr_id = data?._id;
-    // });
     if (this.userInfo) {
       this.curr_id = this.userInfo?._id;
     }
@@ -75,16 +74,21 @@ export class MyDocumentsComponent {
   openFileMenu(id: any) {
     this.fileid = id;
   }
+
   getAllUploadedFiles(search: string = "", root: string = "") {
-    this.isLoading = true;
+    if (this.offset == 0) {
+      this.isLoading = true;
+    }
+
     if (root == "") {
       root = "/";
     }
-    this.mydocs.getAllFiles(root).subscribe({
+
+    this.mydocs.getAllFiles(root, this.limit, this.offset).subscribe({
       next: (res: any) => {
         console.log("Response", res);
+
         if (search !== "") {
-          this.files = [];
           res.data.uploaded.find((obj: any) => {
             if (obj.type === "File" || obj.type === "Folder") {
               var searchFilename = obj.originalFileName.trim().toLowerCase();
@@ -97,8 +101,7 @@ export class MyDocumentsComponent {
         else {
           console.log("Root:", root);
           console.log(res);
-          this.files = [];
-          this.files = res.data.uploaded;
+          this.files = [...this.files, ...res.data.uploaded];
           console.log("Files:", this.files);
         }
         this.isLoading = false;
@@ -113,6 +116,7 @@ export class MyDocumentsComponent {
       }
     });
   }
+
   getSharedFiles(search: string = "", root: string = "") {
     this.isLoading = true;
     if (root == "") {
@@ -155,6 +159,8 @@ export class MyDocumentsComponent {
       }
     });
   }
+
+
   getFolderContents(folderId: string) {
     this.isLoading = true;
     this.mydocs.getFolderContents(folderId).subscribe({
@@ -252,6 +258,7 @@ export class MyDocumentsComponent {
       console.log(`Dialog result: ${result}`);
     });
   }
+
   onDeleteClick(event: any) {
     console.log('File Id : ', event);
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
@@ -271,6 +278,7 @@ export class MyDocumentsComponent {
 
     });
   }
+
   onItemizedSummaryClick(event: any) {
     console.log("onItemizedSummaryClick:", event);
     this.router.navigateByUrl('/my-documents/itemized-summary');
@@ -279,6 +287,7 @@ export class MyDocumentsComponent {
   onHighlightsClick(event: any) {
     this.router.navigateByUrl('/my-documents/highlight');
   }
+
   viewFolder(event: any) {
     console.log("EVENT:", event);
     if (event.type != "File") {
@@ -292,6 +301,7 @@ export class MyDocumentsComponent {
       // console.log("OrignalFilename:",event.file.originalFileName);
     }
   }
+
   viewSharedFolder(folder: any) {
     console.log("EVENT:", folder);
     var folder_id = folder.file["_id"];
@@ -305,6 +315,7 @@ export class MyDocumentsComponent {
       this.getFolderContents(folder_id);
     }
   }
+
   onBack() {
     if (this.selectedTab === 0) {
       console.log("Working!!");
@@ -338,6 +349,7 @@ export class MyDocumentsComponent {
       this.localstorage.setitem("sharedpath", this.sharedpath);
     }
   }
+
   deleteDoc(id: string) {
     console.log("file to delete", id);
     this.mydocs.deleteFile(id, this.strPath).subscribe({
@@ -355,6 +367,7 @@ export class MyDocumentsComponent {
       }
     });
   }
+
   deleteFol(id: string) {
     console.log("folder to delete", id);
     this.mydocs.deleteFolder(id, this.strPath).subscribe({
@@ -371,6 +384,7 @@ export class MyDocumentsComponent {
       }
     })
   }
+
   searchFiles(value: string) {
     this.filename = value;
     console.log("Searching:" + this.filename);
@@ -394,9 +408,11 @@ export class MyDocumentsComponent {
       }
     }
   }
+
   // isChecked(event:string):boolean{
   //   return this.checkedIds.includes(event);
   // }
+
   clearSearch() {
     this.filename = "";
     if (this.enterHit) {
@@ -418,15 +434,25 @@ export class MyDocumentsComponent {
     }
     this.enterHit = false;
   }
+
   Refresh() {
     this.getAllUploadedFiles()
   }
+
   onTabChange(event: any) {
     this.selectedTab = event.index;
     this.localstorage.setitem("selectedtab", this.selectedTab);
     console.log("Selected tab index : ", this.selectedTab);
   }
+
   isFileSelected() {
     return this.fileIds.length > 0 ? true : false;
+  }
+
+  onScroll(event: any) {
+    if (Math.round(event.target.scrollTop) >= (event.target.scrollHeight - event.target.offsetHeight - 1)) {
+      this.offset = this.offset + this.limit;
+      this.getAllUploadedFiles();
+    }
   }
 }

@@ -58,7 +58,7 @@
 
           <ng-container *ngIf="!isLoading">
 
-            <div class="file-body-content" *ngIf="files?.length != 0">
+            <div class="file-body-content" *ngIf="files?.length != 0" (scroll)="onScroll($event)">
               <app-file-folder-card *ngFor="let file of files; let i = index" [item]="file" [index]="i.toString()"
                 [displayStyle]="displayStyle.value" [shared]="false" (onFolderClick)="viewFolder($event)"
                 (onCheckChange)="onCheckChange($event)" (onDownload)="onDownloadClick($event)"
