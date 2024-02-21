@@ -16,10 +16,10 @@ export class MydocumentsService {
     const url = `${environment.hostName}/my-documents/create-folder`;
     return this.http.post<any>(url,input);
   }
-  getAllFiles(root : string): Observable<any> {
+  getAllFiles(root : string, limit: number = 20, offset: number = 0): Observable<any> {
     const url = `${environment.hostName}/my-documents/display-documents`;
-    const params = {"root" : root};
-    console.log("params : ",params);
+    const params = {"root" : root, "limit": limit, "offset": offset};
+    console.log("params : ", params);
     return this.http.get<any>(url, {params});
   }
   uploadFiles(formData : FormData): Observable<any> {
@@ -61,7 +61,7 @@ export class MydocumentsService {
     const url = `${environment.hostName}/my-documents/folder-content/${_id}`;
     return this.http.get<any>(url);
   }
-  downloadFile(virtualFileName:string,originalFileName:string){  
+  downloadFile(virtualFileName:string,originalFileName:string){
     const url = `${environment.hostName}/my-documents/download/${virtualFileName}`;
     // const params = {"root":strpath}
     this.http.get(url, {responseType: 'blob'}).subscribe({
