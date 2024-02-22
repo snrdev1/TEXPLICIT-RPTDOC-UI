@@ -78,6 +78,7 @@ export class MyDocumentsComponent {
   getAllUploadedFiles(search: string = "", root: string = "") {
     if (this.offset == 0) {
       this.isLoading = true;
+      this.files = [];
     }
 
     if (root == "") {
@@ -189,6 +190,7 @@ export class MyDocumentsComponent {
     dialogRef.afterClosed().subscribe((data: any) => {
       console.log(data);
       if (data == true) {
+        this.offset = 0;
         this.getAllUploadedFiles("", this.strPath)
       }
     });
@@ -200,6 +202,7 @@ export class MyDocumentsComponent {
     dialogRef.afterClosed().subscribe((data: any) => {
       console.log("Response:", data);
       if (data == true) {
+        this.offset = 0;
         this.getAllUploadedFiles("", this.strPath)
       }
     });
@@ -233,6 +236,7 @@ export class MyDocumentsComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        this.offset = 0;
         this.getAllUploadedFiles("", this.strPath);
       }
     });
@@ -245,6 +249,7 @@ export class MyDocumentsComponent {
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);
       if (result == true) {
+        this.offset = 0;
         this.getAllUploadedFiles("", this.strPath);
       }
     });
@@ -294,6 +299,7 @@ export class MyDocumentsComponent {
       console.log("FolderName :", event.name);
       this.strPath += '/' + event.name;
       this.localstorage.setitem("strPath", this.strPath);
+      this.offset = 0;
       this.getAllUploadedFiles("", this.strPath);
     }
     else {
@@ -326,6 +332,7 @@ export class MyDocumentsComponent {
       }
       this.strPath = tmp;
       this.localstorage.setitem("strPath", this.strPath);
+      this.offset = 0;
       this.getAllUploadedFiles("", this.strPath);
     }
     else {
@@ -356,6 +363,7 @@ export class MyDocumentsComponent {
       next: (res: any) => {
         console.log(res);
         this.commonservice.showSnackbar("snackbar-success", res.message, "0");
+        this.offset = 0;
         this.getAllUploadedFiles("", this.strPath);
       },
       error: (e) => {
@@ -374,6 +382,7 @@ export class MyDocumentsComponent {
       next: (res: any) => {
         console.log(res);
         this.commonservice.showSnackbar("snackbar-success", res.message, "0");
+        this.offset = 0;
         this.getAllUploadedFiles("", this.strPath);
       },
       error: (e) => {
@@ -390,6 +399,7 @@ export class MyDocumentsComponent {
     console.log("Searching:" + this.filename);
     this.filename = this.filename.trim().toLowerCase();
     if (this.selectedTab == 0) {
+      this.offset = 0;
       this.getAllUploadedFiles(this.filename, this.strPath);
       this.enterHit = true;
     }
@@ -417,6 +427,7 @@ export class MyDocumentsComponent {
     this.filename = "";
     if (this.enterHit) {
       if (this.selectedTab == 0) {
+        this.offset = 0;
         this.getAllUploadedFiles(this.filename, this.strPath);
       }
       else if (this.selectedTab == 1) {
@@ -436,6 +447,7 @@ export class MyDocumentsComponent {
   }
 
   Refresh() {
+    this.offset = 0;
     this.getAllUploadedFiles()
   }
 
