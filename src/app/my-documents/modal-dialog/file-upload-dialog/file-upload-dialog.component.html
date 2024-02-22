@@ -1,22 +1,24 @@
 <app-dialog-base [modalTitle]="'Upload Files'" (onClose)="onCloseClick()">
-    <form content [formGroup]="form" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
-        <mat-dialog-content class="mat-dialog-body">
-            <div class="file-selector">
-                <input hidden #fileInput type="file" id="file" multiple (change)="onSelectFile($event)">
-                <img src="../../../../assets/svg/button-icon/file-upload.svg"/>
-                <div class="file-text">{{selectedFilesText}}</div>
-                <button type="button" class="file-button" (click)="fileInput.click()">
-                    Browse
-                </button>
-            </div>
-            <div class="progress-holder">
-                <mat-progress-bar mode="determinate" [value]="progress" *ngIf="progress>0"></mat-progress-bar>
-            </div>
-            
-        </mat-dialog-content>
+  <form content [formGroup]="form" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    <mat-dialog-content class="mat-dialog-body">
+      <div class="file-selector">
+        <input hidden #fileInput type="file" id="file" multiple (change)="onSelectFile($event)" />
+        <img src="../../../../assets/svg/button-icon/file-upload.svg" />
+        <div class="file-text">{{ selectedFilesText }}</div>
+        <button type="button" class="file-button" (click)="fileInput.click()">
+          Browse
+        </button>
+      </div>
+      <div class="progress-holder">
+        <mat-progress-bar mode="determinate" [value]="progress" *ngIf="progress > 0"></mat-progress-bar>
+        <p class="progress-status">{{ documentUploadStatus }}</p>
+      </div>
+    </mat-dialog-content>
 
-        <mat-dialog-actions class="mat-dialog-footer">
-            <button mat-raised-button type="submit" [disabled]="disableUploadButton">Upload</button>
-        </mat-dialog-actions>
-    </form>
+    <mat-dialog-actions class="mat-dialog-footer">
+      <button mat-raised-button type="submit" [disabled]="disableUploadButton">
+        Upload
+      </button>
+    </mat-dialog-actions>
+  </form>
 </app-dialog-base>

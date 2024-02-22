@@ -197,7 +197,7 @@ export class MyDocumentsComponent {
   }
 
   onFileUpload() {
-    const dialogRef = this.dialog.open(FileUploadDialogComponent, { panelClass: 'mat-dialog-panel', data: { "path": this.strPath } });
+    const dialogRef = this.dialog.open(FileUploadDialogComponent, { panelClass: 'mat-dialog-panel', data: { "path": this.strPath, "userId": this.curr_id } });
 
     dialogRef.afterClosed().subscribe((data: any) => {
       console.log("Response:", data);
