@@ -1,5 +1,7 @@
 <app-dialog-base [modalTitle]="'Share File/Folder'" (onClose)="onCloseClick()">
-    <div content>
+  <mat-tab-group content>
+    <mat-tab label="Texplicit User">
+      <div class="tab-content">
         <mat-dialog-content class="mat-dialog-body">
             <app-search-input [placeHolder]="'Search User(s)'" [searchValue]="userSearchQuery" (onCharSearch)="searchUsers($event)" (onClear)="clearUserSearch()"></app-search-input>
         </mat-dialog-content>
@@ -24,4 +26,33 @@
             </ul>
         </div>
     </div>
+    </mat-tab>
+
+    <mat-tab label="Email">
+      <div class="tab-content">
+        <mat-form-field class="emails-chip-list">
+          <mat-label>Email Addresses</mat-label>
+          <mat-chip-grid #chipGrid aria-label="Enter emails">
+            <ng-container *ngFor="let email of emails; let i = index">
+              <mat-chip-row
+                (removed)="remove(email)"
+                [editable]="true"
+                (edited)="edit(email, $event)"
+                [aria-description]="'press enter to edit ' + email.address">
+                {{email.address}}
+                <button matChipRemove [attr.aria-label]="'remove ' + email.address">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </mat-chip-row>
+            </ng-container>
+            <input placeholder="New email..."
+                   [matChipInputFor]="chipGrid"
+                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                   [matChipInputAddOnBlur]="addOnBlur"
+                   (matChipInputTokenEnd)="add($event)"/>
+          </mat-chip-grid>
+        </mat-form-field>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
 </app-dialog-base>

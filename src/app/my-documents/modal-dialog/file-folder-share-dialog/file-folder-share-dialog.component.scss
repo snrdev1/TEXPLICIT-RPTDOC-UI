@@ -1,8 +1,7 @@
-// :host ::ng-deep app-search-input{
-//     .search-wrapper{
-//         width:97%;
-//     }
-// }
+.tab-content{
+  margin-top: 1rem;
+}
+
 .users-container {
   height: 200px;
   overflow: auto;
@@ -81,4 +80,12 @@
       }
     }
   }
+}
+
+.emails-chip-list{
+  width: 100%;
+}
+
+.mat-mdc-chip-input{
+  margin-top: 1rem;
 }
