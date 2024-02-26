@@ -2,11 +2,12 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { saveAs } from 'file-saver';
 import { CommonService } from 'src/app/shared/services/common.service';
-import { ReportsService } from '../reports.service';
+import { ReportsService } from 'src/app/services/reports.service';
 // import * as jsPDF from 'jspdf';
 // import * as html2pdf from 'html2pdf.js';
 import { Observable } from 'rxjs';
 import { ReportSubtopicsComponent } from '../report-subtopics/report-subtopics.component';
+import { FileFolderShareDialogComponent } from 'src/app/my-documents/modal-dialog/file-folder-share-dialog/file-folder-share-dialog.component';
 
 
 @Component({
@@ -176,5 +177,9 @@ export class ReportCardsComponent {
     // if (this.report?.subtopics.length > 0) {
     this.dialog.open(ReportSubtopicsComponent, { panelClass: 'mat-dialog-panel', data: this.report });
     // }
+  }
+
+  onReportShareClick(reportId: string){
+    const dialogRef = this.dialog.open(FileFolderShareDialogComponent, { panelClass: 'mat-dialog-panel', data: { "reportIds": [reportId], "shareDocumentType": "report", "internalShare": false  } });
   }
 }

@@ -1,35 +1,33 @@
 <app-dialog-base [modalTitle]="'Share File/Folder'" (onClose)="onCloseClick()">
   <mat-tab-group content>
-    <mat-dialog-content class="mat-dialog-body tab-content">
-      <mat-tab label="Texplicit User">
-        <mat-dialog-content class="mat-dialog-body">
-          <app-search-input [placeHolder]="'Search User(s)'" [searchValue]="userSearchQuery"
-            (onCharSearch)="searchUsers($event)" (onClear)="clearUserSearch()"></app-search-input>
-        </mat-dialog-content>
-        <div class="users-container">
-          <ul class="user" *ngFor="let user of filteredUsers">
-            <li class="user-icon">
-              <img src="../../../assets/images/user-icon.png" />
-            </li>
-            <li class="user-name">
-              <div>
-                <h5>{{ user.name }}</h5>
-              </div>
-            </li>
-            <li class="user-buttons">
-              <button matTooltip="Share" (click)="shareToInternal(user._id)" *ngIf="!hasAccess(user._id)">
-                <mat-icon>share</mat-icon>
-              </button>
-              <button matTooltip="Already Shared" (click)="shareToInternal(user._id)" *ngIf="hasAccess(user._id)">
-                <mat-icon>done</mat-icon>
-              </button>
-            </li>
-          </ul>
-        </div>
-      </mat-tab>
-    </mat-dialog-content>
+    <mat-tab label="Texplicit User" *ngIf="internalShare">
+      <mat-dialog-content class="mat-dialog-body">
+        <app-search-input [placeHolder]="'Search User(s)'" [searchValue]="userSearchQuery"
+          (onCharSearch)="searchUsers($event)" (onClear)="clearUserSearch()"></app-search-input>
+      </mat-dialog-content>
+      <div class="users-container">
+        <ul class="user" *ngFor="let user of filteredUsers">
+          <li class="user-icon">
+            <img src="../../../assets/images/user-icon.png" />
+          </li>
+          <li class="user-name">
+            <div>
+              <h5>{{ user.name }}</h5>
+            </div>
+          </li>
+          <li class="user-buttons">
+            <button matTooltip="Share" (click)="shareToInternal(user._id)" *ngIf="!hasAccess(user._id)">
+              <mat-icon>share</mat-icon>
+            </button>
+            <button matTooltip="Already Shared" (click)="shareToInternal(user._id)" *ngIf="hasAccess(user._id)">
+              <mat-icon>done</mat-icon>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </mat-tab>
 
-    <mat-tab label="Email">
+    <mat-tab label="Email" *ngIf="emailShare">
       <form class="email-form" [formGroup]="emailShareForm" (ngSubmit)="onSubmit()">
         <mat-dialog-content class="mat-dialog-body tab-content">
           <mat-form-field appearance="outline" class="emails-chip-list">

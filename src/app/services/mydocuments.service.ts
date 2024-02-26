@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { Injectable } from '@angular/core';
 import { saveAs } from 'file-saver';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -50,14 +50,15 @@ export class MydocumentsService {
     return this.http.get<any>(url);
   }
 
-  shareDocument(documentId: string, usersWithAccess: any, emailShareForm: any): Observable<any> {
+  shareDocument(documentIds: string[], usersWithAccess: any, emailShareForm: any): Observable<any> {
     const url = `${environment.hostName}/my-documents/share`;
     const params = {
-      "documentId": documentId,
+      "documentIds": documentIds,
       "usersWithAccess": usersWithAccess,
       "emailIds": emailShareForm.emailIds,
       "subject": emailShareForm.subject,
-      "message": emailShareForm.message
+      "message": emailShareForm.message,
+      "shareType": emailShareForm.shareType
     };
     return this.http.post<any>(url, params);
   }

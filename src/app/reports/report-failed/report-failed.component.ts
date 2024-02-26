@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ReportsService } from '../reports.service';
+import { ReportsService } from 'src/app/services/reports.service';
 
 @Component({
   selector: 'app-report-failed',

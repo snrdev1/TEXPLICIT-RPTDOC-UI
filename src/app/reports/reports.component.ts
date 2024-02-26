@@ -11,7 +11,7 @@ import { AddSubtopicComponent } from './add-subtopic/add-subtopic.component';
 import { ReportFilterComponent } from './report-filter/report-filter.component';
 import { ReportUpdateComponent } from './report-update/report-update.component';
 import { ReportFailedComponent } from './report-failed/report-failed.component';
-import { ReportsService } from './reports.service';
+import { ReportsService } from 'src/app/services/reports.service';
 
 @Component({
   selector: 'app-reports',

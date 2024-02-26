@@ -7,6 +7,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { LocalStorageService } from 'src/app/core/local-storage.service';
 import { MydocumentsService } from 'src/app/services/mydocuments.service';
+import { ReportsService } from 'src/app/services/reports.service';
 import { CommonService } from 'src/app/shared/services/common.service';
 
 export interface Email {
@@ -21,7 +22,15 @@ export interface Email {
 })
 export class FileFolderShareDialogComponent {
   currId: any;
-  docId: string = "";
+
+  // To store ids of documents or reports
+  documentIds: string[] = [];
+  reportIds: string[] = [];
+
+  // Variables to control the share tabs
+  internalShare: boolean = true;
+  emailShare: boolean = true;
+
   document: any;
   users: any;
   userSearchQuery: string = "";
@@ -41,6 +50,7 @@ export class FileFolderShareDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private formBuilder: FormBuilder,
     private mydocs: MydocumentsService,
+    private reportsService: ReportsService,
     private localStorageService: LocalStorageService,
     private commonservice: CommonService
   ) {
@@ -55,12 +65,24 @@ export class FileFolderShareDialogComponent {
 
   ngOnInit() {
     this.localStorageService.observeUserInfo();
+
     this.userInfo$.subscribe((data) => {
       console.log("data: ", data);
       this.currId = data?._id;
     });
-    this.docId = this.data.documentId;
-    this.getDocument();
+
+    // Set values for internal and email sharing
+    this.internalShare = this.data.internalShare != undefined ? this.data.internalShare : this.internalShare;
+    this.emailShare = this.data.emailShare != undefined ? this.data.emailShare : this.emailShare;
+
+    if (this.data.documentIds && this.data.shareDocumentType == "document") {
+      this.documentIds = this.data.documentIds;
+      this.getDocument();
+    }
+
+    if (this.data.reportIds && this.data.shareDocumentType == "report")
+      this.reportIds = this.data.reportIds;
+
     this.getAllUsers();
   }
 
@@ -112,8 +134,8 @@ export class FileFolderShareDialogComponent {
   }
 
   getDocument() {
-    console.log("DocId:", this.docId);
-    this.mydocs.getDocument(this.docId).subscribe({
+    console.log("DocId:", this.documentIds);
+    this.mydocs.getDocument(this.documentIds[0]).subscribe({
       next: (response: any) => {
         this.document = response.data;
         // console.log("OUT: ",this.document);
@@ -161,7 +183,7 @@ export class FileFolderShareDialogComponent {
   }
 
   hasAccess(userId: string) {
-    let accessList = "usersWithAccess" in this.document ? this.document.usersWithAccess : [];
+    let accessList = this.document && "usersWithAccess" in this.document ? this.document.usersWithAccess : [];
     if (accessList == null) {
       accessList = [];
     }
@@ -169,26 +191,52 @@ export class FileFolderShareDialogComponent {
     return accessList.includes(userId);
   }
 
+
   shareToInternal(userId: string) {
     this.emailShareForm.get('shareType')?.patchValue("internal");
-    this.shareDocument(userId);
+    this.share(userId);
   }
 
-  shareDocument(userId: string = ""): void {
-    this.mydocs.shareDocument(this.docId, [userId], this.emailShareForm.value).subscribe({
+  shareDocument(userId: string = "") {
+    this.mydocs.shareDocument(this.documentIds, [userId], this.emailShareForm.value).subscribe({
       next: (response: any) => {
         console.log("Response:", response);
         this.commonservice.showSnackbar("snackbar-success", response.message, "0");
         this.getDocument();
       },
-      error: (e) => {
+      error: (e: any) => {
         console.log("Error:", e)
       },
       complete: () => {
         console.info('Complete!');
+        if (this.emailShareForm.get("shareType")?.value == "email")
+          this.dialogRef.close();
       }
     });
-    console.log(userId);
+  }
+
+  shareReport() {
+    this.reportsService.shareReports(this.reportIds, this.emailShareForm.value).subscribe({
+      next: (response: any) => {
+        console.log("Response:", response);
+        this.commonservice.showSnackbar("snackbar-success", response.message, "0");
+      },
+      error: (e: any) => {
+        console.log("Error:", e)
+      },
+      complete: () => {
+        console.info('Complete!');
+        if (this.emailShareForm.get("shareType")?.value == "email")
+          this.dialogRef.close();
+      }
+    });
+  }
+
+  share(userId: string = ""): void {
+    if (this.data.shareDocumentType == "document")
+      this.shareDocument(userId);
+    if (this.data.shareDocumentType == "report")
+      this.shareReport();
   }
 
   onCloseClick() {
@@ -211,7 +259,7 @@ export class FileFolderShareDialogComponent {
       console.log("form : ", this.emailShareForm.value);
       this.emailShareForm.get('shareType')?.patchValue("email");
       // this.dialogRef.close(this.emailShareForm.value);
-      this.shareDocument();
+      this.share();
     }
   }
 }

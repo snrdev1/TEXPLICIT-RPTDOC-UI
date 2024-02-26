@@ -257,7 +257,7 @@ export class MyDocumentsComponent {
 
   onShareClick(event: any) {
     console.log('Share Trigger for file Id: ', event);
-    const dialogRef = this.dialog.open(FileFolderShareDialogComponent, { panelClass: 'mat-dialog-panel', data: { "documentId": event } });
+    const dialogRef = this.dialog.open(FileFolderShareDialogComponent, { panelClass: 'mat-dialog-panel', data: { "documentIds": [event], "shareDocumentType": "document" } });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

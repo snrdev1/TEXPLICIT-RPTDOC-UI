@@ -82,4 +82,16 @@ export class ReportsService {
     const url = `${environment.hostName}/report/failed/delete`;
     return this.http.delete<any>(url);
   }
+
+  shareReports(reportIds: string[], emailShareForm: any): Observable<any> {
+    const url = `${environment.hostName}/report/share`;
+    const params = {
+      "reportIds": reportIds,
+      "emailIds": emailShareForm.emailIds,
+      "subject": emailShareForm.subject,
+      "message": emailShareForm.message,
+      "shareType": emailShareForm.shareType
+    };
+    return this.http.post<any>(url, params);
+  }
 }
