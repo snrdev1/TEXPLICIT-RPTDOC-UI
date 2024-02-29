@@ -13,7 +13,7 @@ export class ChatService {
   getChatResponses(prompt: string, chatType: number, chatId: string): Observable<any> {
     const url = `${environment.hostName}/chat`;
     const params = { "prompt": prompt, "chatType": chatType, "chatId": chatId };
-    return this.http.post<any>(url, { params });
+    return this.http.post<any>(url, params);
   }
 
   getChatHistory(): Observable<any> {

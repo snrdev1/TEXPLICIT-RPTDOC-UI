@@ -83,6 +83,8 @@ export class ChatPanelComponent {
           this.chatResponses = [...this.chatResponses, { "content": res[0]?.response, "role": "system", "chatType": res[0].chatType, "timestamp": this.formattedTime, "chatId": res[0].chatId }];
         }
 
+        console.log("Chat response : ", res);
+
         this.isLoading = false;
       },
       error: (e) => {
@@ -101,7 +103,7 @@ export class ChatPanelComponent {
   }
 
   onChatSelection() {
-    this.selectedChat = this.chatSelection === 'External' ? 0 : this.chatSelection === 'My Documents' ? 1 : this.chatSelection === 'Knowledge Repository' ? 2 : 0;
+    this.selectedChat = this.chatSelection === 'External' ? 0 : this.chatSelection === 'My Documents' ? 1 : 0;
     console.log("this.chatSelection", this.selectedChat);
   }
 
@@ -125,12 +127,20 @@ export class ChatPanelComponent {
         {
           "content": this.prompt,
           "role": "user",
-          "chatType": this.chatSelection,
+          "chatType": this.selectedChat,
           "timestamp": this.formattedTime,
           "chatId": chatId
         }
       ];
       this.isLoading = true;
+
+      console.log("New chat : ", {
+        "content": this.prompt,
+        "role": "user",
+        "chatType": this.selectedChat,
+        "timestamp": this.formattedTime,
+        "chatId": chatId
+      })
 
       this.chatService.getChatResponses(this.prompt, this.selectedChat, chatId).subscribe({
         next: (res) => {
