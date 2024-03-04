@@ -32,8 +32,9 @@
   </div>
 </mat-toolbar>
 
-<mat-sidenav-container [hasBackdrop]="backdrop" autosize class="custom-sidenav-container">
-  <mat-sidenav #leftnav class="left-sidenav-container" mode="side" [opened]="sidenavState">
+<mat-sidenav-container autosize class="custom-sidenav-container">
+
+  <mat-sidenav #leftnav class="left-sidenav-container" [mode]="sidenavMode" [opened]="sidenavState">
     <ul class="menu-container">
       <li class="menu-item" routerLink="/home" routerLinkActive="menu-item-active">
         <div routerLinkActive="active-menu-item-container">
@@ -100,9 +101,11 @@
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
+
   <mat-sidenav #rightnav position="end" mode="side" class="sidenav-container" [opened]="newsOpen() || chatOpen()">
     <app-chat-panel *ngIf="chatOpen()"></app-chat-panel>
   </mat-sidenav>
+
 </mat-sidenav-container>
 
 <mat-menu #userMenu="matMenu" class="comment-action-menu">

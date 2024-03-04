@@ -11,6 +11,7 @@ import { CommonService } from '../shared/services/common.service';
 import { WebSocketService } from '../shared/services/socketio.service';
 import { DisclaimerDialogComponent } from './modal-dialog/disclaimer-dialog/disclaimer-dialog.component';
 import { FeedbackDialogComponent } from './modal-dialog/feedback-dialog/feedback-dialog.component';
+import { MatDrawerMode } from '@angular/material/sidenav';
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
@@ -33,7 +34,7 @@ export class LayoutComponent {
   userInfo$: Observable<any> = this.localStorage.userInfo$;
   sidenavState: boolean = false;
   windowWidth: number = window.innerWidth;
-  backdrop: boolean = false;
+  sidenavMode: MatDrawerMode = "side";
 
   constructor(
     public commonService: CommonService,
@@ -97,11 +98,11 @@ export class LayoutComponent {
   setSidenavState() {
     if (this.windowWidth > 1200) {
       this.sidenavState = true;
-      this.backdrop = false;
+      this.sidenavMode = "side";
     }
     else {
       this.sidenavState = false;
-      this.backdrop = true;
+      this.sidenavMode = "over";
     }
   }
 
