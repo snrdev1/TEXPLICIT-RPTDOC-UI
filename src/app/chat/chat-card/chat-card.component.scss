@@ -100,16 +100,8 @@
 }
 
 .mat-mdc-card-footer {
-  @media screen and (max-width: 119.98px) {
-    gap: 0;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-  }
-
   display: flex;
   gap: 1rem;
-  padding-top: 0.5rem;
   margin-left: 2rem;
   margin-right: 2rem;
   font-style: italic;
@@ -119,6 +111,23 @@
   p {
     margin: 0;
     text-align: right;
+  }
+
+  @media screen and (max-width: 1199.98px) {
+    gap: 0;
+    flex-direction: column;
+  }
+}
+
+.footer-chat-system{
+  @media screen and (max-width: 1199.98px) {
+    align-items: flex-start;
+  }
+}
+
+.footer-chat-user{
+  @media screen and (max-width: 1199.98px) {
+    align-items: flex-end;
   }
 }
 
