@@ -50,6 +50,13 @@
         </div>
         <span class="menu-item-label" routerLinkActive="active-menu-text">My Documents</span>
       </li>
+      <li class="menu-item" routerLink="/chat" routerLinkActive="menu-item-active">
+        <div routerLinkActive="active-menu-item-container">
+          <img [src]="'../../assets/svg/side-nav-icon/icon-chat.svg'" class="menu-icon"
+            routerLinkActive="menu-icon-active" />
+        </div>
+        <span class="menu-item-label" routerLinkActive="active-menu-text">Chat</span>
+      </li>
       <li class="menu-item" routerLink="/reports" routerLinkActive="menu-item-active">
         <div routerLinkActive="active-menu-item-container">
           <img [src]="'../../assets/svg/side-nav-icon/icon-reports.svg'" class="menu-icon"
@@ -102,9 +109,9 @@
     </div>
   </mat-sidenav-content>
 
-  <mat-sidenav #rightnav position="end" mode="side" class="sidenav-container" [opened]="newsOpen() || chatOpen()">
+  <!-- <mat-sidenav #rightnav position="end" mode="side" class="sidenav-container" [opened]="newsOpen() || chatOpen()">
     <app-chat-panel *ngIf="chatOpen()"></app-chat-panel>
-  </mat-sidenav>
+  </mat-sidenav> -->
 
 </mat-sidenav-container>
 

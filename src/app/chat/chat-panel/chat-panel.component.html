@@ -1,0 +1,47 @@
+<div class="main-container">
+  <mat-toolbar fxLayout="column" class="chat-toolbar">
+    <!-- <mat-toolbar-row class="chat-toolbar-titlebar">
+        <div class="chat-toolbar-title">
+            <img src="../../../../assets/svg/logo/texplicit02-logo-white.svg"/>
+        </div>
+        <span class="toolbar-spacer"></span>
+        <button mat-icon-button (click)="chatClose()">
+            <mat-icon [ngStyle]="{'color':'white'}">highlight_off</mat-icon>
+        </button>
+    </mat-toolbar-row> -->
+
+    <mat-toolbar-row class="chat-toolbar-buttons">
+        <mat-form-field appearance="fill" class="chat-dropdown">
+          <mat-select placeholder="Please Select" [(ngModel)]="chatSelection" (selectionChange)="onChatSelection()">
+            <mat-option value="My Documents" class="chat-dropdown-option">My Documents</mat-option>
+            <mat-option value="External" class="chat-dropdown-option">External</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <span class="toolbar-spacer"></span>
+        <button mat-icon-button class="btn-toolbar-35" (click)="copyChat()">
+          <mat-icon class="btn-toolbar-icon-24">content_copy</mat-icon>
+        </button>
+        <button mat-icon-button class="btn-toolbar-35">
+          <mat-icon class="btn-toolbar-icon-24">delete_outline</mat-icon>
+        </button>
+      </mat-toolbar-row>
+  </mat-toolbar>
+
+  <div class="chat-conversation" #chatContainer>
+    <app-chat-card [chats]="chatResponses" [userImage]="userImage"></app-chat-card>
+    <div *ngIf="isLoading" class="loader">
+      <mat-spinner diameter="70"></mat-spinner>
+    </div>
+  </div>
+
+  <mat-toolbar fxLayout="row" class="chat-composer">
+    <form [formGroup]="chatForm">
+      <mat-form-field appearance="outline" class="chat-composer-editor">
+        <input matInput formControlName="prompt" #inputElement />
+        <button matSuffix mat-icon-button aria-label="Send" [disabled]="isLoading" (click)="onPromptSubmit()">
+          <mat-icon>send</mat-icon>
+        </button>
+      </mat-form-field>
+    </form>
+  </mat-toolbar>
+</div>

@@ -1,0 +1,156 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-toolbar {
+  background-color: #ffffff;
+  border-bottom: 0.5px solid #ccc;
+  justify-content: center;
+  align-items: center;
+
+  .chat-toolbar-titlebar {
+    height: 48px;
+    background-color: #171d5e;
+  }
+
+  .chat-toolbar-buttons {
+    padding: 0;
+    height: 35px;
+    display: flex;
+  }
+}
+
+.chat-conversation {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  overflow-y: scroll;
+  background-color: #f5f7fb;
+  z-index: 10;
+}
+
+.chat-composer {
+  bottom: 0;
+  padding: 0 14px;
+  border-top: 0.5px solid #ccc;
+  background-color: #fff;
+  justify-content: space-around;
+  min-height: 80px;
+
+  form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (min-width: 1200px) {
+      width: 70%;
+    }
+  }
+
+  font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
+}
+
+.chat-dropdown-option {
+  // 1366: 12px, 1920: 14px
+  font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+}
+
+:host ::ng-deep .chat-dropdown {
+  mat-select {
+    //font-size: 14px;
+    font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+  }
+
+  .mat-mdc-form-field-infix {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    width: 160px;
+    min-height: 30px;
+    //font-size: 14px;
+    font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+  }
+
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none;
+  }
+}
+
+:host ::ng-deep .chat-composer-editor {
+  width: auto;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  min-height: 0;
+
+  .mdc-text-field {
+    color: #040f2f;
+    font-family: "Roboto", sans-serif;
+    //font-size: 14px;
+    font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
+    font-weight: 400;
+    letter-spacing: 0.14px;
+  }
+
+  .mat-mdc-form-field-icon-prefix > .mat-icon {
+    padding: 5px 6px 5px 10px;
+  }
+
+  .mat-mdc-icon-button.mat-mdc-button-base {
+    width: 36px;
+    height: 34px;
+    padding: 5px 6px;
+  }
+
+  .mat-mdc-icon-button .mat-mdc-button-touch-target {
+    height: 34px;
+  }
+  .mat-mdc-form-field-infix {
+    padding-top: 9px;
+    padding-bottom: 9px;
+    min-height: 0 !important;
+  }
+
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none;
+  }
+
+  .mdc-text-field--focused,
+  .mdc-notched-outline {
+    .mdc-notched-outline__leading {
+      border-left: 0.5px solid #4e525f;
+      border-top: 0.5px solid #4e525f;
+      border-bottom: 0.5px solid #4e525f;
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+      background-color: transparent;
+    }
+
+    .mdc-notched-outline__trailing {
+      border-right: 0.5px solid #4e525f;
+      border-top: 0.5px solid #4e525f;
+      border-bottom: 0.5px solid #4e525f;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      background-color: transparent;
+    }
+  }
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 5rem;
+}

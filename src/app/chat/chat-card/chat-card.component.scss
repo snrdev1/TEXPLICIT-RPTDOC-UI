@@ -4,10 +4,13 @@
   border-radius: 15px;
   box-shadow: none;
   margin-bottom: 10px;
+  background-color: transparent;
 }
 
 .chat-card.default {
-  background-color: #eaedef;
+  display: flex;
+  justify-self: center;
+  align-items: center;
 }
 
 .chat-card.default .title {
@@ -37,25 +40,30 @@
 }
 
 .chat-card.system {
-  background-color: #eaedef;
-  margin-right: 20px;
+  max-width: 75%;
+
+  @media screen and (min-width: 1200px) {
+    max-width: 50%;
+  }
 }
 
 .chat-card.user {
-  background-color: #d7e5ef;
-  margin-left: 20px;
+  max-width: 75%;
+
+  @media screen and (min-width: 1200px) {
+    max-width: 50%;
+  }
 }
 
 .logo {
   background-color: #fff;
   width: 2em;
   height: 2em;
-}
-
-.logo img {
-  width: 18px;
-  height: 17px;
-  margin-top: 5px;
+  img {
+    width: 18px;
+    height: 17px;
+    margin-top: 5px;
+  }
 }
 
 .text {
@@ -68,19 +76,45 @@
 }
 
 .chat-card.system .text {
+  padding: 1rem;
+  padding-top: 0;
+  border-radius: 15px;
+  border-bottom-left-radius: 0;
+  background: #e1e5ec;
   color: #666974;
+  margin-bottom: 1rem;
 }
 
 .chat-card.user .text {
-  color: #4d5059;
+  padding: 1rem;
+  padding-top: 0;
+  border-radius: 15px;
+  border-bottom-right-radius: 0;
+  background: #0087fd;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.chat-card.user .mat-mdc-card-footer {
+  justify-content: flex-end;
 }
 
 .mat-mdc-card-footer {
-  padding: 1rem;
+  @media screen and (max-width: 119.98px) {
+    gap: 0;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  display: flex;
+  gap: 1rem;
+  padding-top: 0.5rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
   font-style: italic;
   font-size: 12px;
   font-weight: 400;
-  color: #777a80;
 
   p {
     margin: 0;
@@ -91,4 +125,18 @@
 .mat-mdc-card-content:last-child {
   padding-top: 16px;
   margin-bottom: 0;
+}
+
+.mat-mdc-fab {
+  box-shadow: none;
+}
+
+.div-user-chat {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.div-user-system {
+  display: flex;
+  justify-content: flex-start;
 }

@@ -3,8 +3,8 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { LocalStorageService } from 'src/app/core/local-storage.service';
 import { WebSocketService } from 'src/app/shared/services/socketio.service';
-import { CommonService } from '../../../services/common.service';
-import { ChatService } from '../chat.service';
+import { CommonService } from '../../shared/services/common.service';
+import { ChatService } from '../../shared/components/chat/chat.service';
 @Component({
   selector: 'app-chat-panel',
   templateUrl: './chat-panel.component.html',
@@ -57,6 +57,7 @@ export class ChatPanelComponent {
     if (this.userInfo) {
       this.currentUserId = this.userInfo?._id;
     }
+
     this.getChatHistory();
     if (this.chatResponses) {
       this.chatEvent = this.chatEvent + "_" + this.currentUserId;
@@ -67,8 +68,12 @@ export class ChatPanelComponent {
 
   }
 
-  ngAfterViewChecked() {
-    this.chatContainer.nativeElement.scrollTop = this.chatContainer.nativeElement.scrollHeight;
+  scrollIntoView() {
+    setTimeout(() => {
+      if (this.chatContainer) {
+        this.chatContainer.nativeElement.scrollTop = this.chatContainer.nativeElement.scrollHeight;
+      }
+    }, 0);
   }
 
   setupChatListener() {
@@ -116,6 +121,7 @@ export class ChatPanelComponent {
 
     this.prompt = this.chatForm.controls['prompt'].value;
     if (this.prompt) {
+      this.scrollIntoView();
       this.getNewTime();
       let chatId: string = this.currentUserId + this.formattedTime;
 
@@ -172,6 +178,7 @@ export class ChatPanelComponent {
       complete: () => {
         console.log("Complete fetching chat history");
         this.isLoading = false;
+        this.scrollIntoView();
       }
     })
   }

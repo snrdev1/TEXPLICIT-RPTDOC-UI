@@ -100,6 +100,13 @@ const routes: Routes = [{
           (m) => m.UserProfileModule
         ),
       canActivate: [AuthGuard]
+    },
+    {
+      path: 'chat',
+      loadChildren: () =>
+        import('./../chat/chat.module').then(
+          (m) => m.ChatModule
+        )
     }
 
   ]
