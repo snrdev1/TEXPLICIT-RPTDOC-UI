@@ -21,7 +21,7 @@
         <button mat-icon-button class="btn-toolbar-35" (click)="copyChat()">
           <mat-icon class="btn-toolbar-icon-24">content_copy</mat-icon>
         </button>
-        <button mat-icon-button class="btn-toolbar-35">
+        <button mat-icon-button class="btn-toolbar-35" (click)="deleteChat()">
           <mat-icon class="btn-toolbar-icon-24">delete_outline</mat-icon>
         </button>
       </mat-toolbar-row>
@@ -39,7 +39,7 @@
       <mat-form-field appearance="outline" class="chat-composer-editor">
         <input matInput formControlName="prompt" #inputElement />
         <button matSuffix mat-icon-button aria-label="Send" [disabled]="isLoading" (click)="onPromptSubmit()">
-          <mat-icon>send</mat-icon>
+          <img matTooltip="Send message" src="assets/svg/button-icon/send.svg" class="chat-send-logo" [ngStyle]="{'opacity': chatForm.value.prompt ? '1' : '0.5'}">
         </button>
       </mat-form-field>
     </form>

@@ -6,7 +6,7 @@
   align-items: center;
 }
 
-.chat-toolbar {
+:host ::ng-deep .chat-toolbar {
   background-color: #ffffff;
   border-bottom: 0.5px solid #ccc;
   justify-content: center;
@@ -22,6 +22,19 @@
     height: 35px;
     display: flex;
   }
+
+  .mdc-text-field {
+    border: 1px solid #8e8e8e;
+    border-radius: 10px;
+    padding-top: 4px;
+    border-bottom: none;
+    background: #ffffff;
+  }
+
+  .mat-mdc-form-field-focus-overlay{
+    background-color: none !important;
+  }
+
 }
 
 .chat-conversation {
@@ -96,10 +109,13 @@
   .mdc-text-field {
     color: #040f2f;
     font-family: "Roboto", sans-serif;
-    //font-size: 14px;
     font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
     font-weight: 400;
     letter-spacing: 0.14px;
+    height: 3rem;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0;
   }
 
   .mat-mdc-form-field-icon-prefix > .mat-icon {
@@ -107,9 +123,9 @@
   }
 
   .mat-mdc-icon-button.mat-mdc-button-base {
-    width: 36px;
-    height: 34px;
-    padding: 5px 6px;
+    width: 49px;
+    height: 40px;
+    padding: 5px 5px;
   }
 
   .mat-mdc-icon-button .mat-mdc-button-touch-target {
@@ -153,4 +169,14 @@
   align-items: center;
   width: 100%;
   margin-top: 5rem;
+}
+
+.chat-send-logo{
+  width: 32px;
+  height: 32px;
+}
+
+.mat-mdc-icon-button {
+	--mat-mdc-button-persistent-ripple-color: none;
+	--mat-mdc-button-ripple-color: none;
 }

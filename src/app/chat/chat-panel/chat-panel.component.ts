@@ -5,6 +5,8 @@ import { LocalStorageService } from 'src/app/core/local-storage.service';
 import { WebSocketService } from 'src/app/shared/services/socketio.service';
 import { CommonService } from '../../shared/services/common.service';
 import { ChatService } from '../../shared/components/chat/chat.service';
+import { ConfirmDialogComponent } from 'src/app/shared/components/modal-dialog/confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-chat-panel',
   templateUrl: './chat-panel.component.html',
@@ -43,7 +45,8 @@ export class ChatPanelComponent {
     private socketService: WebSocketService,
     private localStorage: LocalStorageService,
     private renderer: Renderer2,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private dialog: MatDialog
   ) {
     this.chatForm = this.formBuilder.group({
       prompt: new FormControl("")
@@ -198,5 +201,29 @@ export class ChatPanelComponent {
     textarea.select();
     document.execCommand('copy');
     this.renderer.removeChild(document.body, textarea);
+  }
+
+  deleteChat() {
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      panelClass: 'mat-dialog-panel',
+      data: { "modalTitle": "Delete Chat", "modalMessage": "Are you sure you want to delete chat?" }
+    });
+
+    dialogRef.afterClosed().subscribe((response: any) => {
+      if (response) {
+        this.chatService.deleteChat().subscribe({
+          next: (res) => {
+            this.chatResponses = [];
+          },
+          error: (e) => {
+            console.log("Error:", e);
+          },
+          complete: () => {
+            console.log("Complete deleting chat history");
+          }
+        })
+      }
+    });
   }
 }

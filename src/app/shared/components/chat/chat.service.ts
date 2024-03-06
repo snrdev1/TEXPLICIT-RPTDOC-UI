@@ -20,4 +20,9 @@ export class ChatService {
     const url = `${environment.hostName}/chat`;
     return this.http.get<any>(url);
   }
+
+  deleteChat(): Observable<any> {
+    const url = `${environment.hostName}/chat`;
+    return this.http.delete<any>(url);
+  }
 }
