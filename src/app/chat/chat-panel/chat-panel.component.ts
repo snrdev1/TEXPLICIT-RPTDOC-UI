@@ -44,7 +44,6 @@ export class ChatPanelComponent {
     private chatService: ChatService,
     private socketService: WebSocketService,
     private localStorage: LocalStorageService,
-    private renderer: Renderer2,
     private formBuilder: FormBuilder,
     private dialog: MatDialog
   ) {
@@ -184,23 +183,6 @@ export class ChatPanelComponent {
         this.scrollIntoView();
       }
     })
-  }
-
-  copyChat() {
-    var copiedText = '';
-    for (var i = 0; i < this.chatResponses.length; i++) {
-      copiedText += this.chatResponses[i].role.toUpperCase() + ": " + this.chatResponses[i].content + '\n';
-    }
-    // console.log(text);
-    const textarea = this.renderer.createElement('textarea');
-    this.renderer.setAttribute(textarea, 'readonly', '');
-    this.renderer.setStyle(textarea, 'position', 'absolute');
-    this.renderer.setStyle(textarea, 'opacity', '0');
-    this.renderer.setProperty(textarea, 'value', copiedText);
-    this.renderer.appendChild(document.body, textarea);
-    textarea.select();
-    document.execCommand('copy');
-    this.renderer.removeChild(document.body, textarea);
   }
 
   deleteChat() {
