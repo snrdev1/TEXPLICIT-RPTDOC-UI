@@ -13,7 +13,7 @@
 <div *ngFor="let chat of chats" [ngClass]="chat.role == 'user' ? 'div-user-chat': 'div-chat-system'" style="padding-left: 1rem; padding-right: 1rem;">
   <mat-card class="chat-card user" [ngClass]="'user'" *ngIf="chat.role == 'user'">
     <div style="display: flex; flex-direction: row-reverse; gap: 0.5rem;">
-      <button mat-fab class="logo" style="align-self: flex-end">
+      <button mat-fab class="logo" style="align-self: flex-start">
         <img [src]="userImage" />
       </button>
 
@@ -22,14 +22,20 @@
     </div>
 
     <mat-card-footer class="footer-chat-user">
-      <p class="chatType">{{ getChatTypeString(chat.chatType) }}</p>
-      <p class="time">{{ chat.timestamp }}</p>
+      <!-- <div class="chat-details">
+        <p class="chatType">{{ getChatTypeString(chat.chatType) }}</p> -->
+        <!-- <p class="time">{{ chat.timestamp }}</p> -->
+      <!-- </div> -->
+
+      <button matTooltip="Copy chat" class="btn-chat-action" (click)="copyChat(chat.content)" [ngStyle]="{'cursor': 'pointer'}">
+        <img src="assets/svg/button-icon/copy.svg" />
+      </button>
     </mat-card-footer>
   </mat-card>
 
   <mat-card class="chat-card" [ngClass]="'system'" *ngIf="chat.role == 'system'">
     <div style="display: flex; gap: 0.5rem;">
-      <button mat-fab class="logo" style="align-self: flex-end;">
+      <button mat-fab class="logo" style="align-self: flex-start;">
         <img src="../../../../../assets/svg/logo/texplicit02-T.svg" />
       </button>
 
@@ -37,9 +43,23 @@
       </mat-card-content>
     </div>
 
-    <mat-card-footer class="footer-chat-system">
-      <p class="chatType">{{ getChatTypeString(chat.chatType) }}</p>
-      <p class="time">{{ chat.timestamp }}</p>
+    <mat-card-footer class="footer-chat-system">      
+      <button matTooltip="External chat" class="btn-chat-action" *ngIf="getChatTypeString(chat.chatType) == 'External'">
+        <img src="assets/svg/chat-icon/chat-external.svg" />
+      </button>
+
+      <button matTooltip="My Documents chat" class="btn-chat-action" *ngIf="getChatTypeString(chat.chatType) == 'My Documents'">
+        <img src="assets/svg/chat-icon/chat-internal.svg" />
+      </button>
+
+      <button matTooltip="Copy chat" class="btn-chat-action" (click)="copyChat(chat.content)" [ngStyle]="{'cursor': 'pointer'}">
+        <img src="assets/svg/button-icon/copy.svg" />
+      </button>
+
+      <!-- <div class="chat-details">
+        <p class="chatType">{{ getChatTypeString(chat.chatType) }}</p> -->
+        <!-- <p class="time">{{ chat.timestamp }}</p> -->
+      <!-- </div> -->
     </mat-card-footer>
   </mat-card>
 </div>
