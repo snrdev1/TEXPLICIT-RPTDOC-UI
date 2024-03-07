@@ -13,6 +13,8 @@ $font-family-1: "Roboto", sans-serif;
   border-bottom: 0.5px solid #ccc;
   justify-content: center;
   align-items: center;
+  padding-bottom: 1rem;
+  min-height: 0 !important;
 
   .chat-toolbar-titlebar {
     height: 48px;
@@ -27,9 +29,8 @@ $font-family-1: "Roboto", sans-serif;
 
   .mdc-text-field {
     border: 1px solid #8e8e8e;
-    border-radius: 10px;
-    padding-top: 4px;
-    border-bottom: none;
+    border-radius: 6px;
+    padding-top: 6px;
     background: #ffffff;
   }
 
@@ -183,4 +184,8 @@ $font-family-1: "Roboto", sans-serif;
 .mat-mdc-icon-button {
 	--mat-mdc-button-persistent-ripple-color: none;
 	--mat-mdc-button-ripple-color: none;
+}
+
+:host ::ng-deep .mdc-line-ripple::before, .mdc-line-ripple::after {
+  border: none;
 }

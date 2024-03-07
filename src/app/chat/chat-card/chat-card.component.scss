@@ -10,6 +10,13 @@
   display: flex;
   justify-self: center;
   align-items: center;
+
+  .greeting-content {
+    background: white;
+    margin-top: 1rem;
+    border-radius: 20px;
+    padding: 2rem;
+  }
 }
 
 .chat-card.default .title {
