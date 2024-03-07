@@ -1,6 +1,6 @@
 .chat-card {
-  border: 0;
-  border-radius: 15px;
+  border: none;
+  border-radius: 20px;
   box-shadow: none;
   margin-bottom: 10px;
   background-color: transparent;
@@ -55,14 +55,12 @@
 }
 
 .logo {
-  background-color: #fff;
-  width: 2em;
-  height: 2em;
+  background: none;
+  border: none;
 
   img {
-    width: 18px;
-    height: 17px;
-    margin-top: 5px;
+    width: 32px;
+    height: 32px;
   }
 }
 
@@ -71,44 +69,38 @@
   flex-direction: column;
   padding: 1rem;
   padding-top: 0;
-  border-radius: 15px;
+  border-radius: 20px;
   color: #ffffff;
   margin-bottom: 0.1rem;
-  margin-top: 1rem;
 
   .text {
     padding: 0;
     margin: 0;
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
     font-weight: 400;
-    //font-size: 14px;
-    font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
+    line-height: 22px;
+    letter-spacing: 0px;
     text-align: left;
   }
 
-  .chat-card.system .text {
-    border-top-left-radius: 0;
+  .text-system {
+    color: #040f2f;
   }
 
-  .chat-card.user .text {
-    border-top-right-radius: 0;
-  }
-
-  .sources {
-    padding-right: 1rem;
-    padding-top: 1rem;
-    font-size: 12px;
-    font-style: italic;
-    color: #ffffff;
-    cursor: pointer;
+  .text-user {
+    color: #12192d;
   }
 }
 
 .content-system {
-  background-color: #214b8c;
+  background-color: #ffffff;
+  border-top-left-radius: 0;
 }
 
 .content-user {
-  background-color: #0087fd;
+  background-color: #b5ebe8;
+  border-top-right-radius: 0;
 }
 
 .chat-card.user .mat-mdc-card-footer {
@@ -117,23 +109,14 @@
 
 .mat-mdc-card-footer {
   display: flex;
-  margin-left: 2rem;
-  margin-right: 2rem;
+  margin-left: 4.5rem;
+  margin-right: 4rem;
   font-style: italic;
   font-size: 12px;
   font-weight: 400;
   color: #4e525f;
-  margin-top: 0.2rem;
-
-  p {
-    margin: 0;
-    text-align: right;
-  }
-
-  @media screen and (max-width: 1199.98px) {
-    gap: 0;
-    flex-direction: column;
-  }
+  margin-top: 10px;
+  gap: 11px;
 }
 
 .footer-chat-system {
@@ -176,18 +159,13 @@
 .btn-chat-action {
   background: none;
   border: none;
-
-  img {
-    width: 16px;
-    height: 16px;
-  }
+  padding: 0;
 }
 
-
-.chat-response-loader{
+.chat-response-loader {
   padding-top: 1rem;
 }
 
 :host ::ng-deep .mat-mdc-progress-spinner {
-  --mdc-circular-progress-active-indicator-color: #ffffff !important;
+  --mdc-circular-progress-active-indicator-color: #000000 !important;
 }

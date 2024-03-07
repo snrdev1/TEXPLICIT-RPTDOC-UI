@@ -1,3 +1,5 @@
+$font-family-1: "Roboto", sans-serif;
+
 .main-container {
   display: flex;
   flex-direction: column;
@@ -42,7 +44,7 @@
   height: 100%;
   overflow: hidden;
   overflow-y: scroll;
-  background-color: #f5f7fb;
+  background-color: #E6EAF1;
   z-index: 10;
 }
 
@@ -70,16 +72,18 @@
 .chat-dropdown-option {
   // 1366: 12px, 1920: 14px
   font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
-  font-family: "Roboto", sans-serif;
+  font-family: $font-family-1;
   font-weight: 400;
 }
 
 :host ::ng-deep .chat-dropdown {
   mat-select {
-    //font-size: 14px;
-    font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
+    font-family: $font-family-1;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0.01em;
+    text-align: left;
   }
 
   .mat-mdc-form-field-infix {
@@ -89,7 +93,7 @@
     min-height: 30px;
     //font-size: 14px;
     font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
-    font-family: "Roboto", sans-serif;
+    font-family: $font-family-1;
     font-weight: 400;
   }
 
@@ -108,7 +112,7 @@
 
   .mdc-text-field {
     color: #040f2f;
-    font-family: "Roboto", sans-serif;
+    font-family: $font-family-1;
     font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
     font-weight: 400;
     letter-spacing: 0.14px;
