@@ -43,7 +43,7 @@ export class MyDocumentsComponent {
   constructor(
     public router: Router,
     public dialog: MatDialog,
-    private mydocs: MydocumentsService,
+    private documentsService: MydocumentsService,
     private localstorage: LocalStorageService,
     private commonservice: CommonService) {
     this.userInfo = this.localstorage.getUserInfo();
@@ -85,7 +85,7 @@ export class MyDocumentsComponent {
       root = "/";
     }
 
-    this.mydocs.getAllFiles(root, this.limit, this.offset).subscribe({
+    this.documentsService.getAllFiles(root, this.limit, this.offset).subscribe({
       next: (res: any) => {
         console.log("Response", res);
 
@@ -123,7 +123,7 @@ export class MyDocumentsComponent {
     if (root == "") {
       root = "/";
     }
-    this.mydocs.getAllFiles(root).subscribe({
+    this.documentsService.getAllFiles(root).subscribe({
       next: (res: any) => {
         console.log("Response", res);
         if (search !== "") {
@@ -164,7 +164,7 @@ export class MyDocumentsComponent {
 
   getFolderContents(folderId: string) {
     this.isLoading = true;
-    this.mydocs.getFolderContents(folderId).subscribe({
+    this.documentsService.getFolderContents(folderId).subscribe({
       next: (response) => {
         console.log("SharedFolders:", response);
         this.sharedfiles = [];
@@ -227,7 +227,7 @@ export class MyDocumentsComponent {
 
   onDownloadClick(event: any) {
     console.log('Download Trigger for file Id: ', event);
-    this.mydocs.downloadFile(event.virtualFileName, event.originalFileName);
+    this.documentsService.downloadFile(event.virtualFileName, event.originalFileName);
   }
 
   onRenameClick(event: any) {
@@ -303,7 +303,7 @@ export class MyDocumentsComponent {
       this.getAllUploadedFiles("", this.strPath);
     }
     else {
-      this.mydocs.downloadFile(event.file.virtualFileName, event.file.originalFileName);
+      this.documentsService.downloadFile(event.file.virtualFileName, event.file.originalFileName);
       // console.log("OrignalFilename:",event.file.originalFileName);
     }
   }
@@ -359,7 +359,7 @@ export class MyDocumentsComponent {
 
   deleteDoc(id: string) {
     console.log("file to delete", id);
-    this.mydocs.deleteFile(id, this.strPath).subscribe({
+    this.documentsService.deleteFile(id, this.strPath).subscribe({
       next: (res: any) => {
         console.log(res);
         this.commonservice.showSnackbar("snackbar-success", res.message, "0");
@@ -378,7 +378,7 @@ export class MyDocumentsComponent {
 
   deleteFol(id: string) {
     console.log("folder to delete", id);
-    this.mydocs.deleteFolder(id, this.strPath).subscribe({
+    this.documentsService.deleteFolder(id, this.strPath).subscribe({
       next: (res: any) => {
         console.log(res);
         this.commonservice.showSnackbar("snackbar-success", res.message, "0");

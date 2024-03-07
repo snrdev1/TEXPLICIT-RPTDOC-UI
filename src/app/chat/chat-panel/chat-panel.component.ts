@@ -92,6 +92,7 @@ export class ChatPanelComponent {
         // Using that index append the response to the content of the dictionary
         this.chatResponses[index].content += res[0]?.response;
         this.chatResponses[index].loading = false;
+        this.chatResponses[index].sources = res[0]?.sources;
       },
       error: (e) => {
         console.log("Error: ", e);
