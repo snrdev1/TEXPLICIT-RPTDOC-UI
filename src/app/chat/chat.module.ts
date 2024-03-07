@@ -3,13 +3,13 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
-import { ChatComponent } from './chat.component';
+import { ChatPanelComponent } from './chat-panel/chat-panel.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: ChatComponent
+    component: ChatPanelComponent
   }
 ];
 
@@ -21,7 +21,6 @@ const routes: Routes = [
     SharedModule
   ],
   declarations: [
-    ChatComponent
   ]
 })
 export class ChatModule { }
