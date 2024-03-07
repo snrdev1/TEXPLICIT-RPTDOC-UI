@@ -4,17 +4,15 @@
       <div class="file-row">
         <div class="file-info">
           <div class="icon">
-            <img
-              src="../../assets/svg/documents-icon/{{ getIcon(file) }}.svg"
-            />
+            <img src="../../assets/svg/documents-icon/{{ getIcon(file) }}.svg" />
           </div>
 
-          <div class="name">
+          <div matTooltip="{{file.originalFileName}}" class="name">
             {{ file.originalFileName }}
           </div>
         </div>
 
-        <div class="download" (click)="onDownloadClick(file)">
+        <div matTooltip="Download File" class="download" (click)="onDownloadClick(file)">
           <mat-icon>download</mat-icon>
         </div>
       </div>

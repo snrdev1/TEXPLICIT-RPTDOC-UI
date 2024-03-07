@@ -27,7 +27,7 @@
 
         <mat-card-content class="text" [innerHTML]="chat.content | markdown : { disableSanitizer: true }"></mat-card-content>
 
-        <div class="sources" *ngIf="chat?.sources && chat.sources.length > 0" (click)="openSources(chat.sources)">
+        <div matTooltip="Check chat sources" class="sources" *ngIf="chat?.sources && chat.sources.length > 0" (click)="openSources(chat.sources)">
           Sources
         </div>
       </div>
