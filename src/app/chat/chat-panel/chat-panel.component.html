@@ -1,15 +1,5 @@
 <div class="main-container">
   <mat-toolbar fxLayout="column" class="chat-toolbar">
-    <!-- <mat-toolbar-row class="chat-toolbar-titlebar">
-        <div class="chat-toolbar-title">
-            <img src="../../../../assets/svg/logo/texplicit02-logo-white.svg"/>
-        </div>
-        <span class="toolbar-spacer"></span>
-        <button mat-icon-button (click)="chatClose()">
-            <mat-icon [ngStyle]="{'color':'white'}">highlight_off</mat-icon>
-        </button>
-    </mat-toolbar-row> -->
-
     <mat-toolbar-row class="chat-toolbar-buttons">
         <mat-form-field appearance="fill" class="chat-dropdown">
           <mat-select mat-Tooltip="Select source" placeholder="Please Select" [(ngModel)]="chatSelection" (selectionChange)="onChatSelection()">
@@ -26,7 +16,7 @@
 
   <div class="chat-conversation" #chatContainer>
     <app-chat-card [chats]="chatResponses" [userImage]="userImage"></app-chat-card>
-    <div *ngIf="isLoading" class="loader">
+    <div *ngIf="chatLoading" class="loader">
       <mat-spinner diameter="70"></mat-spinner>
     </div>
   </div>
@@ -35,7 +25,7 @@
     <form [formGroup]="chatForm">
       <mat-form-field appearance="outline" class="chat-composer-editor">
         <input matInput formControlName="prompt" #inputElement />
-        <button matTooltip="Send message" matSuffix mat-icon-button aria-label="Send" [disabled]="isLoading" (click)="onPromptSubmit()">
+        <button matTooltip="Send message" matSuffix mat-icon-button aria-label="Send" [disabled]="chatLoading" (click)="onPromptSubmit()">
           <img src="assets/svg/button-icon/send.svg" class="chat-send-logo" [ngStyle]="{'opacity': chatForm.value.prompt ? '1' : '0.5'}">
         </button>
       </mat-form-field>

@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Clipboard } from '@angular/cdk/clipboard';
+import { ChatSourcesComponent } from '../chat-sources/chat-sources.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-chat-card',
@@ -11,7 +13,8 @@ export class ChatCardComponent {
   @Input() userImage: string = "";
 
   constructor(
-    private clipboard: Clipboard
+    private clipboard: Clipboard,
+    private dialog: MatDialog
   ) { }
 
   getChatTypeString(chatType: number): string {
@@ -29,5 +32,9 @@ export class ChatCardComponent {
     console.log(chat?.content);
     this.changeIcon(chat);
     this.clipboard.copy(chat?.content);
+  }
+
+  openSources(sources: any) {
+    this.dialog.open(ChatSourcesComponent, { panelClass: 'mat-ki-add-dialog', data: sources });
   }
 }

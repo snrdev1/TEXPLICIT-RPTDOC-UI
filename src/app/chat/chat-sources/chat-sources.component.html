@@ -1,0 +1,8 @@
+<app-dialog-base [modalTitle]="'Source Documents'" (onClose)="onCloseClick()">
+  <div content class="main-body">
+    <app-file-folder-card *ngFor="let file of sources; let i = index" [item]="file" [index]="i.toString()">
+    </app-file-folder-card>
+
+    {{sources}}
+  </div>
+</app-dialog-base>

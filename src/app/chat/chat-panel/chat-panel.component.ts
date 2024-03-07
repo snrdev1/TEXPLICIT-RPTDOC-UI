@@ -1,12 +1,12 @@
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { LocalStorageService } from 'src/app/core/local-storage.service';
+import { ConfirmDialogComponent } from 'src/app/shared/components/modal-dialog/confirm-dialog/confirm-dialog.component';
 import { WebSocketService } from 'src/app/shared/services/socketio.service';
 import { CommonService } from '../../shared/services/common.service';
-import { ChatService } from '../../shared/components/chat/chat.service';
-import { ConfirmDialogComponent } from 'src/app/shared/components/modal-dialog/confirm-dialog/confirm-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
+import { ChatService } from '../chat.service';
 @Component({
   selector: 'app-chat-panel',
   templateUrl: './chat-panel.component.html',
@@ -21,7 +21,7 @@ export class ChatPanelComponent {
   chatEvent: string = "chat";
   currentUserId: string = "";
   userImage: string = "";
-  isLoading: boolean = false;
+  chatLoading: boolean = false;
   userInfo$: Observable<any> = this.localStorage.userInfo$;
   timestamp = new Date().getTime();
   date = new Date(this.timestamp);
@@ -81,18 +81,17 @@ export class ChatPanelComponent {
   setupChatListener() {
     this.socketService.listen(this.chatEvent).subscribe({
       next: (res) => {
-        const existingIndex = this.chatResponses.findIndex((response: any) => response.role === "system" && response.chatId && response.chatId === res[0].chatId);
-        if (existingIndex !== -1) {
-          // Append to the existing content
-          this.chatResponses[existingIndex].content += res[0]?.response;
-        } else {
-          // Append new dictionary
-          this.chatResponses = [...this.chatResponses, { "content": res[0]?.response, "role": "system", "chatType": res[0].chatType, "timestamp": this.formattedTime, "chatId": res[0].chatId }];
-        }
+        
+        // Find index of dictionary with the response chatId
+        const index = Object.values(this.chatResponses).findIndex(
+          (dict: any) =>
+            dict.chatId === res[0]?.chatId &&
+            dict.role === "system"
+        );
 
-        console.log("Chat response : ", res);
-
-        this.isLoading = false;
+        // Using that index append the response to the content of the dictionary
+        this.chatResponses[index].content += res[0]?.response;
+        this.chatResponses[index].loading = false;
       },
       error: (e) => {
         console.log("Error: ", e);
@@ -127,8 +126,6 @@ export class ChatPanelComponent {
       this.getNewTime();
       let chatId: string = this.currentUserId + this.formattedTime;
 
-      console.log("chatId : ", chatId);
-
       // Append user chat
       this.chatResponses = [
         ...this.chatResponses,
@@ -137,18 +134,31 @@ export class ChatPanelComponent {
           "role": "user",
           "chatType": this.selectedChat,
           "timestamp": this.formattedTime,
-          "chatId": chatId
+          "chatId": chatId,
+          "loading": false
         }
       ];
-      this.isLoading = true;
 
-      console.log("New chat : ", {
+      console.log("Chat : ", {
         "content": this.prompt,
         "role": "user",
         "chatType": this.selectedChat,
         "timestamp": this.formattedTime,
-        "chatId": chatId
-      })
+        "chatId": chatId,
+        "loading": false
+      });
+
+      // Append new response dictionary
+      this.chatResponses = [
+        ...this.chatResponses,
+        {
+          "content": "",
+          "role": "system",
+          "chatType": this.selectedChat,
+          "chatId": chatId,
+          "loading": true
+        }
+      ];
 
       this.chatService.getChatResponses(this.prompt, this.selectedChat, chatId).subscribe({
         next: (res) => {
@@ -167,19 +177,18 @@ export class ChatPanelComponent {
 
   getChatHistory() {
     console.log("Get chat history called");
-    this.isLoading = true;
+    this.chatLoading = true;
     this.chatService.getChatHistory().subscribe({
       next: (res) => {
         this.chatResponses = res.data[0]?.chat || [];
         this.userImage = res.data[1] || "assets/images/user-icon.png";
-
       },
       error: (e) => {
         console.log("Error:", e);
       },
       complete: () => {
         console.log("Complete fetching chat history");
-        this.isLoading = false;
+        this.chatLoading = false;
         this.scrollIntoView();
       }
     })
@@ -197,6 +206,7 @@ export class ChatPanelComponent {
         this.chatService.deleteChat().subscribe({
           next: (res) => {
             this.chatResponses = [];
+            this.chatLoading = false;
           },
           error: (e) => {
             console.log("Error:", e);
