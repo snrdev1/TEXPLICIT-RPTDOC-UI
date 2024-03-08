@@ -7,6 +7,7 @@ import { ChatPanelComponent } from './chat-panel/chat-panel.component';
 import { ChatSourcesComponent } from './chat-sources/chat-sources.component';
 import { ChatCardComponent } from './chat-card/chat-card.component';
 import { MarkdownModule } from 'ngx-markdown';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 const routes: Routes = [
@@ -22,7 +23,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FlexLayoutModule,
     SharedModule,
-    MarkdownModule.forChild()
+    MarkdownModule.forChild(),
+    InfiniteScrollModule
   ],
   declarations: [
     ChatCardComponent,

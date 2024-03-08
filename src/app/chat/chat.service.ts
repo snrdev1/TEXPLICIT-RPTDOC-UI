@@ -1,7 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +16,10 @@ export class ChatService {
     return this.http.post<any>(url, params);
   }
 
-  getChatHistory(): Observable<any> {
+  getChatHistory(limit: number = 10, offset: number = 0): Observable<any> {
     const url = `${environment.hostName}/chat`;
-    return this.http.get<any>(url);
+    const params = { "limit": limit, "offset": offset };
+    return this.http.get<any>(url, { params });
   }
 
   deleteChat(): Observable<any> {

@@ -224,10 +224,10 @@ export class ReportsComponent {
   }
 
   onScroll(event: any) {
-    console.log('offsetHeight: ', event.target.offsetHeight)
-    console.log('scrollHeight: ', event.target.scrollHeight);
-    console.log('scrollTop: ', event.target.scrollTop);
-    console.log("Difference:", (event.target.scrollHeight - event.target.offsetHeight));
+    // console.log('offsetHeight: ', event.target.offsetHeight)
+    // console.log('scrollHeight: ', event.target.scrollHeight);
+    // console.log('scrollTop: ', event.target.scrollTop);
+    // console.log("Difference:", (event.target.scrollHeight - event.target.offsetHeight));
     if (Math.round(event.target.scrollTop) >= (event.target.scrollHeight - event.target.offsetHeight - 1)) {
       this.offset = this.offset + this.limit;
       this.limit = 10;

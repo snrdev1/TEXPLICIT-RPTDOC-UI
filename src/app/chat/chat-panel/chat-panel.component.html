@@ -1,21 +1,44 @@
 <div class="main-container">
   <mat-toolbar fxLayout="column" class="chat-toolbar">
     <mat-toolbar-row class="chat-toolbar-buttons">
-        <mat-form-field appearance="fill" class="chat-dropdown">
-          <mat-select mat-Tooltip="Select source" placeholder="Please Select" [(ngModel)]="chatSelection" (selectionChange)="onChatSelection()">
-            <mat-option value="My Documents" class="chat-dropdown-option">My Documents</mat-option>
-            <mat-option value="External" class="chat-dropdown-option">External</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <span class="toolbar-spacer"></span>
-        <button matTooltip="Delete chat" mat-icon-button class="btn-toolbar-35" (click)="deleteChat()">
-          <mat-icon class="btn-toolbar-icon-24">delete_outline</mat-icon>
-        </button>
-      </mat-toolbar-row>
+      <mat-form-field appearance="fill" class="chat-dropdown">
+        <mat-select
+          mat-Tooltip="Select source"
+          placeholder="Please Select"
+          [(ngModel)]="chatSelection"
+          (selectionChange)="onChatSelection()"
+        >
+          <mat-option value="My Documents" class="chat-dropdown-option"
+            >My Documents</mat-option
+          >
+          <mat-option value="External" class="chat-dropdown-option"
+            >External</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+      <span class="toolbar-spacer"></span>
+      <button
+        matTooltip="Delete chat"
+        mat-icon-button
+        class="btn-toolbar-35"
+        (click)="deleteChat()"
+      >
+        <mat-icon class="btn-toolbar-icon-24">delete_outline</mat-icon>
+      </button>
+    </mat-toolbar-row>
   </mat-toolbar>
 
-  <div class="chat-conversation" #chatContainer>
-    <app-chat-card [chats]="chatResponses" [userImage]="userImage"></app-chat-card>
+  <div class="chat-conversation" #chatContainer
+    infiniteScroll
+    [infiniteScrollUpDistance]="2.5"
+    (scrolledUp)="onScrollUp()"
+    [scrollWindow]="false"
+  >
+    <app-chat-card
+      [chats]="chatResponses"
+      [userImage]="userImage"
+    ></app-chat-card>
+
     <div *ngIf="chatLoading" class="loader">
       <mat-spinner diameter="70"></mat-spinner>
     </div>
@@ -25,8 +48,19 @@
     <form [formGroup]="chatForm">
       <mat-form-field appearance="outline" class="chat-composer-editor">
         <input matInput formControlName="prompt" #inputElement />
-        <button matTooltip="Send message" matSuffix mat-icon-button aria-label="Send" [disabled]="chatLoading" (click)="onPromptSubmit()">
-          <img src="assets/svg/button-icon/send.svg" class="chat-send-logo" [ngStyle]="{'opacity': chatForm.value.prompt ? '1' : '0.5'}">
+        <button
+          matTooltip="Send message"
+          matSuffix
+          mat-icon-button
+          aria-label="Send"
+          [disabled]="chatLoading"
+          (click)="onPromptSubmit()"
+        >
+          <img
+            src="assets/svg/button-icon/send.svg"
+            class="chat-send-logo"
+            [ngStyle]="{ opacity: chatForm.value.prompt ? '1' : '0.5' }"
+          />
         </button>
       </mat-form-field>
     </form>

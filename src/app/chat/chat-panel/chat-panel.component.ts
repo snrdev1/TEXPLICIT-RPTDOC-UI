@@ -7,6 +7,7 @@ import { ConfirmDialogComponent } from 'src/app/shared/components/modal-dialog/c
 import { WebSocketService } from 'src/app/shared/services/socketio.service';
 import { CommonService } from '../../shared/services/common.service';
 import { ChatService } from '../chat.service';
+
 @Component({
   selector: 'app-chat-panel',
   templateUrl: './chat-panel.component.html',
@@ -37,6 +38,8 @@ export class ChatPanelComponent {
   formatter = new Intl.DateTimeFormat('en-GB', this.options);
   formattedTime = this.formatter.format(this.date);
   userInfo: any = [];
+  limit: number = 10;
+  offset: number = 0;
   @ViewChild('chatContainer', { static: false }) chatContainer!: ElementRef;
   @ViewChild('inputElement', { static: false }) inputElement!: ElementRef;
 
@@ -81,7 +84,7 @@ export class ChatPanelComponent {
   setupChatListener() {
     this.socketService.listen(this.chatEvent).subscribe({
       next: (res) => {
-        
+
         // Find index of dictionary with the response chatId
         const index = Object.values(this.chatResponses).findIndex(
           (dict: any) =>
@@ -179,9 +182,10 @@ export class ChatPanelComponent {
   getChatHistory() {
     console.log("Get chat history called");
     this.chatLoading = true;
-    this.chatService.getChatHistory().subscribe({
+    this.chatService.getChatHistory(this.limit, this.offset).subscribe({
       next: (res) => {
-        this.chatResponses = res.data[0]?.chat || [];
+        const chat = res.data[0]?.chat || [];
+        this.chatResponses = [...chat, ...this.chatResponses];
         this.userImage = res.data[1] || "assets/images/user-icon.png";
       },
       error: (e) => {
@@ -189,8 +193,13 @@ export class ChatPanelComponent {
       },
       complete: () => {
         console.log("Complete fetching chat history");
+
+        if (this.offset === 0) {
+          // Only scroll to bottom if this is the first call
+          this.scrollIntoView();
+        }
+
         this.chatLoading = false;
-        this.scrollIntoView();
       }
     })
   }
@@ -218,5 +227,11 @@ export class ChatPanelComponent {
         })
       }
     });
+  }
+
+  onScrollUp(){
+    console.log("Scroll up!");
+    this.offset = this.offset + 10;
+    this.getChatHistory();
   }
 }

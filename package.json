@@ -27,6 +27,7 @@
     "file-saver": "^2.0.5",
     "jspdf": "^2.5.1",
     "ngx-doc-viewer": "^15.0.1",
+    "ngx-infinite-scroll": "^15.0.0",
     "ngx-markdown": "^15.1.2",
     "ngx-skeleton-loader": "^7.0.0",
     "ngx-spinner": "^15.0.1",

@@ -3,6 +3,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { MarkdownModule } from 'ngx-markdown';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +22,7 @@ import { MaterialModule } from './material/material.module';
     MaterialModule,
     HttpClientModule,
     NgxSkeletonLoaderModule,
+    InfiniteScrollModule,
     MarkdownModule.forRoot()
   ],
   providers: [
