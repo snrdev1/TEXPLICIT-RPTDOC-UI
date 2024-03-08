@@ -30,7 +30,8 @@
 
   <div class="chat-conversation" #chatContainer
     infiniteScroll
-    [infiniteScrollUpDistance]="2.5"
+    [infiniteScrollUpDistance]="2"
+    [infiniteScrollThrottle]="50"
     (scrolledUp)="onScrollUp()"
     [scrollWindow]="false"
   >
