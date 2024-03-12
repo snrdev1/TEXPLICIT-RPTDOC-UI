@@ -100,14 +100,14 @@ export class FileUploadDialogComponent {
         if (fileExtension.toLowerCase() == "pdf" || fileExtension.toLowerCase() == "doc" || fileExtension.toLowerCase() == "docx" || fileExtension.toLowerCase() == "txt" || fileExtension.toLowerCase() == "pptx" || fileExtension.toLowerCase() == "ppt") {
           let file = this.selectedFiles[i];
           if (file.size > 0 && file.size < (50 * 1024 * 1024)) {
-            formData.append('files[]', file);
+            formData.append('files', file);
           } else {
             console.log("File size too large! Max file size supported is 50MB.", "OK", "success");
           }
           if (this.data.path == "") {
             this.data.path = "/";
           }
-          
+
           console.log(this.data.path);
           formData.append("path", this.data.path);
           formData.append("uploadId", this.uploadId);
