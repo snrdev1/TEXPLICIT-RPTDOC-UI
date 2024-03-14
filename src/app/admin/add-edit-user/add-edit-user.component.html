@@ -55,21 +55,7 @@
             </div>
           </mat-step>
           <mat-step>
-            <h3 class="mat-step-header-title">Domain Information</h3>
-            <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
-              <mat-label>Domain(s)</mat-label>
-              <mat-select multiple placeholder="Please Select" placeholder="Select domains ..." formControlName="domains">
-                <mat-option *ngFor="let domain of domains" [value]="domain._id" class="mat-form-input-option">{{ domain?.topic | titlecase }}</mat-option>
-              </mat-select>
-            </mat-form-field>
-  
-            <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
-              <mat-label>Permission(s)</mat-label>
-              <mat-select multiple placeholder="Please Select" placeholder="Select permission ..." formControlName="menu" [(ngModel)]="selectedOption">
-                <mat-option *ngFor="let menu of menus" [value]="menu._id" [disabled]="disabledArray.includes(menu._id)" class="mat-form-input-option">{{ menu?.name }}</mat-option>
-              </mat-select>
-            </mat-form-field>
-  
+            <h3 class="mat-step-header-title">Mode Of Use</h3>
             <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
               <mat-label>Mode of Use</mat-label>
               <mat-select placeholder="Please Select" formControlName="role" (selectionChange)="onModeSelect($event)">
@@ -81,6 +67,54 @@
               <mat-label>Subscriptions</mat-label>
               <input matInput placeholder="No of subscriptions" formControlName="subscription" />
             </mat-form-field>
+  
+            <!-- Add validation for domains, permissions, mode, and subscriptions if needed -->
+  
+            <div class="mat-step-footer">
+              <button mat-raised-button class="secondary" type="button" matStepperPrevious>Back</button>
+              <button mat-raised-button class="primary" matStepperNext>Next</button>
+            </div>
+          </mat-step>
+          
+          <mat-step>
+            <h3 class="mat-step-header-title">Permissions</h3>
+              <div class="mat-form-field-container">
+                  <div class="mat-form-field-column">
+                      <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+                          <mat-label>Start Date</mat-label>
+                          <input matInput [matDatepicker]="picker" formControlName="start_date">
+                          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                          <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+          
+                      <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+                          <mat-label>Document Size (in MB)</mat-label>
+                          <input matInput type="number" placeholder="Enter document size" formControlName="document_size" />
+                      </mat-form-field>
+          
+                      <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+                          <mat-label>Chat Count</mat-label>
+                          <input matInput type="number" placeholder="Enter number of chats" formControlName="chat_count" />
+                      </mat-form-field>
+                  </div>
+          
+                  <div class="mat-form-field-column">
+                      <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+                          <mat-label>End Date</mat-label>
+                          <input matInput [matDatepicker]="picker2" formControlName="end_date">
+                          <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                          <mat-datepicker #picker2></mat-datepicker>
+                      </mat-form-field>
+          
+                      <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+                          <mat-label>Report Count</mat-label>
+                          <input matInput type="number" placeholder="Enter number of reports " formControlName="report_count" />
+                      </mat-form-field>
+                  </div>
+              </div>
+          
+          
+            
   
             <!-- Add validation for domains, permissions, mode, and subscriptions if needed -->
   

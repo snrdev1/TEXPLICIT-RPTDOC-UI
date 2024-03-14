@@ -189,3 +189,13 @@ $font-family-1: "Roboto", sans-serif;
 :host ::ng-deep .mdc-line-ripple::before, .mdc-line-ripple::after {
   border: none;
 }
+
+.chat-error{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
+  font-family: $font-family-1;
+  font-size: 13px;
+  font-weight: 500;
+}

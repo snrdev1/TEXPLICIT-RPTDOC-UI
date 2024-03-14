@@ -6,6 +6,8 @@ import { MatSelectChange } from '@angular/material/select';
 import { CommonService } from 'src/app/shared/services/common.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { AdminServices } from '../admin.service';
+import { MatDatepicker } from '@angular/material/datepicker';
+
 @Component({
   selector: 'app-add-edit-user',
   templateUrl: './add-edit-user.component.html',
@@ -36,14 +38,18 @@ export class AddEditUserComponent {
         Validators.pattern("^[0-9]*$"),
         Validators.minLength(10), Validators.maxLength(10)
       ]),
-      domains: new FormControl("", Validators.required),
-      menu: new FormControl("", Validators.required),
       role: new FormControl(3,Validators.required),
       subscription: new FormControl({ value: 1, disabled: true },Validators.required),
       companyName: new FormControl(""),
-      website:new FormControl("" ,Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?'))
+      website:new FormControl("" ,Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')),
+      start_date: new FormControl(""),
+      end_date: new FormControl(""),
+      report_count: new FormControl(0, Validators.pattern("^[0-9]*$")),
+      document_size: new FormControl(0, Validators.pattern("^[0-9]*$")),
+      chat_count: new FormControl(0, Validators.pattern("^[0-9]*$"))
     });
   }
+
   ngOnInit(){
     // this.getAllDomains();
     this.getMenus();
@@ -55,6 +61,7 @@ export class AddEditUserComponent {
     this.dialogRef.close(false);
   }
   getData(){
+    // console.log("this.data.user", this.data.user);
 
     for(var i of this.data.user?.permissions?.menu){
       if(!this.defaultOptions.includes(i)){
@@ -68,10 +75,14 @@ export class AddEditUserComponent {
       mobileNumber:this.data.user?.mobileNumber ||"",
       companyName:this.data.user?.companyName||"",
       website: this.data.user?.website || "",
-      domains: this.data.user?.domains || [],
       role: this.data.user?.role || 3,
       subscription: this.data.user?.subscription || 1,
-      menu: this.selectedOption || []
+      start_date: this.data.user?.permissions?.subscription_duration?.start_date,
+      end_date: this.data.user?.permissions?.subscription_duration?.end_date,
+      report_count: this.data.user?.permissions?.report?.allowed?.total,
+      document_size: this.data.user?.permissions?.document?.allowed?.document_size / (1024*1024),
+      chat_count: this.data.user?.permissions?.chat?.allowed?.chat_count
+
     })
     if(this.form.controls['email'].value !== ""){
       this.form.get('email')?.disable();

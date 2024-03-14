@@ -18,6 +18,7 @@ import { ApproveKiComponent } from './approve-ki/approve-ki.component';
 })
 export class AdminComponent implements OnInit,AfterViewInit{
   addUserEnable:boolean = true;
+  addUserButtonVisible:boolean = true;
   searchValue:string = "";
   selectedTab:number = 0;
   usertable = new MatTableDataSource();

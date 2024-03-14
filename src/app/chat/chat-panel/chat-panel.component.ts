@@ -42,6 +42,7 @@ export class ChatPanelComponent {
   offset: number = 0;
   @ViewChild('chatContainer', { static: false }) chatContainer!: ElementRef;
   @ViewChild('inputElement', { static: false }) inputElement!: ElementRef;
+  error: boolean = false;
 
   constructor(private commonService: CommonService,
     private chatService: ChatService,
@@ -99,6 +100,7 @@ export class ChatPanelComponent {
       },
       error: (e) => {
         console.log("Error: ", e);
+        this.commonService.showSnackbar('snackbar-error', e.message, e.status);
       },
       complete: () => {
         console.log("Chat listen complete");
@@ -143,15 +145,6 @@ export class ChatPanelComponent {
         }
       ];
 
-      console.log("Chat : ", {
-        "content": this.prompt,
-        "role": "user",
-        "chatType": this.selectedChat,
-        "timestamp": this.formattedTime,
-        "chatId": chatId,
-        "loading": false
-      });
-
       // Append new response dictionary
       this.chatResponses = [
         ...this.chatResponses,
@@ -170,6 +163,9 @@ export class ChatPanelComponent {
         },
         error: (e) => {
           console.log("Error: ", e);
+          this.commonService.showSnackbar('snackbar-error', e.error.message, e.status);
+          this.error = true;
+          this.chatResponses[this.chatResponses.length - 1].loading = false;
         },
         complete: () => {
           console.log("Complete");
@@ -229,7 +225,7 @@ export class ChatPanelComponent {
     });
   }
 
-  onScrollUp(){
+  onScrollUp() {
     console.log("Scroll up!");
     this.offset = this.offset + 10;
     this.getChatHistory();

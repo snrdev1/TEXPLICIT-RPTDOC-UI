@@ -64,13 +64,22 @@
         </div>
         <span class="menu-item-label" routerLinkActive="active-menu-text">Reports</span>
       </li>
-      <li *ngIf="isUserLoggedIn() && checkUserRole()" class="menu-item" routerLink="/user-management"
+      <li *ngIf="isUserLoggedIn() && checkUserProfessional()" class="menu-item" routerLink="/user-management"
         routerLinkActive="menu-item-active">
         <div routerLinkActive="active-menu-item-container">
           <img [src]="'../../assets/svg/side-nav-icon/icon-user-management.svg'" class="menu-icon"
             routerLinkActive="menu-icon-active" />
         </div>
         <span class="menu-item-label" routerLinkActive="active-menu-text">Manage User</span>
+      </li>
+
+      <li *ngIf="isUserLoggedIn() && checkUserAdmin()" class="menu-item" routerLink="/admin"
+      routerLinkActive="menu-item-active">
+        <div routerLinkActive="active-menu-item-container">
+          <img [src]="'../../assets/svg/side-nav-icon/icon-user-management.svg'" class="menu-icon"
+            routerLinkActive="menu-icon-active" />
+        </div>
+        <span class="menu-item-label" routerLinkActive="active-menu-text">Admin</span>
       </li>
 
       <ng-container *ngIf="this.windowWidth < 768">

@@ -43,3 +43,23 @@
         cursor: not-allowed;
     }
 }
+// .mat-form-field-row{
+//     display: flex;
+//     margin-bottom: 30px;
+// }
+// .mat-form-field-row:last-child{
+//     margin-bottom: 0;
+// }
+.mat-form-field-container {
+    display: flex;
+    justify-content:flex-start;
+}
+
+.mat-form-field-column {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-right: 10px; 
+    width:80%;
+}
+

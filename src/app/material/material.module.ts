@@ -94,7 +94,8 @@ import { MatTreeModule } from '@angular/material/tree';
     MatTreeModule,
     PortalModule,
     ScrollingModule,
-    MatFabMenuModule
+    MatFabMenuModule,
+
   ]
 })
 export class MaterialModule { }

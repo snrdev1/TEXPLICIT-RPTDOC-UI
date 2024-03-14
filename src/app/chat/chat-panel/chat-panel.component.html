@@ -47,7 +47,10 @@
 
   <mat-toolbar fxLayout="row" class="chat-composer">
     <form [formGroup]="chatForm">
-      <mat-form-field appearance="outline" class="chat-composer-editor">
+      <div *ngIf="error" class="chat-error">
+        Unable to access chat right now! Please try again later.
+      </div>
+      <mat-form-field appearance="outline" class="chat-composer-editor" *ngIf="!error">
         <input matInput formControlName="prompt" #inputElement />
         <button
           matTooltip="Send message"
