@@ -116,6 +116,7 @@ export class FileUploadDialogComponent {
           this.disableUploadButton = true;
           this.mydocs.uploadFiles(formData).pipe(catchError((error: any): Observable<any> => {
             console.error('Error:', error);
+            this.commonService.showSnackbar('snackbar-error', error.error.message, error.status);
             return throwError('Something went wrong');
           })).subscribe(
             (event: HttpEvent<any>) => {
