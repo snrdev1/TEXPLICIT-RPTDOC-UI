@@ -215,6 +215,7 @@ export class ReportsComponent {
         error: (e) => {
           console.log("Error: ", e);
           this.onProgressStatus = false;
+          this.commonService.showSnackbar("snackbar-error", e.error.message, e.status);
         },
         complete: () => {
           console.log("Report generation in progress");
