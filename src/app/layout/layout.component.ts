@@ -1,5 +1,6 @@
 import { Component, ElementRef, HostListener, Renderer2 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatDrawerMode } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { ElementQueries } from 'css-element-queries';
 import { Observable } from 'rxjs';
@@ -11,7 +12,6 @@ import { CommonService } from '../shared/services/common.service';
 import { WebSocketService } from '../shared/services/socketio.service';
 import { DisclaimerDialogComponent } from './modal-dialog/disclaimer-dialog/disclaimer-dialog.component';
 import { FeedbackDialogComponent } from './modal-dialog/feedback-dialog/feedback-dialog.component';
-import { MatDrawerMode } from '@angular/material/sidenav';
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
@@ -171,8 +171,12 @@ export class LayoutComponent {
     this.dialog.open(DemoRequestDialogComponent, { panelClass: 'mat-dialog-panel' });
   }
 
-  checkUserRole() {
+  checkUserProfessional() {
     return this.userRole === 2;
+  }
+
+  checkUserAdmin(){
+    return this.userRole === 1;
   }
 
   onLoginClick() {
