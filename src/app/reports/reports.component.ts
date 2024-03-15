@@ -8,6 +8,7 @@ import { LocalStorageService } from '../core/local-storage.service';
 import { CommonService } from '../shared/services/common.service';
 import { WebSocketService } from '../shared/services/socketio.service';
 import { AddSubtopicComponent } from './add-subtopic/add-subtopic.component';
+import { AddUrlsComponent } from './add-urls/add-urls.component';
 import { ReportFilterComponent } from './report-filter/report-filter.component';
 import { ReportUpdateComponent } from './report-update/report-update.component';
 import { ReportFailedComponent } from './report-failed/report-failed.component';
@@ -65,7 +66,8 @@ export class ReportsComponent {
       websearch: new FormControl(true),
       subtopics: new FormControl([]),
       report_generation_id: new FormControl(''),
-      start_time: new FormControl('')
+      start_time: new FormControl(''),
+      urls: new FormControl([])
     });
     this.userInfo = this.localStorage.getUserInfo();
   }
@@ -277,6 +279,22 @@ export class ReportsComponent {
 
   showFailedReports() {
     this.dialog.open(ReportFailedComponent, { panelClass: 'mat-report-dialog', data: this.failedReports });
+  }
+
+  getUrls() {
+    let urls: any = this.localStorage.getitem('urls') || [];
+    const dialogRef = this.dialog.open(AddUrlsComponent, { panelClass: 'mat-question-answer-dialog', data: urls });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Dialog result of getUrls: ', result);
+      if (result !== undefined) {
+        this.form.setValue({
+          ...this.form.value,
+          urls: result.rows.map((row: any) => row?.url)
+        });
+        this.localStorage.setitem('urls', result.rows);
+      }
+    });
   }
 
   getSubtopics() {

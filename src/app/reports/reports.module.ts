@@ -13,6 +13,8 @@ import { ReportUpdateComponent } from './report-update/report-update.component';
 import { ReportFailedComponent } from './report-failed/report-failed.component';
 import { ReportsComponent } from './reports.component';
 import { ReportSubtopicsComponent } from './report-subtopics/report-subtopics.component';
+import { AddUrlsComponent } from './add-urls/add-urls.component';
+
 
 const routes: Routes = [
   {
@@ -33,7 +35,8 @@ const routes: Routes = [
     ReportUpdateCardsComponent,
     AddSubtopicComponent,
     ReportFailedComponent,
-    ReportSubtopicsComponent
+    ReportSubtopicsComponent,
+    AddUrlsComponent
   ],
   imports: [
     CommonModule,
