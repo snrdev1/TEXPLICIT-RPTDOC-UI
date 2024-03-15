@@ -1,12 +1,10 @@
-import { getTreeNoValidDataSourceError } from '@angular/cdk/tree';
-import { Component,Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSelectChange } from '@angular/material/select';
 import { CommonService } from 'src/app/shared/services/common.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { AdminServices } from '../admin.service';
-import { MatDatepicker } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-add-edit-user',
@@ -51,7 +49,6 @@ export class AddEditUserComponent {
   }
 
   ngOnInit(){
-    // this.getAllDomains();
     this.getMenus();
     console.log("UserDetals:",this.data.user);
     this.getData();
@@ -61,8 +58,6 @@ export class AddEditUserComponent {
     this.dialogRef.close(false);
   }
   getData(){
-    // console.log("this.data.user", this.data.user);
-
     for(var i of this.data.user?.permissions?.menu){
       if(!this.defaultOptions.includes(i)){
         this.defaultOptions.push(i);
@@ -77,17 +72,18 @@ export class AddEditUserComponent {
       website: this.data.user?.website || "",
       role: this.data.user?.role || 3,
       subscription: this.data.user?.subscription || 1,
-      start_date: this.data.user?.permissions?.subscription_duration?.start_date,
-      end_date: this.data.user?.permissions?.subscription_duration?.end_date,
-      report_count: this.data.user?.permissions?.report?.allowed?.total,
-      document_size: this.data.user?.permissions?.document?.allowed?.document_size / (1024*1024),
-      chat_count: this.data.user?.permissions?.chat?.allowed?.chat_count
+      start_date: this.data.user?.permissions?.subscription_duration?.start_date || "",
+      end_date: this.data.user?.permissions?.subscription_duration?.end_date || "",
+      report_count: this.data.user?.permissions?.report?.allowed?.total || 0,
+      document_size: this.data.user?.permissions?.document?.allowed?.document_size / (1024*1024) || 0,
+      chat_count: this.data.user?.permissions?.chat?.allowed?.chat_count || 0
 
     })
+
     if(this.form.controls['email'].value !== ""){
       this.form.get('email')?.disable();
-      // this.emailDisable = true;
     }
+    
     if(this.form.controls['role'].value ==2){
       this.form.get('subscription')?.enable();
     }
