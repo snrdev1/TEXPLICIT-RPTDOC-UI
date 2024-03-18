@@ -63,7 +63,6 @@ export class ReportsComponent {
       source: new FormControl('external'),
       report_type: new FormControl('', Validators.required),
       format: new FormControl('pdf'),
-      websearch: new FormControl(true),
       subtopics: new FormControl([]),
       report_generation_id: new FormControl(''),
       start_time: new FormControl(''),
