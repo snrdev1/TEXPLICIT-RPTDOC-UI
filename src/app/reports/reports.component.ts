@@ -66,7 +66,8 @@ export class ReportsComponent {
       subtopics: new FormControl([]),
       report_generation_id: new FormControl(''),
       start_time: new FormControl(''),
-      urls: new FormControl([])
+      urls: new FormControl([]),
+      restrict_search: new FormControl(false)
     });
     this.userInfo = this.localStorage.getUserInfo();
   }
@@ -208,6 +209,8 @@ export class ReportsComponent {
           this.form.controls['task'].setValue('');
           this.form.controls['subtopics'].setValue([]);
           this.localStorage.setitem('subtopics', null);
+          this.localStorage.setitem('urls', null);
+          this.localStorage.setitem('restrictSearch', false);
 
           this.searchInput.nativeElement.value = "";
           this.commonService.showSnackbar("snackbar-info", "Report creation takes a few minutes time. Truly appreciate your patience. Thank You!", "0")
@@ -282,16 +285,30 @@ export class ReportsComponent {
 
   getUrls() {
     let urls: any = this.localStorage.getitem('urls') || [];
-    const dialogRef = this.dialog.open(AddUrlsComponent, { panelClass: 'mat-question-answer-dialog', data: urls });
+    let restrictSearch: any = this.localStorage.getitem('restrictSearch') || false;
+    const dialogRef = this.dialog.open(
+      AddUrlsComponent,
+      {
+        panelClass: 'mat-question-answer-dialog',
+        data: {
+          "urls": urls,
+          "restrictSearch": restrictSearch
+        }
+      });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('Dialog result of getUrls: ', result);
       if (result !== undefined) {
         this.form.setValue({
           ...this.form.value,
-          urls: result.rows.map((row: any) => row?.url)
+          urls: result.rows.map((row: any) => row?.url),
+          restrict_search: result?.restrict_search
         });
-        this.localStorage.setitem('urls', result.rows);
+
+        console.log("results : ", result);
+
+        this.localStorage.setitem('urls', result?.rows);
+        this.localStorage.setitem('restrictSearch', result?.restrict_search);
       }
     });
   }

@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -9,17 +9,21 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class AddUrlsComponent {
   form: FormGroup;
+  urls: any[] = [];
 
   constructor(private fb: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public urls: any,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<AddUrlsComponent>) {
     this.form = this.fb.group({
-      rows: this.fb.array([])
+      rows: this.fb.array([]),
+      restrict_search: new FormControl(false)
     });
-
   }
 
   ngOnInit() {
+    this.urls = this.data?.urls;
+    this.form.get("restrict_search")?.patchValue(this.data?.restrictSearch);
+
     if (this.urls !== null && this.urls.length > 0) {
       for (let i = 0; i < this.urls.length; i++) {
         this.addRow(this.urls[i]);
