@@ -19,7 +19,6 @@
   <li class="date" *ngIf="!shared">{{item.createdOn | date : 'MMMM d, yyyy'}}</li>
   <li class="owner" *ngIf="shared">{{item.owner}}</li>
   <li class="type">{{item.type}}</li>
-  <!-- <li class="size">{{item.size}}</li> -->
   <li class="type" *ngIf="item.type == 'File' && isSummarized(item)">Completed</li>
   <li class="type" *ngIf="item.type == 'File' && !isSummarized(item)">In Progress</li>
 </ul>

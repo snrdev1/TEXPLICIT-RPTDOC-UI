@@ -2,7 +2,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  form {
+    width: 100%;
+  }
 }
+
 .icon-delete {
   position: absolute;
   bottom: 16px;
@@ -91,8 +96,12 @@
   }
 }
 
+.urlContainer {
+  width: 100%;
+}
+
 :host ::ng-deep .search-wrapper {
-  width: 210px;
+  width: 100%;
   background: #fff;
   display: flex;
   align-items: center;

@@ -10,7 +10,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class AddSubtopicComponent {
 
   form: FormGroup;
-  constructor(private fb: FormBuilder, 
+  constructor(private fb: FormBuilder,
               @Inject(MAT_DIALOG_DATA) public subtopics: any,
               public dialogRef: MatDialogRef<AddSubtopicComponent>) {
     this.form = this.fb.group({
@@ -19,7 +19,7 @@ export class AddSubtopicComponent {
 
   }
 
-  
+
   ngOnInit() {
     if (this.subtopics !== null && this.subtopics.length>0) {
       for (let i = 0; i < this.subtopics.length; i++) {
@@ -30,7 +30,7 @@ export class AddSubtopicComponent {
     }
   }
 
-  
+
   get rows() {
     return this.form.get('rows') as FormArray;
   }
@@ -38,34 +38,21 @@ export class AddSubtopicComponent {
   createRow(initialValues:any): FormGroup {
       return this.fb.group({
         task: [initialValues?.task || '' , Validators.required],
-        source: [initialValues?.source || 'external' , Validators.required],
-        // websearch: [{value:initialValues?.websearch || false,disabled:initialValues?.source=='my_documents'}]
-        websearch: [true]
-      
+        source: [initialValues?.source || 'external' , Validators.required]
       });
-    }   
-  
-  
+    }
+
+
 
   addRow(initialValues={}) {
     const newRow = this.createRow(initialValues);
     this.rows.push(newRow);
   }
-  
+
   get getRows() {
     return this.form.controls["rows"] as FormArray;
   }
 
-  onSourceChange(i:any)
-  { 
-    const selectedRow=this.getRows.controls[i];
-    if(selectedRow.get('source')?.value=='my_documents'){
-      selectedRow.get('websearch')?.disable();
-    }
-    else{
-      selectedRow.get('websearch')?.enable();
-    }
-  }
   removeRow(index:number){
     this.rows.removeAt(index);
   }
@@ -76,5 +63,5 @@ export class AddSubtopicComponent {
 
   onCloseClick() {
     this.dialogRef.close(this.form.value);
-  } 
+  }
 }
