@@ -1,13 +1,13 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { saveAs } from 'file-saver';
-import { CommonService } from 'src/app/shared/services/common.service';
 import { ReportsService } from 'src/app/services/reports.service';
+import { CommonService } from 'src/app/shared/services/common.service';
 // import * as jsPDF from 'jspdf';
 // import * as html2pdf from 'html2pdf.js';
 import { Observable } from 'rxjs';
-import { ReportSubtopicsComponent } from '../report-subtopics/report-subtopics.component';
 import { FileFolderShareDialogComponent } from 'src/app/my-documents/modal-dialog/file-folder-share-dialog/file-folder-share-dialog.component';
+import { ReportSubtopicsComponent } from '../report-subtopics/report-subtopics.component';
 
 
 @Component({
@@ -178,7 +178,41 @@ export class ReportCardsComponent {
     // }
   }
 
-  onReportShareClick(reportId: string){
-    const dialogRef = this.dialog.open(FileFolderShareDialogComponent, { panelClass: 'mat-dialog-panel', data: { "reportIds": [reportId], "shareDocumentType": "report", "internalShare": false  } });
+  onReportShareClick(reportId: string) {
+    const dialogRef = this.dialog.open(FileFolderShareDialogComponent, { panelClass: 'mat-dialog-panel', data: { "reportIds": [reportId], "shareDocumentType": "report", "internalShare": false } });
+  }
+
+  onDownloadDataTablesClick(report: any) {
+
+    // File naming convention: <Report Type> - <Report Name_timestamp>.docx or .pdf
+    const downloadName = `${report.report_type.toUpperCase()}-${report.task}_${new Date().toISOString()}_data_table`;
+
+    // Determine the file type based on the report format
+    const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+
+    this.reportService.downloadReportDataTable(report?._id).subscribe({
+      next: (res) => {
+        // Create a Blob from the response
+        const blob = new Blob([res], { type: fileType });
+
+        // Determine the file extension based on the report format
+        const fileExtension = 'xlsx';
+
+        // Save the Blob as a file using the file-saver library
+        saveAs(blob, `${downloadName}.${fileExtension}`);
+
+        // Log download completion message
+        console.log(`${fileExtension.toUpperCase()} download complete`);
+      },
+      error: (e) => {
+        // Log and display an error message
+        console.error("Error", e);
+        this.commonService.showSnackbar("snackbar-error", e.message, e.status);
+      },
+      complete: () => {
+        // Log completion message
+        console.log("Report download complete");
+      }
+    });
   }
 }
