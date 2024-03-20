@@ -42,8 +42,7 @@ export class ReportCardsComponent {
     this.reportType = this.report.report_type == "research_report" ? "Summary Report" :
       this.report.report_type == "outline_report" ? "Outline Report" :
         this.report.report_type == "resource_report" ? "Resource Report" :
-          this.report.report_type == "detailed_report" ? "Detailed Report" :
-            this.report.report_type == "complete_report" ? "Combined Report" : "Unknown type";
+          this.report.report_type == "detailed_report" ? "Detailed Report" : "Unknown type";
 
     // remove later
     if (this.report.format == undefined) {

@@ -99,9 +99,6 @@
                         <mat-option value="detailed_report"
                           >Detailed Report</mat-option
                         >
-                        <mat-option value="complete_report"
-                          >Combined Report</mat-option
-                        >
                       </mat-select>
                     </mat-form-field>
                   </div>
@@ -131,8 +128,7 @@
             mat-raised-button
             type="button"
             *ngIf="
-              form.get('report_type')?.value === 'detailed_report' ||
-              form.get('report_type')?.value === 'complete_report'
+              form.get('report_type')?.value === 'detailed_report'
             "
             class="btn-subtopics"
             (click)="getSubtopics()"
