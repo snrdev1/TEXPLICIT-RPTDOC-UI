@@ -110,33 +110,23 @@
         <!-- Second Row -->
         <div fxLayout="row" class="second-row">
           <button
-          mat-raised-button
-          type="button"
-          *ngIf="
-            form.get('source')?.value === 'external'
-          "
-          class="btn-subtopics"
-          (click)="getUrls()"
-        >
-          <div class="btn-subtopic">
-            URLs
-            <img src="../../assets/svg/button-icon/add.svg" />
-          </div>
-        </button>
+            mat-raised-button
+            type="button"
+            *ngIf="form.get('source')?.value === 'external'"
+            class="btn-subtopics"
+            (click)="getUrls()"
+          >
+            <div class="btn-subtopic">URLs</div>
+          </button>
 
           <button
             mat-raised-button
             type="button"
-            *ngIf="
-              form.get('report_type')?.value === 'detailed_report'
-            "
+            *ngIf="form.get('report_type')?.value === 'detailed_report'"
             class="btn-subtopics"
             (click)="getSubtopics()"
           >
-            <div class="btn-subtopic">
-              Subtopics
-              <img src="../../assets/svg/button-icon/add.svg" />
-            </div>
+            <div class="btn-subtopic">Subtopics</div>
           </button>
 
           <button
