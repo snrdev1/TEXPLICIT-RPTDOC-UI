@@ -198,3 +198,56 @@
   background: #fff !important;
   color: #4d5e92 !important;
 }
+
+:host
+  ::ng-deep
+  .mat-mdc-checkbox
+  .mdc-checkbox
+  .mdc-checkbox__native-control:enabled:checked
+  ~ .mdc-checkbox__background {
+  background-color: #4d5e92;
+  border: #4d5e92;
+}
+
+:host
+  ::ng-deep
+  .mat-mdc-checkbox
+  .mdc-checkbox
+  .mdc-checkbox__native-control:enabled
+  ~ .mdc-checkbox__background
+  .mdc-checkbox__checkmark {
+  color: white;
+}
+
+:host
+  ::ng-deep
+  .mat-mdc-checkbox
+  .mdc-checkbox:hover
+  .mdc-checkbox__native-control:enabled:checked
+  ~ .mdc-checkbox__background {
+  background-color: #4d5e92;
+  border: #4d5e92;
+}
+
+:host
+  ::ng-deep
+  .mat-mdc-checkbox
+  .mdc-checkbox:not(:disabled):active
+  .mdc-checkbox__native-control:enabled:checked
+  ~ .mdc-checkbox__background {
+  background-color: #4d5e92;
+  border: #4d5e92;
+}
+
+.report-search-type {
+  display: flex;
+  justify-content: center;
+
+  .report-search-type-checkbox {
+    color: #040f2f;
+    font-family: "Roboto", sans-serif;
+    //font-size: 14px;
+    font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
+    font-weight: 500;
+  }
+}

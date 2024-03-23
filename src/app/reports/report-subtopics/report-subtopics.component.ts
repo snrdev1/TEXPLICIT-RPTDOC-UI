@@ -35,9 +35,6 @@ export class ReportSubtopicsComponent {
       case 'detailed_report':
         this.reportType = 'Detailed Report';
         break;
-      case 'complete_report':
-        this.reportType = 'Combined Report';
-        break;
       default:
         this.reportType = 'Unknown type';
     }

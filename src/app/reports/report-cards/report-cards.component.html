@@ -45,4 +45,9 @@
     <mat-icon>share_alt</mat-icon>
     <span>Share</span>
   </button>
+
+  <button *ngIf="report?.table_path" mat-menu-item (click)="onDownloadDataTablesClick(report)">
+    <mat-icon>cloud_download</mat-icon>
+    <span>Data Tables</span>
+  </button>
 </mat-menu>

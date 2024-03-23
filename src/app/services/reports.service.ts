@@ -39,8 +39,13 @@ export class ReportsService {
   }
 
 
-  downloadReportsDoc(virtualFileName: string): Observable<Blob> {
-    const url = `${environment.hostName}/report/download/${virtualFileName}`;
+  downloadReportsDoc(reportId: string): Observable<Blob> {
+    const url = `${environment.hostName}/report/download/${reportId}`;
+    return this.http.get(url, { responseType: 'blob' });
+  }
+
+  downloadReportDataTable(reportId: string): Observable<Blob> {
+    const url = `${environment.hostName}/report/download/data-table/${reportId}`;
     return this.http.get(url, { responseType: 'blob' });
   }
 
