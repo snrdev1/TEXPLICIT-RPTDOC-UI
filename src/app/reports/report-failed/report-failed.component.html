@@ -23,7 +23,17 @@
       <!-- Table Body -->
       <tbody>
         <ng-container *ngFor="let report of reports">
-          <app-report-update-cards [report]="report" [displayStyle]="displayStyle" [status]="'Failed'"></app-report-update-cards>
+          <tr class="file-row">
+            <td class="report-topic">
+              {{ report.task }}
+            </td>
+            <td class="report-time">
+              {{ report.createdOn | date : "h:mm a" }}
+            </td>
+            <td class="report-status">
+              Failed
+            </td>
+          </tr>
         </ng-container>
       </tbody>
     </table>

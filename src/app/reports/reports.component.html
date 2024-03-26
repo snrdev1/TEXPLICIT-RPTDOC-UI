@@ -90,9 +90,6 @@
                         placeholder="Select report type"
                         formControlName="report_type"
                       >
-                        <!-- <mat-option value="outline_report"
-                          >Outline Report</mat-option
-                        > -->
                         <mat-option value="research_report"
                           >Summary Report</mat-option
                         >
@@ -143,7 +140,7 @@
               [reportsInProgressCount]="pendingReports.length"
               [reportProgressButtonVisible]="true"
               [failedReportsCount]="failedReports.length"
-              [failedReportsButtonVisible]="false"
+              [failedReportsButtonVisible]="true"
               (onReportProgress)="showLoadingReports()"
               (onReportFailed)="showFailedReports()"
             >
