@@ -127,10 +127,10 @@ export class ReportsComponent {
     this.socketService.listen(this.reportPendingEvent).subscribe({
       next: (res) => {
         if (res.success) {
-          console.log("Received new pending report : ", res?.data);
           // Append received report as latest report to be pending
 
           this.pendingReports = [res.data, ...this.pendingReports];
+          this.showLoadingReports();
         }
       },
       error: (e) => {
@@ -138,7 +138,7 @@ export class ReportsComponent {
         this.commonService.showSnackbar('snackbar-error', e.message, e.status);
       },
       complete: () => {
-        console.log("Completed listenting. Pending report received");
+        console.log("Completed listening. Pending report received");
       }
     })
   }
@@ -210,7 +210,6 @@ export class ReportsComponent {
           this.localStorage.setitem('restrictSearch', false);
           this.searchInput.nativeElement.value = "";
           this.commonService.showSnackbar("snackbar-info", "Report generation started...!", "0");
-          this.showLoadingReports();
         },
         error: (e) => {
           console.log("Error: ", e);
