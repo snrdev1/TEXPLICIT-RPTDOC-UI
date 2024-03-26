@@ -42,4 +42,11 @@ export class ReportUpdateCardsComponent {
       }
     })
   }
+
+  getReportType(reportType: string){
+    const words: string[] = reportType.split('_');
+    const formattedReportType: string = words.map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+
+    return formattedReportType;
+  }
 }

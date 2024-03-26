@@ -1,38 +1,11 @@
-.file-row {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  font-family: "Roboto", sans-serif;
-  font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
-  display: flex;
-  margin-bottom: 0.5rem;
-  border-bottom: 0.5px solid rgba(146, 149, 159, 0.55);
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+:host {
+  width: 100%;
+}
 
-  td {
-    display: flex;
-    align-items: center;
-    padding: 0 1%;
-  }
-
-  .report-topic {
-    width: 40%;
-  }
-
-  .report-time {
-    width: 20%;
-
-    @media (max-width: 1199.98px) {
-      display: none !important;
-    }
-  }
-
-  .report-status {
-    width: 40%;
-
-    @media (max-width: 1199.98px) {
-      width: 60%;
-    }
+.main-body {
+  .report-basic-info {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 }
