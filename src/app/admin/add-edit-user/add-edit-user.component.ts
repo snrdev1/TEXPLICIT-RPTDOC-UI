@@ -63,8 +63,8 @@ export class AddEditUserComponent {
       website: this.data.user?.website || "",
       role: this.data.user?.role || 3,
       subscription: this.data.user?.subscription || 1,
-      start_date: this.data.user?.permissions?.subscription_duration?.start_date?.$date,
-      end_date: this.data.user?.permissions?.subscription_duration?.end_date.$date,
+      start_date: this.data.user?.permissions?.subscription_duration?.start_date,
+      end_date: this.data.user?.permissions?.subscription_duration?.end_date,
       report_count: this.data.user?.permissions?.report?.allowed?.total,
       document_size: this.data.user?.permissions?.document?.allowed?.document_size / (1024 * 1024),
       chat_count: this.data.user?.permissions?.chat?.allowed?.chat_count

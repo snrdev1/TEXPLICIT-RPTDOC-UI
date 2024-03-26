@@ -17,10 +17,8 @@ import { CommonSnackbarComponent } from '../components/snackbar/common-snackbar/
 export class CommonService {
   private _newsOpen: boolean = false;
   private _chatOpen: boolean = false;
-  // private _noteOpen:boolean=false;
-  // private _groupAndMemberOpen:boolean=false;
-  // private _workspaceOpen:boolean=false;
   public userMenu: any = [];
+
   constructor(private snackbar: MatSnackBar, private http: HttpClient, public dialog: MatDialog,
     private router: Router, private authService: AuthService,
     private localStorage: LocalStorageService) {
@@ -51,33 +49,7 @@ export class CommonService {
     return combinedID;
   }
 
-  // get groupAndMemberOpen(): boolean {
-  //   return this._groupAndMemberOpen;
-  // }
-
-  // @Input() set groupAndMemberOpen(value: boolean) {
-  //   this._groupAndMemberOpen = value;
-  // }
-
-  // get noteOpen(): boolean {
-  //   return this._noteOpen;
-  // }
-
-  // @Input() set noteOpen(value: boolean) {
-  //   this._noteOpen = value;
-  // }
-
-  // get workspaceOpen(): boolean {
-  //   return this._workspaceOpen;
-  // }
-
-  // @Input() set workspaceOpen(value: boolean) {
-  //   this._workspaceOpen = value;
-  // }
-
   closeAll() {
-    // this.workspaceOpen = false;
-    // this.noteOpen = false;
     this.newsOpen = false;
     this.chatOpen = false;
   }
@@ -90,7 +62,7 @@ export class CommonService {
         errorCode: errorCode,
         messageText: messageText
       },
-      duration: 3000
+      duration: 5000
     });
   }
   getAllUsers(): Observable<any> {

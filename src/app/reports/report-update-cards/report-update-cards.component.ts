@@ -13,14 +13,15 @@ export class ReportUpdateCardsComponent {
   @Input() message: any = [];
   @Input() progressValue: any = 54;
   @Input() status: string = 'Processing...';
-  reportStatus: string = "";
   statusSocket: string = '';
   userInfo: any = [];
   userId: string = '';
+
   constructor(
     private socketService: WebSocketService,
     private localStorage: LocalStorageService
   ) { }
+
   ngOnInit() {
     this.userInfo = this.localStorage.getUserInfo();
     this.userId = this.userInfo._id;
@@ -40,5 +41,12 @@ export class ReportUpdateCardsComponent {
         console.log("Error:", e);
       }
     })
+  }
+
+  getReportType(reportType: string){
+    const words: string[] = reportType.split('_');
+    const formattedReportType: string = words.map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+
+    return formattedReportType;
   }
 }

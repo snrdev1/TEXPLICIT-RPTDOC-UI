@@ -26,7 +26,7 @@ export class ReportsService {
   }
 
 
-  getAllreports(limit: number, offset: number, source: string, format: string, report_type: string): Observable<any> {
+  getAllReports(limit: number, offset: number, source: string, format: string, report_type: string): Observable<any> {
     const url = `${environment.hostName}/report/all`;
     const params = {
       "limit": limit,
