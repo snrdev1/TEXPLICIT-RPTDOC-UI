@@ -33,7 +33,6 @@ export class ReportsComponent {
   topic: any = "";
   sortBy: string = "task";
   sortDirection: string = "asc;"
-  onProgressStatus: boolean = false;
   reportGenerationData: any[] = [];
   offset: number = 0;
   limit: number = 20;
@@ -149,7 +148,6 @@ export class ReportsComponent {
     this.reportsService.getAllreports(this.limit, this.offset, this.filteredSource, this.filteredFormat, this.filteredReportType).subscribe({
       next: (res) => {
         this.isLoading = false;
-
         console.log("All reports : ", res?.data);
         this.allReports = [...this.allReports, ...res?.data];
         console.log("Res in getAllReports", this.allReports);
@@ -201,7 +199,6 @@ export class ReportsComponent {
         report_generation_id: combinedID,
         start_time: timestamp
       });
-      console.log(this.form.value);
 
       this.reportsService.generateReport(this.form.value).subscribe({
         next: (res) => {
@@ -211,14 +208,12 @@ export class ReportsComponent {
           this.localStorage.setitem('subtopics', null);
           this.localStorage.setitem('urls', null);
           this.localStorage.setitem('restrictSearch', false);
-
           this.searchInput.nativeElement.value = "";
-          this.commonService.showSnackbar("snackbar-info", "Report creation takes a few minutes time. Truly appreciate your patience. Thank You!", "0")
-          this.onProgressStatus = true;
+          this.commonService.showSnackbar("snackbar-info", "Report generation started...!", "0");
+          this.showLoadingReports();
         },
         error: (e) => {
           console.log("Error: ", e);
-          this.onProgressStatus = false;
           this.commonService.showSnackbar("snackbar-error", e.error.message, e.status);
         },
         complete: () => {
