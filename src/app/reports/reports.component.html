@@ -27,7 +27,7 @@
                   >
                     <input
                       matInput
-                      #searchinput
+                      #searchInput
                       placeholder="Enter report topic here..."
                       formControlName="task"
                       required
@@ -130,7 +130,7 @@
             mat-raised-button
             class="btn-report"
             type="submit"
-            [disabled]="!form.valid"
+            [disabled]="!form.valid || reportGenerationStarted"
           >
             Generate
           </button>

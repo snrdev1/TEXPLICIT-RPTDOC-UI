@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
+import { ReportsService } from 'src/app/services/reports.service';
 import { v4 as uuidv4 } from 'uuid';
 import { AuthService } from '../core/auth.service';
 import { LocalStorageService } from '../core/local-storage.service';
@@ -9,10 +10,9 @@ import { CommonService } from '../shared/services/common.service';
 import { WebSocketService } from '../shared/services/socketio.service';
 import { AddSubtopicComponent } from './add-subtopic/add-subtopic.component';
 import { AddUrlsComponent } from './add-urls/add-urls.component';
+import { ReportFailedComponent } from './report-failed/report-failed.component';
 import { ReportFilterComponent } from './report-filter/report-filter.component';
 import { ReportUpdateComponent } from './report-update/report-update.component';
-import { ReportFailedComponent } from './report-failed/report-failed.component';
-import { ReportsService } from 'src/app/services/reports.service';
 
 @Component({
   selector: 'app-reports',
@@ -33,7 +33,7 @@ export class ReportsComponent {
   topic: any = "";
   sortBy: string = "task";
   sortDirection: string = "asc;"
-  reportGenerationData: any[] = [];
+  reportGenerationStartedData: any[] = [];
   offset: number = 0;
   limit: number = 20;
   userInfo: any = [];
@@ -43,10 +43,14 @@ export class ReportsComponent {
   pendingReports: any = [];
   allReports: any = [];
   failedReports: any = [];
+
+  // To keep track of whether report generation has been started
+  reportGenerationStarted: boolean = false;
+
   fileBlob: Blob | null = null;
   audioPlayerVisible: boolean = false;
   @ViewChild('audioPlayer') audioPlayer!: ElementRef;
-  @ViewChild('searchinput') searchInput!: ElementRef;
+  @ViewChild('searchInput') searchInput!: ElementRef;
   userInfo$: Observable<any> = this.localStorage.userInfo$;
 
   constructor(
@@ -118,7 +122,7 @@ export class ReportsComponent {
         this.commonService.showSnackbar('snackbar-error', e.message, e.status);
       },
       complete: () => {
-        console.log("Completed listenting. Report generated ");
+        console.log("Completed listening. Report generated ");
       }
     })
   }
@@ -128,7 +132,6 @@ export class ReportsComponent {
       next: (res) => {
         if (res.success) {
           // Append received report as latest report to be pending
-
           this.pendingReports = [res.data, ...this.pendingReports];
           this.showLoadingReports();
         }
@@ -145,7 +148,7 @@ export class ReportsComponent {
 
   getAllReports() {
     console.log("getAllReports called");
-    this.reportsService.getAllreports(this.limit, this.offset, this.filteredSource, this.filteredFormat, this.filteredReportType).subscribe({
+    this.reportsService.getAllReports(this.limit, this.offset, this.filteredSource, this.filteredFormat, this.filteredReportType).subscribe({
       next: (res) => {
         this.isLoading = false;
         console.log("All reports : ", res?.data);
@@ -179,8 +182,6 @@ export class ReportsComponent {
   }
 
   appendNewReport(report: any) {
-    // Convert datetime for report to user's local timezone
-
     // Update allReports array
     this.allReports = [report, ...this.allReports];
 
@@ -191,6 +192,10 @@ export class ReportsComponent {
 
   onSubmit() {
     if (!this.form.invalid) {
+
+      // Record that current report generation has started
+      this.reportGenerationStarted = true;
+
       const uniqueID: any = uuidv4();
 
       const timestamp: any = new Date().toLocaleTimeString();
@@ -210,10 +215,16 @@ export class ReportsComponent {
           this.localStorage.setitem('restrictSearch', false);
           this.searchInput.nativeElement.value = "";
           this.commonService.showSnackbar("snackbar-info", "Report generation started...!", "0");
+
+          // Report generation has started a new report can now be generated
+          this.reportGenerationStarted = false;
         },
         error: (e) => {
           console.log("Error: ", e);
           this.commonService.showSnackbar("snackbar-error", e.error.message, e.status);
+
+          // Report generation has started a new report can now be generated
+          this.reportGenerationStarted = false;
         },
         complete: () => {
           console.log("Report generation in progress");
@@ -223,10 +234,6 @@ export class ReportsComponent {
   }
 
   onScroll(event: any) {
-    // console.log('offsetHeight: ', event.target.offsetHeight)
-    // console.log('scrollHeight: ', event.target.scrollHeight);
-    // console.log('scrollTop: ', event.target.scrollTop);
-    // console.log("Difference:", (event.target.scrollHeight - event.target.offsetHeight));
     if (Math.round(event.target.scrollTop) >= (event.target.scrollHeight - event.target.offsetHeight - 1)) {
       this.offset = this.offset + this.limit;
       this.limit = 10;
