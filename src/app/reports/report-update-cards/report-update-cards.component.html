@@ -3,20 +3,26 @@
     <mat-panel-title>
       {{ report.task }}
     </mat-panel-title>
-    <mat-panel-description>
-      {{ status }}
-    </mat-panel-description>
   </mat-expansion-panel-header>
 
   <div class="main-body">
-    <h2>Topic : {{ report?.task }}</h2>
-    <div class="report-basic-info">
-      <p><strong>Created On:</strong> {{ report?.createdOn | date }}</p>
-      <p><strong>Format:</strong> {{ report?.format | titlecase }}</p>
-      <p><strong>Report Type:</strong> {{ getReportType(report?.report_type) }}</p>
-      <p><strong>Source:</strong> {{ report?.source | titlecase }}</p>  
+    <h3 class="topic">Topic : {{ report?.task }}</h3>
+
+    <div class="status">
+      <strong>Current Status :</strong> {{ status }}
     </div>
-    
+
+    <div class="report-basic-info">
+      <p>
+        <strong>Started On:</strong> {{ report?.createdOn | date : "short" }}
+      </p>
+      <p><strong>Format:</strong> {{ report?.format | titlecase }}</p>
+      <p>
+        <strong>Report Type:</strong> {{ getReportType(report?.report_type) }}
+      </p>
+      <p><strong>Source:</strong> {{ report?.source | titlecase }}</p>
+    </div>
+
     <div *ngIf="report?.subtopics.length > 0" class="subtopics">
       <strong>Subtopics:</strong>
       <ul>
@@ -27,5 +33,4 @@
       </ul>
     </div>
   </div>
-
 </mat-expansion-panel>

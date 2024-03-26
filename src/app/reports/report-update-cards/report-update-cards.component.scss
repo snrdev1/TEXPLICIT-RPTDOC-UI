@@ -3,6 +3,14 @@
 }
 
 .main-body {
+  .topic {
+    margin-top: 0;
+  }
+
+  .status {
+    margin-bottom: 1rem;
+  }
+
   .report-basic-info {
     display: grid;
     grid-template-rows: 1fr 1fr;
