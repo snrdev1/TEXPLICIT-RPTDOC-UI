@@ -139,7 +139,7 @@
             <app-outer-toolbar-buttons
               [reportsInProgressCount]="pendingReports.length"
               [reportProgressButtonVisible]="true"
-              [failedReportsCount]="failedReports.length"
+              [failedReportsCount]="failedReportsCount"
               [failedReportsButtonVisible]="true"
               (onReportProgress)="showLoadingReports()"
               (onReportFailed)="showFailedReports()"

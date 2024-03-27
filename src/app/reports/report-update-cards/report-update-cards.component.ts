@@ -12,7 +12,7 @@ export class ReportUpdateCardsComponent {
   @Input() message: any = [];
   @Input() status: string = 'Processing...';
   @Output() deleteReport = new EventEmitter<any>();
-  @Output() onReportRetry = new EventEmitter<any>();
+  @Output() retryReport = new EventEmitter<any>();
   statusSocket: string = '';
   userInfo: any = [];
   userId: string = '';
@@ -53,7 +53,7 @@ export class ReportUpdateCardsComponent {
   }
 
   onRetryClick(){
-    this.onReportRetry.emit(this.report);
+    this.retryReport.emit(this.report);
   }
 
   onDeleteClick(){

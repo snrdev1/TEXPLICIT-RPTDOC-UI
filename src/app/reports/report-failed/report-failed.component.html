@@ -1,22 +1,23 @@
-<app-dialog-base
-  [modalTitle]="'Failed Report(s)'"
-  (onClose)="onCloseClick()"
->
+<app-dialog-base [modalTitle]="'Failed Report(s)'" (onClose)="onCloseClick()">
   <div content class="main-body">
-
-    <div class="no-search-results" *ngIf="reports?.length === 0">
+    <div class="no-search-results" *ngIf="reports?.length === 0 && !isLoading">
       No failed reports!
     </div>
 
     <div class="reports-in-progress">
-      <app-report-update-cards
-        [report]="report"
-        [status]="'FAILED'"
-        (deleteReport)="onDeleteClick($event)"
-        (retryReport)="onReportRetry($event)"
-        *ngFor="let report of reports"
-      ></app-report-update-cards>
-    </div>
+      <div class="reports-loader" *ngIf="isLoading">
+        <mat-spinner [diameter]="30"></mat-spinner>
+      </div>
 
+      <ng-container *ngIf="!isLoading">
+        <app-report-update-cards
+          [report]="report"
+          [status]="'FAILED'"
+          (deleteReport)="onDeleteClick($event)"
+          (retryReport)="onReportRetry($event)"
+          *ngFor="let report of reports"
+        ></app-report-update-cards>
+      </ng-container>
+    </div>
   </div>
 </app-dialog-base>

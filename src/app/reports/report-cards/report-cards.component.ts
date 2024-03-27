@@ -1,12 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { saveAs } from 'file-saver';
-import { ReportsService } from 'src/app/services/reports.service';
-import { CommonService } from 'src/app/shared/services/common.service';
-// import * as jsPDF from 'jspdf';
-// import * as html2pdf from 'html2pdf.js';
 import { Observable } from 'rxjs';
 import { FileFolderShareDialogComponent } from 'src/app/my-documents/modal-dialog/file-folder-share-dialog/file-folder-share-dialog.component';
+import { ReportsService } from 'src/app/services/reports.service';
+import { CommonService } from 'src/app/shared/services/common.service';
 import { ReportSubtopicsComponent } from '../report-subtopics/report-subtopics.component';
 
 

@@ -1,5 +1,5 @@
-import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Component } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { ReportsService } from 'src/app/services/reports.service';
 import { CommonService } from 'src/app/shared/services/common.service';
 
@@ -10,20 +10,36 @@ import { CommonService } from 'src/app/shared/services/common.service';
 })
 export class ReportFailedComponent {
   reports: any = [];
+  isLoading: boolean = true;
 
   constructor(
     public dialogRef: MatDialogRef<ReportFailedComponent>,
     private reportsService: ReportsService,
-    private commonService: CommonService,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    private commonService: CommonService
   ) { }
 
   ngOnInit() {
-    this.reports = this.data;
+    this.getFailedReports();
   }
 
   onCloseClick() {
     this.dialogRef.close(true);
+  }
+
+  getFailedReports() {
+    this.reportsService.getAllFailedReports().subscribe({
+      next: (res) => {
+        console.log("All failed reports : ", res?.data);
+        this.reports = res?.data;
+      },
+      error: (e) => {
+        console.log("Error", e);
+      },
+      complete: () => {
+        console.log("Completed fetching failed reports");
+        this.isLoading = false;
+      }
+    });
   }
 
   deleteAllFailedReports() {
@@ -40,10 +56,10 @@ export class ReportFailedComponent {
     });
   }
 
-  onDeleteClick(reportId: any){
+  onDeleteClick(reportId: string) {
     this.reportsService.deleteReports([reportId]).subscribe({
       next: (res) => {
-        this.commonService.showSnackbar("snackbar-success", res.message, res.status);
+        console.log("Successfully deleted report : ", res);
       },
       error: (e) => {
         console.log("Error", e);
@@ -56,47 +72,34 @@ export class ReportFailedComponent {
   }
 
   onReportRetry(report: any) {
+    const reportArgs = {
+      start_time: new Date().toLocaleTimeString(),
+      createdBy: report?.createdBy,
+      format: report?.format,
+      report_generation_id: report?.report_generation_id,
+      report_type: report?.report_type,
+      restrict_search: report?.restrict_search,
+      source: report?.source,
+      subtopics: report?.subtopics,
+      task: report?.task,
+      urls: report?.urls
+    };
 
-    console.log("report : ", report);
+    // First delete the existing report
+    this.onDeleteClick(report?._id);
 
-    // if (!this.form.invalid) {
-
-    //   // Record that current report generation has started
-    //   this.reportGenerationStarted = true;
-
-    //   const uniqueID: any = uuidv4();
-
-    //   const timestamp: any = new Date().toLocaleTimeString();
-    //   const combinedID: any = `${uniqueID}-${timestamp}`;
-    //   this.form.patchValue({
-    //     report_generation_id: combinedID,
-    //     start_time: timestamp
-    //   });
-
-    //   this.reportsService.generateReport(this.form.value).subscribe({
-    //     next: (res) => {
-    //       console.log("On submitting topic: ", res);
-    //       this.form.controls['task'].setValue('');
-    //       this.form.controls['subtopics'].setValue([]);
-    //       this.localStorage.setitem('subtopics', null);
-    //       this.localStorage.setitem('urls', null);
-    //       this.localStorage.setitem('restrictSearch', false);
-    //       this.searchInput.nativeElement.value = "";
-    //       this.commonService.showSnackbar("snackbar-info", "Report generation started...!", "0");
-
-    //       // Report generation has started a new report can now be generated
-    //       this.reportGenerationStarted = false;
-    //     },
-    //     error: (e) => {
-    //       console.log("Error: ", e);
-    //       this.commonService.showSnackbar("snackbar-error", e.error.message, e.status);
-
-    //       // Report generation has started a new report can now be generated
-    //       this.reportGenerationStarted = false;
-    //     },
-    //     complete: () => {
-    //       console.log("Report generation in progress");
-    //     }
-    //   })
-    }
+    // Generate the report again
+    this.reportsService.generateReport(reportArgs).subscribe({
+      next: (res) => {
+        this.commonService.showSnackbar("snackbar-info", "Report generation started...!", "0");
+      },
+      error: (e) => {
+        console.log("Error: ", e);
+        this.commonService.showSnackbar("snackbar-error", e.error.message, e.status);
+      },
+      complete: () => {
+        console.log("Report generation in progress");
+      }
+    });
+  }
 }

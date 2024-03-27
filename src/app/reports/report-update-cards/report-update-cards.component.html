@@ -21,7 +21,7 @@
 
     <div class="status">
       <strong>Current Status : </strong>
-      <span *ngIf="status === 'FAILED'" [ngClass]="'critical'">
+      <span [ngClass]="{'critical': status === 'FAILED'}">
         {{ status }}
       </span>
     </div>

@@ -22,7 +22,6 @@ import { ReportUpdateComponent } from './report-update/report-update.component';
 })
 export class ReportsComponent {
   form: FormGroup;
-  sourceSelection: number = 1;
   filteredSource: string = "";
   filteredFormat: string = "";
   filteredReportType: string = "";
@@ -42,7 +41,9 @@ export class ReportsComponent {
   isDismissed: boolean = false;
   pendingReports: any = [];
   allReports: any = [];
-  failedReports: any = [];
+  
+  // To store the number of failed reports
+  failedReportsCount: number = 0;
 
   // To keep track of whether report generation has been started
   reportGenerationStarted: boolean = false;
@@ -96,7 +97,7 @@ export class ReportsComponent {
     }
 
     this.getPendingReports();
-    this.getAllFailedReports();
+    this.getFailedReportCount();
     this.setupReportsListener();
     this.setupPendingReportsListener();
   }
@@ -281,7 +282,12 @@ export class ReportsComponent {
   }
 
   showFailedReports() {
-    this.dialog.open(ReportFailedComponent, { panelClass: 'mat-report-dialog', data: this.failedReports });
+    const dialogRef = this.dialog.open(ReportFailedComponent, { panelClass: 'mat-report-dialog' });
+
+    dialogRef.afterClosed().subscribe(() => {
+      // Re-calculate the reports count
+      this.getFailedReportCount();
+    });
   }
 
   getUrls() {
@@ -378,11 +384,10 @@ export class ReportsComponent {
     })
   }
 
-  getAllFailedReports() {
+  getFailedReportCount(){
     this.reportsService.getAllFailedReports().subscribe({
       next: (res) => {
-        console.log("All failed reports : ", res?.data);
-        this.failedReports = res?.data;
+        this.failedReportsCount = res?.data.length;
       },
       error: (e) => {
         console.log("Error", e);
