@@ -1,41 +1,23 @@
 <app-dialog-base [modalTitle]="'Failed Report(s)'" (onClose)="onCloseClick()">
   <div content class="main-body">
-    <div class="no-search-results" *ngIf="reports?.length === 0">
-      No failed reports
+    <div class="no-search-results" *ngIf="reports?.length === 0 && !isLoading">
+      No failed reports!
     </div>
 
-    <table class="table" *ngIf="reports?.length !== 0">
-      <!-- Table Headers -->
-      <thead>
-        <tr class="header-row">
-          <th class="topic-header">
-            <div>Topic</div>
-          </th>
-          <th class="time-header">
-            <div>Start Time</div>
-          </th>
-          <th class="status-header">
-            <div>Status</div>
-          </th>
-        </tr>
-      </thead>
+    <div class="reports-in-progress">
+      <div class="reports-loader" *ngIf="isLoading">
+        <mat-spinner [diameter]="30"></mat-spinner>
+      </div>
 
-      <!-- Table Body -->
-      <tbody>
-        <ng-container *ngFor="let report of reports">
-          <tr class="file-row">
-            <td class="report-topic">
-              {{ report.task }}
-            </td>
-            <td class="report-time">
-              {{ report.createdOn | date : "h:mm a" }}
-            </td>
-            <td class="report-status">
-              Failed
-            </td>
-          </tr>
-        </ng-container>
-      </tbody>
-    </table>
+      <ng-container *ngIf="!isLoading">
+        <app-report-update-cards
+          [report]="report"
+          [status]="'FAILED'"
+          (deleteReport)="onDeleteClick($event)"
+          (retryReport)="onReportRetry($event)"
+          *ngFor="let report of reports"
+        ></app-report-update-cards>
+      </ng-container>
+    </div>
   </div>
 </app-dialog-base>

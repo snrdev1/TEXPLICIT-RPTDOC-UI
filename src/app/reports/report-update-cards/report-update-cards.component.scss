@@ -4,7 +4,7 @@
 
 .main-body {
   .topic {
-    margin-top: 0;
+    margin: 0;
   }
 
   .status {
@@ -15,5 +15,23 @@
     display: grid;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
+  }
+
+  .report-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+
+    .failed-report-actions{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .critical {
+    color: red;
   }
 }
