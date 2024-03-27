@@ -3,7 +3,7 @@
   (onClose)="onCloseClick()"
 >
   <div content class="main-body">
-    
+
     <div class="no-search-results" *ngIf="reports?.length === 0">
       No pending reports
     </div>
@@ -11,10 +11,9 @@
     <div class="reports-in-progress">
       <app-report-update-cards
         [report]="report"
-        [displayStyle]="displayStyle"
         *ngFor="let report of reports"
       ></app-report-update-cards>
     </div>
-  
+
   </div>
 </app-dialog-base>

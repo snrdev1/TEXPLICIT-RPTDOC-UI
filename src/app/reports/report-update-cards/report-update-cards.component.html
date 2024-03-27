@@ -6,10 +6,24 @@
   </mat-expansion-panel-header>
 
   <div class="main-body">
-    <h3 class="topic">Topic : {{ report?.task }}</h3>
+    <div class="report-header">
+      <h3 class="topic">Topic : {{ report?.task }}</h3>
+
+      <div *ngIf="status === 'FAILED'" class="failed-report-actions">
+        <button matTooltip="Retry" mat-icon-button (click)="onRetryClick(report?._id)">
+          <mat-icon>cached</mat-icon>
+        </button>
+        <button matTooltip="Delete" mat-icon-button (click)="onDeleteClick(report?._id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
 
     <div class="status">
-      <strong>Current Status :</strong> {{ status }}
+      <strong>Current Status : </strong>
+      <span *ngIf="status === 'FAILED'" [ngClass]="'critical'">
+        {{ status }}
+      </span>
     </div>
 
     <div class="report-basic-info">

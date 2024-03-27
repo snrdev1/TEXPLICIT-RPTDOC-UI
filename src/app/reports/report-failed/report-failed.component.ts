@@ -9,7 +9,6 @@ import { ReportsService } from 'src/app/services/reports.service';
 })
 export class ReportFailedComponent {
   reports: any = [];
-  displayStyle: string = "list";
 
   constructor(
     public dialogRef: MatDialogRef<ReportFailedComponent>,
