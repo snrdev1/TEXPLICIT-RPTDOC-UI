@@ -26,7 +26,7 @@ export class ReportsService {
   }
 
 
-  getAllreports(limit: number, offset: number, source: string, format: string, report_type: string): Observable<any> {
+  getAllReports(limit: number, offset: number, source: string, format: string, report_type: string): Observable<any> {
     const url = `${environment.hostName}/report/all`;
     const params = {
       "limit": limit,
@@ -49,16 +49,14 @@ export class ReportsService {
     return this.http.get(url, { responseType: 'blob' });
   }
 
-
-  deleteReport(params: any): Observable<any> {
+  deleteReports(reportIds: any): Observable<any> {
     const url = `${environment.hostName}/report`;
     const options = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-      body: params,
+      body: {"reportIds" : reportIds}
     };
     return this.http.delete<any>(url, options);
   }
-
 
   downloadReportAudio(reportId: string): Observable<Blob> {
     const url = `${environment.hostName}/report/audio/download/${reportId}`;

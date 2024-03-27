@@ -27,7 +27,7 @@
                   >
                     <input
                       matInput
-                      #searchinput
+                      #searchInput
                       placeholder="Enter report topic here..."
                       formControlName="task"
                       required
@@ -90,9 +90,6 @@
                         placeholder="Select report type"
                         formControlName="report_type"
                       >
-                        <!-- <mat-option value="outline_report"
-                          >Outline Report</mat-option
-                        > -->
                         <mat-option value="research_report"
                           >Summary Report</mat-option
                         >
@@ -133,7 +130,7 @@
             mat-raised-button
             class="btn-report"
             type="submit"
-            [disabled]="!form.valid"
+            [disabled]="!form.valid || reportGenerationStarted"
           >
             Generate
           </button>
@@ -142,8 +139,8 @@
             <app-outer-toolbar-buttons
               [reportsInProgressCount]="pendingReports.length"
               [reportProgressButtonVisible]="true"
-              [failedReportsCount]="failedReports.length"
-              [failedReportsButtonVisible]="false"
+              [failedReportsCount]="failedReportsCount"
+              [failedReportsButtonVisible]="true"
               (onReportProgress)="showLoadingReports()"
               (onReportFailed)="showFailedReports()"
             >

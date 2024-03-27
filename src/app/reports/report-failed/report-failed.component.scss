@@ -1,76 +1,17 @@
 .main-body {
-  padding-top: 1rem;
+  max-height: 25rem;
+  overflow-y: auto;
+  padding: 1rem 1rem 1rem 0.5rem;
 }
 
-/******************** START REPORTS TABLE **************************/
-.table {
-  width: 100%; // Adjust as needed
-  height: 100%;
+.reports-in-progress {
   display: flex;
   flex-direction: column;
-
-  thead {
-    .header-row {
-      display: flex;
-      border-bottom: 0.5px solid rgba(146, 149, 159, 0.55);
-      font-family: "Roboto", sans-serif;
-      // 1366: 12px, 1920: 14px
-      font-size: clamp(0.75rem, 0.4418rem + 0.361vw, 0.875rem);
-      font-weight: 500;
-
-      th {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-right: 0.5px solid rgba(146, 149, 159, 0.55);
-        padding: 0 1%;
-        white-space: nowrap;
-
-        &:last-of-type {
-          border-right: none;
-        }
-
-        .btn-sort {
-          width: 24px;
-          height: 24px;
-          border: none;
-          background: transparent;
-          cursor: pointer;
-
-          mat-icon {
-            width: min-content;
-            height: min-content;
-            font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
-          }
-        }
-
-        &.topic-header {
-          width: 40%;
-        }
-
-        &.time-header {
-          width: 20%;
-
-          @media (max-width: 1199.98px) {
-            display: none !important;
-          }
-        }
-
-        &.status-header {
-          width: 40%;
-
-          @media (max-width: 1199.98px) {
-            width: 60%;
-          }
-        }
-      }
-    }
-  }
-
-  tbody {
-    overflow: auto;
-    flex-grow: 1;
-    max-height: 60vh;
-  }
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
-/******************** END REPORTS TABLE **************************/
+
+.reports-loader{
+  margin-top: 1rem;
+}
