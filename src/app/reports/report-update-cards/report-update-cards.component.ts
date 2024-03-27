@@ -12,6 +12,7 @@ export class ReportUpdateCardsComponent {
   @Input() message: any = [];
   @Input() status: string = 'Processing...';
   @Output() deleteReport = new EventEmitter<any>();
+  @Output() onReportRetry = new EventEmitter<any>();
   statusSocket: string = '';
   userInfo: any = [];
   userId: string = '';
@@ -51,11 +52,11 @@ export class ReportUpdateCardsComponent {
     return formattedReportType;
   }
 
-  onRetryClick(reportId: any){
-    console.log(reportId);
+  onRetryClick(){
+    this.onReportRetry.emit(this.report);
   }
 
-  onDeleteClick(reportId: any){
-    this.deleteReport.emit(reportId);
+  onDeleteClick(){
+    this.deleteReport.emit(this.report?._id);
   }
 }

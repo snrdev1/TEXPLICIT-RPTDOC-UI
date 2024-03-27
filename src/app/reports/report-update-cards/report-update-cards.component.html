@@ -10,10 +10,10 @@
       <h3 class="topic">Topic : {{ report?.task }}</h3>
 
       <div *ngIf="status === 'FAILED'" class="failed-report-actions">
-        <button matTooltip="Retry" mat-icon-button (click)="onRetryClick(report?._id)">
+        <button matTooltip="Retry" mat-icon-button (click)="onRetryClick()">
           <mat-icon>cached</mat-icon>
         </button>
-        <button matTooltip="Delete" mat-icon-button (click)="onDeleteClick(report?._id)">
+        <button matTooltip="Delete" mat-icon-button (click)="onDeleteClick()">
           <mat-icon>delete</mat-icon>
         </button>
       </div>

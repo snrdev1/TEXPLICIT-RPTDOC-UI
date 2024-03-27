@@ -54,4 +54,49 @@ export class ReportFailedComponent {
       }
     })
   }
+
+  onReportRetry(report: any) {
+
+    console.log("report : ", report);
+
+    // if (!this.form.invalid) {
+
+    //   // Record that current report generation has started
+    //   this.reportGenerationStarted = true;
+
+    //   const uniqueID: any = uuidv4();
+
+    //   const timestamp: any = new Date().toLocaleTimeString();
+    //   const combinedID: any = `${uniqueID}-${timestamp}`;
+    //   this.form.patchValue({
+    //     report_generation_id: combinedID,
+    //     start_time: timestamp
+    //   });
+
+    //   this.reportsService.generateReport(this.form.value).subscribe({
+    //     next: (res) => {
+    //       console.log("On submitting topic: ", res);
+    //       this.form.controls['task'].setValue('');
+    //       this.form.controls['subtopics'].setValue([]);
+    //       this.localStorage.setitem('subtopics', null);
+    //       this.localStorage.setitem('urls', null);
+    //       this.localStorage.setitem('restrictSearch', false);
+    //       this.searchInput.nativeElement.value = "";
+    //       this.commonService.showSnackbar("snackbar-info", "Report generation started...!", "0");
+
+    //       // Report generation has started a new report can now be generated
+    //       this.reportGenerationStarted = false;
+    //     },
+    //     error: (e) => {
+    //       console.log("Error: ", e);
+    //       this.commonService.showSnackbar("snackbar-error", e.error.message, e.status);
+
+    //       // Report generation has started a new report can now be generated
+    //       this.reportGenerationStarted = false;
+    //     },
+    //     complete: () => {
+    //       console.log("Report generation in progress");
+    //     }
+    //   })
+    }
 }
