@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ReportsService } from 'src/app/services/reports.service';
+import { CommonService } from 'src/app/shared/services/common.service';
 
 @Component({
   selector: 'app-report-failed',
@@ -13,6 +14,7 @@ export class ReportFailedComponent {
   constructor(
     public dialogRef: MatDialogRef<ReportFailedComponent>,
     private reportsService: ReportsService,
+    private commonService: CommonService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
@@ -36,5 +38,20 @@ export class ReportFailedComponent {
         console.log("Completed deleting all failed reports!");
       }
     });
+  }
+
+  onDeleteClick(reportId: any){
+    this.reportsService.deleteReports([reportId]).subscribe({
+      next: (res) => {
+        this.commonService.showSnackbar("snackbar-success", res.message, res.status);
+      },
+      error: (e) => {
+        console.log("Error", e);
+        this.commonService.showSnackbar("snackbar-error", e.message, e.status);
+      },
+      complete: () => {
+        this.reports = this.reports.filter((report: any) => report._id !== reportId);
+      }
+    })
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { LocalStorageService } from 'src/app/core/local-storage.service';
 import { WebSocketService } from 'src/app/shared/services/socketio.service';
 
@@ -11,6 +11,7 @@ export class ReportUpdateCardsComponent {
   @Input() report: any = [];
   @Input() message: any = [];
   @Input() status: string = 'Processing...';
+  @Output() deleteReport = new EventEmitter<any>();
   statusSocket: string = '';
   userInfo: any = [];
   userId: string = '';
@@ -55,6 +56,6 @@ export class ReportUpdateCardsComponent {
   }
 
   onDeleteClick(reportId: any){
-    console.log(reportId);
+    this.deleteReport.emit(reportId);
   }
 }

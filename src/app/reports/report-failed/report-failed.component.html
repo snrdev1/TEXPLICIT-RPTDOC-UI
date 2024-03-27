@@ -12,6 +12,7 @@
       <app-report-update-cards
         [report]="report"
         [status]="'FAILED'"
+        (deleteReport)="onDeleteClick($event)"
         *ngFor="let report of reports"
       ></app-report-update-cards>
     </div>
