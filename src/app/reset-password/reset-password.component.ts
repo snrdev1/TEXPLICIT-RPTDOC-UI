@@ -26,9 +26,9 @@ export class ResetPasswordComponent {
   }
 
   ngOnInit(){
-    // this.token = this.route.snapshot.paramMap.get('token') || '';
+    this.token = this.route.snapshot.paramMap.get('token') || '';
     // // console.log("this.token",this.token);
-    // this.checkTokenValidity();
+    this.checkTokenValidity();
   }
 
   checkTokenValidity(){
