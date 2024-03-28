@@ -26,10 +26,11 @@ export class ResetPasswordComponent {
   }
 
   ngOnInit(){
-    this.token = this.route.snapshot.paramMap.get('token') || '';
-    // console.log("this.token",this.token);
-    this.checkTokenValidity();
+    // this.token = this.route.snapshot.paramMap.get('token') || '';
+    // // console.log("this.token",this.token);
+    // this.checkTokenValidity();
   }
+
   checkTokenValidity(){
     this.resetPasswordService.checkTokenValidity(this.token).subscribe({
       next: (res)=>{
@@ -44,6 +45,7 @@ export class ResetPasswordComponent {
       }
     });
   }
+
   onSubmit(){
     console.log('Reset Password submit');
     // console.log(this.form.value);
