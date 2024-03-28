@@ -3,17 +3,38 @@
     <div content class="content-div">
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div formArrayName="rows">
-          <div *ngFor="let row of rows.controls; let i = index" [formGroupName]="i" style="margin-bottom: 15px">
+          <div
+            *ngFor="let row of rows.controls; let i = index"
+            [formGroupName]="i"
+            style="margin-bottom: 15px"
+          >
             <div fxLayout="row">
-              <div [style.margin-right.px]="rows.length >= 1 ? 0 : 47" class="subtopicDeleteContainer">
-                <button mat-icon-button class="btn-delete" matTooltip="Delete" *ngIf="rows.length > 1"
-                  (click)="removeRow(i)">
+              <div
+                [style.margin-right.px]="rows.length >= 1 ? 0 : 47"
+                class="subtopicDeleteContainer"
+              >
+                <button
+                  mat-icon-button
+                  class="btn-delete"
+                  matTooltip="Delete"
+                  *ngIf="rows.length > 1"
+                  (click)="removeRow(i)"
+                >
                   <mat-icon class="icon-delete">delete_outline</mat-icon>
                 </button>
               </div>
               <div class="urlContainer">
-                <mat-form-field appearance="outline" class="search-wrapper mr-20px">
-                  <input matInput #searchInput placeholder="Enter url..." formControlName="url" required />
+                <mat-form-field
+                  appearance="outline"
+                  class="search-wrapper mr-20px"
+                >
+                  <input
+                    matInput
+                    #searchInput
+                    placeholder="Enter url..."
+                    formControlName="url"
+                    required
+                  />
                 </mat-form-field>
               </div>
             </div>
@@ -21,12 +42,23 @@
         </div>
 
         <div class="report-search-type">
-          <mat-checkbox formControlName="restrict_search" class="report-search-type-checkbox">Restrict Report to these URLs</mat-checkbox>
+          <mat-checkbox
+            matTooltip="Restrict report generation only to provided urls"
+            formControlName="restrict_search"
+            class="report-search-type-checkbox"
+          >
+            Restrict Report to these URLs
+          </mat-checkbox>
         </div>
 
         <div class="content-div">
           <mat-dialog-actions class="mat-dialog-footer">
-            <button mat-raised-button class="subtopics-btn" type="button" (click)="addRow()">
+            <button
+              mat-raised-button
+              class="subtopics-btn"
+              type="button"
+              (click)="addRow()"
+            >
               Add Url
             </button>
             <button mat-raised-button class="btn-report" type="submit">
