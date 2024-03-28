@@ -35,13 +35,6 @@ const routes: Routes = [{
         )
     },
     {
-      path: 'reset-password/:token',
-      loadChildren: () =>
-        import('./../reset-password/reset-password.module').then(
-          (m) => m.ResetPasswordModule
-        )
-    },
-    {
       path: 'my-documents',
       loadChildren: () =>
         import('./../my-documents/my-documents.module').then(
