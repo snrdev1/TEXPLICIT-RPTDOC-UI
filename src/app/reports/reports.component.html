@@ -108,6 +108,7 @@
         <div fxLayout="row" class="second-row">
           <button
             mat-raised-button
+            matTooltip="Enter specific urls"
             type="button"
             *ngIf="form.get('source')?.value === 'external'"
             class="btn-subtopics"
@@ -118,6 +119,7 @@
 
           <button
             mat-raised-button
+            matTooltip="Enter report subtopic(s)"
             type="button"
             *ngIf="form.get('report_type')?.value === 'detailed_report'"
             class="btn-subtopics"
@@ -128,6 +130,7 @@
 
           <button
             mat-raised-button
+            matTooltip="Generate report"
             class="btn-report"
             type="submit"
             [disabled]="!form.valid || reportGenerationStarted"
