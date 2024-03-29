@@ -92,7 +92,7 @@
 }
 
 :host ::ng-deep .search-wrapper {
-  width: 210px;
+  width: 90%;
   background: #fff;
   display: flex;
   align-items: center;
@@ -142,6 +142,7 @@
     }
   }
 }
+
 :host ::ng-deep .mat-dialog-footer {
   justify-content: center;
   button {
@@ -174,18 +175,38 @@
   margin-top: -3px;
   color: #4e525f;
 }
+
 .mat-mdc-icon-button:hover {
   color: #ff3a3a;
 }
+
 .mat-mdc-icon-button {
   --mat-mdc-button-persistent-ripple-color: none;
   --mat-mdc-button-ripple-color: none;
 }
+
 .btn-report {
   background: #ffbe17 !important;
   color: #141516 !important;
 }
+
 .subtopics-btn {
   background: #fff !important;
   color: #4d5e92 !important;
+}
+
+form {
+  width: 100%;
+}
+
+.report-heading {
+  flex-grow: 0.67;
+}
+
+.subtopicNameContainer {
+  flex-grow: 1;
+}
+
+.report-heading-source{
+  margin-left: 0;
 }
