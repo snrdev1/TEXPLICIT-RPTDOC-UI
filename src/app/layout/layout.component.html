@@ -15,6 +15,7 @@
     <button class="mr-5px" (click)="onContactClick()">Contact</button>
     <button class="mr-5px" (click)="onFeedbackClick()">Feedback</button>
     <button class="mr-5px" (click)="onPricingClick()">Pricing</button>
+    <button class="mr-5px" (click)="onPrivacyClick()">Privacy Policy</button>
 
     <div class="horizontal-divider"></div>
   </ng-container>
@@ -102,6 +103,9 @@
         </li>
         <li class="menu-item" (click)="onDisclaimerClick()">
           <span class="menu-item-label toolbar-links" routerLinkActive="active-menu-text">Disclaimer</span>
+        </li>
+        <li class="menu-item" (click)="onPrivacyClick()">
+          <span class="menu-item-label toolbar-links" routerLinkActive="active-menu-text">Privacy Policy</span>
         </li>
       </ng-container>
     </ul>
