@@ -1,3 +1,4 @@
+import { PrivacyPolicyModule } from './../privacy-policy/privacy-policy.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -101,7 +102,12 @@ const routes: Routes = [{
           (m) => m.ChatModule
         ),
       canActivate: [AuthGuard]
-    }
+    },
+    {
+      path: 'privacy-policy',
+      loadChildren: () =>
+        import('./../privacy-policy/privacy-policy.module').then((m) => m.PrivacyPolicyModule)
+    },
 
   ]
 }];

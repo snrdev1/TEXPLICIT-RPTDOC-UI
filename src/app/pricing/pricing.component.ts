@@ -14,7 +14,6 @@ export class PricingComponent {
       "description": "Bullets outlining topic",
       "price": 4000
     },
-    
     {
       "icon": "icon-report-research",
       "title": "Summary",
