@@ -141,6 +141,10 @@ export class LayoutComponent {
     });
   }
 
+  onPrivacyClick() {
+    this.router.navigate(['/privacy-policy']);
+  }
+
   chatOpen() {
     return this.commonService.chatOpen;
   }
