@@ -87,10 +87,10 @@ export class LayoutComponent {
         }
       })
     }
-    
+
     this.route.queryParams.subscribe((params:any)=>{
       if(params['id'] == 'demo'){
-        console.log("Params Demo caught");
+        // console.log("Params Demo caught");
         this.onRequestDemoClick();
         
       }
