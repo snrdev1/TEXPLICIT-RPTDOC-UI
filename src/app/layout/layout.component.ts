@@ -1,7 +1,7 @@
 import { Component, ElementRef, HostListener, Renderer2 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatDrawerMode } from '@angular/material/sidenav';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ElementQueries } from 'css-element-queries';
 import { Observable } from 'rxjs';
 import { AuthService } from '../core/auth.service';
@@ -44,7 +44,8 @@ export class LayoutComponent {
     public router: Router,
     private dialog: MatDialog,
     private el: ElementRef,
-    private render: Renderer2
+    private render: Renderer2,
+    private route:ActivatedRoute
   ) {
     this.localStorage.observeUserInfo();
     this.userInfo$.subscribe((userInfo) => {
@@ -86,6 +87,14 @@ export class LayoutComponent {
         }
       })
     }
+
+    this.route.queryParams.subscribe((params:any)=>{
+      if(params['id'] == 'demo'){
+        // console.log("Params Demo caught");
+        this.onRequestDemoClick();
+        
+      }
+    })
   }
 
   @HostListener('window:resize', ['$event'])
