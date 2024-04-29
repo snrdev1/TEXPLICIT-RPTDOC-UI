@@ -3,7 +3,7 @@
     <img src="../../assets/svg/top-nav-icon/hamburger.svg" />
   </button>
 
-  <div class="logo" routerLink="/home">
+  <div class="logo" routerLink="/home" (click)="closeSidenav()">
     <img src="../../assets/svg/logo/texplicit02-logo.svg" />
   </div>
   <span class="toolbar-spacer"></span>
@@ -37,28 +37,28 @@
 
   <mat-sidenav #leftnav class="left-sidenav-container" [mode]="sidenavMode" [opened]="sidenavState">
     <ul class="menu-container">
-      <li class="menu-item" routerLink="/home" routerLinkActive="menu-item-active">
+      <li class="menu-item" routerLink="/home" (click)="closeSidenav()" routerLinkActive="menu-item-active">
         <div routerLinkActive="active-menu-item-container">
           <img [src]="'../../assets/svg/side-nav-icon/icon-home.svg'" class="menu-icon"
             routerLinkActive="menu-icon-active" />
         </div>
         <span class="menu-item-label" routerLinkActive="active-menu-text">Home</span>
       </li>
-      <li class="menu-item" routerLink="/my-documents" routerLinkActive="menu-item-active">
+      <li class="menu-item" routerLink="/my-documents" (click)="closeSidenav()" routerLinkActive="menu-item-active">
         <div routerLinkActive="active-menu-item-container">
           <img [src]="'../../assets/svg/side-nav-icon/icon-mydocuments.svg'" class="menu-icon"
             routerLinkActive="menu-icon-active" />
         </div>
         <span class="menu-item-label" routerLinkActive="active-menu-text">My Documents</span>
       </li>
-      <li class="menu-item" routerLink="/chat" routerLinkActive="menu-item-active">
+      <li class="menu-item" routerLink="/chat" (click)="closeSidenav()" routerLinkActive="menu-item-active">
         <div routerLinkActive="active-menu-item-container">
           <img [src]="'../../assets/svg/side-nav-icon/icon-chat.svg'" class="menu-icon"
             routerLinkActive="menu-icon-active" />
         </div>
         <span class="menu-item-label" routerLinkActive="active-menu-text">Chat</span>
       </li>
-      <li class="menu-item" routerLink="/reports" routerLinkActive="menu-item-active">
+      <li class="menu-item" routerLink="/reports" (click)="closeSidenav()" routerLinkActive="menu-item-active">
         <div routerLinkActive="active-menu-item-container">
           <img [src]="'../../assets/svg/side-nav-icon/icon-reports.svg'" class="menu-icon"
             routerLinkActive="menu-icon-active" />
@@ -66,7 +66,7 @@
         <span class="menu-item-label" routerLinkActive="active-menu-text">Reports</span>
       </li>
       <li *ngIf="isUserLoggedIn() && checkUserProfessional()" class="menu-item" routerLink="/user-management"
-        routerLinkActive="menu-item-active">
+        (click)="closeSidenav()" routerLinkActive="menu-item-active">
         <div routerLinkActive="active-menu-item-container">
           <img [src]="'../../assets/svg/side-nav-icon/icon-user-management.svg'" class="menu-icon"
             routerLinkActive="menu-icon-active" />
@@ -74,8 +74,8 @@
         <span class="menu-item-label" routerLinkActive="active-menu-text">Manage User</span>
       </li>
 
-      <li *ngIf="isUserLoggedIn() && checkUserAdmin()" class="menu-item" routerLink="/admin"
-      routerLinkActive="menu-item-active">
+      <li *ngIf="isUserLoggedIn() && checkUserAdmin()" class="menu-item" routerLink="/admin" (click)="closeSidenav()"
+        routerLinkActive="menu-item-active">
         <div routerLinkActive="active-menu-item-container">
           <img [src]="'../../assets/svg/side-nav-icon/icon-user-management.svg'" class="menu-icon"
             routerLinkActive="menu-icon-active" />
