@@ -1,7 +1,7 @@
-import { Component, ElementRef, HostListener, Renderer2 } from '@angular/core';
+import { Component, ViewChild, ElementRef, HostListener, Renderer2 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatDrawerMode } from '@angular/material/sidenav';
-import { Router } from '@angular/router';
+import { MatDrawerMode, MatSidenav } from '@angular/material/sidenav';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ElementQueries } from 'css-element-queries';
 import { Observable } from 'rxjs';
 import { AuthService } from '../core/auth.service';
@@ -35,6 +35,7 @@ export class LayoutComponent {
   sidenavState: boolean = false;
   windowWidth: number = window.innerWidth;
   sidenavMode: MatDrawerMode = "side";
+  @ViewChild('leftnav') leftnav!: MatSidenav; // Get a reference to MatSidenav
 
   constructor(
     public commonService: CommonService,
@@ -44,7 +45,8 @@ export class LayoutComponent {
     public router: Router,
     private dialog: MatDialog,
     private el: ElementRef,
-    private render: Renderer2
+    private render: Renderer2,
+    private route: ActivatedRoute
   ) {
     this.localStorage.observeUserInfo();
     this.userInfo$.subscribe((userInfo) => {
@@ -86,6 +88,14 @@ export class LayoutComponent {
         }
       })
     }
+
+    this.route.queryParams.subscribe((params: any) => {
+      if (params['id'] == 'demo') {
+        // console.log("Params Demo caught");
+        this.onRequestDemoClick();
+
+      }
+    })
   }
 
   @HostListener('window:resize', ['$event'])
@@ -112,6 +122,7 @@ export class LayoutComponent {
 
   onContactClick() {
     this.router.navigate(['/contact-us']);
+    this.closeSidenav();
   }
 
   onPricingClick() {
@@ -119,10 +130,12 @@ export class LayoutComponent {
     // this.router.navigate(['/pricing']);
 
     this.dialog.open(DemoRequestDialogComponent, { panelClass: 'mat-dialog-panel' });
+    this.closeSidenav();
   }
 
   onUserProfileClick() {
     this.router.navigate(['/profile']);
+    this.closeSidenav();
   }
 
   onDisclaimerClick() {
@@ -131,6 +144,7 @@ export class LayoutComponent {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+    this.closeSidenav();
   }
 
   onFeedbackClick() {
@@ -139,10 +153,12 @@ export class LayoutComponent {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+    this.closeSidenav();
   }
 
   onPrivacyClick() {
     this.router.navigate(['/privacy-policy']);
+    this.closeSidenav();
   }
 
   chatOpen() {
@@ -173,21 +189,31 @@ export class LayoutComponent {
     // this.router.navigateByUrl('/registration');
 
     this.dialog.open(DemoRequestDialogComponent, { panelClass: 'mat-dialog-panel' });
+
+    this.closeSidenav();
   }
 
   checkUserProfessional() {
     return this.userRole === 2;
   }
 
-  checkUserAdmin(){
+  checkUserAdmin() {
     return this.userRole === 1;
   }
 
   onLoginClick() {
     this.dialog.open(LoginDialogComponent, { panelClass: 'mat-dialog-panel' });
+    this.closeSidenav();
   }
 
   onRequestDemoClick() {
     this.dialog.open(DemoRequestDialogComponent, { panelClass: 'mat-dialog-panel' });
+    this.closeSidenav();
+  }
+
+  closeSidenav() {
+    if (this.windowWidth <= 1200) {
+      this.leftnav.toggle(); // Call toggle() on MatSidenav reference
+    }
   }
 }
