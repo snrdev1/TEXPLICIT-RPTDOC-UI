@@ -13,13 +13,13 @@ export class PathAuthGuard implements CanActivate {
   menu: any = [];
   menuIds: any = [];
   userInfo$: Observable<any> = this.localStorage.userInfo$;
-  userInfo:any=[];
+  userInfo: any = [];
   constructor(
     private commonService: CommonService,
     private sharedService: SharedService,
     private localStorage: LocalStorageService,
   ) {
-    this.userInfo =  this.localStorage.getUserInfo();
+    this.userInfo = this.localStorage.getUserInfo();
   }
 
   canActivate(
@@ -27,32 +27,25 @@ export class PathAuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return new Observable<boolean | UrlTree>((observer) => {
-      // this.userInfo$.subscribe((res:any) => {
-      //   if (res) {
-      //     this.menuIds = res.permissions.menu || [];
-          this.menuIds = this.userInfo?.permissions?.menu || [];
+      this.menuIds = this.userInfo?.permissions?.menu || [];
 
-          this.commonService.getMenu(this.menuIds).subscribe({
-            next: (menuRes) => {
-              // console.log("res in getMenu", menuRes);
-              this.menu = menuRes?.data;
-              const url = state.url;
+      this.commonService.getMenu(this.menuIds).subscribe({
+        next: (menuRes) => {
+          // console.log("res in getMenu", menuRes);
+          this.menu = menuRes?.data;
+          const url = state.url;
 
-              if (this.menu.some((menuItem:any) => menuItem.link === url)) {
-                observer.next(true);
-              } else {
-                observer.next(false);
-                this.sharedService.redirectToHome();
-              }
-            },
-            error: (err) => {
-              observer.next(false);
-            }
-          });
-      //   } else {
-      //     observer.next(false);
-      //   }
-      // });
+          if (this.menu.some((menuItem: any) => menuItem.link === url)) {
+            observer.next(true);
+          } else {
+            observer.next(false);
+            this.sharedService.redirectToHome();
+          }
+        },
+        error: (err) => {
+          observer.next(false);
+        }
+      });
     });
   }
 }

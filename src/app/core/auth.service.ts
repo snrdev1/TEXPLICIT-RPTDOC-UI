@@ -11,7 +11,7 @@ import { CommonService } from '../shared/services/common.service';
 })
 export class AuthService {
 
-  constructor(private router:Router, private http:HttpClient, 
+  constructor(private router:Router, private http:HttpClient,
               private localStorage: LocalStorageService) { }
 
   signup(input:any): Observable<any> {
@@ -23,7 +23,6 @@ export class AuthService {
     const url = `${environment.hostName}/account/login`;
     return this.http.post<any>(url,input);
   }
-  
 
   logout(){
     localStorage.clear();
@@ -42,7 +41,7 @@ export class AuthService {
   get token():string{
     return localStorage.getItem("token") || '';
   }
-  
+
   getCurrentUser(){
     const url =  `${environment.hostName}/account/current-user`;
     return this.http.get(url).pipe(map((res: any) => res.data));

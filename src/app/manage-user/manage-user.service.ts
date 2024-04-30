@@ -15,6 +15,7 @@ export class ManageUserService {
     const params = {"menuIds" : data};
     return this.http.get<any>(url, {params});
   }
+  
   addNewUser(data : any): Observable<any> {
     const url = `${environment.hostName}/user-management/add-user`;
     return this.http.post<any>(url, data);

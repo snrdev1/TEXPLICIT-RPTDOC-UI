@@ -161,14 +161,6 @@ export class LayoutComponent {
     this.closeSidenav();
   }
 
-  chatOpen() {
-    return this.commonService.chatOpen;
-  }
-
-  newsOpen() {
-    return this.commonService.newsOpen;
-  }
-
   ngAfterViewInit() {
     ElementQueries.listen();
     ElementQueries.init();
@@ -176,8 +168,8 @@ export class LayoutComponent {
 
   onLogoutClick() {
     this.authService.logout();
+    this.closeSidenav();
     this.commonService.clearUserMenu();
-    this.commonService.closeAll();
   }
 
   isUserLoggedIn() {
@@ -189,8 +181,6 @@ export class LayoutComponent {
     // this.router.navigateByUrl('/registration');
 
     this.dialog.open(DemoRequestDialogComponent, { panelClass: 'mat-dialog-panel' });
-
-    this.closeSidenav();
   }
 
   checkUserProfessional() {
@@ -203,7 +193,6 @@ export class LayoutComponent {
 
   onLoginClick() {
     this.dialog.open(LoginDialogComponent, { panelClass: 'mat-dialog-panel' });
-    this.closeSidenav();
   }
 
   onRequestDemoClick() {
@@ -212,7 +201,7 @@ export class LayoutComponent {
   }
 
   closeSidenav() {
-    if (this.windowWidth <= 1200) {
+    if (this.windowWidth <= 1200 && this.leftnav.opened) {
       this.leftnav.toggle(); // Call toggle() on MatSidenav reference
     }
   }
