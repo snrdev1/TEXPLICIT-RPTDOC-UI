@@ -2,7 +2,9 @@ import { MatFabMenu } from '@angular-material-extensions/fab-menu';
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../core/auth.service';
 import { LocalStorageService } from '../core/local-storage.service';
+import { TokenService } from '../core/token.service';
 import { CommonService } from '../shared/services/common.service';
 import { HomeService } from '../shared/services/home.service';
 import { SharedService } from '../shared/services/shared.service';
@@ -58,10 +60,18 @@ export class HomeComponent {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private homeService: HomeService,
+    private authService: AuthService,
+    private tokenService: TokenService,
     public commonService: CommonService,
     public localStorageService: LocalStorageService,
-    public dialog: MatDialog,
+    public dialog: MatDialog
   ) {
+  }
+
+  ngOnInit() {
+    if (this.tokenService.isTokenExpired()) {
+      this.authService.logout();
+    }
   }
 
 }

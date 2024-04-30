@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {catchError} from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 
 import {
   HttpRequest,
@@ -19,24 +19,22 @@ const TOKEN_HEADER_KEY = 'Authorization';
 export class AppHttpInterceptor implements HttpInterceptor {
 
   constructor(
-    private authService:AuthService, 
+    private authService: AuthService,
     private commonService: CommonService
-    ) {
-      console.log('intercept constructor');
-
-    }
+  ) {
+    console.log('intercept constructor');
+  }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<Object>> {
     console.log("intercept");
     let authReq = request;
     const token = this.authService.token;
-    if (token!='') {
+    if (token != '') {
       authReq = this.addTokenHeader(request, token);
     }
 
-    
     return next.handle(authReq).pipe(
-      catchError((error) =>this.handleError(error, authReq, next)));
+      catchError((error) => this.handleError(error, authReq, next)));
 
   }
 
@@ -57,10 +55,10 @@ export class AppHttpInterceptor implements HttpInterceptor {
       console.log("Logged in state : ", this.authService.isLoggedIn);
       if (this.authService.isLoggedIn) {
         this.authService.logout();
-        this.commonService.showSnackbar('snackbar-error','Token expired, please login again !', 'ERR005');
+        this.commonService.showSnackbar('snackbar-error', 'Token expired, please login again !', 'ERR005');
         return throwError(() => err);
       } else {
-        this.commonService.showSnackbar('snackbar-error','You need to login to perform the action !', 'ERR006');
+        this.commonService.showSnackbar('snackbar-error', 'You need to login to perform the action !', 'ERR006');
         // this.commonService.openLoginModal();
         return throwError(() => err);
       }
