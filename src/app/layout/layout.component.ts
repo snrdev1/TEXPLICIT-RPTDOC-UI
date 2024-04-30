@@ -168,8 +168,8 @@ export class LayoutComponent {
 
   onLogoutClick() {
     this.authService.logout();
+    this.closeSidenav();
     this.commonService.clearUserMenu();
-    this.commonService.closeAll();
   }
 
   isUserLoggedIn() {

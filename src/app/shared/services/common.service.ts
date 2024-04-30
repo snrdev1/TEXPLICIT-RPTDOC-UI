@@ -49,11 +49,6 @@ export class CommonService {
     return combinedID;
   }
 
-  closeAll() {
-    this.newsOpen = false;
-    this.chatOpen = false;
-  }
-
   showSnackbar(snackbarPanelClass: string, messageText: string, errorCode: string = '0') {
     this.snackbar.openFromComponent(CommonSnackbarComponent, {
       panelClass: snackbarPanelClass,
@@ -109,6 +104,7 @@ export class CommonService {
       }
     })
   }
+  
   clearUserMenu() {
     this.userMenu = [];
   }
