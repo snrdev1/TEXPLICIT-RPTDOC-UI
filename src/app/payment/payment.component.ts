@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../core/auth.service';
-import { PaymentService } from './payment.service';
 import { CommonService } from '../shared/services/common.service';
+import { PaymentService } from './payment.service';
 
 declare const Razorpay: any;
 
@@ -33,6 +33,14 @@ export class PaymentComponent {
     },
   ];
 
+  reportPricingOptions: any = {};
+  documentPricingOptions: any = {};
+  chatPricingOptions: any = {};
+
+  selectedReportPlan: any;
+  selectedDocumentPlan: any;
+  selectedChatPlan: any;
+
   razorpay: any;
   orderId: string = ""; // Variable to store the order ID obtained from the backend
 
@@ -40,7 +48,9 @@ export class PaymentComponent {
     private paymentService: PaymentService,
     public authService: AuthService,
     private commonService: CommonService
-  ) { }
+  ) {
+    this.getPrices();
+  }
 
   initiatePayment(pricingPlan: any) {
     // Create the order when the user initiates payment
@@ -95,4 +105,27 @@ export class PaymentComponent {
     // Open Razorpay checkout modal when initialized
     this.razorpay.open();
   }
+
+  getPrices() {
+    this.paymentService.getPrices().subscribe({
+      next: (res) => {
+        // Extract the different pricing options
+        this.reportPricingOptions = res?.data.filter((data: any) => data.category === "Report Pricing")[0];
+        this.documentPricingOptions = res?.data.filter((data: any) => data.category === "Document Pricing")[0];
+        this.chatPricingOptions = res?.data.filter((data: any) => data.category === "Chat Pricing")[0];
+
+        // Set the initial selection for plans
+        this.selectedReportPlan = this.reportPricingOptions?.plans[0];
+        this.selectedDocumentPlan = this.documentPricingOptions?.plans[0];
+        this.selectedChatPlan = this.chatPricingOptions?.plans[0];
+      },
+      error: (e) => {
+        console.log("Error", e);
+      },
+      complete: () => {
+        console.log("Completed fetching prices");
+      }
+    });
+  }
+
 }

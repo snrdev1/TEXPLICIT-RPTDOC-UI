@@ -49,6 +49,7 @@
   }
 
   .pricing-plan-card {
+    padding: 0 1rem;
     padding-bottom: 35px;
     display: flex;
     flex-direction: column;
@@ -91,6 +92,7 @@
       color: #4e525f;
       text-align: center;
       font-family: "Roboto", sans-serif;
+      margin-bottom: 1rem;
 
       //1366: 18px, 1920: 22px
       font-size: clamp(1.125rem, 0.5086rem + 0.722vw, 1.375rem);
