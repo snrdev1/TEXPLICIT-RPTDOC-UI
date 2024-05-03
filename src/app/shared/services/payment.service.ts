@@ -33,4 +33,10 @@ export class PaymentService {
 
     return this.http.get<any>(url);
   }
+
+  getUserPaymentHistory(){
+    const url =  `${environment.hostName}/payment/payment-history`;
+    
+    return this.http.get<any>(url);
+  }
 }

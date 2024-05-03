@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { AuthService } from '../core/auth.service';
 import { LocalStorageService } from '../core/local-storage.service';
 import { CommonService } from '../shared/services/common.service';
-import { PaymentService } from './payment.service';
+import { PaymentService } from '../shared/services/payment.service';
 
 declare const Razorpay: any;
 
