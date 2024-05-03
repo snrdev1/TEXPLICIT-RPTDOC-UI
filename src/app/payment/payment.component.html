@@ -10,63 +10,69 @@
   <div class="pricing-options">
     <div class="pricing-plan-card">
       <img
-        [src]="'../../assets/svg/pricing-icon/icon-pricing-onetime.svg'"
+        [src]="'../../assets/svg/pricing-icon/icon-pricing-high.svg'"
         class="pricing-icon"
       />
-      <div class="pricing-plan">{{ reportPricingOptions?.category }}</div>
+      <div class="pricing-plan">Report Pricing</div>
       <div class="pricing-description">Allowed set of reports</div>
-      <mat-form-field>
-        <mat-label>Number of reports</mat-label>
-        <mat-select [(value)]="selectedReportPlan">
-          <mat-option
-            *ngFor="let plan of reportPricingOptions?.plans"
-            [value]="plan"
-            >{{ plan?.count }}</mat-option
-          >
-        </mat-select>
-      </mat-form-field>
-      <div class="Amount">Amount</div>
-      <div class="pricing-value">
-        {{
-          selectedReportPlan?.price
-            | currency
-              : reportPricingOptions?.currency_code
-              : "symbol"
-              : "0.0-0"
-        }}/-
-      </div>
+      <mat-spinner *ngIf="isLoading" [diameter]="30"></mat-spinner>
+      <ng-container *ngIf="!isLoading">
+        <mat-form-field appearance="outline">
+          <mat-label>Number of reports</mat-label>
+          <mat-select [(value)]="selectedReportPlan">
+            <mat-option
+              *ngFor="let plan of reportPricingOptions?.plans"
+              [value]="plan"
+              >{{ plan?.count }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+        <div class="Amount">Amount</div>
+        <div class="pricing-value">
+          {{
+            selectedReportPlan?.price
+              | currency
+                : reportPricingOptions?.currency_code
+                : "symbol"
+                : "0.0-0"
+          }}/-
+        </div>
+      </ng-container>
     </div>
 
     <div class="pricing-plan-card">
       <img
-        [src]="'../../assets/svg/pricing-icon/icon-pricing-onetime.svg'"
+        [src]="'../../assets/svg/pricing-icon/icon-pricing-limited.svg'"
         class="pricing-icon"
       />
-      <div class="pricing-plan">{{ documentPricingOptions?.category }}</div>
+      <div class="pricing-plan">Document Pricing</div>
       <div class="pricing-description">Upload and Processing of documents</div>
-      <mat-form-field>
-        <mat-label
-          >Size of documents (in
-          {{ documentPricingOptions?.plans[0]?.amount?.unit }})</mat-label
-        >
-        <mat-select [(value)]="selectedDocumentPlan">
-          <mat-option
-            *ngFor="let plan of documentPricingOptions?.plans"
-            [value]="plan"
-            >{{ plan?.amount?.value }}</mat-option
+      <mat-spinner *ngIf="isLoading" [diameter]="30"></mat-spinner>
+      <ng-container *ngIf="!isLoading">
+        <mat-form-field appearance="outline">
+          <mat-label
+            >Size of documents (in
+            {{ documentPricingOptions?.plans[0]?.amount?.unit }})</mat-label
           >
-        </mat-select>
-      </mat-form-field>
-      <div class="Amount">Amount</div>
-      <div class="pricing-value">
-        {{
-          selectedDocumentPlan?.price
-            | currency
-              : documentPricingOptions?.currency_code
-              : "symbol"
-              : "0.0-0"
-        }}/-
-      </div>
+          <mat-select [(value)]="selectedDocumentPlan">
+            <mat-option
+              *ngFor="let plan of documentPricingOptions?.plans"
+              [value]="plan"
+              >{{ plan?.amount?.value }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+        <div class="Amount">Amount</div>
+        <div class="pricing-value">
+          {{
+            selectedDocumentPlan?.price
+              | currency
+                : documentPricingOptions?.currency_code
+                : "symbol"
+                : "0.0-0"
+          }}/-
+        </div>
+      </ng-container>
     </div>
 
     <div class="pricing-plan-card">
@@ -74,32 +80,39 @@
         [src]="'../../assets/svg/pricing-icon/icon-pricing-onetime.svg'"
         class="pricing-icon"
       />
-      <div class="pricing-plan">{{ chatPricingOptions?.category }}</div>
+      <div class="pricing-plan">Chat Pricing</div>
       <div class="pricing-description">Allowed number of chats</div>
-      <mat-form-field>
-        <mat-label>Number of chats</mat-label>
-        <mat-select [(value)]="selectedChatPlan">
-          <mat-option
-            *ngFor="let plan of chatPricingOptions?.plans"
-            [value]="plan"
-            >{{ plan?.count }}</mat-option
-          >
-        </mat-select>
-      </mat-form-field>
-      <div class="Amount">Amount</div>
-      <div class="pricing-value">
-        {{
-          selectedChatPlan?.price
-            | currency : chatPricingOptions?.currency_code : "symbol" : "0.0-0"
-        }}/-
-      </div>
+      <mat-spinner *ngIf="isLoading" [diameter]="30"></mat-spinner>
+      <ng-container *ngIf="!isLoading">
+        <mat-form-field appearance="outline">
+          <mat-label>Number of chats</mat-label>
+          <mat-select [(value)]="selectedChatPlan">
+            <mat-option
+              *ngFor="let plan of chatPricingOptions?.plans"
+              [value]="plan"
+              >{{ plan?.count }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+        <div class="Amount">Amount</div>
+        <div class="pricing-value">
+          {{
+            selectedChatPlan?.price
+              | currency
+                : chatPricingOptions?.currency_code
+                : "symbol"
+                : "0.0-0"
+          }}/-
+        </div>
+      </ng-container>
     </div>
   </div>
 
   <div class="action">
+    <mat-spinner *ngIf="isLoading" [diameter]="30"></mat-spinner>
     <button
       class="btn-plan-action"
-      *ngIf="authService.isLoggedIn"
+      *ngIf="authService.isLoggedIn && !isLoading"
       (click)="initiatePayment()"
     >
       Choose Plan
@@ -111,3 +124,5 @@
     Detailed</span
   >
 </div>
+
+<app-loader [detectRoutingOngoing]="isLoading"></app-loader>

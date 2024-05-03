@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../core/auth.service';
+import { LocalStorageService } from '../core/local-storage.service';
 import { CommonService } from '../shared/services/common.service';
 import { PaymentService } from './payment.service';
 
@@ -22,11 +24,14 @@ export class PaymentComponent {
 
   razorpay: any;
   orderId: string = ""; // Variable to store the order ID obtained from the backend
+  isLoading: boolean = true;
 
   constructor(
     private paymentService: PaymentService,
     public authService: AuthService,
-    private commonService: CommonService
+    private localStorageService: LocalStorageService,
+    private commonService: CommonService,
+    private router: Router
   ) {
     this.getPrices();
   }
@@ -72,6 +77,19 @@ export class PaymentComponent {
           (captureResponse: any) => {
             console.log('Payment captured successfully:', captureResponse);
             this.commonService.showSnackbar("snackbar-success", captureResponse.message, captureResponse.status);
+
+            // Turn on loader before routing
+            this.isLoading = true;
+
+            // Fetch the updated user details and set in local storage
+            this.authService.getCurrentUser().subscribe({
+              next: (res) => {
+                this.localStorageService.setUserInfo(res.data);
+              }
+            });
+
+            // Re-route to profile page
+            this.router.navigate(['/profile']);
           },
           (error: any) => {
             console.error('Failed to capture payment:', error);
@@ -90,6 +108,8 @@ export class PaymentComponent {
   }
 
   getPrices() {
+    this.isLoading = true;
+
     this.paymentService.getPrices().subscribe({
       next: (res) => {
         // Extract the different pricing options
@@ -107,6 +127,7 @@ export class PaymentComponent {
       },
       complete: () => {
         console.log("Completed fetching prices");
+        this.isLoading = false;
       }
     });
   }
