@@ -9,55 +9,105 @@
 
   <div class="pricing-options">
     <div class="pricing-plan-card">
-      <img [src]="'../../assets/svg/pricing-icon/icon-pricing-onetime.svg'" class="pricing-icon" />
+      <img
+        [src]="'../../assets/svg/pricing-icon/icon-pricing-onetime.svg'"
+        class="pricing-icon"
+      />
       <div class="pricing-plan">{{ reportPricingOptions?.category }}</div>
+      <div class="pricing-description">Allowed set of reports</div>
       <mat-form-field>
         <mat-label>Number of reports</mat-label>
         <mat-select [(value)]="selectedReportPlan">
-          <mat-option *ngFor="let plan of reportPricingOptions?.plans" [value]="plan">{{ plan?.count
-            }}</mat-option>
+          <mat-option
+            *ngFor="let plan of reportPricingOptions?.plans"
+            [value]="plan"
+            >{{ plan?.count }}</mat-option
+          >
         </mat-select>
       </mat-form-field>
       <div class="Amount">Amount</div>
       <div class="pricing-value">
-        {{ selectedReportPlan?.price | currency : reportPricingOptions?.currency_code : "symbol" : "0.0-0" }}/-
+        {{
+          selectedReportPlan?.price
+            | currency
+              : reportPricingOptions?.currency_code
+              : "symbol"
+              : "0.0-0"
+        }}/-
       </div>
     </div>
 
     <div class="pricing-plan-card">
-      <img [src]="'../../assets/svg/pricing-icon/icon-pricing-onetime.svg'" class="pricing-icon" />
+      <img
+        [src]="'../../assets/svg/pricing-icon/icon-pricing-onetime.svg'"
+        class="pricing-icon"
+      />
       <div class="pricing-plan">{{ documentPricingOptions?.category }}</div>
-      <div class="pricing-description">Upload and Processing of documents (in {{
-        documentPricingOptions?.plans[0]?.amount?.unit }})</div>
+      <div class="pricing-description">Upload and Processing of documents</div>
       <mat-form-field>
-        <mat-label>Size of documents</mat-label>
+        <mat-label
+          >Size of documents (in
+          {{ documentPricingOptions?.plans[0]?.amount?.unit }})</mat-label
+        >
         <mat-select [(value)]="selectedDocumentPlan">
-          <mat-option *ngFor="let plan of documentPricingOptions?.plans" [value]="plan">{{
-            plan?.amount?.value }}</mat-option>
+          <mat-option
+            *ngFor="let plan of documentPricingOptions?.plans"
+            [value]="plan"
+            >{{ plan?.amount?.value }}</mat-option
+          >
         </mat-select>
       </mat-form-field>
       <div class="Amount">Amount</div>
       <div class="pricing-value">
-        {{ selectedDocumentPlan?.price | currency : documentPricingOptions?.currency_code : "symbol" : "0.0-0" }}/-
+        {{
+          selectedDocumentPlan?.price
+            | currency
+              : documentPricingOptions?.currency_code
+              : "symbol"
+              : "0.0-0"
+        }}/-
       </div>
     </div>
 
     <div class="pricing-plan-card">
-      <img [src]="'../../assets/svg/pricing-icon/icon-pricing-onetime.svg'" class="pricing-icon" />
+      <img
+        [src]="'../../assets/svg/pricing-icon/icon-pricing-onetime.svg'"
+        class="pricing-icon"
+      />
       <div class="pricing-plan">{{ chatPricingOptions?.category }}</div>
+      <div class="pricing-description">Allowed number of chats</div>
       <mat-form-field>
         <mat-label>Number of chats</mat-label>
         <mat-select [(value)]="selectedChatPlan">
-          <mat-option *ngFor="let plan of chatPricingOptions?.plans" [value]="plan">{{ plan?.count }}</mat-option>
+          <mat-option
+            *ngFor="let plan of chatPricingOptions?.plans"
+            [value]="plan"
+            >{{ plan?.count }}</mat-option
+          >
         </mat-select>
       </mat-form-field>
       <div class="Amount">Amount</div>
       <div class="pricing-value">
-        {{ selectedChatPlan?.price | currency : chatPricingOptions?.currency_code : "symbol" : "0.0-0" }}/-
+        {{
+          selectedChatPlan?.price
+            | currency : chatPricingOptions?.currency_code : "symbol" : "0.0-0"
+        }}/-
       </div>
     </div>
   </div>
 
-  <span class="plan-set-description">*One set of reports contain 4 reports - Research, Outline, Resource and
-    Detailed</span>
+  <div class="action">
+    <button
+      class="btn-plan-action"
+      *ngIf="authService.isLoggedIn"
+      (click)="initiatePayment()"
+    >
+      Choose Plan
+    </button>
+  </div>
+
+  <span class="plan-set-description"
+    >*One set of reports contain 4 reports - Research, Outline, Resource and
+    Detailed</span
+  >
 </div>

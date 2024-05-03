@@ -35,7 +35,7 @@
   grid-gap: 5vw;
   grid-template-columns: repeat(3, 1fr);
   margin-right: 3rem;
-  margin-bottom: 3.5vw;
+  margin-bottom: 0.5vw;
   margin-top: 1vw;
 
   @media (max-width: 1199.98px) {
@@ -45,7 +45,6 @@
     margin-top: 36px;
     margin-right: 0;
     height: inherit;
-    margin-bottom: 5rem;
   }
 
   .pricing-plan-card {
@@ -95,7 +94,7 @@
       margin-bottom: 1rem;
 
       //1366: 18px, 1920: 22px
-      font-size: clamp(1.125rem, 0.5086rem + 0.722vw, 1.375rem);
+      font-size: clamp(1rem, 0.6918rem + 0.361vw, 1.125rem);
 
       font-style: normal;
       font-weight: 400;
@@ -129,30 +128,6 @@
       line-height: 30px; /* 93.75% */
       margin-top: 6px;
     }
-
-    .btn-plan-action {
-      display: inline-flex;
-      padding: 14.5px 40px;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      border-radius: 100px;
-      background: #ffbe17;
-      border: none;
-      margin-top: 39px;
-
-      color: #141516;
-      text-align: center;
-      font-family: "Roboto", sans-serif;
-
-      //1366: 16px, 1920: 18px
-      font-size: clamp(1rem, 0.6918rem + 0.361vw, 1.125rem);
-
-      font-style: normal;
-      font-weight: 500;
-      line-height: normal;
-      cursor: pointer;
-    }
   }
 }
 
@@ -168,5 +143,38 @@
   @media (max-widthl: 1199.98px) {
     display: inline-block;
     margin-top: 86px;
+  }
+}
+
+.action {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 3rem;
+
+  @media (max-width: 1199.98px) {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+
+  .btn-plan-action {
+    display: inline-flex;
+    padding: 14.5px 40px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 100px;
+    background: #ffbe17;
+    border: none;
+    color: #141516;
+    text-align: center;
+    //1366: 16px, 1920: 18px
+    font-size: clamp(1rem, 0.6918rem + 0.361vw, 1.125rem);
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    cursor: pointer;
   }
 }

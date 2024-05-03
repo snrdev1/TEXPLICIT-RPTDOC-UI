@@ -12,27 +12,6 @@ declare const Razorpay: any;
   styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent {
-  pricingOptions: any[] = [
-    {
-      "icon": "icon-pricing-onetime",
-      "plan": "One Time Use",
-      "description": "One set of all reports",
-      "value": 4000
-    },
-    {
-      "icon": "icon-pricing-limited",
-      "plan": "Limited Use",
-      "description": "Approx 11 sets",
-      "value": 20000
-    },
-    {
-      "icon": "icon-pricing-high",
-      "plan": "Professional Use",
-      "description": "Approx 24 sets",
-      "value": 40000
-    },
-  ];
-
   reportPricingOptions: any = {};
   documentPricingOptions: any = {};
   chatPricingOptions: any = {};
@@ -52,12 +31,16 @@ export class PaymentComponent {
     this.getPrices();
   }
 
-  initiatePayment(pricingPlan: any) {
+  initiatePayment() {
+
+    const amount = this.selectedReportPlan?.price + this.selectedDocumentPlan?.price + this.selectedChatPlan?.price;
+    const currency_code = this.selectedReportPlan?.currency_code;
+
     // Create the order when the user initiates payment
-    this.paymentService.createOrder(pricingPlan["value"]).subscribe(
+    this.paymentService.createOrder(amount).subscribe(
       (response: any) => {
         this.orderId = response.data.order_id;
-        this.initiateRazorpayCheckout(pricingPlan); // Call the function to initiate Razorpay checkout
+        this.initiateRazorpayCheckout(amount, currency_code); // Call the function to initiate Razorpay checkout
       },
       (error: any) => {
         console.error('Failed to create order:', error);
@@ -66,13 +49,13 @@ export class PaymentComponent {
     );
   }
 
-  initiateRazorpayCheckout(pricingPlan: any) {
+  initiateRazorpayCheckout(amount: number, currency_code: string) {
     this.razorpay = new Razorpay({
       key: environment.razorpay_key, // Replace with your actual Razorpay Key ID
-      amount: pricingPlan["value"] * 100, // Amount in paise
-      currency: "INR",
+      amount: amount * 100, // Amount in paise
+      currency: currency_code,
       name: 'TexplicitRW',
-      description: 'Payment for Texplicit plan : ' + pricingPlan["plan"],
+      description: 'Payment for TexplicitRW',
       order_id: this.orderId, // Pass the order ID obtained from backend
       handler: (response: any) => {
         // Handle the success callback from Razorpay
@@ -80,8 +63,8 @@ export class PaymentComponent {
           razorpay_order_id: response.razorpay_order_id,
           razorpay_payment_id: response.razorpay_payment_id,
           razorpay_signature: response.razorpay_signature,
-          amount: pricingPlan["value"],
-          currency: "INR"
+          amount: amount,
+          currency: currency_code
         };
 
         // Capture the payment on the backend
