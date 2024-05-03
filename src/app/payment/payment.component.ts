@@ -62,6 +62,7 @@ export class PaymentComponent {
       name: 'TexplicitRW',
       description: 'Payment for TexplicitRW',
       order_id: this.orderId, // Pass the order ID obtained from backend
+      
       handler: (response: any) => {
         // Handle the success callback from Razorpay
         const paymentData = {
@@ -73,8 +74,8 @@ export class PaymentComponent {
         };
 
         // Capture the payment on the backend
-        this.paymentService.capturePayment(paymentData).subscribe(
-          (captureResponse: any) => {
+        this.paymentService.capturePayment(paymentData).subscribe({
+          next: (captureResponse: any) => {
             console.log('Payment captured successfully:', captureResponse);
             this.commonService.showSnackbar("snackbar-success", captureResponse.message, captureResponse.status);
 
@@ -91,11 +92,12 @@ export class PaymentComponent {
             // Re-route to profile page
             this.router.navigate(['/profile']);
           },
-          (error: any) => {
+
+          error: (error: any) => {
             console.error('Failed to capture payment:', error);
             this.commonService.showSnackbar("snackbar-error", error.message, error.status);
           }
-        );
+        });
       },
       theme: {
         color: '#171d5e',
