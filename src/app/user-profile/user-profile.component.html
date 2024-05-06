@@ -3,9 +3,70 @@
 
   <div class="user-profile-info">
     <div class="info" *ngFor="let info of profileInfo">
-      <div class="fieldName">{{info.fieldName}} : </div>
-      <div class="fieldValue" *ngIf="info.fieldValue">{{info.fieldValue}}</div>
+      <div class="fieldName">{{ info.fieldName }} :</div>
+      <div class="fieldValue" *ngIf="info.fieldValue">
+        {{ info.fieldValue }}
+      </div>
       <div class="fieldValue-blank" *ngIf="!info.fieldValue">N/A</div>
     </div>
   </div>
-<div>
+
+  <div class="subscription">
+    <div class="subscription-title">Subscription Details</div>
+
+    <div class="subscription-set">
+      <div class="fieldName">Remaining set of reports :</div>
+      <div class="fieldValue">
+        {{ remainingReports }}
+      </div>
+    </div>
+
+    <div class="subscription-set">
+      <div class="fieldName">Remaining size of allowed documents (in MB) :</div>
+      <div class="fieldValue">
+        {{ remainingDocuments }}
+      </div>
+    </div>
+
+    <div class="subscription-set">
+      <div class="fieldName">Remaining set of chats :</div>
+      <div class="fieldValue">
+        {{ remainingChats }}
+      </div>
+    </div>
+  </div>
+
+  <div class="invoices">
+    <div class="user-invoices-title">Invoices</div>
+
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="invoices">
+        <!-- Date Column -->
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef>Date</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.createdOn | date : "medium" }}
+          </td>
+        </ng-container>
+
+        <!-- Amount Column -->
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef>Amount</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.payment_details.amount }}
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+        aria-label="Select page of invoices"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+</div>

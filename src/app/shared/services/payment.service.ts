@@ -27,4 +27,16 @@ export class PaymentService {
     const httpOptions = { headers: header };
     return this.http.post<any>(url, paymentInfo, httpOptions);
   }
+
+  getPrices(): Observable<any> {
+    const url = `${environment.hostName}/pricing/get_prices`;
+
+    return this.http.get<any>(url);
+  }
+
+  getUserPaymentHistory(){
+    const url =  `${environment.hostName}/payment/payment-history`;
+
+    return this.http.get<any>(url);
+  }
 }
