@@ -13,6 +13,10 @@ export class UserProfileComponent {
   invoices: any = [];
   displayedColumns: string[] = ['date', 'amount'];
 
+  remainingReports: number = 0;
+  remainingChats: number = 0;
+  remainingDocuments: number = 0.0;
+
   constructor(
     private localStorageService: LocalStorageService,
     private datePipe: DatePipe,
@@ -65,6 +69,10 @@ export class UserProfileComponent {
         "fieldValue": this.userInfo?.companyName || ""
       }
     ];
+
+    this.remainingReports = (this.userInfo?.permissions?.report?.allowed?.total || 0) - (this.userInfo?.permissions?.report?.used?.total || 0);
+    this.remainingChats = (this.userInfo?.permissions?.chat?.allowed?.chat_count || 0) - (this.userInfo?.permissions?.chat?.used?.chat_count || 0);
+    this.remainingDocuments = ((this.userInfo?.permissions?.document?.allowed?.document_size || 0) - (this.userInfo?.permissions?.document?.used?.document_size || 0)) / (1024*1024);
   }
 
   getUserPaymentHistory() {

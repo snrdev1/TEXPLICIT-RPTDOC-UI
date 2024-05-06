@@ -1,14 +1,41 @@
 <app-dialog-base [modalTitle]="'Login'" (onClose)="onCloseClick()">
   <form content [formGroup]="form" (ngSubmit)="onSubmit()">
-    <h3>Login to access your Texplicit</h3>
+    <div class="new-user">
+        <p class="heading">New to TexplicitRW?</p>
+        <p><a href="#" class="demo-link" (click)="onContactClick($event)"> Contact Us</a>
+        for a demo today!</p>
+    </div>
+
+    <div class="existing-user">
+        <p class="heading">Already a member?</p>
+        Login to access your TexplicitRW
+    </div>
+
     <mat-dialog-content class="mat-dialog-body">
-      <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+      <mat-form-field
+        appearance="outline"
+        floatLabel="always"
+        class="mat-form-input"
+      >
         <mat-label>Email</mat-label>
-        <input matInput placeholder="Enter your email ..." formControlName="email" />
+        <input
+          matInput
+          placeholder="Enter your email ..."
+          formControlName="email"
+        />
       </mat-form-field>
-      <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
+      <mat-form-field
+        appearance="outline"
+        floatLabel="always"
+        class="mat-form-input"
+      >
         <mat-label>Password</mat-label>
-        <input matInput type="password" placeholder="Enter your password ..." formControlName="password" />
+        <input
+          matInput
+          type="password"
+          placeholder="Enter your password ..."
+          formControlName="password"
+        />
       </mat-form-field>
       <!-- <mat-form-field appearance="outline" floatLabel="always" class="mat-form-input">
                 <mat-label>Domain</mat-label>
@@ -19,12 +46,9 @@
     </mat-dialog-content>
     <mat-dialog-actions class="mat-dialog-footer">
       <button mat-raised-button type="submit">Login</button>
-      <a href="#" class="footer-link" (click)="onForgotPasswordClick($event)">Forgot Password</a>
-      <p class="demo-request-footer">
-        New to TexplicitRW?
-        <a href="#" class="demo-link" (click)="onContactClick($event)">Contact us</a>
-        for a demo today!
-      </p>
+      <a href="#" class="footer-link" (click)="onForgotPasswordClick($event)"
+        >Forgot Password</a
+      >
     </mat-dialog-actions>
   </form>
 </app-dialog-base>
