@@ -37,9 +37,8 @@ export class PaymentComponent {
   }
 
   initiatePayment() {
-
     const amount = this.selectedReportPlan?.price + this.selectedDocumentPlan?.price + this.selectedChatPlan?.price;
-    const currency_code = this.selectedReportPlan?.currency_code;
+    const currency_code = this.reportPricingOptions?.currency_code;
 
     // Create the order when the user initiates payment
     this.paymentService.createOrder(amount).subscribe(
@@ -62,7 +61,7 @@ export class PaymentComponent {
       name: 'TexplicitRW',
       description: 'Payment for TexplicitRW',
       order_id: this.orderId, // Pass the order ID obtained from backend
-      
+
       handler: (response: any) => {
         // Handle the success callback from Razorpay
         const paymentData = {
@@ -70,7 +69,7 @@ export class PaymentComponent {
           razorpay_payment_id: response.razorpay_payment_id,
           razorpay_signature: response.razorpay_signature,
           amount: amount,
-          currency: currency_code
+          currency_code: currency_code
         };
 
         // Capture the payment on the backend

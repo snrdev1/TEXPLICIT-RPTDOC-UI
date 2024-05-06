@@ -63,10 +63,6 @@ export class UserProfileComponent {
       {
         "fieldName": "Company Name",
         "fieldValue": this.userInfo?.companyName || ""
-      },
-      {
-        "fieldName": "Remaining Balance",
-        "fieldValue": this.userInfo?.balance || 0 + " /-"
       }
     ];
   }

@@ -20,9 +20,6 @@ export class PaymentService {
   }
 
   capturePayment(paymentInfo: Object): Observable<any> {
-
-    console.log("Payment info  : ", paymentInfo);
-
     const url = `${environment.hostName}/payment/capture_payment`;
     const header = new HttpHeaders({
       'Content-Type': 'application/json'
@@ -39,7 +36,7 @@ export class PaymentService {
 
   getUserPaymentHistory(){
     const url =  `${environment.hostName}/payment/payment-history`;
-    
+
     return this.http.get<any>(url);
   }
 }
