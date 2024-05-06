@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/core/auth.service';
 import { LocalStorageService } from 'src/app/core/local-storage.service';
 import { Router } from '@angular/router';
 import { CommonService } from 'src/app/shared/services/common.service';
+import { DemoRequestDialogComponent } from '../demo-request-dialog/demo-request-dialog.component';
 @Component({
   selector: 'app-login-dialog',
   templateUrl: './login-dialog.component.html',
@@ -85,5 +86,13 @@ export class LoginDialogComponent {
     });
   }
 
+  onContactClick(event: any){
+    event.preventDefault();
 
+    const dialogRef = this.dialog.open(DemoRequestDialogComponent, { panelClass: 'mat-dialog-panel' });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 }
