@@ -1,22 +1,128 @@
 <div>
-<div class="title">
-  <p class="bold-title">Payment Options</p>
-  <p class="title-sm">
-    Debits to your account would be made as per reports you run. You will
-    intimated by mail when your balance is running out.
-  </p>
-</div>
-
-<div class="pricing-options">
-  <div *ngFor="let pricingPlan of pricingOptions" class="pricing-plan-card">
-    <img [src]="'../../assets/svg/pricing-icon/' + pricingPlan.icon + '.svg'" class="pricing-icon" />
-    <div class="pricing-plan">{{ pricingPlan.plan }}</div>
-    <div class="pricing-description">{{ pricingPlan.description }}</div>
-    <div class="deposit">Desposit</div>
-    <div class="pricing-value">{{ pricingPlan.value | currency:'INR':'symbol':'0.0-0' }}/-</div>
-    <button class="btn-plan-action" *ngIf="authService.isLoggedIn" (click)="initiatePayment(pricingPlan)">Choose Plan</button>
+  <div class="title">
+    <p class="bold-title">Payment Options</p>
+    <p class="title-sm">
+      Debits to your account would be made as per reports you run. You will
+      intimated by mail when your balance is running out.
+    </p>
   </div>
+
+  <div class="pricing-options">
+    <div class="pricing-plan-card">
+      <img
+        [src]="'../../assets/svg/pricing-icon/icon-pricing-high.svg'"
+        class="pricing-icon"
+      />
+      <div class="pricing-plan">Report Pricing</div>
+      <div class="pricing-description">Allowed set of reports</div>
+      <mat-spinner *ngIf="isLoading" [diameter]="30"></mat-spinner>
+      <ng-container *ngIf="!isLoading">
+        <mat-form-field appearance="outline">
+          <mat-label>Number of reports</mat-label>
+          <mat-select [(value)]="selectedReportPlan">
+            <mat-option
+              *ngFor="let plan of reportPricingOptions?.plans"
+              [value]="plan"
+              >{{ plan?.count }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+        <div class="Amount">Amount</div>
+        <div class="pricing-value">
+          {{
+            selectedReportPlan?.price
+              | currency
+                : reportPricingOptions?.currency_code
+                : "symbol"
+                : "0.0-0"
+          }}/-
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="pricing-plan-card">
+      <img
+        [src]="'../../assets/svg/pricing-icon/icon-pricing-limited.svg'"
+        class="pricing-icon"
+      />
+      <div class="pricing-plan">Document Pricing</div>
+      <div class="pricing-description">Upload and Processing of documents</div>
+      <mat-spinner *ngIf="isLoading" [diameter]="30"></mat-spinner>
+      <ng-container *ngIf="!isLoading">
+        <mat-form-field appearance="outline">
+          <mat-label
+            >Size of documents (in
+            {{ documentPricingOptions?.plans[0]?.amount?.unit }})</mat-label
+          >
+          <mat-select [(value)]="selectedDocumentPlan">
+            <mat-option
+              *ngFor="let plan of documentPricingOptions?.plans"
+              [value]="plan"
+              >{{ plan?.amount?.value }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+        <div class="Amount">Amount</div>
+        <div class="pricing-value">
+          {{
+            selectedDocumentPlan?.price
+              | currency
+                : documentPricingOptions?.currency_code
+                : "symbol"
+                : "0.0-0"
+          }}/-
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="pricing-plan-card">
+      <img
+        [src]="'../../assets/svg/pricing-icon/icon-pricing-onetime.svg'"
+        class="pricing-icon"
+      />
+      <div class="pricing-plan">Chat Pricing</div>
+      <div class="pricing-description">Allowed number of chats</div>
+      <mat-spinner *ngIf="isLoading" [diameter]="30"></mat-spinner>
+      <ng-container *ngIf="!isLoading">
+        <mat-form-field appearance="outline">
+          <mat-label>Number of chats</mat-label>
+          <mat-select [(value)]="selectedChatPlan">
+            <mat-option
+              *ngFor="let plan of chatPricingOptions?.plans"
+              [value]="plan"
+              >{{ plan?.count }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+        <div class="Amount">Amount</div>
+        <div class="pricing-value">
+          {{
+            selectedChatPlan?.price
+              | currency
+                : chatPricingOptions?.currency_code
+                : "symbol"
+                : "0.0-0"
+          }}/-
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="action">
+    <mat-spinner *ngIf="isLoading" [diameter]="30"></mat-spinner>
+    <button
+      class="btn-plan-action"
+      *ngIf="authService.isLoggedIn && !isLoading"
+      (click)="initiatePayment()"
+    >
+      Choose Plan
+    </button>
+  </div>
+
+  <span class="plan-set-description"
+    >*One set of reports contain 4 reports - Research, Outline, Resource and
+    Detailed</span
+  >
 </div>
 
-<span class="plan-set-description">*One set of reports contain 4 reports - Research, Outline, Resource and Detailed</span>
-</div>
+<app-loader [detectRoutingOngoing]="isLoading"></app-loader>
