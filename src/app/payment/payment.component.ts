@@ -38,13 +38,18 @@ export class PaymentComponent {
 
   initiatePayment() {
     const amount = this.selectedReportPlan?.price + this.selectedDocumentPlan?.price + this.selectedChatPlan?.price;
-    const currency_code = this.reportPricingOptions?.currency_code;
+    const currencyCode = this.reportPricingOptions?.currency_code;
+    const selectedPlan = {
+      report_plan: this.selectedReportPlan,
+      document_plan: this.selectedDocumentPlan,
+      chat_plan: this.selectedChatPlan
+    }
 
     // Create the order when the user initiates payment
     this.paymentService.createOrder(amount).subscribe(
       (response: any) => {
         this.orderId = response.data.order_id;
-        this.initiateRazorpayCheckout(amount, currency_code); // Call the function to initiate Razorpay checkout
+        this.initiateRazorpayCheckout(amount, currencyCode, selectedPlan); // Call the function to initiate Razorpay checkout
       },
       (error: any) => {
         console.error('Failed to create order:', error);
@@ -53,11 +58,11 @@ export class PaymentComponent {
     );
   }
 
-  initiateRazorpayCheckout(amount: number, currency_code: string) {
+  initiateRazorpayCheckout(amount: number, currencyCode: string, selectedPlan: any) {
     this.razorpay = new Razorpay({
       key: environment.razorpay_key, // Replace with your actual Razorpay Key ID
       amount: amount * 100, // Amount in paise
-      currency: currency_code,
+      currency: currencyCode,
       name: 'TexplicitRW',
       description: 'Payment for TexplicitRW',
       order_id: this.orderId, // Pass the order ID obtained from backend
@@ -69,7 +74,8 @@ export class PaymentComponent {
           razorpay_payment_id: response.razorpay_payment_id,
           razorpay_signature: response.razorpay_signature,
           amount: amount,
-          currency_code: currency_code
+          currency_code: currencyCode,
+          selected_plan: selectedPlan
         };
 
         // Capture the payment on the backend
