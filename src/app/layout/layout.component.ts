@@ -127,9 +127,9 @@ export class LayoutComponent {
 
   onPricingClick() {
     // Blocking it temporarily
-    // this.router.navigate(['/pricing']);
+    this.router.navigate(['/payment']);
 
-    this.dialog.open(DemoRequestDialogComponent, { panelClass: 'mat-dialog-panel' });
+    // this.dialog.open(DemoRequestDialogComponent, { panelClass: 'mat-dialog-panel' });
     this.closeSidenav();
   }
 

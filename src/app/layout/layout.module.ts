@@ -1,4 +1,3 @@
-import { PrivacyPolicyModule } from './../privacy-policy/privacy-policy.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -71,13 +70,6 @@ const routes: Routes = [{
       loadChildren: () =>
         import('./../contact-us/contact-us.module').then(
           (m) => m.ContactUsModule
-        )
-    },
-    {
-      path: 'pricing',
-      loadChildren: () =>
-        import('./../pricing/pricing.module').then(
-          (m) => m.PricingModule
         )
     },
     {

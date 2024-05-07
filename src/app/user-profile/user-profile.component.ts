@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { LocalStorageService } from 'src/app/core/local-storage.service';
 import { PaymentService } from '../shared/services/payment.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -20,7 +21,8 @@ export class UserProfileComponent {
   constructor(
     private localStorageService: LocalStorageService,
     private datePipe: DatePipe,
-    private paymentService: PaymentService
+    private paymentService: PaymentService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -87,5 +89,9 @@ export class UserProfileComponent {
         console.log("complete");
       }
     });
+  }
+
+  renewSubscription(){
+    this.router.navigate(['/payment']);
   }
 }
