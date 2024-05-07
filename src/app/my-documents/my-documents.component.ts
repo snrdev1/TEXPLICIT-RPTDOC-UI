@@ -63,7 +63,6 @@ export class MyDocumentsComponent {
     }
     this.checkedIds = this.localstorage.getitem("FileIdArray") || [];
     this.fileIds = this.localstorage.getitem("FileIdArray") || [];
-    console.log("Checked:", this.checkedIds);
     this.selectedTab = this.localstorage.getitem("selectedtab") || 0;
 
     if (this.userInfo) {
