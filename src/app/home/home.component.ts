@@ -56,10 +56,6 @@ export class HomeComponent {
 
   myGroups: any = [];
   constructor(
-    private sharedService: SharedService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private homeService: HomeService,
     private authService: AuthService,
     private tokenService: TokenService,
     public commonService: CommonService,

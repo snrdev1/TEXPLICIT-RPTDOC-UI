@@ -41,17 +41,6 @@
 
       .mat-mdc-card-actions {
         justify-content: flex-end;
-
-        .btn-renew-subscription {
-          cursor: pointer;
-          border-radius: 100px;
-          padding: 10px 26px;
-          color: #141516;
-          background-color: #ffbe17;
-          border: none;
-          font-weight: 500;
-          font-family: "Roboto", sans-serif;
-        }
       }
     }
   }
@@ -74,4 +63,35 @@
   .invoice-container {
     display: flex;
   }
+
+  .no-invoices {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    .no-invoices-text {
+      color: #1c1d21;
+      font-family: Poppins, sans-serif;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 32px; /* 133.333% */
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.btn-subscription {
+  cursor: pointer;
+  border-radius: 100px;
+  padding: 10px 26px;
+  color: #141516;
+  background-color: #ffbe17 !important;
+  border: none;
+  font-weight: 500;
+  font-family: "Roboto", sans-serif;
+  //font-size: 14px
+  font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
 }

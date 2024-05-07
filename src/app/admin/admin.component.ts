@@ -16,7 +16,7 @@ export class AdminComponent implements OnInit, AfterViewInit {
   addUserButtonVisible: boolean = true;
   searchValue: string = "";
   selectedTab: number = 0;
-  usertable = new MatTableDataSource();
+  userTable = new MatTableDataSource();
   isLoading = false;
   users: any = [];
   kis: any = [];
@@ -41,8 +41,8 @@ export class AdminComponent implements OnInit, AfterViewInit {
     this.localStorageService.observeUserInfo();
   }
   ngAfterViewInit(): void {
-    this.usertable.paginator = this.paginatorUser;
-    this.usertable.sort = this.sortUser;
+    this.userTable.paginator = this.paginatorUser;
+    this.userTable.sort = this.sortUser;
   }
   onFilterClick() { }
 
@@ -67,14 +67,14 @@ export class AdminComponent implements OnInit, AfterViewInit {
     console.log("searchUser:", event);
     this.searchValue = event.trim().toLowerCase();
     if (this.selectedTab === 0) {
-      this.usertable.filter = this.searchValue;
+      this.userTable.filter = this.searchValue;
     }
   }
   
   clearSearchUser() {
     this.searchValue = "";
     if (this.selectedTab === 0) {
-      this.usertable.filter = this.searchValue;
+      this.userTable.filter = this.searchValue;
     }
   }
 
@@ -87,9 +87,9 @@ export class AdminComponent implements OnInit, AfterViewInit {
           }
           return user;
         });
-        this.usertable = new MatTableDataSource(this.users);
-        this.usertable.paginator = this.paginatorUser;
-        this.usertable.sort = this.sortUser;
+        this.userTable = new MatTableDataSource(this.users);
+        this.userTable.paginator = this.paginatorUser;
+        this.userTable.sort = this.sortUser;
       },
       error: (err: any) => {
         console.error(err);
@@ -105,10 +105,10 @@ export class AdminComponent implements OnInit, AfterViewInit {
       next: (res: any) => {
         this.users = res.data;
         console.log("Users:", this.users);
-        this.usertable = new MatTableDataSource(this.users);
+        this.userTable = new MatTableDataSource(this.users);
         this.totalPageSize = this.users.length;
-        this.usertable.paginator = this.paginatorUser;
-        this.usertable.sort = this.sortUser;
+        this.userTable.paginator = this.paginatorUser;
+        this.userTable.sort = this.sortUser;
       },
       error: (e: any) => {
         console.log("Error:", e);

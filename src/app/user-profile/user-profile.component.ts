@@ -12,7 +12,7 @@ export class UserProfileComponent {
   userInfo: any;
   profileInfo: any = [];
   invoices: any = [];
-  displayedColumns: string[] = ['date', 'amount'];
+  displayedColumns: string[] = ['date', 'amount', 'reports', 'documents', 'chats'];
 
   remainingReports: number = 0;
   remainingChats: number = 0;
@@ -27,9 +27,6 @@ export class UserProfileComponent {
 
   ngOnInit() {
     this.userInfo = this.localStorageService.getUserInfo();
-
-    console.log("userInfo : ", this.userInfo);
-
     this.constructProfileInfo();
     this.getUserPaymentHistory();
   }
