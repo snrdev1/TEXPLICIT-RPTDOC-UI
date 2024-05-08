@@ -41,7 +41,7 @@ export class ReportsComponent {
   isDismissed: boolean = false;
   pendingReports: any = [];
   allReports: any = [];
-  
+
   // To store the number of failed reports
   failedReportsCount: number = 0;
 
@@ -77,6 +77,12 @@ export class ReportsComponent {
   }
 
   ngOnInit() {
+    // Check if the user has subscription left to generate reports
+    if (!this.userInfo?.permissions?.report?.allowed?.total) {
+      // Generate a snackbar to inform the user to update their subscription
+      this.commonService.showSnackbar('snackbar-info', "Subscription expired or does not exist! Please update your subscription today!", "");
+    }
+
     if (this.userInfo) {
       this.userId = this.userInfo?._id;
     }
@@ -384,7 +390,7 @@ export class ReportsComponent {
     })
   }
 
-  getFailedReportCount(){
+  getFailedReportCount() {
     this.reportsService.getAllFailedReports().subscribe({
       next: (res) => {
         this.failedReportsCount = res?.data.length;
