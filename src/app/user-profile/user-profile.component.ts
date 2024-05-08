@@ -13,6 +13,7 @@ import { MatPaginator } from '@angular/material/paginator';
 export class UserProfileComponent {
   userInfo: any;
   profileInfo: any = [];
+  subscriptionInfo: any = [];
   invoices: any = [];
   displayedColumns: string[] = ['date', 'amount', 'reports', 'documents', 'chats'];
 
@@ -81,6 +82,29 @@ export class UserProfileComponent {
     this.remainingReports = (this.userInfo?.permissions?.report?.allowed?.total || 0) - (this.userInfo?.permissions?.report?.used?.total || 0);
     this.remainingChats = (this.userInfo?.permissions?.chat?.allowed?.chat_count || 0) - (this.userInfo?.permissions?.chat?.used?.chat_count || 0);
     this.remainingDocuments = ((this.userInfo?.permissions?.document?.allowed?.document_size || 0) - (this.userInfo?.permissions?.document?.used?.document_size || 0)) / (1024*1024);
+
+    this.subscriptionInfo = [
+      {
+        "fieldName": "Remaining set of reports :",
+        "fieldValue": this.remainingReports || "",
+        "fieldType": "number"
+      },
+      {
+        "fieldName": "Remaining size of documents (in MB) :",
+        "fieldValue": this.remainingDocuments || "",
+        "fieldType": "number"
+      },
+      {
+        "fieldName": "Remaining set of chats :",
+        "fieldValue": this.remainingChats || "",
+        "fieldType": "number"
+      },
+      {
+        "fieldName": "Subscription expires :",
+        "fieldValue": this.userInfo?.permissions?.subscription_duration?.end_date || "",
+        "fieldType": "date"
+      }
+    ];
   }
 
   getUserPaymentHistory() {

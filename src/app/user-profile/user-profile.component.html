@@ -22,24 +22,13 @@
       </mat-card-header>
 
       <mat-card-content>
-        <div class="info">
-          <div class="field-name">Remaining set of reports :</div>
-          <div class="field-value">
-            {{ remainingReports }}
+        <div class="info" *ngFor="let info of subscriptionInfo">
+          <div class="field-name">{{ info?.fieldName }}</div>
+          <div class="field-value" *ngIf="info?.fieldType != 'date'">
+            {{ info?.fieldValue }}
           </div>
-        </div>
-
-        <div class="info">
-          <div class="field-name">Remaining size of documents (in MB) :</div>
-          <div class="field-value">
-            {{ remainingDocuments }}
-          </div>
-        </div>
-
-        <div class="info">
-          <div class="field-name">Remaining set of chats :</div>
-          <div class="field-value">
-            {{ remainingChats }}
+          <div class="field-value" *ngIf="info?.fieldType == 'date'">
+            {{ info?.fieldValue | date : "medium" }}
           </div>
         </div>
       </mat-card-content>
