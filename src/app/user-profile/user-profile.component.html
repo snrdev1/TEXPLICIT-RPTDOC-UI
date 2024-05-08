@@ -84,33 +84,35 @@
           </td>
         </ng-container>
 
-        <!-- Reports Column -->
-        <ng-container matColumnDef="reports">
-          <th mat-header-cell *matHeaderCellDef>Report Sets</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.payment_details.selected_plan.report_plan.count }}
-          </td>
-        </ng-container>
+        <ng-container *ngIf="!isSmallScreen">
+          <!-- Reports Column -->
+          <ng-container matColumnDef="reports">
+            <th mat-header-cell *matHeaderCellDef>Report Sets</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.payment_details.selected_plan.report_plan.count }}
+            </td>
+          </ng-container>
 
-        <!-- Documents Column -->
-        <ng-container matColumnDef="documents">
-          <th mat-header-cell *matHeaderCellDef>Documents</th>
-          <td mat-cell *matCellDef="let element">
-            {{
-              element.payment_details.selected_plan.document_plan.amount.value
-            }}
-            {{
-              element.payment_details.selected_plan.document_plan.amount.unit
-            }}
-          </td>
-        </ng-container>
+          <!-- Documents Column -->
+          <ng-container matColumnDef="documents">
+            <th mat-header-cell *matHeaderCellDef>Documents</th>
+            <td mat-cell *matCellDef="let element">
+              {{
+                element.payment_details.selected_plan.document_plan.amount.value
+              }}
+              {{
+                element.payment_details.selected_plan.document_plan.amount.unit
+              }}
+            </td>
+          </ng-container>
 
-        <!-- Chats Column -->
-        <ng-container matColumnDef="chats">
-          <th mat-header-cell *matHeaderCellDef>Chats</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.payment_details.selected_plan.chat_plan.count }}
-          </td>
+          <!-- Chats Column -->
+          <ng-container matColumnDef="chats">
+            <th mat-header-cell *matHeaderCellDef>Chats</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.payment_details.selected_plan.chat_plan.count }}
+            </td>
+          </ng-container>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

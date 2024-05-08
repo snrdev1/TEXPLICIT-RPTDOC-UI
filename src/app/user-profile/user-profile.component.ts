@@ -1,10 +1,12 @@
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { DatePipe } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/core/local-storage.service';
 import { PaymentService } from '../shared/services/payment.service';
-import { Router } from '@angular/router';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
+
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -15,21 +17,41 @@ export class UserProfileComponent {
   profileInfo: any = [];
   subscriptionInfo: any = [];
   invoices: any = [];
-  displayedColumns: string[] = ['date', 'amount', 'reports', 'documents', 'chats'];
 
   invoiceDatasource = new MatTableDataSource();
   @ViewChild('paginator') paginator!: MatPaginator;
+  displayedColumns: string[] = ['date', 'amount', 'reports', 'documents', 'chats'];
 
   remainingReports: number = 0;
   remainingChats: number = 0;
   remainingDocuments: number = 0.0;
 
+  isSmallScreen: boolean = false;
+
   constructor(
     private localStorageService: LocalStorageService,
     private datePipe: DatePipe,
     private paymentService: PaymentService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private breakpointObserver: BreakpointObserver
+  ) {
+
+    const layoutChanges = breakpointObserver.observe([
+      Breakpoints.XSmall,
+      Breakpoints.Small,
+      Breakpoints.Handset
+    ]);
+
+    layoutChanges.subscribe(result => {
+      if (result.matches) {
+        this.isSmallScreen = true;
+        this.displayedColumns = ['date', 'amount'];
+      } else {
+        this.isSmallScreen = false;
+        this.displayedColumns = ['date', 'amount', 'reports', 'documents', 'chats'];
+      }
+    });
+  }
 
   ngOnInit() {
     this.userInfo = this.localStorageService.getUserInfo();
@@ -81,7 +103,7 @@ export class UserProfileComponent {
 
     this.remainingReports = (this.userInfo?.permissions?.report?.allowed?.total || 0) - (this.userInfo?.permissions?.report?.used?.total || 0);
     this.remainingChats = (this.userInfo?.permissions?.chat?.allowed?.chat_count || 0) - (this.userInfo?.permissions?.chat?.used?.chat_count || 0);
-    this.remainingDocuments = ((this.userInfo?.permissions?.document?.allowed?.document_size || 0) - (this.userInfo?.permissions?.document?.used?.document_size || 0)) / (1024*1024);
+    this.remainingDocuments = ((this.userInfo?.permissions?.document?.allowed?.document_size || 0) - (this.userInfo?.permissions?.document?.used?.document_size || 0)) / (1024 * 1024);
 
     this.subscriptionInfo = [
       {
@@ -124,7 +146,7 @@ export class UserProfileComponent {
     });
   }
 
-  renewSubscription(){
+  renewSubscription() {
     this.router.navigate(['/payment']);
   }
 }
