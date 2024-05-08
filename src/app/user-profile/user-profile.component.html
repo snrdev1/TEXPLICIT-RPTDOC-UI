@@ -72,7 +72,7 @@
     </div>
 
     <div class="mat-elevation-z8" *ngIf="invoices.length">
-      <table mat-table [dataSource]="invoices">
+      <table mat-table [dataSource]="invoiceDatasource">
         <!-- Date Column -->
         <ng-container matColumnDef="date">
           <th mat-header-cell *matHeaderCellDef>Date</th>
@@ -131,6 +131,7 @@
       <mat-paginator
         [pageSizeOptions]="[5, 10, 20]"
         showFirstLastButtons
+        #paginator
         aria-label="Select page of invoices"
       >
       </mat-paginator>

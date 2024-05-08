@@ -1,8 +1,10 @@
 import { DatePipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { LocalStorageService } from 'src/app/core/local-storage.service';
 import { PaymentService } from '../shared/services/payment.service';
 import { Router } from '@angular/router';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -13,6 +15,9 @@ export class UserProfileComponent {
   profileInfo: any = [];
   invoices: any = [];
   displayedColumns: string[] = ['date', 'amount', 'reports', 'documents', 'chats'];
+
+  invoiceDatasource = new MatTableDataSource();
+  @ViewChild('paginator') paginator!: MatPaginator;
 
   remainingReports: number = 0;
   remainingChats: number = 0;
@@ -29,6 +34,10 @@ export class UserProfileComponent {
     this.userInfo = this.localStorageService.getUserInfo();
     this.constructProfileInfo();
     this.getUserPaymentHistory();
+  }
+
+  ngAfterViewInit(): void {
+    this.invoiceDatasource.paginator = this.paginator;
   }
 
   getFormattedDate(date: any): any {
@@ -78,6 +87,9 @@ export class UserProfileComponent {
     this.paymentService.getUserPaymentHistory().subscribe({
       next: (res: any) => {
         this.invoices = res?.data;
+
+        this.invoiceDatasource = new MatTableDataSource(this.invoices);
+        this.invoiceDatasource.paginator = this.paginator;
       },
       error: (e: any) => {
         console.log("Error : ", e);
