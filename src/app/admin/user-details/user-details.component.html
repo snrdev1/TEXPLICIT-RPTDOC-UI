@@ -1,0 +1,113 @@
+<app-dialog-base [modalTitle]="'User Details'" (onClose)="onCloseClick()">
+  <div content>
+    <mat-dialog-content class="mat-dialog-body">
+      <div class="mat-details">
+        <h3 class="mat-section-header-title">Personal Information</h3>
+        <div class="mat-details-row">
+          <div class="mat-details-label">Name:</div>
+          <div class="mat-details-value">{{ data.user.name | titlecase }}</div>
+        </div>
+        <div class="mat-details-row">
+          <div class="mat-details-label">Email:</div>
+          <div class="mat-details-value">{{ data.user.email }}</div>
+        </div>
+        <div class="mat-details-row" *ngIf="data.user.mobileNumber">
+          <div class="mat-details-label">Mobile Number:</div>
+          <div class="mat-details-value">
+            {{ data.user.mobileNumber || "N/A" }}
+          </div>
+        </div>
+        <div class="mat-details-row" *ngIf="data.user.companyName">
+          <div class="mat-details-label">Company Name:</div>
+          <div class="mat-details-value">
+            {{ data.user.companyName || "N/A" }}
+          </div>
+        </div>
+        <div class="mat-details-row" *ngIf="data.user.website">
+          <div class="mat-details-label">Website Name:</div>
+          <div class="mat-details-value">{{ data.user.website || "N/A" }}</div>
+        </div>
+
+        <h3 class="mat-section-header-title" *ngIf="data.user.subscription">
+          Mode Of Use
+        </h3>
+        <div class="mat-details-row">
+          <div class="mat-details-label">Subscriptions:</div>
+          <div class="mat-details-value">
+            {{ data.user.subscription || "N/A" }}
+          </div>
+        </div>
+
+        <h3 class="mat-section-header-title" *ngIf="data.user.permissions">
+          Permissions
+        </h3>
+        <div
+          class="mat-details-row"
+          *ngIf="data.user.permissions.subscription_duration"
+        >
+          <div class="mat-details-label">Start Date:</div>
+          <div class="mat-details-value">
+            {{
+              data.user?.permissions?.subscription_duration?.start_date | date : "longDate"
+            }}
+          </div>
+        </div>
+        <div class="mat-details-row">
+          <div class="mat-details-label">End Date:</div>
+          <div class="mat-details-value">
+            {{ data.user?.permissions?.subscription_duration?.end_date | date : "longDate" }}
+          </div>
+        </div>
+
+        <ng-container *ngIf="data.user.permissions?.document">
+          <h4>Documents</h4>
+          <div class="mat-details-row">
+            <div class="mat-details-label">Allowed document size (in MB):</div>
+            <div class="mat-details-value">
+              {{ sizeToMb(data.user.permissions?.document?.allowed?.document_size) || 0 }}
+            </div>
+          </div>
+          <div class="mat-details-row">
+            <div class="mat-details-label">Used document size (in MB):</div>
+            <div class="mat-details-value">
+              {{ sizeToMb(data.user.permissions?.document?.used?.document_size) || 0 }}
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="data.user.permissions?.chat">
+          <h4>Chats</h4>
+          <div class="mat-details-row">
+            <div class="mat-details-label">Allowed chat count:</div>
+            <div class="mat-details-value">
+              {{ data.user.permissions?.chat?.allowed?.chat_count || 0 }}
+            </div>
+          </div>
+          <div class="mat-details-row">
+            <div class="mat-details-label">Used chat count:</div>
+            <div class="mat-details-value">
+              {{ data.user.permissions?.chat?.used?.chat_count || 0 }}
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="data.user.permissions.report">
+          <h4>Reports</h4>
+          <div class="mat-details-row">
+            <div class="mat-details-label">Allowed report count:</div>
+            <div class="mat-details-value">
+              {{ data.user?.permissions?.report?.allowed?.total || 0 }}
+            </div>
+          </div>
+
+          <div class="mat-details-row" *ngIf="data.user?.permissions?.report?.used">
+            <div class="mat-details-label">Used reports:</div>
+            <div class="mat-details-value">
+              {{ data.user?.permissions?.report?.used?.total || 0 }}
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </mat-dialog-content>
+  </div>
+</app-dialog-base>
