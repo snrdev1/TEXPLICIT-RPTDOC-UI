@@ -20,12 +20,14 @@ export class AddEditUserComponent {
   defaultOptions: any = [];
   disabledArray: any = [];
   modes: any[] = [{ id: 2, name: "Professional" }, { id: 3, name: "Personal" }];
-  constructor(public dialogRef: MatDialogRef<AddEditUserComponent>,
+  constructor(
+    public dialogRef: MatDialogRef<AddEditUserComponent>,
     private formBuilder: FormBuilder,
     private commonService: CommonService,
     private sharedservice: SharedService,
     private adminService: AdminServices,
-    @Inject(MAT_DIALOG_DATA) public data: { user: any }) {
+    @Inject(MAT_DIALOG_DATA) public data: { user: any }
+  ) {
     this.form = this.formBuilder.group({
       name: new FormControl("", [Validators.required, Validators.pattern('^[a-zA-Z ]+$')]),
       email: new FormControl("", [Validators.required, Validators.email]),

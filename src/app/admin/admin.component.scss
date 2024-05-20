@@ -1,235 +1,205 @@
-.manage-user-toolbar{
-    display: flex;
-    height: 35px;
-    justify-content: space-between;
-    margin:auto;
+.manage-user-toolbar {
+  display: flex;
+  height: 35px;
+  justify-content: space-between;
+  margin: auto;
 
-    @media (max-width: 1199.98px) {
-        flex-direction: column-reverse;
-        height: 80px;
-    }
+  @media (max-width: 1199.98px) {
+    flex-direction: column-reverse;
+    height: 80px;
+  }
 }
-.manage-user-toolbar-search{
-    width:65%;
+.manage-user-toolbar-search {
+  width: 65%;
 
-    @media (max-width: 1199.98px) {
-        width:100%;
-    }
-    app-search-input{
-        width:100%;
-    }
+  @media (max-width: 1199.98px) {
+    width: 100%;
+  }
+  app-search-input {
+    width: 100%;
+  }
 }
 
 .table-container {
-    margin-top: 1rem;
-    height: calc(100vh - 131px);
-    position: relative;
+  margin-top: 1rem;
+  height: calc(100vh - 131px);
+  position: relative;
+  width: 100%;
+  overflow-x: auto;
+  background-color: #f2f2f4;
+  border-radius: 5px;
+  @media (max-width: 1199.98px) {
+    height: calc(100vh - 171px);
     width: 100%;
-    overflow-x: auto;
-    background-color:#f2f2f4;
-    border-radius: 5px;
-    @media (max-width: 1199.98px) {
-        height: calc(100vh - 171px);
-        width: 100%;
+  }
+
+  th.mat-mdc-header-cell {
+    font-family: "Roboto", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    padding-left: 2rem;
+  }
+
+  td.mat-mdc-cell {
+    font-family: "Roboto", sans-serif;
+    //font-size: 14px;
+    font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
+    font-weight: 400;
+    padding-left: 2rem;
+  }
+
+  button.mdc-icon-button {
+    padding: 0;
+
+    mat-icon.mat-icon {
+      width: 16px;
+      height: 16px;
+      //font-size: 16px;
+      font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
+      color: #111541;
     }
+  }
 
-    th.mat-mdc-header-cell {
-        font-family: "Roboto", sans-serif;
-        font-size: 13px;
-        font-weight: 500;
-        padding-left: 2rem;
- }
+  .no-table-data {
+    height: 240px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-    td.mat-mdc-cell{
-        font-family: "Roboto", sans-serif;
-        //font-size: 14px;
-         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
-        font-weight: 400;
-        padding-left: 2rem;
+  .mat-paginator-sticky {
+    bottom: 0px;
+    position: sticky;
+  }
+
+  @media (max-width: 1199.98px) {
+    th.name,
+    td.name {
+      width: 70%;
     }
-
-    button.mdc-icon-button{
-        width:24px;
-        height: 24px;
-        padding: 0;
-
-        mat-icon.mat-icon{
-            width: 16px;
-            height: 16px;
-            //font-size: 16px;
-         font-size: clamp(0.875rem, 0.787rem + 0.2817vw, 1.125rem);
-            color:#111541;
-        }
-    }
-    // .primary-button,
-    // .primary-button-outline {
-    //     font-family: "Roboto", sans-serif !important;
-    //     font-weight: 500 !important;
-    //     padding: 0.4rem 0.6rem !important;
-    //     // padding: 0.5rem 0.8rem !important;
-    //     line-height: 18px;
-    //     border-radius: 30px !important;
-    //     letter-spacing: 0;
-    //     text-align: center;
-
-    //      @media (max-width: 1199.98px){
-    //     padding: 1rem 0.8rem !important;
-    //  }
-    // }
-
-    // .primary-button {
-    //     background-color: #0099cc !important;
-    //     color: #ffffff !important;
-    //     border: 1px;
-    //   }
-
-    //   .primary-button-outline {
-    //     background-color: #ffffff !important;
-    //     color: #0099cc !important;
-    //     border: 1px solid!important;
-    //   }
-    .no-table-data {
-        height: 240px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-    .mat-paginator-sticky {
-        bottom: 0px;
-        position: sticky;
-    }
-
-    @media (max-width: 1199.98px) {
-        th.name,
-        td.name{
-            width:70%;
-        }
-    }
+  }
 }
 
 :host ::ng-deep {
-    .mat-mdc-paginator-outer-container{
-        .mat-mdc-paginator-container{
-            @media (max-width: 1199.98px) {
-                justify-content: center;
-            }
-            .mat-mdc-paginator-page-size{
-                @media (max-width: 1199.98px) {
-                    margin-right: 0;
-                }
-                .mat-mdc-paginator-page-size-label{
-                    font-family: "Roboto", sans-serif;
-                    //font-size: 14px;
-         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
-                    font-weight: 400;
-                }
-
-                .mat-mdc-form-field{
-                    background: #fff;
-                    display: flex;
-                    align-items: center;
-                    border-radius: 10px;
-                    min-height: 0;
-
-                    mat-label{
-                        font-family: "Roboto", sans-serif;
-                        font-weight: 400;
-                        font-size: 16p65
-                    }
-
-                    mat-icon{
-                        &.link-icon{
-                            color: #4e525f;
-                            margin-right: 3px;
-                            padding: 7px
-                        }
-                    }
-
-                    .mdc-text-field{
-                        color: #040F2F;
-                        font-family: "Roboto", sans-serif;
-                        font-weight: 400;
-                        //font-size: 14px;
-         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
-                        line-height: 22px;
-
-                    }
-
-                    .mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
-                        color: #040F2F;
-                    }
-
-                    .mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-floating-label {
-                        color: #f44336;
-                    }
-
-                    .mat-mdc-form-field-icon-prefix>.mat-icon{
-                        padding: 5px 6px 5px 10px;
-                    }
-
-                    .mat-mdc-icon-button.mat-mdc-button-base {
-                        width: 36px;
-                        height: 34px;
-                        padding: 5px 6px;
-                    }
-
-                    .mat-mdc-icon-button .mat-mdc-button-touch-target {
-                        height: 34px;
-                    }
-
-                    .mat-mdc-form-field-infix {
-                        padding-top: 5px;
-                        padding-bottom: 5px;
-                        min-height: 0!important;
-                        letter-spacing: 0;
-                        width: min-content;
-                    }
-
-                    .mat-mdc-form-field-subscript-wrapper{
-                        display: none;
-                    }
-
-                    .mdc-text-field--focused,
-                    .mdc-notched-outline{
-
-                        .mdc-notched-outline__notch{
-                            border: none;
-                            border-bottom: 0.5px solid #4E525F;
-                        }
-                        .mdc-notched-outline__leading{
-                            border-left: 0.5px solid #4E525F;
-                            border-top: 0.5px solid #4E525F;
-                            border-bottom: 0.5px solid #4E525F;
-                            border-top-left-radius: 10px;
-                            border-bottom-left-radius: 10px;
-                            background-color: transparent;
-                        }
-
-                        .mdc-notched-outline__trailing{
-                            border-right: 0.5px solid #4E525F;
-                            border-top: 0.5px solid #4E525F;
-                            border-bottom: 0.5px solid #4E525F;
-                            border-top-right-radius: 10px;
-                            border-bottom-right-radius: 10px;
-                            background-color: transparent;
-                        }
-                    }
-                  }
-            }
-            .mat-mdc-paginator-range-actions{
-                .mat-mdc-paginator-range-label{
-                    font-family: "Roboto", sans-serif;
-                    //font-size: 14px;
-         font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
-                    font-weight: 400;
-
-                    @media (max-width: 1199.98px) {
-                        display: none;
-                    }
-                }
-            }
+  .mat-mdc-paginator-outer-container {
+    .mat-mdc-paginator-container {
+      @media (max-width: 1199.98px) {
+        justify-content: center;
+      }
+      .mat-mdc-paginator-page-size {
+        @media (max-width: 1199.98px) {
+          margin-right: 0;
         }
-    }
+        .mat-mdc-paginator-page-size-label {
+          font-family: "Roboto", sans-serif;
+          //font-size: 14px;
+          font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
+          font-weight: 400;
+        }
 
+        .mat-mdc-form-field {
+          background: #fff;
+          display: flex;
+          align-items: center;
+          border-radius: 10px;
+          min-height: 0;
+
+          mat-label {
+            font-family: "Roboto", sans-serif;
+            font-weight: 400;
+            font-size: 16p65;
+          }
+
+          mat-icon {
+            &.link-icon {
+              color: #4e525f;
+              margin-right: 3px;
+              padding: 7px;
+            }
+          }
+
+          .mdc-text-field {
+            color: #040f2f;
+            font-family: "Roboto", sans-serif;
+            font-weight: 400;
+            //font-size: 14px;
+            font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
+            line-height: 22px;
+          }
+
+          .mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
+            color: #040f2f;
+          }
+
+          .mdc-text-field--invalid:not(.mdc-text-field--disabled)
+            .mdc-floating-label {
+            color: #f44336;
+          }
+
+          .mat-mdc-form-field-icon-prefix > .mat-icon {
+            padding: 5px 6px 5px 10px;
+          }
+
+          .mat-mdc-icon-button.mat-mdc-button-base {
+            width: 36px;
+            height: 34px;
+            padding: 5px 6px;
+          }
+
+          .mat-mdc-icon-button .mat-mdc-button-touch-target {
+            height: 34px;
+          }
+
+          .mat-mdc-form-field-infix {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            min-height: 0 !important;
+            letter-spacing: 0;
+            width: min-content;
+          }
+
+          .mat-mdc-form-field-subscript-wrapper {
+            display: none;
+          }
+
+          .mdc-text-field--focused,
+          .mdc-notched-outline {
+            .mdc-notched-outline__notch {
+              border: none;
+              border-bottom: 0.5px solid #4e525f;
+            }
+            .mdc-notched-outline__leading {
+              border-left: 0.5px solid #4e525f;
+              border-top: 0.5px solid #4e525f;
+              border-bottom: 0.5px solid #4e525f;
+              border-top-left-radius: 10px;
+              border-bottom-left-radius: 10px;
+              background-color: transparent;
+            }
+
+            .mdc-notched-outline__trailing {
+              border-right: 0.5px solid #4e525f;
+              border-top: 0.5px solid #4e525f;
+              border-bottom: 0.5px solid #4e525f;
+              border-top-right-radius: 10px;
+              border-bottom-right-radius: 10px;
+              background-color: transparent;
+            }
+          }
+        }
+      }
+      .mat-mdc-paginator-range-actions {
+        .mat-mdc-paginator-range-label {
+          font-family: "Roboto", sans-serif;
+          //font-size: 14px;
+          font-size: clamp(0.8125rem, 0.7685rem + 0.1408vw, 0.9375rem);
+          font-weight: 400;
+
+          @media (max-width: 1199.98px) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
 }

@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { LocalStorageService } from './../core/local-storage.service';
 import { AddEditUserComponent } from './add-edit-user/add-edit-user.component';
 import { AdminServices } from './admin.service';
+import { UserDetailsComponent } from './user-details/user-details.component';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -24,7 +25,7 @@ export class AdminComponent implements OnInit, AfterViewInit {
   pageIndex = 0;
   pageSize = 5;
   totalPageSize = 0;
-  displayedUserColumns: string[] = ['name', 'email', 'mobile', 'type', 'action', 'status'];
+  displayedUserColumns: string[] = ['name', 'email', 'details', 'action', 'status'];
 
   @ViewChild('paginatorUser') paginatorUser!: MatPaginator;
   @ViewChild('sortUser') sortUser: MatSort = new MatSort();
@@ -57,7 +58,7 @@ export class AdminComponent implements OnInit, AfterViewInit {
     });
 
   }
-  
+
   tabChange(event: any) {
     this.selectedTab = event.index;
     console.log("SelectedTab:", this.selectedTab);
@@ -70,7 +71,7 @@ export class AdminComponent implements OnInit, AfterViewInit {
       this.userTable.filter = this.searchValue;
     }
   }
-  
+
   clearSearchUser() {
     this.searchValue = "";
     if (this.selectedTab === 0) {
@@ -117,6 +118,10 @@ export class AdminComponent implements OnInit, AfterViewInit {
         console.info("Complete!!");
       }
     })
+  }
+
+  onViewUserDetails(user: any) {
+    this.dialog.open(UserDetailsComponent, { panelClass: 'mat-dialog-panel', data: { user: user } });
   }
 
 }
