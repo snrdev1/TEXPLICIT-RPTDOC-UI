@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { LocalStorageService } from './../core/local-storage.service';
 import { AddEditUserComponent } from './add-edit-user/add-edit-user.component';
 import { AdminServices } from './admin.service';
+import { UserDetailsComponent } from './user-details/user-details.component';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -16,7 +17,7 @@ export class AdminComponent implements OnInit, AfterViewInit {
   addUserButtonVisible: boolean = true;
   searchValue: string = "";
   selectedTab: number = 0;
-  usertable = new MatTableDataSource();
+  userTable = new MatTableDataSource();
   isLoading = false;
   users: any = [];
   kis: any = [];
@@ -24,7 +25,7 @@ export class AdminComponent implements OnInit, AfterViewInit {
   pageIndex = 0;
   pageSize = 5;
   totalPageSize = 0;
-  displayedUserColumns: string[] = ['name', 'email', 'mobile', 'type', 'action', 'status'];
+  displayedUserColumns: string[] = ['name', 'email', 'details', 'action', 'status'];
 
   @ViewChild('paginatorUser') paginatorUser!: MatPaginator;
   @ViewChild('sortUser') sortUser: MatSort = new MatSort();
@@ -37,12 +38,12 @@ export class AdminComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.getAllUSers();
+    this.getAllUsers();
     this.localStorageService.observeUserInfo();
   }
   ngAfterViewInit(): void {
-    this.usertable.paginator = this.paginatorUser;
-    this.usertable.sort = this.sortUser;
+    this.userTable.paginator = this.paginatorUser;
+    this.userTable.sort = this.sortUser;
   }
   onFilterClick() { }
 
@@ -51,13 +52,13 @@ export class AdminComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.getAllUSers();
+        this.getAllUsers();
       }
       console.log("closed");
     });
 
   }
-  
+
   tabChange(event: any) {
     this.selectedTab = event.index;
     console.log("SelectedTab:", this.selectedTab);
@@ -67,14 +68,14 @@ export class AdminComponent implements OnInit, AfterViewInit {
     console.log("searchUser:", event);
     this.searchValue = event.trim().toLowerCase();
     if (this.selectedTab === 0) {
-      this.usertable.filter = this.searchValue;
+      this.userTable.filter = this.searchValue;
     }
   }
-  
+
   clearSearchUser() {
     this.searchValue = "";
     if (this.selectedTab === 0) {
-      this.usertable.filter = this.searchValue;
+      this.userTable.filter = this.searchValue;
     }
   }
 
@@ -87,9 +88,9 @@ export class AdminComponent implements OnInit, AfterViewInit {
           }
           return user;
         });
-        this.usertable = new MatTableDataSource(this.users);
-        this.usertable.paginator = this.paginatorUser;
-        this.usertable.sort = this.sortUser;
+        this.userTable = new MatTableDataSource(this.users);
+        this.userTable.paginator = this.paginatorUser;
+        this.userTable.sort = this.sortUser;
       },
       error: (err: any) => {
         console.error(err);
@@ -100,15 +101,15 @@ export class AdminComponent implements OnInit, AfterViewInit {
     })
   }
 
-  getAllUSers() {
+  getAllUsers() {
     this.adminService.getAllUsers().subscribe({
       next: (res: any) => {
         this.users = res.data;
         console.log("Users:", this.users);
-        this.usertable = new MatTableDataSource(this.users);
+        this.userTable = new MatTableDataSource(this.users);
         this.totalPageSize = this.users.length;
-        this.usertable.paginator = this.paginatorUser;
-        this.usertable.sort = this.sortUser;
+        this.userTable.paginator = this.paginatorUser;
+        this.userTable.sort = this.sortUser;
       },
       error: (e: any) => {
         console.log("Error:", e);
@@ -117,6 +118,10 @@ export class AdminComponent implements OnInit, AfterViewInit {
         console.info("Complete!!");
       }
     })
+  }
+
+  onViewUserDetails(user: any) {
+    this.dialog.open(UserDetailsComponent, { panelClass: 'mat-dialog-panel', data: { user: user } });
   }
 
 }

@@ -2,11 +2,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { shareReplay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PaymentService {
+  private pricesCache: Observable<any> | null = null;
 
   constructor(private http: HttpClient) { }
 
@@ -29,9 +31,14 @@ export class PaymentService {
   }
 
   getPrices(): Observable<any> {
-    const url = `${environment.hostName}/pricing/get_prices`;
-
-    return this.http.get<any>(url);
+    if (!this.pricesCache) {
+      const url = `${environment.hostName}/pricing/get_prices`;
+      this.pricesCache = this.http.get<any>(url).pipe(
+        shareReplay(1), // Cache the last emitted value
+      );
+    }
+  
+    return this.pricesCache;
   }
 
   getUserPaymentHistory(){

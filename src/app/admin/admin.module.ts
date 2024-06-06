@@ -9,6 +9,7 @@ import { AuthGuard } from '../core/auth.guard';
 import { SharedModule } from '../shared/shared.module';
 import { AddEditUserComponent } from './add-edit-user/add-edit-user.component';
 import { AdminComponent } from './admin.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,7 @@ const routes: Routes = [
   declarations: [
     AdminComponent,
     AddEditUserComponent,
+    UserDetailsComponent,
   ],
   imports: [
     CommonModule,

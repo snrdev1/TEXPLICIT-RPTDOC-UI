@@ -13,28 +13,13 @@ export class AdminServices {
   ) {
   }
 
-  getPendingKIs(): Observable<any> {
-    const url = `${environment.hostName}/admin/ki/pending/all`;
-    return this.http.post<any>(url, {});
-  }
-
-  getPendingKIbyID(id: string): Observable<any> {
-    const url = `${environment.hostName}/admin/ki/pending/${id}`;
-    return this.http.get<any>(url);
-  }
-
-  changeKIStatus(params: any): Observable<any> {
-    const url = `${environment.hostName}/admin/ki/change_status`;
-    return this.http.post<any>(url, params);
-  }
-
   getAllUsers(): Observable<any> {
     const url = `${environment.hostName}/admin/user/all`;
     return this.http.get<any>(url);
   }
 
   /**
-   * 
+   *
    * @param userId : User ID of the user to be approved
    * @returns approval status
    */

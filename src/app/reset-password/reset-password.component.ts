@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ResetPasswordService } from './reset-password.service';
 import { CommonService } from '../shared/services/common.service';
+import { ResetPasswordService } from './reset-password.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -20,52 +20,62 @@ export class ResetPasswordComponent {
     private formBuilder: FormBuilder
   ) {
     this.form = this.formBuilder.group({
-      newpassword: new FormControl("",Validators.required),
-      confirmpassword: new FormControl("",Validators.required)
+      newpassword: new FormControl("", Validators.required),
+      confirmpassword: new FormControl("", Validators.required)
     });
   }
 
-  ngOnInit(){
-    this.token = this.route.snapshot.paramMap.get('token') || '';
-    // // console.log("this.token",this.token);
-    this.checkTokenValidity();
+  ngOnInit() {
+    // this.token = this.route.snapshot.paramMap.get('token') || '';
+    this.route.paramMap.subscribe(params => {
+      this.token = params.get('token') || '';
+
+      // Now you have the token, you can use it as needed
+      // console.log('Got Token : ', this.token);
+
+      // Check token validity otherwise route to home page
+      if (this.token)
+        this.checkTokenValidity();
+      else
+        this.navigateToHome();
+    });
   }
 
-  checkTokenValidity(){
+  checkTokenValidity() {
     this.resetPasswordService.checkTokenValidity(this.token).subscribe({
-      next: (res)=>{
-        console.log("checkTokenValidity",res);
+      next: (res) => {
+        console.log("Valid token!", res);
       },
-      error: (e)=>{
-        console.log("Error",e);
+      error: (e) => {
+        console.log("Invalid token!", e);
         this.navigateToHome();
       },
-      complete: ()=>{
+      complete: () => {
         console.log("Complete");
       }
     });
   }
 
-  onSubmit(){
+  onSubmit() {
     console.log('Reset Password submit');
     // console.log(this.form.value);
-    if(this.form.controls['newpassword'].value == this.form.controls['confirmpassword'].value){
+    if (this.form.controls['newpassword'].value == this.form.controls['confirmpassword'].value) {
       let newpassword = this.form.controls['newpassword'].value;
-      this.resetPasswordService.updatePassword(this.token, newpassword ).subscribe({
-        next: (res)=>{
-          console.log("res",res);
+      this.resetPasswordService.updatePassword(this.token, newpassword).subscribe({
+        next: (res) => {
+          console.log("res", res);
           this.commonService.showSnackbar("snackbar-success", res.message, "0");
           this.navigateToHome();
         },
-        error: (e)=>{
-          console.log("error",e);
+        error: (e) => {
+          console.log("error", e);
           this.commonService.showSnackbar("snackbar-error", e.error.message, e.status);
         },
-        complete: ()=>{
+        complete: () => {
           console.log("Complete");
         }
       })
-    }else{
+    } else {
       this.commonService.showSnackbar("snackbar-error", "Passwords should match", "0");
 
     }

@@ -1,0 +1,22 @@
+.mat-details {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+
+  .mat-section-header-title {
+    border-bottom: 0.5px solid #4e525f;
+    padding-bottom: 0.5rem;
+  }
+
+  .mat-details-row {
+    margin-bottom: 0.5rem;
+    display: flex;
+    gap: 1rem;
+    width: 20rem;
+    justify-content: space-between;
+
+    .mat-details-value {
+      font-weight: 500;
+    }
+  }
+}

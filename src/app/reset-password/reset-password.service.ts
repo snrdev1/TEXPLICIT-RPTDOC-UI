@@ -14,7 +14,7 @@ export class ResetPasswordService {
     return this.http.post<any>(url, emailParam);
   }
 
-  checkTokenValidity(token: string = ""): Observable<any> {
+  checkTokenValidity(token: string): Observable<any> {
     const url = `${environment.hostName}/account/reset-password/verify-token/${token}`;
     return this.http.get<any>(url);
   }

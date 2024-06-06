@@ -45,11 +45,17 @@ export class MyDocumentsComponent {
     public dialog: MatDialog,
     private documentsService: MydocumentsService,
     private localstorage: LocalStorageService,
-    private commonservice: CommonService) {
+    private commonService: CommonService) {
     this.userInfo = this.localstorage.getUserInfo();
   }
 
   ngOnInit() {
+    // Check if the user has subscription left to upload documents
+    if (!this.userInfo?.permissions?.document?.allowed?.document_size) {
+      // Generate a snackbar to inform the user to update their subscription
+      this.commonService.showSnackbar('snackbar-info', "Subscription expired or does not exist! Please update your subscription today!", "");
+    }
+
     this.strPath = this.localstorage.getitem("strPath") || "";
     this.sharedstrPath = this.localstorage.getitem("sharedstrPath") || "";
     this.sharedpath = this.localstorage.getitem("sharedpath") || "";
@@ -63,7 +69,6 @@ export class MyDocumentsComponent {
     }
     this.checkedIds = this.localstorage.getitem("FileIdArray") || [];
     this.fileIds = this.localstorage.getitem("FileIdArray") || [];
-    console.log("Checked:", this.checkedIds);
     this.selectedTab = this.localstorage.getitem("selectedtab") || 0;
 
     if (this.userInfo) {
@@ -362,13 +367,13 @@ export class MyDocumentsComponent {
     this.documentsService.deleteFile(id, this.strPath).subscribe({
       next: (res: any) => {
         console.log(res);
-        this.commonservice.showSnackbar("snackbar-success", res.message, "0");
+        this.commonService.showSnackbar("snackbar-success", res.message, "0");
         this.offset = 0;
         this.getAllUploadedFiles("", this.strPath);
       },
       error: (e) => {
         console.error("Error : ", e);
-        this.commonservice.showSnackbar("snackbar-error", "Cannot Delete!", e.status);
+        this.commonService.showSnackbar("snackbar-error", "Cannot Delete!", e.status);
       },
       complete: () => {
         console.info('Complete!');
@@ -381,7 +386,7 @@ export class MyDocumentsComponent {
     this.documentsService.deleteFolder(id, this.strPath).subscribe({
       next: (res: any) => {
         console.log(res);
-        this.commonservice.showSnackbar("snackbar-success", res.message, "0");
+        this.commonService.showSnackbar("snackbar-success", res.message, "0");
         this.offset = 0;
         this.getAllUploadedFiles("", this.strPath);
       },

@@ -20,12 +20,14 @@ export class AddEditUserComponent {
   defaultOptions: any = [];
   disabledArray: any = [];
   modes: any[] = [{ id: 2, name: "Professional" }, { id: 3, name: "Personal" }];
-  constructor(public dialogRef: MatDialogRef<AddEditUserComponent>,
+  constructor(
+    public dialogRef: MatDialogRef<AddEditUserComponent>,
     private formBuilder: FormBuilder,
     private commonService: CommonService,
     private sharedservice: SharedService,
     private adminService: AdminServices,
-    @Inject(MAT_DIALOG_DATA) public data: { user: any }) {
+    @Inject(MAT_DIALOG_DATA) public data: { user: any }
+  ) {
     this.form = this.formBuilder.group({
       name: new FormControl("", [Validators.required, Validators.pattern('^[a-zA-Z ]+$')]),
       email: new FormControl("", [Validators.required, Validators.email]),
@@ -66,9 +68,10 @@ export class AddEditUserComponent {
       start_date: this.data.user?.permissions?.subscription_duration?.start_date,
       end_date: this.data.user?.permissions?.subscription_duration?.end_date,
       report_count: this.data.user?.permissions?.report?.allowed?.total,
+      // convert from megabytes to bytes
       document_size: this.data.user?.permissions?.document?.allowed?.document_size / (1024 * 1024),
       chat_count: this.data.user?.permissions?.chat?.allowed?.chat_count
-    })
+    });
 
     if (this.form.controls['email'].value !== "") {
       this.form.get('email')?.disable();
@@ -81,11 +84,16 @@ export class AddEditUserComponent {
 
   onSubmit() {
     this.userDetails = this.form.value;
+
+    // Convert size to bytes from megabytes
+    this.userDetails["document_size"] = this.userDetails["document_size"] * (1024 * 1024);
+
     console.log("Form:", this.userDetails);
     if (this.data.user) {
       this.userDetails["userId"] = this.data.user["_id"];
       this.userDetails["email"] = this.data.user["email"];
     }
+
     this.adminService.createUpdateUser(this.userDetails).subscribe({
       next: (response: any) => {
         console.log("Response:", response);
@@ -99,7 +107,7 @@ export class AddEditUserComponent {
       complete: () => {
         console.info("Complete!");
       }
-    })
+    });
   }
 
   onModeSelect(event: MatSelectChange) {
