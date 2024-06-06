@@ -38,7 +38,7 @@ export class AdminComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.getAllUSers();
+    this.getAllUsers();
     this.localStorageService.observeUserInfo();
   }
   ngAfterViewInit(): void {
@@ -52,7 +52,7 @@ export class AdminComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.getAllUSers();
+        this.getAllUsers();
       }
       console.log("closed");
     });
@@ -101,7 +101,7 @@ export class AdminComponent implements OnInit, AfterViewInit {
     })
   }
 
-  getAllUSers() {
+  getAllUsers() {
     this.adminService.getAllUsers().subscribe({
       next: (res: any) => {
         this.users = res.data;
