@@ -91,7 +91,6 @@ export class LayoutComponent {
 
     this.route.queryParams.subscribe((params: any) => {
       if (params['id'] == 'demo') {
-        // console.log("Params Demo caught");
         this.onRequestDemoClick();
 
       }
@@ -127,9 +126,9 @@ export class LayoutComponent {
 
   onPricingClick() {
     // Blocking it temporarily
-    this.router.navigate(['/payment']);
+    // this.router.navigate(['/payment']);
 
-    // this.dialog.open(DemoRequestDialogComponent, { panelClass: 'mat-dialog-panel' });
+    this.dialog.open(DemoRequestDialogComponent, { panelClass: 'mat-dialog-panel' });
     this.closeSidenav();
   }
 
