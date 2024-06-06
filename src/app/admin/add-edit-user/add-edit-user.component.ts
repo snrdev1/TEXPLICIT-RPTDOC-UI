@@ -68,9 +68,10 @@ export class AddEditUserComponent {
       start_date: this.data.user?.permissions?.subscription_duration?.start_date,
       end_date: this.data.user?.permissions?.subscription_duration?.end_date,
       report_count: this.data.user?.permissions?.report?.allowed?.total,
+      // convert from megabytes to bytes
       document_size: this.data.user?.permissions?.document?.allowed?.document_size / (1024 * 1024),
       chat_count: this.data.user?.permissions?.chat?.allowed?.chat_count
-    })
+    });
 
     if (this.form.controls['email'].value !== "") {
       this.form.get('email')?.disable();
@@ -83,11 +84,16 @@ export class AddEditUserComponent {
 
   onSubmit() {
     this.userDetails = this.form.value;
+
+    // Convert size to bytes from megabytes
+    this.userDetails["document_size"] = this.userDetails["document_size"] * (1024 * 1024);
+
     console.log("Form:", this.userDetails);
     if (this.data.user) {
       this.userDetails["userId"] = this.data.user["_id"];
       this.userDetails["email"] = this.data.user["email"];
     }
+
     this.adminService.createUpdateUser(this.userDetails).subscribe({
       next: (response: any) => {
         console.log("Response:", response);
@@ -101,7 +107,7 @@ export class AddEditUserComponent {
       complete: () => {
         console.info("Complete!");
       }
-    })
+    });
   }
 
   onModeSelect(event: MatSelectChange) {
