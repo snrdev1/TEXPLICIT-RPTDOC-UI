@@ -61,10 +61,10 @@ export class ChatPanelComponent {
 
   ngOnInit() {
     // Check if the user has subscription left to chat
-    if (!this.userInfo?.permissions?.chat?.allowed?.total) {
+    //if (!this.userInfo?.permissions?.chat?.allowed?.total) {
       // Generate a snackbar to inform the user to update their subscription
-      this.commonService.showSnackbar('snackbar-info', "Subscription expired or does not exist! Please update your subscription today!", "");
-    }
+      //this.commonService.showSnackbar('snackbar-info', "Subscription expired or does not exist! Please update your subscription today!", "");
+    //}
 
     if (this.userInfo) {
       this.currentUserId = this.userInfo?._id;
